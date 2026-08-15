@@ -1827,7 +1827,7 @@
     // ── Copyparty progress sync (Module 7) ────────────────────────────────
     const CP_BASE_M7     = 'https://storage.skalaapi.com';
     const CP_USERNAME_M7 = 'vlad';
-    const CP_FILENAME_M7 = 'progress.json';
+    const CP_FILENAME_M7 = 'progress-m7.json';
 
     async function cpHashM7(username, password) {
         const data = new TextEncoder().encode(username + '|' + password);
@@ -1858,32 +1858,20 @@
             try {
                 const dir  = await cpUserDirM7(pw);
                 const auth = await cpAuthHeaderM7(pw);
-                // Fetch current server snapshot to merge
-                let snap = {};
-                try {
-                    const r = await fetch(dir + '/' + CP_FILENAME_M7, {
-                        method: 'GET', credentials: 'omit', cache: 'no-store',
-                        headers: { Authorization: auth }
-                    });
-                    if (r.ok) snap = await r.json();
-                } catch(e) {}
-
-                // Build this module's slice
-                snap['GA History/Module 7'] = {
+                const payload = {
                     totalReviewed: ankiStats.totalReviewed,
                     goodCount:     ankiStats.goodCount,
                     againCount:    ankiStats.againCount,
                     mastered: Object.values(cardHistory).filter(h => h && h.good > 0 && h.good >= h.again).length,
                     total: 33
                 };
-
                 await fetch(dir + '/' + CP_FILENAME_M7, {
                     method: 'PUT', credentials: 'omit', cache: 'no-store',
                     headers: { Authorization: auth, 'Content-Type': 'application/json' },
-                    body: JSON.stringify(snap, null, 2)
+                    body: JSON.stringify(payload)
                 });
             } catch(e) {}
-        }, 800);
+        }, 3000);
     }
     </script>
 </body>

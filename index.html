@@ -860,7 +860,11 @@
   // ── Copyparty helpers ─────────────────────────────────────────────────────
   const CP_BASE     = 'https://storage.skalaapi.com';
   const CP_USERNAME = 'vlad';
-  const CP_FILENAME = 'progress.json';
+  // Per-module files — each study guide writes its own, index.html reads both
+  const CP_FILES = {
+    'GA History/Module 7': 'progress-m7.json',
+    'GA History/Module 8': 'progress-m8.json'
+  };
 
   async function cpHash(username, password) {
     const data = new TextEncoder().encode(username + '|' + password);
@@ -897,35 +901,23 @@
     } catch (e) { return { ok: false, error: 'Network error.' }; }
   }
 
-  // Fetch progress.json from copyparty
+  // Fetch all per-module files and merge into one snapshot object
   async function cpFetch(password) {
     const dir  = await cpUserDir(password);
     const auth = await cpAuthHeader(password);
+    const merged = {};
     try {
-      const res = await fetch(dir + '/' + CP_FILENAME, {
-        method: 'GET', credentials: 'omit', cache: 'no-store',
-        headers: { Authorization: auth }
-      });
-      if (res.status === 404) return { ok: true, data: null }; // file doesn't exist yet
-      if (!res.ok) return { ok: false, error: 'Fetch failed HTTP ' + res.status };
-      const data = await res.json();
-      return { ok: true, data };
-    } catch (e) { return { ok: false, error: 'Network error.' }; }
-  }
-
-  // PUT progress.json to copyparty
-  async function cpPut(password, obj) {
-    const dir  = await cpUserDir(password);
-    const auth = await cpAuthHeader(password);
-    try {
-      const res = await fetch(dir + '/' + CP_FILENAME, {
-        method: 'PUT', credentials: 'omit', cache: 'no-store',
-        headers: { Authorization: auth, 'Content-Type': 'application/json' },
-        body: JSON.stringify(obj, null, 2)
-      });
-      if (!res.ok) return { ok: false, error: 'PUT failed HTTP ' + res.status };
-      return { ok: true };
-    } catch (e) { return { ok: false, error: 'Network error.' }; }
+      await Promise.all(Object.entries(CP_FILES).map(async function([moduleId, filename]) {
+        try {
+          const res = await fetch(dir + '/' + filename, {
+            method: 'GET', credentials: 'omit', cache: 'no-store',
+            headers: { Authorization: auth }
+          });
+          if (res.ok) merged[moduleId] = await res.json();
+        } catch(e) {}
+      }));
+    } catch(e) { return { ok: false, error: 'Network error.' }; }
+    return { ok: true, data: Object.keys(merged).length ? merged : null };
   }
 
   // Collect current progress snapshot from localStorage
@@ -1072,17 +1064,19 @@
     input.addEventListener('keydown', function(e) { if (e.key === 'Enter') attemptLogin(); });
   })();
 
-  // Fetch from server, merge, PUT back, then re-render
+  // Fetch from server, merge into localStorage, re-render
+  // index.html is read-only — the study guides own all writes
   async function doSync(pw) {
     showChip('syncing', '⟳ Syncing…');
     const fetched = await cpFetch(pw);
     if (fetched.ok && fetched.data) {
       hydrateFromSnapshot(fetched.data);
+      showChip('saved', '✓ Synced');
+    } else if (fetched.ok) {
+      showChip('saved', '✓ No data yet');
+    } else {
+      showChip('error', '✗ ' + (fetched.error || 'Sync failed'));
     }
-    const snap = buildProgressSnapshot();
-    const put  = await cpPut(pw, snap);
-    if (put.ok) showChip('saved', '✓ Synced');
-    else        showChip('error', '✗ Sync failed');
   }
   </script>
 </body>
