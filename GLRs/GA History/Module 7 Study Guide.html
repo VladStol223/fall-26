@@ -1842,7 +1842,7 @@
 
     async function cpUserDirM7(password) {
         const hash = await cpHashM7(CP_USERNAME_M7, password);
-        return CP_BASE_M7 + '/' + hash;
+        return CP_BASE_M7 + '/user_data/' + hash;
     }
 
     function getCpPw() {

@@ -1432,7 +1432,7 @@
 
     async function cpUserDirM8(password) {
         const hash = await cpHashM8(CP_USERNAME_M8, password);
-        return CP_BASE_M8 + '/' + hash;
+        return CP_BASE_M8 + '/user_data/' + hash;
     }
 
     function getCpPw() {

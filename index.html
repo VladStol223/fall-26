@@ -875,7 +875,7 @@
 
   async function cpUserDir(password) {
     const hash = await cpHash(CP_USERNAME, password);
-    return CP_BASE + '/' + hash;
+    return CP_BASE + '/user_data/' + hash;
   }
 
   // Verify credentials via PROPFIND
