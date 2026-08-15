@@ -1858,6 +1858,7 @@
             try {
                 const dir  = await cpUserDirM7(pw);
                 const auth = await cpAuthHeaderM7(pw);
+                const url  = dir + '/' + CP_FILENAME_M7;
                 const payload = {
                     totalReviewed: ankiStats.totalReviewed,
                     goodCount:     ankiStats.goodCount,
@@ -1865,11 +1866,8 @@
                     mastered: Object.values(cardHistory).filter(h => h && h.good > 0 && h.good >= h.again).length,
                     total: 33
                 };
-                await fetch(dir + '/' + CP_FILENAME_M7, {
-                    method: 'PUT', credentials: 'omit', cache: 'no-store',
-                    headers: { Authorization: auth, 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
+                await fetch(url, { method: 'DELETE', credentials: 'omit', cache: 'no-store', headers: { Authorization: auth } });
+                await fetch(url, { method: 'PUT', credentials: 'omit', cache: 'no-store', headers: { Authorization: auth, 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
             } catch(e) {}
         }, 3000);
     }
