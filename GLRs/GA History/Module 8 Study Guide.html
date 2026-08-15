@@ -1439,28 +1439,38 @@
         return sessionStorage.getItem('cp_pw') || '';
     }
 
-    let cpSyncTimer = null;
+    let cpDirty = false;
+
+    // Called after every Good/Again — just marks dirty, never fires a request
     function cpSyncProgress() {
-        const pw = getCpPw();
-        if (!pw) return;
-        if (cpSyncTimer) clearTimeout(cpSyncTimer);
-        cpSyncTimer = setTimeout(async function() {
-            try {
-                const dir  = await cpUserDirM8(pw);
-                const auth = await cpAuthHeaderM8(pw);
-                const url  = dir + '/' + CP_FILENAME_M8;
-                const payload = {
-                    totalReviewed: ankiStats.totalReviewed,
-                    goodCount:     ankiStats.goodCount,
-                    againCount:    ankiStats.againCount,
-                    mastered: Object.values(cardHistory).filter(h => h && h.good > 0 && h.good >= h.again).length,
-                    total: 32
-                };
-                await fetch(url, { method: 'DELETE', credentials: 'omit', cache: 'no-store', headers: { Authorization: auth } });
-                await fetch(url, { method: 'PUT', credentials: 'omit', cache: 'no-store', headers: { Authorization: auth, 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-            } catch(e) {}
-        }, 3000);
+        if (!getCpPw()) return;
+        cpDirty = true;
     }
+
+    async function cpFlush() {
+        const pw = getCpPw();
+        if (!pw || !cpDirty) return;
+        cpDirty = false;
+        try {
+            const dir  = await cpUserDirM8(pw);
+            const auth = await cpAuthHeaderM8(pw);
+            const url  = dir + '/' + CP_FILENAME_M8;
+            const payload = {
+                totalReviewed: ankiStats.totalReviewed,
+                goodCount:     ankiStats.goodCount,
+                againCount:    ankiStats.againCount,
+                mastered: Object.values(cardHistory).filter(h => h && h.good > 0 && h.good >= h.again).length,
+                total: 32
+            };
+            await fetch(url, { method: 'DELETE', credentials: 'omit', cache: 'no-store', headers: { Authorization: auth } });
+            await fetch(url, { method: 'PUT', credentials: 'omit', cache: 'no-store', headers: { Authorization: auth, 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        } catch(e) { cpDirty = true; }
+    }
+
+    // Fire at most once every 30 seconds
+    setInterval(cpFlush, 30000);
+    // Best-effort flush when leaving the page
+    window.addEventListener('pagehide', cpFlush);
     </script>
 </body>
 </html>
