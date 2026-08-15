@@ -65,7 +65,7 @@
       z-index: 1;
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 24px 80px;
+      padding: 32px 24px 80px;
     }
 
     /* ── Nav ──────────────────────────────────────────────── */
@@ -601,8 +601,161 @@
       .courses-grid { grid-template-columns: 1fr; }
     }
   </style>
+  <style>
+    /* ── Login overlay ────────────────────────────────────── */
+    #login-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 36, 66, 0.72);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    #login-overlay.hidden { display: none; }
+
+    .login-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px 28px;
+      width: 100%;
+      max-width: 360px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .login-logo {
+      font-size: 28px;
+      text-align: center;
+    }
+
+    .login-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      text-align: center;
+      letter-spacing: -0.02em;
+      margin-top: -8px;
+    }
+
+    .login-subtitle {
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+      margin-top: -10px;
+    }
+
+    .login-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .login-field label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .login-field input {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--text);
+      background: #fafbfc;
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .login-field input:focus {
+      border-color: var(--blue-400);
+      box-shadow: 0 0 0 3px rgba(59,130,212,.15);
+      background: white;
+    }
+
+    .login-btn {
+      padding: 11px;
+      background: linear-gradient(135deg, var(--blue-700), var(--blue-400));
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: opacity var(--transition), transform var(--transition);
+      font-family: inherit;
+    }
+
+    .login-btn:hover  { opacity: 0.9; transform: translateY(-1px); }
+    .login-btn:active { transform: translateY(0); }
+    .login-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
+
+    .login-error {
+      font-size: 12px;
+      color: #dc2626;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: var(--radius-sm);
+      padding: 8px 12px;
+      display: none;
+    }
+
+    .login-error.visible { display: block; }
+
+    /* ── Sync status chip ─────────────────────────────────── */
+    #sync-chip {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 99px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      box-shadow: var(--shadow-sm);
+      display: none;
+      z-index: 100;
+      transition: all var(--transition);
+    }
+
+    #sync-chip.visible { display: block; }
+    #sync-chip.syncing { color: var(--blue-700); border-color: var(--blue-200); background: var(--blue-50); }
+    #sync-chip.saved   { color: #16a34a; border-color: #bbf7d0; background: #f0fdf4; }
+    #sync-chip.error   { color: #dc2626; border-color: #fecaca; background: #fef2f2; }
+  </style>
 </head>
 <body>
+
+  <!-- Login overlay -->
+  <div id="login-overlay">
+    <div class="login-card">
+      <div class="login-logo">📚</div>
+      <div class="login-title">Study Hub</div>
+      <div class="login-subtitle">Enter your password to sync progress</div>
+      <div class="login-field">
+        <label for="pw-input">Password</label>
+        <input type="password" id="pw-input" placeholder="••••••••" autocomplete="current-password" />
+      </div>
+      <div class="login-error" id="login-error"></div>
+      <button class="login-btn" id="login-btn">Sign in</button>
+    </div>
+  </div>
+
+  <!-- Sync status -->
+  <div id="sync-chip"></div>
+
   <div class="page">
 
     <!-- Course Cards -->
@@ -665,9 +818,9 @@
         <div class="course-card-footer">
           <span class="footer-progress-label">Progress</span>
           <div class="footer-progress-bar-wrap">
-            <div class="footer-progress-fill" style="width: 66%"></div>
+            <div class="footer-progress-fill" id="ga-footer-bar" style="width: 0%"></div>
           </div>
-          <span class="footer-count">2 / 3 modules</span>
+          <span class="footer-count" id="ga-footer-count">—</span>
         </div>
       </div>
 
@@ -704,61 +857,233 @@
   </div>
 
   <script>
-    // Reads localStorage written by each study guide and hydrates the
-    // progress bars + labels on the landing page. Pure read — no writes.
-    (function () {
-      const modules = document.querySelectorAll('.module-row[data-stats-key]');
+  // ── Copyparty helpers ─────────────────────────────────────────────────────
+  const CP_BASE     = 'https://storage.skalaapi.com';
+  const CP_USERNAME = 'vlad';
+  const CP_FILENAME = 'progress.json';
 
-      modules.forEach(function (row) {
-        const statsKey   = row.dataset.statsKey;
-        const historyKey = row.dataset.historyKey;
-        const total      = parseInt(row.dataset.total, 10);
-        const id         = row.dataset.moduleId;
+  async function cpHash(username, password) {
+    const data = new TextEncoder().encode(username + '|' + password);
+    const buf  = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
 
-        const bar   = document.getElementById(id + '-bar');
-        const label = document.getElementById(id + '-label');
-        if (!bar || !label) return;
+  async function cpAuthHeader(password) {
+    const hash  = await cpHash(CP_USERNAME, password);
+    return 'Basic ' + btoa(CP_USERNAME + ':' + password + hash);
+  }
 
-        // ── Read ankiStats ──────────────────────────────────
-        let stats = null;
-        try { stats = JSON.parse(localStorage.getItem(statsKey)); } catch (e) {}
+  async function cpUserDir(password) {
+    const hash = await cpHash(CP_USERNAME, password);
+    return CP_BASE + '/' + hash;
+  }
 
-        // ── Read cardHistory to count mastered cards ────────
-        // A card is "mastered" if it has been reviewed at least once
-        // and its last verdict was Good (good > again or good > 0 with 0 again).
-        let mastered = 0;
-        try {
-          const history = JSON.parse(localStorage.getItem(historyKey));
-          if (history && typeof history === 'object') {
-            mastered = Object.values(history).filter(function (h) {
-              return h && h.good > 0 && h.good >= h.again;
-            }).length;
-          }
-        } catch (e) {}
-
-        // ── Accuracy % from ankiStats ───────────────────────
-        if (stats && stats.totalReviewed > 0) {
-          const pct = Math.round((stats.goodCount / stats.totalReviewed) * 100);
-          label.textContent = pct + '% acc';
-          label.style.color = pct >= 80 ? '#16a34a' : pct >= 50 ? '#b45309' : '#dc2626';
-
-          // Bar represents mastered / total
-          const fill = Math.min(100, Math.round((mastered / total) * 100));
-          bar.style.width = fill + '%';
-
-          // Colour the bar green when well mastered
-          if (fill >= 80) {
-            bar.style.background = 'linear-gradient(90deg,#16a34a,#4ade80)';
-          } else if (fill >= 40) {
-            bar.style.background = 'linear-gradient(90deg,#b45309,#fbbf24)';
-          }
-        } else {
-          // Never opened — show neutral state
-          label.textContent = 'Not started';
-          bar.style.width = '0%';
-        }
+  // Verify credentials via PROPFIND
+  async function cpVerify(password) {
+    const dir  = await cpUserDir(password);
+    const auth = await cpAuthHeader(password);
+    const body = '<?xml version="1.0" encoding="utf-8"?><propfind xmlns="DAV:"><prop><resourcetype/></prop></propfind>';
+    try {
+      const res = await fetch(dir + '/', {
+        method: 'PROPFIND',
+        credentials: 'omit',
+        cache: 'no-store',
+        headers: { Authorization: auth, Depth: '0', 'Content-Type': 'text/xml' },
+        body
       });
-    })();
+      if (res.status === 207 || res.status === 200) return { ok: true };
+      if (res.status === 401 || res.status === 403) return { ok: false, error: 'Wrong password.' };
+      return { ok: false, error: 'Server returned HTTP ' + res.status };
+    } catch (e) { return { ok: false, error: 'Network error.' }; }
+  }
+
+  // Fetch progress.json from copyparty
+  async function cpFetch(password) {
+    const dir  = await cpUserDir(password);
+    const auth = await cpAuthHeader(password);
+    try {
+      const res = await fetch(dir + '/' + CP_FILENAME, {
+        method: 'GET', credentials: 'omit', cache: 'no-store',
+        headers: { Authorization: auth }
+      });
+      if (res.status === 404) return { ok: true, data: null }; // file doesn't exist yet
+      if (!res.ok) return { ok: false, error: 'Fetch failed HTTP ' + res.status };
+      const data = await res.json();
+      return { ok: true, data };
+    } catch (e) { return { ok: false, error: 'Network error.' }; }
+  }
+
+  // PUT progress.json to copyparty
+  async function cpPut(password, obj) {
+    const dir  = await cpUserDir(password);
+    const auth = await cpAuthHeader(password);
+    try {
+      const res = await fetch(dir + '/' + CP_FILENAME, {
+        method: 'PUT', credentials: 'omit', cache: 'no-store',
+        headers: { Authorization: auth, 'Content-Type': 'application/json' },
+        body: JSON.stringify(obj, null, 2)
+      });
+      if (!res.ok) return { ok: false, error: 'PUT failed HTTP ' + res.status };
+      return { ok: true };
+    } catch (e) { return { ok: false, error: 'Network error.' }; }
+  }
+
+  // Collect current progress snapshot from localStorage
+  function buildProgressSnapshot() {
+    const snap = {};
+    const modules = [
+      { id: 'GA History/Module 7', statsKey: 'ankiStats',    historyKey: 'cardHistory',    total: 33 },
+      { id: 'GA History/Module 8', statsKey: 'ankiStats_m8', historyKey: 'cardHistory_m8', total: 32 }
+    ];
+    modules.forEach(function(m) {
+      let stats = null, mastered = 0;
+      try { stats = JSON.parse(localStorage.getItem(m.statsKey)); } catch(e) {}
+      try {
+        const h = JSON.parse(localStorage.getItem(m.historyKey));
+        if (h) mastered = Object.values(h).filter(c => c && c.good > 0 && c.good >= c.again).length;
+      } catch(e) {}
+      snap[m.id] = {
+        totalReviewed: stats ? stats.totalReviewed : 0,
+        goodCount:     stats ? stats.goodCount     : 0,
+        againCount:    stats ? stats.againCount    : 0,
+        mastered,
+        total: m.total
+      };
+    });
+    return snap;
+  }
+
+  // Hydrate localStorage from a server progress snapshot
+  function hydrateFromSnapshot(snap) {
+    const map = {
+      'GA History/Module 7': { statsKey: 'ankiStats',    historyKey: 'cardHistory' },
+      'GA History/Module 8': { statsKey: 'ankiStats_m8', historyKey: 'cardHistory_m8' }
+    };
+    Object.entries(snap).forEach(function([id, val]) {
+      const keys = map[id];
+      if (!keys) return;
+      // Only write back if server has MORE data than local
+      let local = null;
+      try { local = JSON.parse(localStorage.getItem(keys.statsKey)); } catch(e) {}
+      const localTotal = local ? (local.totalReviewed || 0) : 0;
+      if (val.totalReviewed > localTotal) {
+        localStorage.setItem(keys.statsKey, JSON.stringify({
+          totalReviewed: val.totalReviewed,
+          goodCount:     val.goodCount,
+          againCount:    val.againCount
+        }));
+      }
+    });
+  }
+
+  // ── Sync chip ─────────────────────────────────────────────────────────────
+  function showChip(state, text) {
+    const chip = document.getElementById('sync-chip');
+    chip.className = 'visible ' + state;
+    chip.textContent = text;
+    if (state === 'saved') setTimeout(() => { chip.className = ''; }, 2500);
+  }
+
+  // ── Render progress bars from localStorage ────────────────────────────────
+  function renderProgress() {
+    document.querySelectorAll('.module-row[data-stats-key]').forEach(function(row) {
+      const statsKey   = row.dataset.statsKey;
+      const historyKey = row.dataset.historyKey;
+      const total      = parseInt(row.dataset.total, 10);
+      const id         = row.dataset.moduleId;
+      const bar   = document.getElementById(id + '-bar');
+      const label = document.getElementById(id + '-label');
+      if (!bar || !label) return;
+
+      let stats = null;
+      try { stats = JSON.parse(localStorage.getItem(statsKey)); } catch(e) {}
+      let mastered = 0;
+      try {
+        const history = JSON.parse(localStorage.getItem(historyKey));
+        if (history) mastered = Object.values(history).filter(h => h && h.good > 0 && h.good >= h.again).length;
+      } catch(e) {}
+
+      if (stats && stats.totalReviewed > 0) {
+        const pct  = Math.round((stats.goodCount / stats.totalReviewed) * 100);
+        label.textContent = pct + '% acc';
+        label.style.color = pct >= 80 ? '#16a34a' : pct >= 50 ? '#b45309' : '#dc2626';
+        const fill = Math.min(100, Math.round((mastered / total) * 100));
+        bar.style.width = fill + '%';
+        if      (fill >= 80) bar.style.background = 'linear-gradient(90deg,#16a34a,#4ade80)';
+        else if (fill >= 40) bar.style.background = 'linear-gradient(90deg,#b45309,#fbbf24)';
+      } else {
+        label.textContent = 'Not started';
+        bar.style.width = '0%';
+      }
+    });
+
+    const gaKeys    = ['ankiStats', 'ankiStats_m8'];
+    const gaTotal   = gaKeys.length;
+    const gaStarted = gaKeys.filter(k => { try { const s = JSON.parse(localStorage.getItem(k)); return s && s.totalReviewed > 0; } catch(e) { return false; } }).length;
+    const footerBar   = document.getElementById('ga-footer-bar');
+    const footerCount = document.getElementById('ga-footer-count');
+    if (footerBar && footerCount) {
+      footerBar.style.width = Math.round((gaStarted / gaTotal) * 100) + '%';
+      footerCount.textContent = gaStarted + ' / ' + gaTotal + ' started';
+    }
+  }
+
+  // ── Boot ──────────────────────────────────────────────────────────────────
+  (async function boot() {
+    // Check if we already have a stored password from this session
+    const storedPw = sessionStorage.getItem('cp_pw');
+    if (storedPw) {
+      document.getElementById('login-overlay').classList.add('hidden');
+      await doSync(storedPw);
+      renderProgress();
+      return;
+    }
+
+    renderProgress(); // render from localStorage while login is shown
+
+    // Wire up login form
+    const btn   = document.getElementById('login-btn');
+    const input = document.getElementById('pw-input');
+    const err   = document.getElementById('login-error');
+
+    async function attemptLogin() {
+      const pw = input.value.trim();
+      if (!pw) { err.textContent = 'Enter your password.'; err.classList.add('visible'); return; }
+      btn.disabled = true;
+      btn.textContent = 'Signing in…';
+      err.classList.remove('visible');
+
+      const result = await cpVerify(pw);
+      if (!result.ok) {
+        err.textContent = result.error;
+        err.classList.add('visible');
+        btn.disabled = false;
+        btn.textContent = 'Sign in';
+        return;
+      }
+
+      sessionStorage.setItem('cp_pw', pw);
+      document.getElementById('login-overlay').classList.add('hidden');
+      await doSync(pw);
+      renderProgress();
+    }
+
+    btn.addEventListener('click', attemptLogin);
+    input.addEventListener('keydown', function(e) { if (e.key === 'Enter') attemptLogin(); });
+  })();
+
+  // Fetch from server, merge, PUT back, then re-render
+  async function doSync(pw) {
+    showChip('syncing', '⟳ Syncing…');
+    const fetched = await cpFetch(pw);
+    if (fetched.ok && fetched.data) {
+      hydrateFromSnapshot(fetched.data);
+    }
+    const snap = buildProgressSnapshot();
+    const put  = await cpPut(pw, snap);
+    if (put.ok) showChip('saved', '✓ Synced');
+    else        showChip('error', '✗ Sync failed');
+  }
   </script>
 </body>
 </html>

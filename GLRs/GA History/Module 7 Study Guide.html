@@ -1391,6 +1391,7 @@
             localStorage.setItem('ankiDeck', JSON.stringify(ankiDeck));
             localStorage.setItem('ankiStats', JSON.stringify(ankiStats));
             localStorage.setItem('cardHistory', JSON.stringify(cardHistory));
+            cpSyncProgress();
         }
 
         function loadLocalStorage() {
@@ -1820,6 +1821,70 @@
         document.getElementById('anki-front').addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
+    </script>
+
+    <script>
+    // ── Copyparty progress sync (Module 7) ────────────────────────────────
+    const CP_BASE_M7     = 'https://storage.skalaapi.com';
+    const CP_USERNAME_M7 = 'vlad';
+    const CP_FILENAME_M7 = 'progress.json';
+
+    async function cpHashM7(username, password) {
+        const data = new TextEncoder().encode(username + '|' + password);
+        const buf  = await crypto.subtle.digest('SHA-256', data);
+        return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+    }
+
+    async function cpAuthHeaderM7(password) {
+        const hash = await cpHashM7(CP_USERNAME_M7, password);
+        return 'Basic ' + btoa(CP_USERNAME_M7 + ':' + password + hash);
+    }
+
+    async function cpUserDirM7(password) {
+        const hash = await cpHashM7(CP_USERNAME_M7, password);
+        return CP_BASE_M7 + '/' + hash;
+    }
+
+    function getCpPw() {
+        return sessionStorage.getItem('cp_pw') || '';
+    }
+
+    let cpSyncTimer = null;
+    function cpSyncProgress() {
+        const pw = getCpPw();
+        if (!pw) return;
+        if (cpSyncTimer) clearTimeout(cpSyncTimer);
+        cpSyncTimer = setTimeout(async function() {
+            try {
+                const dir  = await cpUserDirM7(pw);
+                const auth = await cpAuthHeaderM7(pw);
+                // Fetch current server snapshot to merge
+                let snap = {};
+                try {
+                    const r = await fetch(dir + '/' + CP_FILENAME_M7, {
+                        method: 'GET', credentials: 'omit', cache: 'no-store',
+                        headers: { Authorization: auth }
+                    });
+                    if (r.ok) snap = await r.json();
+                } catch(e) {}
+
+                // Build this module's slice
+                snap['GA History/Module 7'] = {
+                    totalReviewed: ankiStats.totalReviewed,
+                    goodCount:     ankiStats.goodCount,
+                    againCount:    ankiStats.againCount,
+                    mastered: Object.values(cardHistory).filter(h => h && h.good > 0 && h.good >= h.again).length,
+                    total: 33
+                };
+
+                await fetch(dir + '/' + CP_FILENAME_M7, {
+                    method: 'PUT', credentials: 'omit', cache: 'no-store',
+                    headers: { Authorization: auth, 'Content-Type': 'application/json' },
+                    body: JSON.stringify(snap, null, 2)
+                });
+            } catch(e) {}
+        }, 800);
+    }
     </script>
 </body>
 </html>
