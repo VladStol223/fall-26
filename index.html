@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fall '26 — Study Hub</title>
+  <meta name="description" content="Interactive study guides for GA History and US History — Fall 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & tokens ────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-900: #0a2342;
+      --blue-700: #0a3c78;
+      --blue-500: #1e64b4;
+      --blue-400: #3b82d4;
+      --blue-200: #bfdbfe;
+      --blue-50:  #eff6ff;
+      --gold:     #f59e0b;
+      --gold-light: #fef3c7;
+      --surface:  #ffffff;
+      --bg:       #f0f4f9;
+      --text:     #0f1923;
+      --muted:    #5a6a7e;
+      --border:   #e2e8f0;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --shadow-md: 0 4px 16px rgba(10,36,66,.10);
+      --shadow-lg: 0 12px 40px rgba(10,36,66,.14);
+      --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ── Base ─────────────────────────────────────────────── */
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Inter", -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Noise + grid background ──────────────────────────── */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(30,100,180,.18) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 60V0h60' fill='none' stroke='%23cbd5e0' stroke-width='.4' stroke-opacity='.5'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Layout wrapper ───────────────────────────────────── */
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── Nav ──────────────────────────────────────────────── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 64px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--blue-700), var(--blue-400));
+      border-radius: var(--radius-sm);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      box-shadow: var(--shadow-sm);
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo-sub {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--muted);
+      display: block;
+      line-height: 1.2;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav-badge {
+      background: var(--blue-50);
+      color: var(--blue-700);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 99px;
+      border: 1px solid var(--blue-200);
+    }
+
+    /* ── Hero ─────────────────────────────────────────────── */
+    .hero {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gold-light);
+      color: #92400e;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 99px;
+      border: 1px solid #fde68a;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 62px);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      color: var(--blue-900);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--blue-700) 0%, var(--blue-400) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 32px;
+      font-weight: 400;
+    }
+
+    .hero-stats {
+      display: inline-flex;
+      gap: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-stat {
+      padding: 12px 24px;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .hero-stat:last-child { border-right: none; }
+
+    .hero-stat-val {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--blue-700);
+      letter-spacing: -0.02em;
+      display: block;
+    }
+
+    .hero-stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* ── Section headers ──────────────────────────────────── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .section-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
+      border-radius: 99px;
+    }
+
+    .section-pill.blue  { background: var(--blue-50); color: var(--blue-700); border: 1px solid var(--blue-200); }
+    .section-pill.gold  { background: var(--gold-light); color: #92400e; border: 1px solid #fde68a; }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .section-divider {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Course grid ──────────────────────────────────────── */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+      margin-bottom: 56px;
+    }
+
+    /* ── Course card ──────────────────────────────────────── */
+    .course-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .course-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--blue-200);
+    }
+
+    .course-card-banner {
+      height: 8px;
+    }
+
+    .course-card-banner.ga  { background: linear-gradient(90deg, var(--blue-700), var(--blue-400)); }
+    .course-card-banner.us  { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+
+    .course-card-body {
+      padding: 24px 24px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .course-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 99px;
+      margin-bottom: 14px;
+      width: fit-content;
+    }
+
+    .course-tag.ga { background: var(--blue-50); color: var(--blue-700); border: 1px solid var(--blue-200); }
+    .course-tag.us { background: #f5f3ff; color: #6d28d9; border: 1px solid #ddd6fe; }
+
+    .course-name {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .course-desc {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .module-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* ── Module row ───────────────────────────────────────── */
+    .module-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: #fafbfc;
+      text-decoration: none;
+      color: var(--text);
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .module-row::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, var(--blue-50), transparent);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .module-row:hover::before { opacity: 1; }
+    .module-row:hover { border-color: var(--blue-200); transform: translateX(3px); }
+
+    .module-row.disabled {
+      opacity: 0.48;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .module-row.us-theme:hover { border-color: #ddd6fe; }
+    .module-row.us-theme::before { background: linear-gradient(90deg, #f5f3ff, transparent); }
+
+    .module-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, var(--blue-700), var(--blue-400));
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .module-num.us { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
+
+    .module-info {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .module-title {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--text);
+    }
+
+    .module-subtitle {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    .module-arrow {
+      font-size: 14px;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+      transition: transform var(--transition), color var(--transition);
+    }
+
+    .module-row:hover .module-arrow {
+      transform: translateX(3px);
+      color: var(--blue-500);
+    }
+
+    .module-badge {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 99px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .module-badge.done    { background: #dcfce7; color: #166534; }
+    .module-badge.soon    { background: var(--border); color: var(--muted); }
+    .module-badge.unseen  { background: var(--blue-50); color: var(--blue-700); border: 1px solid var(--blue-200); }
+
+    /* ── Per-module inline progress ──────────────────────── */
+    .module-progress {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3px;
+      position: relative;
+      z-index: 1;
+      min-width: 54px;
+    }
+
+    .module-progress-bar-wrap {
+      width: 54px;
+      height: 4px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .module-progress-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--blue-700), var(--blue-400));
+      transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0%;
+    }
+
+    .module-progress-label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* ── Coming soon card ─────────────────────────────────── */
+    .coming-soon-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px dashed var(--border);
+      background: #fafbfc;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .cs-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      border: 1.5px dashed var(--border);
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    /* ── Card footer ──────────────────────────────────────── */
+    .course-card-footer {
+      padding: 12px 24px;
+      border-top: 1px solid var(--border);
+      background: #fafbfc;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .footer-progress-label {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .footer-progress-bar-wrap {
+      flex: 1;
+      max-width: 120px;
+      height: 5px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .footer-progress-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--blue-700), var(--blue-400));
+      transition: width 0.6s ease;
+    }
+
+    .footer-progress-fill.us { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+
+    .footer-count {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* ── Info strip ───────────────────────────────────────── */
+    .info-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 64px;
+    }
+
+    .info-tile {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px 22px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .info-tile:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--blue-200);
+    }
+
+    .info-tile-icon {
+      font-size: 22px;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .info-tile-text strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .info-tile-text span {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── Footer ───────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 24px 0 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    footer a { color: var(--blue-500); text-decoration: none; font-weight: 500; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Animations ───────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-in {
+      opacity: 0;
+      animation: fadeUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    .delay-1 { animation-delay: 0.08s; }
+    .delay-2 { animation-delay: 0.16s; }
+    .delay-3 { animation-delay: 0.24s; }
+    .delay-4 { animation-delay: 0.32s; }
+    .delay-5 { animation-delay: 0.40s; }
+
+    /* ── Responsive ───────────────────────────────────────── */
+    @media (max-width: 600px) {
+      nav { margin-bottom: 40px; }
+      .hero h1 { letter-spacing: -0.03em; }
+      .hero-stats { flex-direction: column; width: 100%; }
+      .hero-stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .hero-stat:last-child { border-bottom: none; }
+      .courses-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Course Cards -->
+    <div class="courses-grid">
+
+      <!-- GA History -->
+      <div class="course-card animate-in delay-2">
+        <div class="course-card-banner ga"></div>
+        <div class="course-card-body">
+          <span class="course-tag ga">🍑 GA History</span>
+          <h3 class="course-name">Georgia History</h3>
+          <p class="course-desc">Post–Civil War through modern Georgia — Sunbelt Era, civil rights, economic growth, and contemporary government.</p>
+
+          <div class="module-list">
+            <a class="module-row" href="GLRs/GA History/Module 7 Study Guide.html"
+               data-stats-key="ankiStats"
+               data-history-key="cardHistory"
+               data-total="33"
+               data-module-id="m7">
+              <div class="module-num">7</div>
+              <div class="module-info">
+                <div class="module-title">Sunbelt Era</div>
+                <div class="module-subtitle">Growth, migration &amp; modern Georgia</div>
+              </div>
+              <div class="module-progress">
+                <span class="module-progress-label" id="m7-label">—</span>
+                <div class="module-progress-bar-wrap">
+                  <div class="module-progress-fill" id="m7-bar"></div>
+                </div>
+              </div>
+              <span class="module-arrow">→</span>
+            </a>
+
+            <a class="module-row" href="GLRs/GA History/Module 8 Study Guide.html"
+               data-stats-key="ankiStats_m8"
+               data-history-key="cardHistory_m8"
+               data-total="32"
+               data-module-id="m8">
+              <div class="module-num">8</div>
+              <div class="module-info">
+                <div class="module-title">Modern Georgia</div>
+                <div class="module-subtitle">Civil rights, politics &amp; economy</div>
+              </div>
+              <div class="module-progress">
+                <span class="module-progress-label" id="m8-label">—</span>
+                <div class="module-progress-bar-wrap">
+                  <div class="module-progress-fill" id="m8-bar"></div>
+                </div>
+              </div>
+              <span class="module-arrow">→</span>
+            </a>
+
+            <div class="coming-soon-row">
+              <div class="cs-icon">+</div>
+              <span>More modules coming soon…</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card-footer">
+          <span class="footer-progress-label">Progress</span>
+          <div class="footer-progress-bar-wrap">
+            <div class="footer-progress-fill" style="width: 66%"></div>
+          </div>
+          <span class="footer-count">2 / 3 modules</span>
+        </div>
+      </div>
+
+      <!-- US History -->
+      <div class="course-card animate-in delay-3">
+        <div class="course-card-banner us"></div>
+        <div class="course-card-body">
+          <span class="course-tag us">🇺🇸 US History</span>
+          <h3 class="course-name">United States History</h3>
+          <p class="course-desc">American history from Reconstruction to the present — key movements, conflicts, and turning points in US society.</p>
+
+          <div class="module-list">
+            <div class="coming-soon-row">
+              <div class="cs-icon">+</div>
+              <span>Study guides coming soon…</span>
+            </div>
+            <div class="coming-soon-row">
+              <div class="cs-icon">+</div>
+              <span>Check back after the next module</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card-footer">
+          <span class="footer-progress-label">Progress</span>
+          <div class="footer-progress-bar-wrap">
+            <div class="footer-progress-fill us" style="width: 0%"></div>
+          </div>
+          <span class="footer-count">0 modules ready</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Reads localStorage written by each study guide and hydrates the
+    // progress bars + labels on the landing page. Pure read — no writes.
+    (function () {
+      const modules = document.querySelectorAll('.module-row[data-stats-key]');
+
+      modules.forEach(function (row) {
+        const statsKey   = row.dataset.statsKey;
+        const historyKey = row.dataset.historyKey;
+        const total      = parseInt(row.dataset.total, 10);
+        const id         = row.dataset.moduleId;
+
+        const bar   = document.getElementById(id + '-bar');
+        const label = document.getElementById(id + '-label');
+        if (!bar || !label) return;
+
+        // ── Read ankiStats ──────────────────────────────────
+        let stats = null;
+        try { stats = JSON.parse(localStorage.getItem(statsKey)); } catch (e) {}
+
+        // ── Read cardHistory to count mastered cards ────────
+        // A card is "mastered" if it has been reviewed at least once
+        // and its last verdict was Good (good > again or good > 0 with 0 again).
+        let mastered = 0;
+        try {
+          const history = JSON.parse(localStorage.getItem(historyKey));
+          if (history && typeof history === 'object') {
+            mastered = Object.values(history).filter(function (h) {
+              return h && h.good > 0 && h.good >= h.again;
+            }).length;
+          }
+        } catch (e) {}
+
+        // ── Accuracy % from ankiStats ───────────────────────
+        if (stats && stats.totalReviewed > 0) {
+          const pct = Math.round((stats.goodCount / stats.totalReviewed) * 100);
+          label.textContent = pct + '% acc';
+          label.style.color = pct >= 80 ? '#16a34a' : pct >= 50 ? '#b45309' : '#dc2626';
+
+          // Bar represents mastered / total
+          const fill = Math.min(100, Math.round((mastered / total) * 100));
+          bar.style.width = fill + '%';
+
+          // Colour the bar green when well mastered
+          if (fill >= 80) {
+            bar.style.background = 'linear-gradient(90deg,#16a34a,#4ade80)';
+          } else if (fill >= 40) {
+            bar.style.background = 'linear-gradient(90deg,#b45309,#fbbf24)';
+          }
+        } else {
+          // Never opened — show neutral state
+          label.textContent = 'Not started';
+          bar.style.width = '0%';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

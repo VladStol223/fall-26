@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 7: Sunbelt Era Study Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+            background-color: #f7f8fa;
+            color: #1f2328;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0a3c78 0%, #1e64b4 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 4px solid #3b82d4;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        .nav-tabs {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            background: #f7f8fa;
+            flex-wrap: wrap;
+        }
+
+        .nav-tabs button {
+            flex: 1;
+            min-width: 120px;
+            padding: 14px 16px;
+            border: none;
+            background: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: #57606a;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav-tabs button.active {
+            color: #0a3c78;
+            border-bottom-color: #0a3c78;
+            background: white;
+        }
+
+        .nav-tabs button:hover {
+            background: white;
+            color: #0a3c78;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==================== ANKI STYLES ==================== */
+        
+        .anki-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .anki-controls {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .anki-btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .anki-btn-primary {
+            background: #0a3c78;
+            color: white;
+        }
+
+        .anki-btn-primary:hover {
+            background: #1e64b4;
+        }
+
+        .anki-btn-secondary {
+            background: #e5e7eb;
+            color: #1f2328;
+        }
+
+        .anki-btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .anki-card-wrapper {
+            display: none;
+            gap: 2px;
+            min-height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .anki-card-wrapper.answer-showing {
+            display: flex;
+        }
+
+        .anki-side {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 16px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .anki-side-again {
+            background: linear-gradient(135deg, #ffe6e6 0%, #ffcccc 100%);
+            border: 2px solid #dc2626;
+            color: #991b1b;
+        }
+
+        .anki-side-again:hover {
+            background: linear-gradient(135deg, #ffcccc 0%, #ffb3b3 100%);
+        }
+
+        .anki-side-good {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border: 2px solid #16a34a;
+            color: #15803d;
+        }
+
+        .anki-side-good:hover {
+            background: linear-gradient(135deg, #bbf7d0 0%, #86efac 100%);
+        }
+
+        .anki-card-content {
+            padding: 20px;
+            border-radius: 6px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 20px;
+            margin: 20px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .anki-card-content:hover {
+            box-shadow: 0 4px 12px rgba(59, 130, 212, 0.15);
+            border-color: #3b82d4;
+        }
+
+        .anki-card-label {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+        }
+
+        .anki-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .anki-stat {
+            background: #f7f8fa;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .anki-stat-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: #0a3c78;
+        }
+
+        .anki-stat-label {
+            font-size: 12px;
+            color: #57606a;
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .anki-mode-indicator {
+            background: #f0f4ff;
+            border-left: 4px solid #0a3c78;
+            padding: 16px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .anki-instructions {
+            background: #f7f8fa;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 16px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #57606a;
+        }
+
+        .anki-instructions strong {
+            color: #0a3c78;
+        }
+
+        .anki-instructions-action {
+            display: flex;
+            gap: 20px;
+            margin-top: 12px;
+            font-size: 13px;
+        }
+
+        .action-left {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .action-right {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .action-label {
+            background: #e5e7eb;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            min-width: 70px;
+        }
+
+        .action-left .action-label {
+            background: #ffe6e6;
+            color: #991b1b;
+        }
+
+        .action-right .action-label {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .review-count {
+            background: #f0f4ff;
+            border-left: 4px solid #0a3c78;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* ==================== OTHER STYLES ==================== */
+
+        /* Flashcard styles */
+        .flashcard-container {
+            perspective: 1000px;
+            margin-bottom: 20px;
+        }
+
+        .flashcard {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 30px;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 18px;
+            font-weight: 500;
+            color: #1f2328;
+        }
+
+        .flashcard:hover {
+            box-shadow: 0 4px 12px rgba(59, 130, 212, 0.15);
+            border-color: #3b82d4;
+        }
+
+        .flashcard.flipped {
+            background: #0a3c78;
+            color: white;
+            border-color: #0a3c78;
+        }
+
+        .flashcard-label {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #57606a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .flashcard.flipped .flashcard-label {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .flashcard-nav {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #0a3c78;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1e64b4;
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #1f2328;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #0a3c78 0%, #3b82d4 100%);
+            transition: width 0.3s ease;
+        }
+
+        /* Quiz styles */
+        /* ==================== CHEAT SHEET STYLES ==================== */
+
+        .cheat-section {
+            margin-bottom: 24px;
+        }
+
+        .cheat-section h3 {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #57606a;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .cheat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .cheat-item {
+            background: #f7f8fa;
+            border: 1px solid #e5e7eb;
+            border-radius: 5px;
+            padding: 10px 12px;
+            font-size: 13px;
+        }
+
+        .cheat-item-name {
+            font-weight: 600;
+            color: #0a3c78;
+            margin-bottom: 3px;
+        }
+
+        .cheat-item-desc {
+            color: #57606a;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .cheat-dates {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .cheat-date-row {
+            display: flex;
+            gap: 12px;
+            align-items: baseline;
+            font-size: 13px;
+        }
+
+        .cheat-date-year {
+            font-weight: 700;
+            color: #0a3c78;
+            min-width: 90px;
+            flex-shrink: 0;
+        }
+
+        .cheat-date-event {
+            color: #1f2328;
+        }
+
+        .cheat-terms {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .cheat-term-row {
+            display: flex;
+            gap: 8px;
+            font-size: 13px;
+            align-items: baseline;
+        }
+
+        .cheat-term-name {
+            font-weight: 600;
+            color: #0a3c78;
+            min-width: 160px;
+            flex-shrink: 0;
+        }
+
+        .cheat-term-def {
+            color: #57606a;
+        }
+
+        /* Timeline styles */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #3b82d4;
+        }
+
+        .timeline-item {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -13px;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #0a3c78;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #3b82d4;
+        }
+
+        .timeline-year {
+            font-weight: 600;
+            color: #0a3c78;
+            font-size: 15px;
+        }
+
+        .timeline-content {
+            font-size: 14px;
+            color: #57606a;
+            margin-top: 6px;
+        }
+
+        .key-facts {
+            background: #f0f4ff;
+            border-left: 4px solid #0a3c78;
+            padding: 16px;
+            border-radius: 4px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        .key-facts strong {
+            color: #0a3c78;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-box {
+            background: #f7f8fa;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 600;
+            color: #0a3c78;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #57606a;
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #e5e7eb;
+            background: #f7f8fa;
+            font-size: 12px;
+            color: #57606a;
+            font-weight: 500;
+        }
+
+        /* ==================== TTS BUTTON STYLES ==================== */
+
+        .tts-btn {
+            background: none;
+            border: 1px solid rgba(10, 60, 120, 0.25);
+            border-radius: 5px;
+            padding: 3px 7px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #0a3c78;
+            transition: background 0.15s ease, border-color 0.15s ease;
+            line-height: 1;
+        }
+
+        .tts-btn:hover {
+            background: rgba(10, 60, 120, 0.08);
+            border-color: #0a3c78;
+        }
+
+        .tts-btn.tts-active {
+            background: #0a3c78;
+            color: white;
+            border-color: #0a3c78;
+        }
+
+        /* ==================== LEARN STYLES ==================== */
+
+        .learn-section {
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .learn-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
+            background: #f7f8fa;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            color: #0a3c78;
+            transition: background 0.2s ease;
+            user-select: none;
+        }
+
+        .learn-section-header:hover {
+            background: #e8eef8;
+        }
+
+        .learn-chevron {
+            font-size: 12px;
+            color: #57606a;
+            transition: transform 0.2s ease;
+        }
+
+        .learn-section-header.open .learn-chevron {
+            transform: rotate(180deg);
+        }
+
+        .learn-section-body {
+            display: none;
+            padding: 16px 18px;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #1f2328;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .learn-section-body.open {
+            display: block;
+        }
+
+        h2 {
+            color: #0a3c78;
+            margin-bottom: 16px;
+        }
+
+        h3 {
+            color: #0a3c78;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .session-complete {
+            background: #dcfce7;
+            border: 2px solid #16a34a;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+            color: #15803d;
+        }
+
+        .session-complete h3 {
+            color: #15803d;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Module 7: Sunbelt Era</h1>
+            <p>Interactive Study Guide — Hartsfield-Jackson Airport & 1996 Olympics</p>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" data-tab="overview">Overview</button>
+            <button class="tab-btn" data-tab="learn">Learn</button>
+            <button class="tab-btn" data-tab="anki">Anki Mode</button>
+        </div>
+
+        <div class="content">
+            <!-- OVERVIEW TAB -->
+            <div id="overview" class="tab-pane active">
+
+                <!-- Key People -->
+                <div class="cheat-section">
+                    <h3>Key People</h3>
+                    <div class="cheat-grid">
+                        <div class="cheat-item">
+                            <div class="cheat-item-name">William B. Hartsfield</div>
+                            <div class="cheat-item-desc">Founded the airport in 1925 on an abandoned racetrack; first commissioner.</div>
+                        </div>
+                        <div class="cheat-item">
+                            <div class="cheat-item-name">Maynard Jackson</div>
+                            <div class="cheat-item-desc">First Black mayor of a major southern city; led airport redevelopment in 1970s; name added 2003.</div>
+                        </div>
+                        <div class="cheat-item">
+                            <div class="cheat-item-name">Billy Payne</div>
+                            <div class="cheat-item-desc">Atlanta resident who revived the Olympic bid in 1987; assembled the Atlanta Nine.</div>
+                        </div>
+                        <div class="cheat-item">
+                            <div class="cheat-item-name">Andrew Young</div>
+                            <div class="cheat-item-desc">Mayor who backed the Olympic bid; his international connections in Africa & Asia were decisive.</div>
+                        </div>
+                        <div class="cheat-item">
+                            <div class="cheat-item-name">Juan Antonio Samaranch</div>
+                            <div class="cheat-item-desc">IOC president who announced Atlanta's selection in Tokyo on Sept 18, 1990.</div>
+                        </div>
+                        <div class="cheat-item">
+                            <div class="cheat-item-name">Dennis Berkholtz</div>
+                            <div class="cheat-item-desc">Olympic handball player who first campaigned for Atlanta to bid for the 1984 Games.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Dates -->
+                <div class="cheat-section">
+                    <h3>Key Dates</h3>
+                    <div class="cheat-dates">
+                        <div class="cheat-date-row"><span class="cheat-date-year">1925</span><span class="cheat-date-event">Hartsfield founds airport on abandoned racetrack</span></div>
+                        <div class="cheat-date-row"><span class="cheat-date-year">1970s</span><span class="cheat-date-event">Maynard Jackson leads major airport redevelopment</span></div>
+                        <div class="cheat-date-row"><span class="cheat-date-year">1984</span><span class="cheat-date-event">LA Olympics turns profit with private funding — game changer</span></div>
+                        <div class="cheat-date-row"><span class="cheat-date-year">1987</span><span class="cheat-date-event">Billy Payne pitches Olympic bid to Mayor Andrew Young</span></div>
+                        <div class="cheat-date-row"><span class="cheat-date-year">1988</span><span class="cheat-date-event">Atlanta wins USOC backing 14–2 over Minneapolis-St. Paul</span></div>
+                        <div class="cheat-date-row"><span class="cheat-date-year">Sept 18, 1990</span><span class="cheat-date-event">IOC selects Atlanta in Tokyo; Samaranch makes announcement</span></div>
+                        <div class="cheat-date-row"><span class="cheat-date-year">1992</span><span class="cheat-date-event">Shepherd Center wins Paralympic bid at Tignes, France</span></div>
+                        <div class="cheat-date-row"><span class="cheat-date-year">1996</span><span class="cheat-date-event">Atlanta hosts Centennial Olympic Games & 10th Paralympic Games</span></div>
+                        <div class="cheat-date-row"><span class="cheat-date-year">2000</span><span class="cheat-date-event">City Council approves capital improvement program for airport</span></div>
+                        <div class="cheat-date-row"><span class="cheat-date-year">2003</span><span class="cheat-date-event">Airport renamed to include Maynard Jackson's name</span></div>
+                        <div class="cheat-date-row"><span class="cheat-date-year">2006</span><span class="cheat-date-event">5th runway + 400-ft tower (tallest in North America) completed</span></div>
+                        <div class="cheat-date-row"><span class="cheat-date-year">2012</span><span class="cheat-date-event">Maynard H. Jackson Jr. International Terminal opens (12 gates)</span></div>
+                    </div>
+                </div>
+
+                <!-- Key Terms -->
+                <div class="cheat-section">
+                    <h3>Key Terms</h3>
+                    <div class="cheat-terms">
+                        <div class="cheat-term-row"><span class="cheat-term-name">Atlanta Nine</span><span class="cheat-term-def">Payne's hand-picked, all-white team of lawyers & executives who ran the Olympic bid</span></div>
+                        <div class="cheat-term-row"><span class="cheat-term-name">AOC / ACOG</span><span class="cheat-term-def">Atlanta Organizing Committee (bid) / Atlanta Committee for the Olympic Games (planning)</span></div>
+                        <div class="cheat-term-row"><span class="cheat-term-name">USOC</span><span class="cheat-term-def">United States Olympic Committee — Atlanta beat Minneapolis-St. Paul 14–2 for US nomination</span></div>
+                        <div class="cheat-term-row"><span class="cheat-term-name">IOC</span><span class="cheat-term-def">International Olympic Committee — 6 finalist cities voted in Tokyo; Atlanta won</span></div>
+                        <div class="cheat-term-row"><span class="cheat-term-name">Centennial Games</span><span class="cheat-term-def">1996 marked the 100th anniversary of the modern Olympics — Athens was the sentimental favourite</span></div>
+                        <div class="cheat-term-row"><span class="cheat-term-name">Category III ILS</span><span class="cheat-term-def">Instrument Landing System on 2 outer runways; lets planes land themselves in zero visibility</span></div>
+                        <div class="cheat-term-row"><span class="cheat-term-name">TRACON</span><span class="cheat-term-def">Terminal Radar Approach Control — based in Peachtree City, handles aircraft within ~40 miles</span></div>
+                        <div class="cheat-term-row"><span class="cheat-term-name">ARTCC</span><span class="cheat-term-def">Air Route Traffic Control Center — based in Hampton, manages en-route aircraft over GA & beyond</span></div>
+                        <div class="cheat-term-row"><span class="cheat-term-name">Shepherd Center</span><span class="cheat-term-def">Atlanta rehab hospital that bankrolled the separate Paralympic bid; won at Tignes 1992</span></div>
+                        <div class="cheat-term-row"><span class="cheat-term-name">Dream Team</span><span class="cheat-term-def">Multi-racial coalition of young supporters who accompanied AOC to Tokyo for final IOC vote</span></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- LEARN TAB -->
+            <div id="learn" class="tab-pane">
+                <div id="learn-reading-view">
+                    <div style="background:#f0f4ff;border-left:4px solid #0a3c78;padding:14px 16px;border-radius:4px;margin-bottom:24px;font-size:14px;">
+                        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+                            <span>Read through each section before moving to Anki. Key terms are <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">highlighted</mark>. Click <strong>🔊</strong> on any section to listen.</span>
+                            <button id="tts-stop-btn" onclick="stopSpeech()" style="display:none;flex-shrink:0;padding:6px 12px;background:#dc2626;color:white;border:none;border-radius:5px;font-size:13px;font-weight:500;cursor:pointer;">⏹ Stop</button>
+                        </div>
+                        <div style="margin-top:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                            <label for="tts-voice-select" style="font-size:13px;color:#57606a;white-space:nowrap;">Voice:</label>
+                            <select id="tts-voice-select" style="font-size:13px;padding:4px 8px;border:1px solid #d1d5db;border-radius:5px;background:white;color:#1f2328;cursor:pointer;max-width:300px;"></select>
+                            <label for="tts-rate-select" style="font-size:13px;color:#57606a;white-space:nowrap;">Speed:</label>
+                            <select id="tts-rate-select" style="font-size:13px;padding:4px 8px;border:1px solid #d1d5db;border-radius:5px;background:white;color:#1f2328;cursor:pointer;">
+                                <option value="0.75">Slow</option>
+                                <option value="0.95" selected>Normal</option>
+                                <option value="1.2">Fast</option>
+                                <option value="1.5">Very Fast</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Section 1: Airport Basics -->
+                    <div class="learn-section">
+                        <div class="learn-section-header" onclick="toggleLearnSection(this)">
+                            <span>1 — Hartsfield-Jackson: Origins &amp; Scale</span>
+                            <span style="display:flex;align-items:center;gap:10px;"><button class="tts-btn" onclick="event.stopPropagation();toggleSectionSpeech(this)" title="Listen to this section">🔊</button><span class="learn-chevron">▼</span></span>
+                        </div>
+                        <div class="learn-section-body">
+                            <p><mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">William B. Hartsfield</mark> founded the airport in <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">1925</mark> on an abandoned racetrack south of Atlanta. The site was chosen specifically because it had room to grow — Atlanta had just been designated a stop on the federal mail route from New York to Miami, and expansion was inevitable from day one. Hartsfield served as the airport's first commissioner.</p>
+                            <p style="margin-top:12px;">In <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">2003</mark>, the name of former mayor <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">Maynard Jackson</mark> was added to the airport's title. Jackson was the <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">first African American mayor of a major southern city</mark>, and he led a major redevelopment of the airport in the 1970s.</p>
+                            <p style="margin-top:12px;">By the numbers: the entire complex covers <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">4,700 acres</mark>, with a 130-acre terminal complex housing more than 200 concession outlets. In 2019, over <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">110 million passengers</mark> passed through — one of the highest totals in the world.</p>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Runways & Movement -->
+                    <div class="learn-section">
+                        <div class="learn-section-header" onclick="toggleLearnSection(this)">
+                            <span>2 — Runways, Gates &amp; Getting Around</span>
+                            <span style="display:flex;align-items:center;gap:10px;"><button class="tts-btn" onclick="event.stopPropagation();toggleSectionSpeech(this)" title="Listen to this section">🔊</button><span class="learn-chevron">▼</span></span>
+                        </div>
+                        <div class="learn-section-body">
+                            <p>The airport has <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">5 parallel runways</mark>, all running east-to-west. Two are north of the terminals and three are south. Because all five run in the same direction, aircraft never have crossing flight paths, allowing near-continuous operation — in good weather, <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">90+ aircraft can land and 100+ can depart per hour</mark>.</p>
+                            <p style="margin-top:12px;">Inside runways (closest to terminals) are the longest because planes are heaviest at takeoff. The longest is <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">12,390 feet</mark> — over two miles. The outside runways used for landing are 9,000 feet each and carry specialized <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">Category III Instrument Landing Systems (ILS)</mark> that let modern aircraft land themselves in zero-visibility conditions using radio beams.</p>
+                            <p style="margin-top:12px;">Once through security, passengers reach <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">192 gates across Concourses A–F</mark> via an underground transportation mall. The mall has moving sidewalks and <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">9 four-car automated trains</mark>. Putting passengers underground lets even the tallest jets taxi straight to any gate above.</p>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Air Traffic Control -->
+                    <div class="learn-section">
+                        <div class="learn-section-header" onclick="toggleLearnSection(this)">
+                            <span>3 — Air Traffic Control: 4 Layers</span>
+                            <span style="display:flex;align-items:center;gap:10px;"><button class="tts-btn" onclick="event.stopPropagation();toggleSectionSpeech(this)" title="Listen to this section">🔊</button><span class="learn-chevron">▼</span></span>
+                        </div>
+                        <div class="learn-section-body">
+                            <p>Managing one of the world's busiest airports requires four nested layers of control:</p>
+                            <ol style="margin-top:10px;padding-left:20px;display:flex;flex-direction:column;gap:8px;">
+                                <li><strong style="color:#0a3c78;">Ramp Control</strong> — Airlines manage ramp controllers who oversee aircraft at gates and on ramps. They sit in observation rooms atop the terminal.</li>
+                                <li><strong style="color:#0a3c78;">Ground &amp; Tower Control (FAA)</strong> — FAA controllers steer aircraft between ramps and runways (ground), and manage aircraft just before landing, on the runway, and just after takeoff (tower). They work from the airport tower using eyes, binoculars, and radar.</li>
+                                <li><strong style="color:#0a3c78;">TRACON</strong> — The <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">Terminal Radar Approach Control</mark> in <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">Peachtree City</mark> handles aircraft within about 40 miles. Controllers use radar screens only — the planes are too far to see.</li>
+                                <li><strong style="color:#0a3c78;">ARTCC</strong> — The Air Route Traffic Control Center in <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">Hampton (Henry County)</mark> manages en-route aircraft over most of Georgia, Alabama, and neighboring states.</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: Airport Expansion -->
+                    <div class="learn-section">
+                        <div class="learn-section-header" onclick="toggleLearnSection(this)">
+                            <span>4 — Expansion Milestones</span>
+                            <span style="display:flex;align-items:center;gap:10px;"><button class="tts-btn" onclick="event.stopPropagation();toggleSectionSpeech(this)" title="Listen to this section">🔊</button><span class="learn-chevron">▼</span></span>
+                        </div>
+                        <div class="learn-section-body">
+                            <p>In <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">2000</mark>, Atlanta City Council approved a capital improvement program. The results unfolded over the next decade:</p>
+                            <ul style="margin-top:10px;padding-left:20px;display:flex;flex-direction:column;gap:8px;">
+                                <li><strong>2006</strong> — Fifth runway completed, along with a <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">400-foot air traffic control tower</mark>, the <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">tallest in North America</mark>.</li>
+                                <li><strong>2012</strong> — The <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">Maynard H. Jackson Jr. International Terminal</mark> opened with 12 new gates, completing the 1999 Master Plan.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Section 5: Road to the Olympics -->
+                    <div class="learn-section">
+                        <div class="learn-section-header" onclick="toggleLearnSection(this)">
+                            <span>5 — Atlanta's Road to the 1996 Olympics</span>
+                            <span style="display:flex;align-items:center;gap:10px;"><button class="tts-btn" onclick="event.stopPropagation();toggleSectionSpeech(this)" title="Listen to this section">🔊</button><span class="learn-chevron">▼</span></span>
+                        </div>
+                        <div class="learn-section-body">
+                            <p>Atlanta didn't just stumble into hosting the Olympics — it was a calculated, decade-long campaign.</p>
+                            <p style="margin-top:12px;">The story starts in <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">1984</mark>, when Los Angeles hosted the Olympics and turned a profit using private-sector funding. This "game changer" model made cities worldwide reconsider Olympic bids as investments rather than liabilities — previous games in Mexico City (1968), Munich (1972), and Montreal (1976) had been plagued by disaster, political unrest, and financial ruin.</p>
+                            <p style="margin-top:12px;">In <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">1987</mark>, Atlanta resident <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">Billy Payne</mark> revived the Olympic idea — inspired by a successful church fundraising campaign — and pitched it to Mayor <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">Andrew Young</mark>. Young embraced it; international investment was already his top priority.</p>
+                            <p style="margin-top:12px;">Payne assembled the <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">"Atlanta Nine"</mark> — lawyers, executives, and fundraisers — to run the bid. The group was hand-picked through professional networks and was affluent and all-white, which drew criticism given Atlanta's diverse population.</p>
+                        </div>
+                    </div>
+
+                    <!-- Section 6: The Bid Campaign -->
+                    <div class="learn-section">
+                        <div class="learn-section-header" onclick="toggleLearnSection(this)">
+                            <span>6 — Winning the Bid: National &amp; International</span>
+                            <span style="display:flex;align-items:center;gap:10px;"><button class="tts-btn" onclick="event.stopPropagation();toggleSectionSpeech(this)" title="Listen to this section">🔊</button><span class="learn-chevron">▼</span></span>
+                        </div>
+                        <div class="learn-section-body">
+                            <p>First, Atlanta had to win domestically. In <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">1988</mark>, the Atlanta Organizing Committee (AOC) beat Nashville, San Francisco, and <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">Minneapolis-St. Paul in a 14-2 vote</mark> to earn USOC backing.</p>
+                            <p style="margin-top:12px;">Then came the international campaign. The AOC toured IOC representatives in their home countries, decorated Atlanta with billboards, hosted city tours highlighting the city's <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">civil rights history</mark>, and even commissioned a song: <em>"The World Has One Dream."</em></p>
+                            <p style="margin-top:12px;">The crown jewel of the presentation was a <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">virtual reality video</mark> created with <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">Georgia Tech</mark> — viewers flew through a 3D model of Atlanta. The studio <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">PIXAR</mark> was consulted. It was groundbreaking computer-generated animation for the time.</p>
+                            <p style="margin-top:12px;">The competition was stiff. Athens was the sentimental favorite (1996 marked the <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">100th anniversary</mark> of the modern Games), and Toronto was a strong rival. But Athens had an unstable economy, Toronto faced visible protesters in Tokyo, Belgrade had political unrest, Manchester lacked facilities, and Melbourne's time zone posed broadcast problems. Atlanta's strong campaign outweighed its underdog status.</p>
+                            <p style="margin-top:12px;">On <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">September 18, 1990</mark>, IOC president <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">Juan Antonio Samaranch</mark> announced Atlanta as the host city in Tokyo.</p>
+                        </div>
+                    </div>
+
+                    <!-- Section 7: Paralympics -->
+                    <div class="learn-section">
+                        <div class="learn-section-header" onclick="toggleLearnSection(this)">
+                            <span>7 — The Paralympic Bid: A Separate Fight</span>
+                            <span style="display:flex;align-items:center;gap:10px;"><button class="tts-btn" onclick="event.stopPropagation();toggleSectionSpeech(this)" title="Listen to this section">🔊</button><span class="learn-chevron">▼</span></span>
+                        </div>
+                        <div class="learn-section-body">
+                            <p>Atlanta's Olympic win didn't automatically mean it would host the Paralympic Games — those bids were completely separate. ACOG (the Olympic planning committee) was initially reluctant and unprepared to take on the additional event.</p>
+                            <p style="margin-top:12px;"><mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">Atlanta's Shepherd Center</mark> stepped up as the primary early financial and operational supporter. They submitted a successful bid to the International Paralympic Committee at the <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">1992 Winter Paralympic Games in Tignes, France</mark>. Atlanta ultimately hosted both the Olympic and <mark style="background:#fef9c3;padding:1px 3px;border-radius:2px;">10th Paralympic Games</mark> in 1996 — a unity that helped push future international agencies to combine their planning processes.</p>
+                        </div>
+                    </div>
+
+                    <div style="text-align:center;margin-top:28px;padding-top:20px;border-top:1px solid #e5e7eb;">
+                        <p style="font-size:14px;color:#57606a;margin-bottom:14px;">Done reading? Head to Anki Mode to test what you've learned.</p>
+                        <button class="btn btn-primary" onclick="switchTab('anki')" style="padding:12px 32px;font-size:15px;">→ Start Anki Mode</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ANKI TAB -->
+            <div id="anki" class="tab-pane">
+                <div class="anki-container">
+                    <div class="anki-instructions">
+                        <strong>Single-Click Study:</strong>
+                        <div class="anki-instructions-action">
+                            <div class="action-left">
+                                <span class="action-label">CLICK</span>
+                                Front: Reveal answer | Back: Mark as "Again"
+                            </div>
+                            <div class="action-right">
+                                <span class="action-label">RIGHT CLICK</span>
+                                Back only: Mark as "Good"
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="anki-card-content" id="anki-front" onmousedown="handleAnkiClick(event)">
+                        <span id="anki-front-text">Loading...</span>
+                    </div>
+
+                    <div id="anki-session">
+                        <div class="anki-stats">
+                            <div class="anki-stat">
+                                <div class="anki-stat-value" id="total-reviewed">0</div>
+                                <div class="anki-stat-label">Total Reviewed</div>
+                            </div>
+                            <div class="anki-stat">
+                                <div class="anki-stat-value" id="good-count">0</div>
+                                <div class="anki-stat-label">Good</div>
+                            </div>
+                            <div class="anki-stat">
+                                <div class="anki-stat-value" id="again-count">0</div>
+                                <div class="anki-stat-label">Again</div>
+                            </div>
+                            <div class="anki-stat">
+                                <div class="anki-stat-value" id="pass-rate">0%</div>
+                                <div class="anki-stat-label">Pass Rate</div>
+                            </div>
+                        </div>
+                        <div style="display:flex; gap:10px; margin-top:4px;">
+                            <button class="anki-btn anki-btn-secondary" style="flex:1;" onclick="showAnalytics()">Analytics</button>
+                            <button class="anki-btn anki-btn-secondary" style="flex:1; color:#dc2626;" onclick="resetAnkiStats()">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ANALYTICS OVERLAY -->
+            <div id="analytics-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:100; overflow-y:auto; padding:30px 16px;">
+                <div style="max-width:700px; margin:0 auto; background:white; border-radius:8px; overflow:hidden; box-shadow:0 8px 32px rgba(0,0,0,0.18);">
+                    <div style="background:#0a3c78; color:white; padding:20px 24px; display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-size:17px; font-weight:600;">Anki Analytics</span>
+                        <button onclick="closeAnalytics()" style="background:rgba(255,255,255,0.15); border:none; color:white; border-radius:5px; padding:6px 12px; cursor:pointer; font-size:13px;">✕ Close</button>
+                    </div>
+                    <div id="analytics-body" style="padding:24px;"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            Made with IBM Bob
+        </div>
+    </div>
+
+    <script>
+        // ==================== ANKI DATA ====================
+        const ankiCards = [
+            {
+                question: "Who founded Hartsfield-Jackson Airport and in what year?",
+                answer: "William B. Hartsfield founded it in 1925 on an abandoned racetrack.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "Why was the racetrack chosen as the airport site?",
+                answer: "It offered room for expansion—important since Atlanta was a mail route hub (NY to Miami).",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "Who was Maynard Jackson?",
+                answer: "First African American mayor of a major southern city. Led airport redevelopment in 1970s.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What is significant about 5 parallel runways?",
+                answer: "All east-west, allow simultaneous takeoffs/landings without crossing paths. 90+ landings/100+ departures per hour.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What is the total land area and terminal complex size of Hartsfield-Jackson?",
+                answer: "4,700 acres total land area, with a 130-acre terminal complex.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "How many passengers traveled through Hartsfield-Jackson in 2019?",
+                answer: "110+ million passengers, making it one of the busiest airports in the world.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "Describe the runway configuration at Hartsfield-Jackson.",
+                answer: "5 parallel runways all running east-west: 2 north of terminals, 3 south. In fair weather: 90+ landings and 100+ departures per hour.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What are the lengths of the runways at Hartsfield-Jackson?",
+                answer: "Inside runways: 12,390 ft and 10,000 ft. Outside runways: 9,000 ft each. Longer inner runways accommodate fully-fueled aircraft.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What is the underground transportation mall and its features?",
+                answer: "Passengers access 192 gates across 6 concourses via an underground mall with moving sidewalks and 9 four-car automated trains.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What are the 4 layers of air traffic control at Hartsfield-Jackson?",
+                answer: "Ground Control (FAA, ramps/runways), Tower Control (immediate landing/takeoff), TRACON (Peachtree City, 40 miles out), ARTCC (Hampton, en-route).",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What is Category III Instrument Landing System and why is it important?",
+                answer: "Specialized technology on two outside runways allowing aircraft to land themselves using radio beams in zero-visibility conditions (fog, heavy rain).",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What major expansion milestones occurred in 2000-2012?",
+                answer: "2000: capital improvement approved. 2006: fifth runway and 400-ft tower (tallest in NA) completed. 2012: Maynard Jackson International Terminal opened.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What was the significance of LA's 1984 Olympics to Atlanta?",
+                answer: "LA's Olympics turned a profit using a privatized funding model, changing global perception of mega-events as investment opportunities.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "Why did Atlanta fail to bid for the 1984 Olympics?",
+                answer: "Recent Olympic disasters scared city leaders: Mexico City 1968 massacre, Munich 1972 political unrest, Montreal 1976 bankruptcy.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "Who was Dennis Berkholtz and what did he campaign for?",
+                answer: "Olympic handball player who campaigned in the 1970s to bring the 1984 Olympics to Atlanta. 'Atlanta & Georgia Olympics 1984' bumper stickers appeared.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "Why did Mayor Andrew Young support Billy Payne's Olympic idea?",
+                answer: "International investment was his top priority, federal funding declined, and mega-events were seen as investment opportunities.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What was the composition of the 'Atlanta Nine' and was it representative?",
+                answer: "Hand-picked lawyers, executives, fundraisers—all affluent and all-white. Selected through professional networks, not elected to represent diverse Atlanta.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What was the National Bid Competition in 1988?",
+                answer: "Atlanta beat Minneapolis-St. Paul 14-2 to win USOC endorsement, also competing against Nashville and San Francisco.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What cities competed with Atlanta for the 1996 Olympic Games?",
+                answer: "Athens (Greece), Belgrade (Yugoslavia), Manchester (England), Melbourne (Australia), Toronto (Canada).",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "Why did each competing city lose to Atlanta in the IOC vote?",
+                answer: "Athens: economic instability. Belgrade: political unrest. Manchester: insufficient facilities. Melbourne: timezone concerns. Toronto: visible protest.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What marketing strategies did AOC use to generate local buy-in?",
+                answer: "Merchandise, billboards, sporting events, MARTA tours, state-wide road shows, and the 'World Has One Dream' song.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "How did AOC sell the Olympic bid to IOC representatives?",
+                answer: "Visited representatives in home countries, toured King Center for civil rights history, positioned Atlanta as future-focused and tech-forward.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What was the Bid Book and the VR innovation?",
+                answer: "5-volume boxed set submission. AOC partnered with Georgia Tech to create interactive VR where viewers 'flew through' 3D Atlanta. PIXAR consulted—groundbreaking CGI.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What was the main opposition to Atlanta's Olympic bid?",
+                answer: "Community support and anti-poverty organizations distributed 'Keep the Olympics Out of Atlanta!' newsletters. Opposition was less visible than other cities.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "When and where was Atlanta selected for the Olympics?",
+                answer: "September 18, 1990 in Tokyo. IOC president Juan Antonio Samaranch announced the decision.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What were the key strengths of Atlanta's winning Olympic bid strategy?",
+                answer: "Mayor Young's international political connections in Africa and Asia, civil rights narrative, tech innovation (VR), and competitors' weaknesses.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What is the significance of the 1996 Centennial Olympic Games?",
+                answer: "1996 marked the 100th anniversary of the modern Olympics. Atlanta hosted both the Olympic Games and the 10th Paralympic Games.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "How did the Paralympic bid differ from the Olympic bid?",
+                answer: "Paralympic bid was separate process. Shepherd Center provided early support. Successful bid to International Paralympic Committee at 1992 Winter Games in Tignes.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What long-term impact did the 1996 Olympics have on Atlanta?",
+                answer: "Atlanta became a major destination for mega-events (Super Bowl, NCAA Final Four), corporate relocations, and national conventions.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "Who revived Atlanta's Olympic bid in 1987?",
+                answer: "Billy Payne, inspired by church fundraising. Presented to Mayor Andrew Young.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What was the 'Atlanta Nine'?",
+                answer: "Hand-picked team of lawyers, executives, fundraisers. Affluent, all-white group selected through professional networks.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "How did Atlanta win USOC backing in 1988?",
+                answer: "Beat Minneapolis-St. Paul 14-2. LA's 1984 success inspired global interest in hosting.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            },
+            {
+                question: "What innovation did Atlanta use in its IOC bid?",
+                answer: "Interactive VR presentation with Georgia Tech. Viewers 'flew through' 3D Atlanta. PIXAR consulted. Groundbreaking CGI.",
+                interval: 1,
+                easeFactor: 2.5,
+                nextReviewDate: new Date()
+            }
+        ];
+
+        let ankiDeck = JSON.parse(JSON.stringify(ankiCards)); // Deep copy
+        let currentAnkiCard = null;
+        let ankiStats = {
+            totalReviewed: 0,
+            goodCount: 0,
+            againCount: 0
+        };
+        let ankiSessionActive = false;
+        let ankiFrontShowing = true;
+        let sessionQueue = []; // cards remaining this round
+        let cardShownAt = null; // timestamp when current card was displayed
+        // Per-card history: { [question]: { good, again, times: [seconds] } }
+        let cardHistory = {};
+
+        const MAX_RESPONSE_MS = 120000; // 2 minutes — ignore idle gaps
+
+        // ==================== ANKI FUNCTIONS ====================
+
+        function startAnkiSession() {
+            ankiSessionActive = true;
+            loadLocalStorage();
+            // Build queue: all cards shuffled
+            sessionQueue = [...ankiDeck].sort(() => Math.random() - 0.5);
+            showNextAnkiCard();
+        }
+
+        function showNextAnkiCard() {
+            if (sessionQueue.length === 0) {
+                endAnkiSession();
+                return;
+            }
+
+            currentAnkiCard = sessionQueue[0];
+            ankiFrontShowing = true;
+            cardShownAt = Date.now();
+            displayAnkiCard();
+        }
+
+        function displayAnkiCard() {
+            const frontDiv = document.getElementById('anki-front-text');
+            if (ankiFrontShowing) {
+                frontDiv.textContent = currentAnkiCard.question;
+            } else {
+                frontDiv.textContent = currentAnkiCard.answer;
+            }
+        }
+
+        function handleAnkiClick(event) {
+            event.preventDefault();
+            
+            if (!ankiFrontShowing) {
+                // Answer is showing
+                if (event.button === 0) {
+                    // Left click = Mark Again
+                    markAnkiAgain();
+                } else if (event.button === 2) {
+                    // Right click = Mark Good
+                    markAnkiGood();
+                }
+            } else {
+                // Question is showing
+                if (event.button === 0) {
+                    // Left click = Flip to answer
+                    flipAnkiCard();
+                }
+            }
+        }
+
+        function flipAnkiCard() {
+            ankiFrontShowing = !ankiFrontShowing;
+            displayAnkiCard();
+        }
+
+        function recordTime() {
+            if (!currentAnkiCard || !cardShownAt) return;
+            const elapsed = Date.now() - cardShownAt;
+            if (elapsed > 0 && elapsed <= MAX_RESPONSE_MS) {
+                const key = currentAnkiCard.question;
+                if (!cardHistory[key]) cardHistory[key] = { good: 0, again: 0, times: [] };
+                cardHistory[key].times.push(Math.round(elapsed / 1000));
+            }
+        }
+
+        function markAnkiGood() {
+            if (!currentAnkiCard) return;
+
+            recordTime();
+            const key = currentAnkiCard.question;
+            if (!cardHistory[key]) cardHistory[key] = { good: 0, again: 0, times: [] };
+            cardHistory[key].good++;
+
+            // Remove from front of queue — card is done for this round
+            sessionQueue.shift();
+
+            // Update stats
+            ankiStats.totalReviewed++;
+            ankiStats.goodCount++;
+
+            saveLocalStorage();
+            updateStats();
+            showNextAnkiCard();
+        }
+
+        function markAnkiAgain() {
+            if (!currentAnkiCard) return;
+
+            recordTime();
+            const key = currentAnkiCard.question;
+            if (!cardHistory[key]) cardHistory[key] = { good: 0, again: 0, times: [] };
+            cardHistory[key].again++;
+
+            // Move card to end of queue so it comes back this round
+            sessionQueue.shift();
+            sessionQueue.push(currentAnkiCard);
+
+            // Update stats
+            ankiStats.totalReviewed++;
+            ankiStats.againCount++;
+
+            saveLocalStorage();
+            updateStats();
+            showNextAnkiCard();
+        }
+
+        function updateStats() {
+            document.getElementById('total-reviewed').textContent = ankiStats.totalReviewed;
+            document.getElementById('good-count').textContent = ankiStats.goodCount;
+            document.getElementById('again-count').textContent = ankiStats.againCount;
+            
+            const passRate = ankiStats.totalReviewed > 0
+                ? Math.round((ankiStats.goodCount / ankiStats.totalReviewed) * 100)
+                : 0;
+            document.getElementById('pass-rate').textContent = passRate + '%';
+        }
+
+        function endAnkiSession() {
+            ankiSessionActive = false;
+            document.getElementById('anki-front-text').innerHTML = `
+                <div class="session-complete">
+                    <h3>✓ All cards correct!</h3>
+                    <p>Total reviewed: ${ankiStats.totalReviewed}</p>
+                    <p>Good: ${ankiStats.goodCount} | Again: ${ankiStats.againCount}</p>
+                    <p style="margin-top: 16px;"><button class="anki-btn anki-btn-primary" onclick="startAnkiSession()">Study Again</button></p>
+                </div>
+            `;
+        }
+
+        function resetAnkiStats() {
+            if (!confirm('Reset all Anki stats and history? This cannot be undone.')) return;
+            ankiDeck = JSON.parse(JSON.stringify(ankiCards));
+            ankiStats = { totalReviewed: 0, goodCount: 0, againCount: 0 };
+            cardHistory = {};
+            localStorage.removeItem('ankiDeck');
+            localStorage.removeItem('ankiStats');
+            localStorage.removeItem('cardHistory');
+            updateStats();
+            startAnkiSession();
+        }
+
+        function saveLocalStorage() {
+            localStorage.setItem('ankiDeck', JSON.stringify(ankiDeck));
+            localStorage.setItem('ankiStats', JSON.stringify(ankiStats));
+            localStorage.setItem('cardHistory', JSON.stringify(cardHistory));
+        }
+
+        function loadLocalStorage() {
+            const savedDeck = localStorage.getItem('ankiDeck');
+            const savedStats = localStorage.getItem('ankiStats');
+            const savedHistory = localStorage.getItem('cardHistory');
+
+            if (savedDeck) ankiDeck = JSON.parse(savedDeck);
+            if (savedStats) ankiStats = JSON.parse(savedStats);
+            if (savedHistory) cardHistory = JSON.parse(savedHistory);
+
+            updateStats();
+        }
+
+        // ==================== ANALYTICS ====================
+
+        function showAnalytics() {
+            const body = document.getElementById('analytics-body');
+            const totalReviewed = ankiStats.totalReviewed;
+            const passRate = totalReviewed > 0 ? Math.round((ankiStats.goodCount / totalReviewed) * 100) : 0;
+
+            // Aggregate per-card data
+            const cardData = ankiCards.map(card => {
+                const h = cardHistory[card.question] || { good: 0, again: 0, times: [] };
+                const total = h.good + h.again;
+                const avgTime = h.times.length > 0
+                    ? (h.times.reduce((a, b) => a + b, 0) / h.times.length).toFixed(1)
+                    : null;
+                const difficulty = total > 0 ? h.again / total : 0;
+                return { question: card.question, good: h.good, again: h.again, total, avgTime, difficulty };
+            });
+
+            // Sort hardest first (highest again ratio, min 1 review)
+            const hardest = [...cardData]
+                .filter(c => c.total > 0)
+                .sort((a, b) => b.difficulty - a.difficulty)
+                .slice(0, 5);
+
+            // All times for overall avg
+            const allTimes = Object.values(cardHistory).flatMap(h => h.times);
+            const overallAvg = allTimes.length > 0
+                ? (allTimes.reduce((a, b) => a + b, 0) / allTimes.length).toFixed(1)
+                : null;
+
+            const neverReviewed = cardData.filter(c => c.total === 0).length;
+            const masteredCards = cardData.filter(c => c.total > 0 && c.difficulty === 0).length;
+
+            function statBox(value, label, color) {
+                return `<div style="background:#f7f8fa;border:1px solid #e5e7eb;border-radius:6px;padding:14px;text-align:center;">
+                    <div style="font-size:22px;font-weight:600;color:${color || '#0a3c78'};">${value}</div>
+                    <div style="font-size:11px;color:#57606a;margin-top:4px;text-transform:uppercase;letter-spacing:0.5px;">${label}</div>
+                </div>`;
+            }
+
+            function diffBar(difficulty) {
+                const pct = Math.round(difficulty * 100);
+                const color = pct >= 60 ? '#dc2626' : pct >= 30 ? '#d97706' : '#16a34a';
+                return `<div style="display:flex;align-items:center;gap:8px;">
+                    <div style="flex:1;height:7px;background:#e5e7eb;border-radius:4px;overflow:hidden;">
+                        <div style="width:${pct}%;height:100%;background:${color};border-radius:4px;"></div>
+                    </div>
+                    <span style="font-size:12px;color:${color};font-weight:600;min-width:32px;">${pct}%</span>
+                </div>`;
+            }
+
+            const hardestRows = hardest.length > 0 ? hardest.map(c => `
+                <tr style="border-top:1px solid #e5e7eb;">
+                    <td style="padding:10px 8px;font-size:13px;color:#1f2328;max-width:320px;">${c.question}</td>
+                    <td style="padding:10px 8px;text-align:center;font-size:13px;color:#16a34a;font-weight:600;">${c.good}</td>
+                    <td style="padding:10px 8px;text-align:center;font-size:13px;color:#dc2626;font-weight:600;">${c.again}</td>
+                    <td style="padding:10px 8px;min-width:130px;">${diffBar(c.difficulty)}</td>
+                    <td style="padding:10px 8px;text-align:center;font-size:13px;color:#57606a;">${c.avgTime !== null ? c.avgTime + 's' : '—'}</td>
+                </tr>`).join('') : `<tr><td colspan="5" style="padding:16px;text-align:center;color:#57606a;font-size:13px;">No cards reviewed yet.</td></tr>`;
+
+            // All cards table sorted by difficulty desc
+            const allRows = [...cardData]
+                .sort((a, b) => b.difficulty - a.difficulty || b.again - a.again)
+                .map(c => `
+                <tr style="border-top:1px solid #e5e7eb;">
+                    <td style="padding:9px 8px;font-size:12px;color:#1f2328;max-width:280px;">${c.question}</td>
+                    <td style="padding:9px 8px;text-align:center;font-size:12px;color:#16a34a;font-weight:600;">${c.good}</td>
+                    <td style="padding:9px 8px;text-align:center;font-size:12px;color:#dc2626;font-weight:600;">${c.again}</td>
+                    <td style="padding:9px 8px;min-width:110px;">${c.total > 0 ? diffBar(c.difficulty) : '<span style="font-size:11px;color:#aaa;">not seen</span>'}</td>
+                    <td style="padding:9px 8px;text-align:center;font-size:12px;color:#57606a;">${c.avgTime !== null ? c.avgTime + 's' : '—'}</td>
+                </tr>`).join('');
+
+            body.innerHTML = `
+                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;">
+                    ${statBox(totalReviewed, 'Total Reviews', '#0a3c78')}
+                    ${statBox(passRate + '%', 'Pass Rate', passRate >= 80 ? '#16a34a' : passRate >= 50 ? '#d97706' : '#dc2626')}
+                    ${statBox(overallAvg !== null ? overallAvg + 's' : '—', 'Avg Response', '#7c5cd8')}
+                    ${statBox(masteredCards + '/' + ankiCards.length, 'Mastered', '#16a34a')}
+                </div>
+
+                <h3 style="color:#0a3c78;font-size:14px;font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px;">Hardest Cards</h3>
+                <div style="overflow-x:auto;margin-bottom:24px;">
+                    <table style="width:100%;border-collapse:collapse;">
+                        <thead>
+                            <tr style="background:#f7f8fa;">
+                                <th style="padding:8px;text-align:left;font-size:11px;color:#57606a;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Question</th>
+                                <th style="padding:8px;text-align:center;font-size:11px;color:#57606a;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Good</th>
+                                <th style="padding:8px;text-align:center;font-size:11px;color:#57606a;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Again</th>
+                                <th style="padding:8px;text-align:left;font-size:11px;color:#57606a;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Difficulty</th>
+                                <th style="padding:8px;text-align:center;font-size:11px;color:#57606a;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Avg Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>${hardestRows}</tbody>
+                    </table>
+                </div>
+
+                <h3 style="color:#0a3c78;font-size:14px;font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.5px;">All Cards</h3>
+                <div style="overflow-x:auto;">
+                    <table style="width:100%;border-collapse:collapse;">
+                        <thead>
+                            <tr style="background:#f7f8fa;">
+                                <th style="padding:8px;text-align:left;font-size:11px;color:#57606a;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Question</th>
+                                <th style="padding:8px;text-align:center;font-size:11px;color:#57606a;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Good</th>
+                                <th style="padding:8px;text-align:center;font-size:11px;color:#57606a;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Again</th>
+                                <th style="padding:8px;text-align:left;font-size:11px;color:#57606a;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Difficulty</th>
+                                <th style="padding:8px;text-align:center;font-size:11px;color:#57606a;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;">Avg Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>${allRows}</tbody>
+                    </table>
+                </div>
+                ${neverReviewed > 0 ? `<p style="margin-top:14px;font-size:12px;color:#57606a;">${neverReviewed} card${neverReviewed > 1 ? 's' : ''} not yet seen this session.</p>` : ''}
+            `;
+
+            document.getElementById('analytics-overlay').style.display = 'block';
+        }
+
+        function closeAnalytics() {
+            document.getElementById('analytics-overlay').style.display = 'none';
+        }
+
+        // Close overlay on backdrop click
+        document.getElementById('analytics-overlay').addEventListener('mousedown', function(e) {
+            if (e.target === this) closeAnalytics();
+        });
+
+        // ==================== FLASHCARD DATA & FUNCTIONS ====================
+
+        const flashcards = [
+            {
+                question: "Who founded Hartsfield-Jackson Airport and in what year?",
+                answer: "William B. Hartsfield founded it in 1925 on an abandoned racetrack. He served as its first commissioner."
+            },
+            {
+                question: "Why was the racetrack chosen as the airport site?",
+                answer: "It offered room for expansion—an important feature since Atlanta was selected as a distribution point on the federal mail route from New York to Miami."
+            },
+            {
+                question: "Who was Maynard Jackson and why was he important to the airport?",
+                answer: "First African American mayor of a major southern city. He played a vital role in airport redevelopment in the 1970s. The airport was renamed to include his name in 2003."
+            },
+            {
+                question: "What is significant about Hartsfield-Jackson having 5 parallel runways?",
+                answer: "All running east-west, they allow multiple aircraft to take off and land simultaneously without crossing flight paths. Fair weather: 90+ landings and 100+ departures per HOUR."
+            },
+            {
+                question: "Who revived Atlanta's Olympic bid in 1987 and why?",
+                answer: "Billy Payne, inspired by a successful church fundraising campaign. He presented the idea to Mayor Andrew Young, who supported it because international investment was his priority."
+            },
+            {
+                question: "What was the 'Atlanta Nine' and why was their composition controversial?",
+                answer: "A hand-picked team of lawyers, executives, and fundraisers assembled by Billy Payne. They were affluent, all-white, and selected through professional networks—not elected to represent diverse Atlanta."
+            },
+            {
+                question: "How did Atlanta win the USOC backing in 1988?",
+                answer: "Beat Minneapolis-St. Paul in a 14-2 vote. Many thought a U.S. host for 1996 was unlikely since LA hosted 1984, but winning proved Atlanta's capability."
+            },
+            {
+                question: "What innovation did Atlanta use in its IOC bid presentation?",
+                answer: "Partnered with Georgia Tech to create an interactive virtual reality presentation where viewers 'flew through' a 3D landscape of Atlanta. PIXAR was consulted. It was groundbreaking early CGI."
+            }
+        ];
+
+        const quizQuestions = [
+            {
+                question: "In what year was Hartsfield-Jackson Airport founded?",
+                options: ["1920", "1925", "1930", "1935"],
+                correct: 1
+            },
+            {
+                question: "Approximately how many passengers traveled through Hartsfield-Jackson in 2019?",
+                options: ["50 million", "80 million", "110+ million", "150 million"],
+                correct: 2
+            },
+            {
+                question: "Who revived Atlanta's Olympic bid in 1987?",
+                options: ["William Hartsfield", "Maynard Jackson", "Billy Payne", "Andrew Young"],
+                correct: 2
+            },
+            {
+                question: "When did the IOC select Atlanta to host the Olympic Games?",
+                options: ["September 18, 1988", "September 18, 1990", "September 18, 1992", "September 18, 1994"],
+                correct: 1
+            },
+            {
+                question: "What was a key advantage Atlanta had over competitor Athens in the IOC vote?",
+                options: ["Larger population", "Mayor Young's international connections", "Better weather", "Lower costs"],
+                correct: 1
+            }
+        ];
+
+        const timeline = [
+            { year: "1925", event: "William B. Hartsfield founds airport on abandoned racetrack" },
+            { year: "1970s", event: "Maynard Jackson leads airport redevelopment" },
+            { year: "1984", event: "LA Olympics succeed with private funding—game changer for Atlanta" },
+            { year: "1987", event: "Billy Payne revives Olympic bid idea to Mayor Andrew Young" },
+            { year: "1988", event: "Atlanta wins USOC backing (14-2 vote vs Minneapolis-St. Paul)" },
+            { year: "1988-1990", event: "Intensive campaign: merchandise, tours, VR bid presentation" },
+            { year: "Sept 18, 1990", event: "IOC selects Atlanta in Tokyo; Samaranch announces winner" },
+            { year: "1996", event: "Atlanta hosts Centennial Olympic Games & 10th Paralympic Games" },
+            { year: "2003", event: "Airport officially renamed to include Maynard Jackson's name" },
+            { year: "2006", event: "400-ft air traffic control tower (tallest in North America) completed" },
+            { year: "2012", event: "Maynard H. Jackson Jr. International Terminal opens with 12 gates" }
+        ];
+
+        // ==================== TAB SWITCHING ====================
+
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const tabName = this.getAttribute('data-tab');
+                switchTab(tabName);
+            });
+        });
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+
+            if (tabName === 'anki' && !ankiSessionActive) {
+                startAnkiSession();
+            }
+        }
+
+        // ==================== TIMELINE FUNCTIONS ====================
+
+        function initTimeline() {
+            const container = document.getElementById('timeline-content');
+            
+            timeline.forEach((item, idx) => {
+                const div = document.createElement('div');
+                div.className = 'timeline-item';
+                div.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-year">${item.year}</div>
+                    <div class="timeline-content">${item.event}</div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // ==================== TTS (TEXT-TO-SPEECH) ====================
+
+        let ttsActiveBtn = null;
+        let ttsVoices = [];
+
+        // Preferred default voice name — matched against whatever voices the current engine exposes
+        const TTS_PREFERRED_VOICE = 'Google UK English Female';
+
+        function populateVoices() {
+            ttsVoices = window.speechSynthesis.getVoices();
+            const select = document.getElementById('tts-voice-select');
+            if (!select || ttsVoices.length === 0) return;
+
+            // Ranking: preferred name first, then other English, then everything else
+            const preferred = [
+                'Google UK English Female',
+                'Google UK English Male',
+                'Google US English',
+                'Samantha', 'Karen', 'Moira', 'Victoria',       // macOS/iOS female
+                'Daniel', 'Oliver',                               // macOS/iOS male
+                'Microsoft Aria', 'Microsoft Jenny', 'Microsoft Guy', // Edge/Windows
+            ];
+
+            const english = ttsVoices.filter(v => v.lang.startsWith('en'));
+            const others  = ttsVoices.filter(v => !v.lang.startsWith('en'));
+
+            const score = v => {
+                const idx = preferred.findIndex(p => v.name.includes(p));
+                return idx === -1 ? 999 : idx;
+            };
+            english.sort((a, b) => score(a) - score(b));
+
+            const sorted = [...english, ...others];
+            select._sorted = sorted;
+
+            // Restore saved voice name, else fall back to preferred default, else index 0
+            const savedName = localStorage.getItem('ttsVoiceName');
+            const targetName = savedName || TTS_PREFERRED_VOICE;
+
+            select.innerHTML = '';
+            let selectedIdx = 0;
+            sorted.forEach((v, i) => {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = `${v.name} (${v.lang})`;
+                select.appendChild(opt);
+                if (v.name === targetName) selectedIdx = i;
+            });
+            select.value = selectedIdx;
+        }
+
+        // Voices load asynchronously in Chrome
+        if (window.speechSynthesis) {
+            populateVoices();
+            window.speechSynthesis.onvoiceschanged = populateVoices;
+        }
+
+        function getSelectedVoice() {
+            const select = document.getElementById('tts-voice-select');
+            if (!select || !select._sorted) return null;
+            const voice = select._sorted[parseInt(select.value)] || null;
+            // Save choice for next time
+            if (voice) localStorage.setItem('ttsVoiceName', voice.name);
+            return voice;
+        }
+
+        function getSelectedRate() {
+            const sel = document.getElementById('tts-rate-select');
+            return sel ? parseFloat(sel.value) : 0.95;
+        }
+
+        function getSectionScript(btn) {
+            const section = btn.closest('.learn-section');
+            const header  = section.querySelector('.learn-section-header');
+            const body    = section.querySelector('.learn-section-body');
+
+            // Pull the title from the first <span> child of the header (e.g. "3 — Air Traffic Control: 4 Layers")
+            const titleSpan = header ? header.querySelector('span:first-child') : null;
+            const rawTitle  = titleSpan ? titleSpan.textContent.trim() : '';
+
+            // Split "3 — Air Traffic Control: 4 Layers" into number + name
+            const match = rawTitle.match(/^(\d+)\s*[—\-]\s*(.+)$/);
+            const sectionNum  = match ? match[1] : '';
+            const sectionName = match ? match[2].replace(/&amp;/g, 'and').replace(/&/g, 'and') : rawTitle;
+
+            // Body plain text — innerText picks up list bullets etc. naturally
+            const bodyText = body ? body.innerText.trim() : '';
+
+            // Compose natural spoken script
+            const intro = sectionNum
+                ? `Section ${sectionNum}. ${sectionName}.`
+                : sectionName ? `${sectionName}.` : '';
+
+            return [intro, bodyText, 'Moving on.'].filter(Boolean).join('  ');
+        }
+
+        function toggleSectionSpeech(btn) {
+            if (ttsActiveBtn === btn) {
+                stopSpeech();
+                return;
+            }
+            stopSpeech();
+
+            const text = getSectionScript(btn);
+            if (!text || !window.speechSynthesis) return;
+
+            // Auto-open the section
+            const header = btn.closest('.learn-section-header');
+            const body = header.nextElementSibling;
+            if (!body.classList.contains('open')) {
+                body.classList.add('open');
+                header.classList.add('open');
+            }
+
+            const utt = new SpeechSynthesisUtterance(text);
+            utt.rate = getSelectedRate();
+            utt.pitch = 1;
+            const voice = getSelectedVoice();
+            if (voice) utt.voice = voice;
+
+            utt.onstart = function() {
+                ttsActiveBtn = btn;
+                btn.textContent = '⏸';
+                btn.classList.add('tts-active');
+                document.getElementById('tts-stop-btn').style.display = 'inline-block';
+            };
+
+            utt.onend = function() {
+                resetTtsBtn(btn);
+                // Find the next .learn-section's tts-btn and auto-play it
+                const section = btn.closest('.learn-section');
+                const nextSection = section.nextElementSibling;
+                if (nextSection && nextSection.classList.contains('learn-section')) {
+                    const nextBtn = nextSection.querySelector('.tts-btn');
+                    if (nextBtn) toggleSectionSpeech(nextBtn);
+                }
+            };
+            utt.onerror = function() { resetTtsBtn(btn); };
+
+            window.speechSynthesis.speak(utt);
+        }
+
+        function stopSpeech() {
+            window.speechSynthesis.cancel();
+            if (ttsActiveBtn) resetTtsBtn(ttsActiveBtn);
+            document.getElementById('tts-stop-btn').style.display = 'none';
+        }
+
+        function resetTtsBtn(btn) {
+            btn.textContent = '🔊';
+            btn.classList.remove('tts-active');
+            ttsActiveBtn = null;
+        }
+
+        // ==================== LEARN FUNCTIONS ====================
+
+        function toggleLearnSection(header) {
+            const body = header.nextElementSibling;
+            const isOpen = body.classList.contains('open');
+            body.classList.toggle('open', !isOpen);
+            header.classList.toggle('open', !isOpen);
+        }
+
+        // ==================== INITIALIZATION ====================
+
+        // Initialize timeline on page load
+        initTimeline();
+
+        // Prevent context menu on anki card for right-click functionality
+        document.getElementById('anki-front').addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>
