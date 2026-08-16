@@ -1,0 +1,121 @@
+{
+  "id": "ga-history-m8",
+  "course": "GA History",
+  "courseColor": "blue",
+  "moduleNumber": 8,
+  "title": "Modern Georgia",
+  "subtitle": "State Flag, Ted Turner & the Film Industry",
+  "storagePrefix": "m8",
+  "totalCards": 32,
+
+  "overview": {
+    "stats": [
+      { "value": "3",       "label": "State Flags in 27 Months" },
+      { "value": "73%",     "label": "Voters Chose 2004 Flag" },
+      { "value": "$1B",     "label": "Turner's UN Donation" },
+      { "value": "20%+10%", "label": "GA Film Tax Credit (2008)" }
+    ],
+    "people": [
+      { "name": "Ted Turner",       "desc": "Media titan; founded CNN in 1980; owned Atlanta Braves & Hawks; Time Man of the Year 1991." },
+      { "name": "Roy Barnes",       "desc": "Georgia governor who engineered the 2001 flag change; lost reelection partly due to \"flaggers.\"" },
+      { "name": "Sonny Perdue",     "desc": "Republican governor who defeated Barnes; signed 2003 legislation creating the current flag." },
+      { "name": "Denmark Groover",  "desc": "Griffin's 1956 floor leader; admitted near death that integration anger drove the 1956 flag change." },
+      { "name": "Zell Miller",      "desc": "Governor who tried to change the flag in 1993; abandoned the fight after near-loss in reelection." },
+      { "name": "Jimmy Carter",     "desc": "Georgia governor who established the state film commission in 1973 after Deliverance's success." },
+      { "name": "Tyler Perry",      "desc": "Founded Tyler Perry Studios in Atlanta 2006; Diary of a Mad Black Woman opened #1 at box office." },
+      { "name": "Burt Reynolds",    "desc": "Star most identified with Georgia film in 1970s–80s; Deliverance, Smokey and the Bandit, Sharky's Machine." }
+    ],
+    "dates": [
+      { "year": "1879",         "event": "Georgia's first official state flag adopted — based on Confederate Stars and Bars" },
+      { "year": "1956",         "event": "Confederate battle flag added to Georgia state flag in response to Brown v. Board of Education" },
+      { "year": "1972",         "event": "Deliverance filmed in Rabun County; Jimmy Carter establishes state film commission (1973)" },
+      { "year": "1977",         "event": "Smokey and the Bandit becomes a blockbuster; Turner's Courageous wins America's Cup" },
+      { "year": "June 1, 1980", "event": "CNN begins broadcasting — available in 1.7 million homes" },
+      { "year": "1991",         "event": "Ted Turner named Time Man of the Year; Braves reach World Series; CNN covers Gulf War" },
+      { "year": "Jan 30, 2001", "event": "Governor Barnes signs HB 16 — Confederate battle flag removed; new 2001 flag adopted" },
+      { "year": "May 8, 2003",  "event": "Governor Perdue signs HB 380 — Georgia's third flag in 27 months becomes effective immediately" },
+      { "year": "Mar 2, 2004",  "event": "Statewide referendum: 73%+ of voters approve the current flag" },
+      { "year": "May 2008",     "event": "Governor Perdue signs revised Entertainment Industry Investment Act — 20%+10% tax credit" },
+      { "year": "2013",         "event": "Pinewood Atlanta (now Trilith) opens in Fayette County — Atlanta dubbed \"Hollywood of the South\"" },
+      { "year": "May 6, 2026",  "event": "Ted Turner dies at age 87 at his Montana ranch" }
+    ],
+    "terms": [
+      { "term": "Stars and Bars",                       "def": "First national flag of the Confederacy — basis for Georgia's 1879 and 2004 state flags" },
+      { "term": "Confederate Battle Flag",              "def": "Square blue-X-on-red emblem; occupied two-thirds of Georgia's 1956–2001 state flag" },
+      { "term": "HB 16 (2001)",                         "def": "House bill that replaced Georgia's 1956 flag with Cecil Alexander's \"Georgia's History\" design" },
+      { "term": "HB 380 (2003)",                        "def": "House bill creating the current Georgia flag; passed 89–88 (Speaker's vote decided it)" },
+      { "term": "CNN",                                  "def": "Cable News Network — Turner's 24-hr all-news channel; launched June 1, 1980" },
+      { "term": "Goodwill Games",                       "def": "Turner-conceived Olympic-style event; first held Moscow 1986; final held Brisbane 2001" },
+      { "term": "WTBS / TBS",                           "def": "Turner's Atlanta UHF station that became the first cable \"Superstation\" via satellite" },
+      { "term": "Entertainment Industry Investment Act","def": "2008 Georgia law giving film/TV producers 20% tax credit (+10% for Georgia peach logo)" },
+      { "term": "Trilith Studios",                      "def": "Formerly Pinewood Atlanta; first US Pinewood location, opened Fayette County 2013" },
+      { "term": "Deliverance (1972)",                   "def": "First major film shot in Georgia (Rabun County); brought Hollywood's attention to the state" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — Georgia's State Flag: Early History",
+      "body": "<p>Georgia has more state flags than any other state — and the story of how that happened reveals deep tensions over the state's identity. Before the Civil War, Georgia had no official state flag. After <mark>Georgia seceded from the Union on January 19, 1861</mark>, newspaper reports described various secession flags, including the well-known <mark>Bonnie Blue Flag</mark> — a single star on a solid background.</p><p>In <mark>1879</mark>, state senator <mark>Heman H. Perry</mark> introduced Georgia's first official state flag, based on the <mark>first national flag of the Confederacy (the \"Stars and Bars\")</mark>. In <mark>1902</mark>, the General Assembly added the state coat of arms to the blue field. Over the next decades — through the 1920s — the entire state seal replaced the coat of arms, though no official record exists of who authorized the change.</p><p>In <mark>1935</mark>, Governor <mark>Eugene Talmadge</mark> signed a pledge of allegiance to the state flag incorporating the motto <em>\"Wisdom, Justice, and Moderation.\"</em></p>"
+    },
+    {
+      "title": "2 — The Controversial 1956 Flag",
+      "body": "<p>The most significant — and controversial — flag change came in <mark>1956</mark>. Attorney <mark>John Sammons Bell</mark> campaigned to substitute the <mark>Confederate battle flag</mark> for the bars on Georgia's flag. The political climate was charged: Governor <mark>Marvin Griffin's</mark> entire 1956 session was devoted to \"massive resistance\" to the Supreme Court's <mark>Brown v. Board of Education</mark> decisions (1954–55), which ordered the desegregation of public schools.</p><p>The new flag gave <mark>two-thirds of Georgia's banner</mark> to the Confederate battle emblem. Representative <mark>Denmark Groover</mark> told the press the flag \"will show that we in Georgia intend to uphold what we stood for.\" The bill passed with no public hearings.</p><p>By the late 1960s, Georgians began calling the flag divisive. In <mark>1969</mark>, Janet Merritt introduced the first bill to return to the pre-1956 flag. By the 1980s, Atlanta city officials refused to fly the 1956 flag at municipal buildings. Governor <mark>Zell Miller</mark> tried to change it in <mark>1993</mark> but abandoned the fight after strong rural opposition nearly cost him reelection. Even the <mark>1996 Olympic Games</mark> did not prompt a change.</p>"
+    },
+    {
+      "title": "3 — New Flags: 2001 and 2003",
+      "body": "<p>Governor <mark>Roy Barnes</mark>, elected in 1998 with strong Black political support, worked privately with architect <mark>Cecil Alexander</mark> on a new flag design. Alexander proposed placing the Georgia seal in the center with five small historical flags — including the Confederate battle flag — on a gold ribbon captioned <em>\"Georgia's History.\"</em></p><p>Barnes used his informal powers to rush <mark>HB 16</mark> through the House before opposition could organize. The Senate passed it on <mark>January 30, 2001</mark>. A critical factor: <mark>Denmark Groover</mark> — then 79 and dying of cancer — admitted that anger over integration had indeed driven the 1956 flag change. Though the design was rated the <mark>worst-designed state flag in North America</mark>, its political significance was clear.</p><p>\"Flaggers\" organized against Barnes; he lost his reelection bid to <mark>Sonny Perdue</mark> in an upset. Perdue introduced <mark>HB 380</mark>, which passed by <mark>90–89</mark> (only after the Speaker cast the deciding vote). Signed on <mark>May 8, 2003</mark>, the new flag placed Georgia's coat of arms inside a circle of thirteen stars on the first national Confederate flag — Georgia's third flag in <mark>twenty-seven months</mark>. A statewide referendum on <mark>March 2, 2004</mark> confirmed the design with over <mark>73% of voters</mark>.</p>"
+    },
+    {
+      "title": "4 — Ted Turner: Media Titan",
+      "body": "<p><mark>Robert Edward \"Ted\" Turner</mark> was born in <mark>Cincinnati, Ohio, on November 19, 1938</mark>. His family moved to Savannah when he was nine. He attended <mark>Brown University</mark>, where he captained the sailing team. After his father's suicide in 1963, Ted assumed control of <mark>Turner Advertising</mark>, which became the fifth-largest billboard company in America.</p><p>In <mark>1970</mark>, Turner bought <mark>WJRJ</mark>, a small UHF Atlanta station. By 1976 it was beamed via satellite nationwide as a <mark>\"Superstation\"</mark> — later renamed <mark>WTBS</mark>. He bought the <mark>Atlanta Braves (1976)</mark> and the <mark>Atlanta Hawks</mark>, keeping both franchises in the city. His boat <mark>Courageous</mark> won the <mark>1977 America's Cup</mark>.</p><p><mark>CNN (Cable News Network)</mark> launched on <mark>June 1, 1980</mark> with 1.7 million homes. It became internationally respected — especially after its comprehensive coverage of the <mark>1990–91 Persian Gulf War</mark>. Turner also launched Headline News, TNT, Cartoon Network, and Turner Classic Movies. In 1991, Turner was named <mark>Time magazine's Man of the Year</mark> and the Braves reached the World Series (winning in <mark>1995</mark>).</p>"
+    },
+    {
+      "title": "5 — Turner: MGM, Goodwill Games & Philanthropy",
+      "body": "<p>Turner's biggest misstep was buying <mark>MGM Studios</mark> for a reported <mark>$1.5 billion</mark> — considered overvalued — leaving him more than <mark>$2 billion in debt</mark> and his empire in danger.</p><p>Despite this, Turner launched the <mark>Goodwill Games</mark> in <mark>Moscow (1986)</mark> — a made-for-TV Olympic-style event. He lost an estimated <mark>$20 million</mark> but met Soviet Premier <mark>Mikhail Gorbachev</mark> and later claimed the games helped end the Cold War. The games continued through Seattle (1990), St. Petersburg (1994), New York City (1998), Lake Placid (2000), and finally <mark>Brisbane, Australia (2001)</mark>.</p><p>In <mark>1996</mark>, Turner Broadcasting merged with <mark>Time Warner</mark>, effectively ending his career as principal of a major company. In <mark>1997</mark>, Turner pledged <mark>$1 billion to the United Nations</mark> — believed to be the largest single private donation in UN history. He also founded the <mark>Turner Foundation</mark> (environmental conservation) and the <mark>Nuclear Threat Initiative</mark> ($250 million). Turner died on <mark>May 6, 2026, at age 87</mark>.</p>"
+    },
+    {
+      "title": "6 — Georgia Film Industry: 1970s–1990s",
+      "body": "<p><mark>Deliverance (1972)</mark>, shot along the <mark>Chattooga River in Rabun County</mark>, was the breakthrough film that brought Georgia to Hollywood's attention. Governor <mark>Jimmy Carter</mark> established a state film commission in <mark>1973</mark> to market Georgia as a shooting location.</p><p><mark>Smokey and the Bandit (1977)</mark> and its sequel (1980) starring <mark>Burt Reynolds</mark> launched a national car-chase craze, filmed on Georgia highways and at <mark>Atlanta Motor Speedway</mark>. CBS's <mark>The Dukes of Hazzard (1979–85)</mark> filmed early episodes in and around <mark>Covington</mark>.</p><p>In the 1980s–90s, <mark>Driving Miss Daisy (1989)</mark> won Best Picture and Best Actress (<mark>Jessica Tandy</mark>). <mark>Forrest Gump (1994)</mark> became linked with Savannah via <mark>Chippewa Square</mark>. <mark>Glory (1990)</mark> filmed in Savannah and Georgia's coastal areas. <mark>Fried Green Tomatoes (1991)</mark> transformed a café in <mark>Juliette, Monroe County</mark> into a permanent tourist attraction.</p>"
+    },
+    {
+      "title": "7 — The 2008 Tax Credit & Hollywood of the South",
+      "body": "<p>Georgia faced stiff competition from states and Canada offering film tax credits. After a <mark>Ray Charles biopic was produced in Louisiana (2004)</mark>, Georgia passed the <mark>Georgia Entertainment Industry Investment Act (2005)</mark>, boosting state film revenue from <mark>$124 million (2004) to $475 million (2006)</mark>.</p><p>In <mark>May 2008</mark>, Governor Perdue signed a revised Act at <mark>Turner Broadcasting System studios</mark>: a <mark>20% base tax credit</mark> with an additional <mark>10% credit for featuring the Georgia peach logo</mark>. British <mark>Pinewood Studios</mark> built their first US location in <mark>Fayette County in 2013</mark> (now called <mark>Trilith</mark>).</p><p>From <mark>2013–2017</mark>, more projects filmed in Georgia than in all previous decades combined — earning Atlanta the nickname <mark>\"Hollywood of the South.\"</mark> <mark>Avengers: Endgame (2019)</mark>, filmed at Pinewood Atlanta, earned <mark>$2.5 billion</mark> at the box office. Georgia's film industry also includes the <mark>Atlanta Film Festival</mark>, film schools at <mark>SCAD</mark> and Georgia State, music video production, and a growing <mark>video game development</mark> sector.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What was the significance of Georgia's 1956 flag change?", "a": "The Confederate battle flag replaced the bars, occupying two-thirds of the flag. It was a direct response to Brown v. Board of Education (1954–55), signaling resistance to integration." },
+    { "key": true,  "q": "What were the Brown v. Board of Education decisions and how did they impact Georgia's flag?", "a": "1954 and 1955 Supreme Court rulings ordering desegregation of public schools. Georgia's 1956 legislative session devoted to 'massive resistance' — the Confederate battle flag was added to the state flag." },
+    { "q": "Who introduced Georgia's first official state flag in 1879 and what was it based on?", "a": "State senator Heman H. Perry. Based on the first national flag of the Confederacy (the Stars and Bars)." },
+    { "key": true,  "q": "What unique record does Georgia hold regarding state flags?", "a": "Georgia has had more state flags than any other U.S. state. It also had three different flags in only 27 months (a national record)." },
+    { "key": true,  "q": "Who was Denmark Groover and what did he admit near his death?", "a": "Governor Griffin's floor leader in 1956 who repeatedly denied racial motivation for the flag change. Near death at 79, he admitted that anger over federal integration had indeed been a factor." },
+    { "key": true,  "q": "How did Governor Roy Barnes change the state flag in 2001?", "a": "He worked with architect Cecil Alexander to design a new flag (HB 16) with the Georgia seal and five small historical flags on a gold ribbon labeled 'Georgia's History.' Passed January 30, 2001." },
+    { "q": "Why did Barnes lose his reelection bid after the 2001 flag change?", "a": "Organized 'flaggers' (Sons of Confederate Veterans, Heritage Preservation Association) and broader dissatisfaction led to an upset loss to Republican Sonny Perdue." },
+    { "key": true,  "q": "What is HB 380 and how did it become law?", "a": "The 2003 bill creating Georgia's current flag. It passed the House 90–89 only after the Speaker cast the deciding vote, then the Senate agreed. Governor Perdue signed it May 8, 2003." },
+    { "q": "What did the March 2, 2004 referendum determine about Georgia's flag?", "a": "Over 73% of voters approved keeping the current flag (HB 380 design) over the 2001 Barnes flag, effectively settling the flag debate." },
+    { "q": "What does the current Georgia flag (2003–present) look like and what does it reference?", "a": "Georgia coat of arms inside a circle of 13 stars on the first national Confederate flag (Stars and Bars), with 'In God We Trust.' Stars represent the 13 original colonies." },
+    { "q": "Where was Ted Turner born and where did he grow up?", "a": "Born in Cincinnati, Ohio on November 19, 1938. Family moved to Savannah when he was nine. Later attended Brown University in Providence, Rhode Island." },
+    { "key": true,  "q": "How did Ted Turner get his start in media?", "a": "In 1970 he bought WJRJ, a small UHF Atlanta station. By 1976 it was beamed via satellite nationwide as the 'Superstation,' later renamed WTBS (Turner Broadcasting System)." },
+    { "q": "What sports teams did Ted Turner own and why was it significant?", "a": "Atlanta Braves (bought 1976) and Atlanta Hawks (NBA). Both purchases are credited with keeping the franchises in Atlanta. The Braves won the World Series in 1995." },
+    { "key": true,  "q": "When did CNN launch and how big was its initial reach?", "a": "June 1, 1980. Available in 1.7 million homes. It became internationally respected, especially after coverage of the 1990–91 Persian Gulf War." },
+    { "q": "What was Turner's biggest financial mistake and what happened?", "a": "Buying MGM Studios for ~$1.5 billion (considered overvalued), leaving him over $2 billion in debt and his Turner Broadcasting empire in danger." },
+    { "q": "What were the Goodwill Games and how did they begin?", "a": "A Turner-conceived, made-for-TV Olympic-style event. First held in Moscow in 1986 during the Cold War. Turner lost ~$20 million but met Gorbachev and claimed it helped end the Cold War." },
+    { "q": "What was Ted Turner's major philanthropic achievement in 1997?", "a": "Pledged $1 billion to the United Nations — believed to be the largest single private donation in UN history. He also founded the Turner Foundation and the Nuclear Threat Initiative ($250M)." },
+    { "key": true,  "q": "What film launched Georgia's film industry in the 1970s, and who responded by forming a film commission?", "a": "Deliverance (1972), shot along the Chattooga River in Rabun County. Governor Jimmy Carter established a state film commission in 1973." },
+    { "q": "What were Smokey and the Bandit's connections to Georgia?", "a": "Filmed on Georgia state highways, in Jonesboro, and at Atlanta Motor Speedway. Starred Burt Reynolds and launched a national car-chase film craze." },
+    { "q": "What city stood in for 'Sparta, Mississippi' in In the Heat of the Night (1988–94)?", "a": "Covington, Georgia. The show employed many locals as extras and businesses served the crew, making production part of everyday community life." },
+    { "q": "What Academy Awards did Driving Miss Daisy win, and where was it set?", "a": "Won Best Picture and Best Actress (Jessica Tandy). Set in the Atlanta area — the story of an elderly Jewish woman and her African American chauffeur (Morgan Freeman)." },
+    { "q": "How did Forrest Gump (1994) become linked with Savannah, Georgia?", "a": "Forrest tells stories from a bench in Chippewa Square, Savannah. The actual bench from the film now sits in the Savannah History Museum." },
+    { "q": "What specific location in Georgia did Fried Green Tomatoes (1991) create as a tourist attraction?", "a": "Film crews transformed a local establishment in Juliette, Monroe County into the 'Whistle Stop Cafe.' It remains a tourist destination for fans of the film." },
+    { "q": "What triggered Georgia to pass the 2005 Entertainment Industry Investment Act?", "a": "A Ray Charles biopic was produced in Louisiana rather than Georgia in 2004. The 2005 Act offered income tax credits, boosting state film revenue from $124M (2004) to $475M (2006)." },
+    { "key": true,  "q": "What are the two parts of Georgia's 2008 film tax credit?", "a": "20% base tax credit for filming in Georgia, plus an additional 10% credit if the final product features the Georgia peach logo promoting the state." },
+    { "q": "What is Trilith Studios and when did it open?", "a": "Formerly Pinewood Atlanta — British Pinewood Studios' first U.S. location, built in Fayette County in 2013 in partnership with a Cathy family trust." },
+    { "key": true,  "q": "Why was 2013–2017 a landmark period for Georgia's film industry?", "a": "More projects filmed in Georgia during those five years than in all previous decades combined, earning Atlanta the nickname 'Hollywood of the South.'" },
+    { "q": "What film shot at Pinewood Atlanta earned $2.5 billion at the box office?", "a": "Avengers: Endgame (2019) — one of the highest-grossing films ever made." },
+    { "q": "What controversy arose around Georgia's film industry related to legislation in 2019 and 2021?", "a": "A restrictive abortion law (2019) and changes to voting laws (2021) led to industry calls to boycott Georgia. Producer Tyler Perry said it makes little financial sense to leave despite disagreements." },
+    { "q": "What film schools and festivals support Georgia's independent film scene?", "a": "SCAD (hosts Savannah Film Festival), Georgia State University film program, Atlanta Film Festival (Atlanta Film Society). Out on Film has sponsored LGBTQ films independently since 2008." },
+    { "key": true,  "q": "What was the significance of the first national flag of the Confederacy to Georgia's flag history?", "a": "It was the basis for Georgia's 1879 flag AND the current 2003/2004 flag. The Stars and Bars appears in both, though in very different contexts — 1879 for heritage, 2003 as a compromise design." },
+    { "q": "What state does Ted Turner rank as the largest private landholder, and what business did he launch related to it?", "a": "He held that title until 2011, owning 1.9 million acres in 10 states and 2 countries. He launched Ted's Montana Grill, a bison meat restaurant chain, in 2003." }
+  ]
+}

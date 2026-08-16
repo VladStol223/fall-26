@@ -624,9 +624,93 @@
     #sync-chip.syncing { color: var(--blue-700); border-color: var(--blue-200); background: var(--blue-50); }
     #sync-chip.saved   { color: #16a34a; border-color: #bbf7d0; background: #f0fdf4; }
     #sync-chip.error   { color: #dc2626; border-color: #fecaca; background: #fef2f2; }
+
+    /* ── Sidebar ──────────────────────────────────────────── */
+    #sidebar {
+      position: fixed; top: 0; left: 0; height: 100%; width: 260px;
+      background: #0a2342; color: #e2e8f0; z-index: 1000;
+      display: flex; flex-direction: column;
+      transform: translateX(-260px);
+      transition: transform .28s cubic-bezier(.4,0,.2,1);
+      box-shadow: 4px 0 24px rgba(0,0,0,.18);
+    }
+    #sidebar.open { transform: translateX(0); }
+
+    #sidebar-toggle {
+      position: fixed; top: 16px; left: 16px; z-index: 1001;
+      width: 36px; height: 36px; border-radius: 8px; border: none;
+      background: var(--blue-700); color: white; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+      box-shadow: var(--shadow-sm);
+      transition: background .2s, left .28s cubic-bezier(.4,0,.2,1);
+    }
+    #sidebar-toggle:hover { background: var(--blue-500); }
+    #sidebar-toggle.shifted { left: 272px; }
+
+    .toggle-bar { width: 18px; height: 2px; background: white; border-radius: 2px; transition: all .22s; }
+    #sidebar-toggle.open .toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #sidebar-toggle.open .toggle-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    #sidebar-toggle.open .toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    #sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 999; }
+    #sidebar-overlay.visible { display: block; }
+
+    .sidebar-header { padding: 20px 18px 14px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .sidebar-home-link {
+      display: flex; align-items: center; gap: 10px; text-decoration: none;
+      color: white; font-weight: 700; font-size: 14px; padding: 8px 10px;
+      border-radius: 7px; background: rgba(255,255,255,.08); transition: background .18s;
+    }
+    .sidebar-home-link:hover { background: rgba(255,255,255,.16); }
+    .sidebar-home-link.current { background: rgba(59,130,212,.30); }
+
+    .sidebar-nav { flex: 1; overflow-y: auto; padding: 14px 10px; }
+    .sidebar-section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.4); padding: 10px 8px 6px;
+    }
+    .sidebar-link {
+      display: flex; align-items: center; gap: 10px; padding: 9px 10px;
+      border-radius: 7px; text-decoration: none; color: rgba(255,255,255,.78);
+      font-size: 13px; font-weight: 500; transition: background .18s, color .18s;
+    }
+    .sidebar-link:hover { background: rgba(255,255,255,.1); color: white; }
+    .sidebar-link-num {
+      width: 22px; height: 22px; border-radius: 5px; background: rgba(255,255,255,.12);
+      display: grid; place-items: center; font-size: 11px; font-weight: 700; flex-shrink: 0;
+    }
+    .sidebar-footer { padding: 14px 18px; border-top: 1px solid rgba(255,255,255,.1); font-size: 11px; color: rgba(255,255,255,.3); text-align: center; }
   </style>
 </head>
 <body>
+
+  <!-- Sidebar toggle -->
+  <button id="sidebar-toggle" aria-label="Toggle navigation">
+    <span class="toggle-bar"></span>
+    <span class="toggle-bar"></span>
+    <span class="toggle-bar"></span>
+  </button>
+  <div id="sidebar-overlay"></div>
+  <aside id="sidebar">
+    <div class="sidebar-header">
+      <a class="sidebar-home-link current" href="index.html">
+        <span style="font-size:18px;line-height:1;">🏠</span>
+        <span>Study Hub</span>
+      </a>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">GA History</div>
+      <a class="sidebar-link" href="module.html?id=ga-history-m7">
+        <span class="sidebar-link-num">7</span>
+        <span>Sunbelt Era</span>
+      </a>
+      <a class="sidebar-link" href="module.html?id=ga-history-m8">
+        <span class="sidebar-link-num">8</span>
+        <span>Modern Georgia</span>
+      </a>
+    </nav>
+    <div class="sidebar-footer">Fall '26 — Study Hub</div>
+  </aside>
 
   <!-- Sync status -->
   <div id="sync-chip"></div>
@@ -645,7 +729,7 @@
           <p class="course-desc">Post–Civil War through modern Georgia — Sunbelt Era, civil rights, economic growth, and contemporary government.</p>
 
           <div class="module-list">
-            <a class="module-row" href="GLRs/GA History/Module 7 Study Guide.html"
+            <a class="module-row" href="module.html?id=ga-history-m7"
                data-stats-key="ankiStats"
                data-history-key="cardHistory"
                data-total="33"
@@ -664,7 +748,7 @@
               <span class="module-arrow">→</span>
             </a>
 
-            <a class="module-row" href="GLRs/GA History/Module 8 Study Guide.html"
+            <a class="module-row" href="module.html?id=ga-history-m8"
                data-stats-key="ankiStats_m8"
                data-history-key="cardHistory_m8"
                data-total="32"
@@ -830,6 +914,20 @@
     } else {
       showChip('saved', '✓ No data yet');
     }
+  })();
+  </script>
+  <script>
+  // ── Sidebar toggle ─────────────────────────────────────────────────────────
+  (function() {
+    var toggle  = document.getElementById('sidebar-toggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebar-overlay');
+    var open    = false;
+    function openSidebar()  { open=true;  sidebar.classList.add('open');    toggle.classList.add('open','shifted');    overlay.classList.add('visible'); }
+    function closeSidebar() { open=false; sidebar.classList.remove('open'); toggle.classList.remove('open','shifted'); overlay.classList.remove('visible'); }
+    toggle.addEventListener('click', function() { open ? closeSidebar() : openSidebar(); });
+    overlay.addEventListener('click', closeSidebar);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && open) closeSidebar(); });
   })();
   </script>
 </body>

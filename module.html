@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Guide</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+      background-color: #f7f8fa;
+      color: #1f2328;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #0a3c78 0%, #1e64b4 100%);
+      color: white;
+      padding: 30px;
+      text-align: center;
+      border-bottom: 4px solid #3b82d4;
+    }
+    .header h1 { font-size: 28px; margin-bottom: 8px; font-weight: 600; }
+    .header p  { font-size: 14px; opacity: .95; }
+
+    /* ── Nav tabs ── */
+    .nav-tabs { display: flex; border-bottom: 1px solid #e5e7eb; background: #f7f8fa; flex-wrap: wrap; }
+    .nav-tabs button {
+      flex: 1; min-width: 120px; padding: 14px 16px; border: none;
+      background: none; font-size: 14px; font-weight: 500; color: #57606a;
+      cursor: pointer; transition: all .3s; border-bottom: 3px solid transparent;
+    }
+    .nav-tabs button.active  { color: #0a3c78; border-bottom-color: #0a3c78; background: white; }
+    .nav-tabs button:hover   { background: white; color: #0a3c78; }
+
+    .content { padding: 30px; }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; animation: fadeIn .3s ease; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── Overview ── */
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px,1fr)); gap: 12px; margin-bottom: 24px; }
+    .stat-box  { background: #f0f4ff; border: 1px solid #dbeafe; border-radius: 8px; padding: 16px; text-align: center; }
+    .stat-number { font-size: 26px; font-weight: 700; color: #0a3c78; }
+    .stat-label  { font-size: 11px; color: #57606a; margin-top: 4px; text-transform: uppercase; letter-spacing: .4px; }
+
+    .cheat-section { margin-bottom: 28px; }
+    .cheat-section h3 { font-size: 15px; font-weight: 700; color: #0a3c78; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 2px solid #e5e7eb; }
+
+    .cheat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 10px; }
+    .cheat-item { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 6px; padding: 12px; }
+    .cheat-item-name { font-size: 13px; font-weight: 600; color: #0a3c78; margin-bottom: 4px; }
+    .cheat-item-desc { font-size: 12px; color: #57606a; line-height: 1.4; }
+
+    .cheat-dates, .cheat-terms { display: flex; flex-direction: column; gap: 6px; }
+    .cheat-date-row, .cheat-term-row {
+      display: flex; gap: 12px; padding: 8px 10px;
+      background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 5px; font-size: 13px;
+    }
+    .cheat-date-year { font-weight: 700; color: #0a3c78; min-width: 96px; flex-shrink: 0; }
+    .cheat-date-event { color: #1f2328; }
+    .cheat-term-name  { font-weight: 700; color: #0a3c78; min-width: 140px; flex-shrink: 0; }
+    .cheat-term-def   { color: #1f2328; }
+
+    /* ── Learn ── */
+    .learn-section { margin-bottom: 12px; border: 1px solid #e5e7eb; border-radius: 6px; overflow: hidden; }
+    .learn-section-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 16px; background: #f7f8fa; cursor: pointer;
+      font-size: 14px; font-weight: 600; color: #1f2328;
+      transition: background .2s;
+    }
+    .learn-section-header:hover { background: #eef2ff; }
+    .learn-section-header.open  { background: #eef2ff; border-bottom: 1px solid #e5e7eb; }
+    .learn-chevron { font-size: 11px; color: #57606a; transition: transform .22s; }
+    .learn-section-header.open .learn-chevron { transform: rotate(180deg); }
+    .tts-btn {
+      background: none; border: 1px solid #d1d5db; border-radius: 4px;
+      padding: 2px 7px; font-size: 13px; cursor: pointer; color: #57606a;
+      transition: background .15s, border-color .15s;
+    }
+    .tts-btn:hover, .tts-btn.tts-active { background: #dbeafe; border-color: #3b82d4; }
+
+    .learn-section-body {
+      display: none; padding: 16px 16px 20px; font-size: 14px; line-height: 1.75; color: #1f2328;
+    }
+    .learn-section-body.open { display: block; }
+    .learn-section-body p    { margin-bottom: 10px; }
+    .learn-section-body p:last-child { margin-bottom: 0; }
+    .learn-section-body ol, .learn-section-body ul { padding-left: 22px; margin-top: 8px; }
+    .learn-section-body li   { margin-bottom: 6px; }
+    mark { background: #fef9c3; padding: 1px 3px; border-radius: 2px; }
+
+    /* ── Anki ── */
+    .anki-container { display: flex; flex-direction: column; gap: 20px; }
+    .anki-instructions {
+      background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 6px;
+      padding: 14px; font-size: 13px; color: #57606a;
+    }
+    .anki-instructions strong { color: #0a3c78; }
+    .anki-instructions-action { display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+    .action-left, .action-right {
+      flex: 1; background: white; border: 1px solid #e5e7eb; border-radius: 5px;
+      padding: 10px 12px; font-size: 12px; color: #57606a; min-width: 160px;
+    }
+    .action-label {
+      display: inline-block; background: #0a3c78; color: white;
+      font-size: 10px; font-weight: 700; letter-spacing: .5px;
+      padding: 2px 6px; border-radius: 3px; margin-bottom: 4px;
+    }
+
+    .anki-card-content {
+      padding: 20px; border-radius: 6px; background: white; border: 2px solid #e5e7eb;
+      min-height: 250px; display: flex; align-items: center; justify-content: center;
+      text-align: center; font-size: 20px; margin: 20px 0; cursor: pointer;
+      transition: all .3s;
+    }
+    .anki-card-content:hover { box-shadow: 0 4px 12px rgba(59,130,212,.15); border-color: #3b82d4; }
+
+    .anki-stats { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin: 20px 0; }
+    .anki-stat      { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 6px; padding: 16px; text-align: center; }
+    .anki-stat-key  { background: #fffbeb; border-color: #fde68a; }
+    .anki-stat-key .anki-stat-value { color: #b45309; }
+    .anki-stat-key .anki-stat-label { color: #92400e; }
+    .anki-stat-value { font-size: 24px; font-weight: 600; color: #0a3c78; }
+    .anki-stat-label { font-size: 12px; color: #57606a; margin-top: 6px; text-transform: uppercase; letter-spacing: .5px; }
+
+    .anki-btn         { padding: 10px 16px; border: none; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all .2s; }
+    .anki-btn-primary { background: #0a3c78; color: white; }
+    .anki-btn-primary:hover { background: #1e64b4; }
+    .anki-btn-secondary { background: #e5e7eb; color: #1f2328; }
+    .anki-btn-secondary:hover { background: #d1d5db; }
+
+    .session-complete h3 { color: #15803d; margin-top: 0; }
+    .session-complete p  { font-size: 14px; color: #57606a; margin-top: 6px; }
+
+    .footer { padding: 16px 24px; text-align: center; font-size: 12px; color: #57606a; border-top: 1px solid #e5e7eb; }
+
+    /* ── Sidebar ── */
+    #sidebar {
+      position: fixed; top: 0; left: 0; height: 100%; width: 260px;
+      background: #0a2342; color: #e2e8f0; z-index: 1000;
+      display: flex; flex-direction: column;
+      transform: translateX(-260px);
+      transition: transform .28s cubic-bezier(.4,0,.2,1);
+      box-shadow: 4px 0 24px rgba(0,0,0,.18);
+    }
+    #sidebar.open { transform: translateX(0); }
+
+    #sidebar-toggle {
+      position: fixed; top: 16px; left: 16px; z-index: 1001;
+      width: 36px; height: 36px; border-radius: 8px; border: none;
+      background: #0a3c78; color: white; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+      transition: background .2s, left .28s cubic-bezier(.4,0,.2,1);
+    }
+    #sidebar-toggle:hover { background: #1e64b4; }
+    #sidebar-toggle.shifted { left: 272px; }
+
+    .toggle-bar { width: 18px; height: 2px; background: white; border-radius: 2px; transition: all .22s; }
+    #sidebar-toggle.open .toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #sidebar-toggle.open .toggle-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    #sidebar-toggle.open .toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    #sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 999; }
+    #sidebar-overlay.visible { display: block; }
+
+    .sidebar-header { padding: 20px 18px 14px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .sidebar-home-link {
+      display: flex; align-items: center; gap: 10px; text-decoration: none;
+      color: white; font-weight: 700; font-size: 14px; padding: 8px 10px;
+      border-radius: 7px; background: rgba(255,255,255,.08); transition: background .18s;
+    }
+    .sidebar-home-link:hover { background: rgba(255,255,255,.16); }
+
+    .sidebar-nav { flex: 1; overflow-y: auto; padding: 14px 10px; }
+    .sidebar-section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.4); padding: 10px 8px 6px;
+    }
+    .sidebar-link {
+      display: flex; align-items: center; gap: 10px; padding: 9px 10px;
+      border-radius: 7px; text-decoration: none; color: rgba(255,255,255,.78);
+      font-size: 13px; font-weight: 500; transition: background .18s, color .18s;
+    }
+    .sidebar-link:hover { background: rgba(255,255,255,.1); color: white; }
+    .sidebar-link.active { background: rgba(59,130,212,.30); color: white; }
+    .sidebar-link-num {
+      width: 22px; height: 22px; border-radius: 5px; background: rgba(255,255,255,.12);
+      display: grid; place-items: center; font-size: 11px; font-weight: 700; flex-shrink: 0;
+    }
+    .sidebar-link.active .sidebar-link-num { background: #3b82d4; }
+    .sidebar-footer { padding: 14px 18px; border-top: 1px solid rgba(255,255,255,.1); font-size: 11px; color: rgba(255,255,255,.3); text-align: center; }
+  </style>
+</head>
+<body>
+
+  <button id="sidebar-toggle" aria-label="Toggle navigation">
+    <span class="toggle-bar"></span>
+    <span class="toggle-bar"></span>
+    <span class="toggle-bar"></span>
+  </button>
+  <div id="sidebar-overlay"></div>
+  <aside id="sidebar">
+    <div class="sidebar-header">
+      <a class="sidebar-home-link" href="index.html">
+        <span style="font-size:18px;line-height:1;">🏠</span>
+        <span>Study Hub</span>
+      </a>
+    </div>
+    <nav class="sidebar-nav" id="sidebar-nav"></nav>
+    <div class="sidebar-footer">Fall '26 — Study Hub</div>
+  </aside>
+
+  <div class="container" id="app">
+    <div style="padding:40px;text-align:center;color:#57606a;">Loading…</div>
+  </div>
+
+  <script>
+  // ── Sidebar toggle ─────────────────────────────────────────────────────────
+  (function() {
+    var toggle  = document.getElementById('sidebar-toggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebar-overlay');
+    var open    = false;
+    function openSidebar()  { open=true;  sidebar.classList.add('open');    toggle.classList.add('open','shifted');    overlay.classList.add('visible'); }
+    function closeSidebar() { open=false; sidebar.classList.remove('open'); toggle.classList.remove('open','shifted'); overlay.classList.remove('visible'); }
+    toggle.addEventListener('click', function() { open ? closeSidebar() : openSidebar(); });
+    overlay.addEventListener('click', closeSidebar);
+    document.addEventListener('keydown', function(e) { if (e.key==='Escape' && open) closeSidebar(); });
+  })();
+
+  // ── Module registry — add new modules here ────────────────────────────────
+  var MODULES = [
+    { id: 'ga-history-m7', course: 'GA History', num: 7, label: 'Sunbelt Era',    file: 'GLRs/GA History/Module 7/module-7.json' },
+    { id: 'ga-history-m8', course: 'GA History', num: 8, label: 'Modern Georgia', file: 'GLRs/GA History/Module 8/module-8.json' }
+  ];
+
+  // ── Resolve which module to load ──────────────────────────────────────────
+  var params    = new URLSearchParams(location.search);
+  var targetId  = params.get('id') || MODULES[0].id;
+  var moduleMeta = MODULES.find(function(m){ return m.id === targetId; }) || MODULES[0];
+
+  // ── Build sidebar nav ─────────────────────────────────────────────────────
+  (function buildSidebar() {
+    var nav = document.getElementById('sidebar-nav');
+    var courses = {};
+    MODULES.forEach(function(m) {
+      if (!courses[m.course]) courses[m.course] = [];
+      courses[m.course].push(m);
+    });
+    Object.keys(courses).forEach(function(course) {
+      var label = document.createElement('div');
+      label.className = 'sidebar-section-label';
+      label.textContent = course;
+      nav.appendChild(label);
+      courses[course].forEach(function(m) {
+        var a = document.createElement('a');
+        a.className = 'sidebar-link' + (m.id === targetId ? ' active' : '');
+        a.href = 'module.html?id=' + m.id;
+        a.innerHTML = '<span class="sidebar-link-num">' + m.num + '</span><span>' + m.label + '</span>';
+        nav.appendChild(a);
+      });
+    });
+  })();
+
+  // ── Anki state ────────────────────────────────────────────────────────────
+  var MOD, ankiCards, ankiStats, cardHistory;
+  var ankiSessionActive = false, ankiFrontShowing = true;
+  var sessionQueue = [], currentAnkiCard = null, cardShownAt = null;
+  var MAX_RESPONSE_MS = 120000;
+
+  // ── Storage keys ──────────────────────────────────────────────────────────
+  function sKey(k) { return k + '_' + MOD.storagePrefix; }
+
+  // ── Gist sync ─────────────────────────────────────────────────────────────
+  // Saves per-card history keyed by module id so any device can resume exactly.
+  // Shape: { "ga-history-m7": { "Who founded...": { good:3, again:1, times:[4,2] }, ... }, ... }
+  var PROXY = 'https://gist-proxy.vlad-stol223.workers.dev/progress';
+  var gistDirty = false;
+  function cpSyncProgress() { gistDirty = true; }
+  async function gistFlush() {
+    if (!gistDirty) return;
+    gistDirty = false;
+    try {
+      var getRes = await fetch(PROXY, { cache: 'no-store' });
+      var current = getRes.ok ? await getRes.json() : {};
+      current[MOD.id] = cardHistory;
+      await fetch(PROXY, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(current) });
+    } catch(e) { gistDirty = true; }
+  }
+  async function gistLoad() {
+    try {
+      var res = await fetch(PROXY, { cache: 'no-store' });
+      if (!res.ok) return;
+      var data = await res.json();
+      var remote = data[MOD.id];
+      if (!remote) return;
+      // Merge: for each card, take the version with more total reviews
+      Object.keys(remote).forEach(function(q) {
+        var r = remote[q];
+        var l = cardHistory[q];
+        if (!l || (r.good + r.again) > (l.good + l.again)) {
+          cardHistory[q] = r;
+        }
+      });
+      saveLocalStorage();
+      updateStats();
+    } catch(e) {}
+  }
+  setInterval(gistFlush, 30000);
+  window.addEventListener('pagehide', gistFlush);
+
+  // ── Render helpers ────────────────────────────────────────────────────────
+  function h(tag, cls, html) {
+    var el = document.createElement(tag);
+    if (cls) el.className = cls;
+    if (html !== undefined) el.innerHTML = html;
+    return el;
+  }
+
+  function renderOverview(mod) {
+    var ov = mod.overview;
+    var frag = document.createDocumentFragment();
+
+    // Stats
+    if (ov.stats && ov.stats.length) {
+      var grid = h('div','stat-grid');
+      ov.stats.forEach(function(s) {
+        var box = h('div','stat-box');
+        box.appendChild(h('div','stat-number',s.value));
+        box.appendChild(h('div','stat-label',s.label));
+        grid.appendChild(box);
+      });
+      frag.appendChild(grid);
+    }
+
+    // People
+    if (ov.people && ov.people.length) {
+      var sec = h('div','cheat-section');
+      sec.appendChild(h('h3',null,'Key People'));
+      var grid2 = h('div','cheat-grid');
+      ov.people.forEach(function(p) {
+        var item = h('div','cheat-item');
+        item.appendChild(h('div','cheat-item-name',p.name));
+        item.appendChild(h('div','cheat-item-desc',p.desc));
+        grid2.appendChild(item);
+      });
+      sec.appendChild(grid2);
+      frag.appendChild(sec);
+    }
+
+    // Dates
+    if (ov.dates && ov.dates.length) {
+      var sec2 = h('div','cheat-section');
+      sec2.appendChild(h('h3',null,'Key Dates'));
+      var dl = h('div','cheat-dates');
+      ov.dates.forEach(function(d) {
+        var row = h('div','cheat-date-row');
+        row.appendChild(h('span','cheat-date-year',d.year));
+        row.appendChild(h('span','cheat-date-event',d.event));
+        dl.appendChild(row);
+      });
+      sec2.appendChild(dl);
+      frag.appendChild(sec2);
+    }
+
+    // Terms
+    if (ov.terms && ov.terms.length) {
+      var sec3 = h('div','cheat-section');
+      sec3.appendChild(h('h3',null,'Key Terms'));
+      var tl = h('div','cheat-terms');
+      ov.terms.forEach(function(t) {
+        var row = h('div','cheat-term-row');
+        row.appendChild(h('span','cheat-term-name',t.term));
+        row.appendChild(h('span','cheat-term-def',t.def));
+        tl.appendChild(row);
+      });
+      sec3.appendChild(tl);
+      frag.appendChild(sec3);
+    }
+
+    return frag;
+  }
+
+  function renderLearn(sections) {
+    var frag = document.createDocumentFragment();
+
+    // TTS controls banner
+    var banner = h('div',null,
+      '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">' +
+        '<span>Read through each section before Anki. Key terms are <mark>highlighted</mark>. Click <strong>🔊</strong> to listen.</span>' +
+        '<button id="tts-stop-btn" style="display:none;flex-shrink:0;padding:6px 12px;background:#dc2626;color:white;border:none;border-radius:5px;font-size:13px;font-weight:500;cursor:pointer;">⏹ Stop</button>' +
+      '</div>' +
+      '<div style="margin-top:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">' +
+        '<label for="tts-voice-select" style="font-size:13px;color:#57606a;white-space:nowrap;">Voice:</label>' +
+        '<select id="tts-voice-select" style="font-size:13px;padding:4px 8px;border:1px solid #d1d5db;border-radius:5px;background:white;color:#1f2328;cursor:pointer;max-width:300px;"></select>' +
+        '<label for="tts-rate-select" style="font-size:13px;color:#57606a;white-space:nowrap;">Speed:</label>' +
+        '<select id="tts-rate-select" style="font-size:13px;padding:4px 8px;border:1px solid #d1d5db;border-radius:5px;background:white;color:#1f2328;cursor:pointer;">' +
+          '<option value="0.75">Slow</option><option value="0.95" selected>Normal</option><option value="1.2">Fast</option><option value="1.5">Very Fast</option>' +
+        '</select>' +
+      '</div>'
+    );
+    banner.style.cssText = 'background:#f0f4ff;border-left:4px solid #0a3c78;padding:14px 16px;border-radius:4px;margin-bottom:24px;font-size:14px;';
+    frag.appendChild(banner);
+
+    sections.forEach(function(sec, idx) {
+      var wrap = h('div','learn-section');
+      var hdr = h('div','learn-section-header');
+      hdr.innerHTML =
+        '<span>' + sec.title + '</span>' +
+        '<span style="display:flex;align-items:center;gap:10px;">' +
+          '<button class="tts-btn" title="Listen to this section">🔊</button>' +
+          '<span class="learn-chevron">▼</span>' +
+        '</span>';
+      var body = h('div','learn-section-body', sec.body);
+
+      hdr.addEventListener('click', function(e) {
+        if (e.target.classList.contains('tts-btn')) { toggleSectionSpeech(e.target); return; }
+        toggleLearnSection(hdr, body);
+      });
+      hdr.querySelector('.tts-btn').addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleSectionSpeech(this);
+      });
+
+      wrap.appendChild(hdr);
+      wrap.appendChild(body);
+      frag.appendChild(wrap);
+    });
+
+    var cta = h('div',null,
+      '<p style="font-size:14px;color:#57606a;margin-bottom:14px;">Done reading? Head to Anki Mode to test what you\'ve learned.</p>' +
+      '<button class="anki-btn anki-btn-primary" style="padding:12px 32px;font-size:15px;" id="go-anki-btn">→ Start Anki Mode</button>'
+    );
+    cta.style.cssText = 'text-align:center;margin-top:28px;padding-top:20px;border-top:1px solid #e5e7eb;';
+    frag.appendChild(cta);
+    return frag;
+  }
+
+  function renderAnki() {
+    var frag = document.createDocumentFragment();
+    var wrap = h('div','anki-container');
+
+    wrap.innerHTML =
+      '<div class="anki-instructions">' +
+        '<strong>Single-Click Study:</strong>' +
+        '<div class="anki-instructions-action">' +
+          '<div class="action-left"><span class="action-label">CLICK</span> Front: Reveal answer | Back: Mark as "Again"</div>' +
+          '<div class="action-right"><span class="action-label">RIGHT CLICK</span> Back only: Mark as "Good"</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="anki-card-content" id="anki-front"><span id="anki-front-text">Loading…</span></div>' +
+      '<div id="anki-session">' +
+        '<div class="anki-stats">' +
+          '<div class="anki-stat"><div class="anki-stat-value" id="total-reviewed">0</div><div class="anki-stat-label">Total Reviewed</div></div>' +
+          '<div class="anki-stat"><div class="anki-stat-value" id="good-count">0</div><div class="anki-stat-label">Good</div></div>' +
+          '<div class="anki-stat"><div class="anki-stat-value" id="again-count">0</div><div class="anki-stat-label">Again</div></div>' +
+          '<div class="anki-stat"><div class="anki-stat-value" id="pass-rate">0%</div><div class="anki-stat-label">Pass Rate</div></div>' +
+        '</div>' +
+        '<div class="anki-stats" style="margin-top:8px;">' +
+          '<div class="anki-stat anki-stat-key"><div class="anki-stat-value" id="key-reviewed">0</div><div class="anki-stat-label">Key Reviewed</div></div>' +
+          '<div class="anki-stat anki-stat-key"><div class="anki-stat-value" id="key-good">0</div><div class="anki-stat-label">Key Good</div></div>' +
+          '<div class="anki-stat anki-stat-key"><div class="anki-stat-value" id="key-again">0</div><div class="anki-stat-label">Key Again</div></div>' +
+          '<div class="anki-stat anki-stat-key"><div class="anki-stat-value" id="key-rate">0%</div><div class="anki-stat-label">Key Rate</div></div>' +
+        '</div>' +
+        '<div style="display:flex;gap:10px;margin-top:4px;">' +
+          '<button class="anki-btn anki-btn-secondary" style="flex:1;" id="analytics-btn">Analytics</button>' +
+          '<button class="anki-btn anki-btn-secondary" style="flex:1;color:#dc2626;" id="reset-btn">Reset</button>' +
+        '</div>' +
+      '</div>';
+
+    frag.appendChild(wrap);
+
+    // Analytics overlay
+    var overlay = h('div',null);
+    overlay.id = 'analytics-overlay';
+    overlay.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:100;overflow-y:auto;padding:30px 16px;';
+    overlay.innerHTML =
+      '<div style="max-width:700px;margin:0 auto;background:white;border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.18);">' +
+        '<div style="background:#0a3c78;color:white;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;">' +
+          '<span style="font-size:17px;font-weight:600;">Anki Analytics</span>' +
+          '<button id="close-analytics-btn" style="background:rgba(255,255,255,.15);border:none;color:white;border-radius:5px;padding:6px 12px;cursor:pointer;font-size:13px;">✕ Close</button>' +
+        '</div>' +
+        '<div id="analytics-body" style="padding:24px;"></div>' +
+      '</div>';
+    frag.appendChild(overlay);
+    return frag;
+  }
+
+  // ── Mount everything once JSON loads ──────────────────────────────────────
+  function mount(mod) {
+    MOD = mod;
+    ankiCards = mod.anki.map(function(c){ return { question: c.q, answer: c.a, key: !!c.key }; });
+    ankiStats = { totalReviewed:0, goodCount:0, againCount:0, keyReviewed:0, keyGood:0, keyAgain:0 };
+    cardHistory = {};
+
+    document.title = 'Module ' + mod.moduleNumber + ': ' + mod.title;
+
+    var app = document.getElementById('app');
+    app.innerHTML = '';
+
+    // Header
+    var hdr = h('div','header');
+    hdr.innerHTML = '<h1>Module ' + mod.moduleNumber + ': ' + mod.title + '</h1><p>Interactive Study Guide — ' + mod.subtitle + '</p>';
+    app.appendChild(hdr);
+
+    // Tabs
+    var tabs = h('div','nav-tabs');
+    ['overview','learn','anki'].forEach(function(tab, i) {
+      var btn = h('button', 'tab-btn' + (i===0?' active':''));
+      btn.setAttribute('data-tab', tab);
+      btn.textContent = tab === 'anki' ? 'Anki Mode' : tab.charAt(0).toUpperCase() + tab.slice(1);
+      btn.addEventListener('click', function(){ switchTab(tab); });
+      tabs.appendChild(btn);
+    });
+    app.appendChild(tabs);
+
+    // Content
+    var content = h('div','content');
+
+    var ovPane = h('div','tab-pane active'); ovPane.id = 'overview';
+    ovPane.appendChild(renderOverview(mod));
+    content.appendChild(ovPane);
+
+    var learnPane = h('div','tab-pane'); learnPane.id = 'learn';
+    learnPane.appendChild(renderLearn(mod.learn));
+    content.appendChild(learnPane);
+
+    var ankiPane = h('div','tab-pane'); ankiPane.id = 'anki';
+    ankiPane.appendChild(renderAnki());
+    content.appendChild(ankiPane);
+
+    app.appendChild(content);
+    app.appendChild(h('div','footer','Made with IBM Bob'));
+
+    // Wire up post-render event listeners
+    document.getElementById('anki-front').addEventListener('contextmenu', function(e){ e.preventDefault(); });
+    document.getElementById('anki-front').addEventListener('mousedown', handleAnkiClick);
+    document.getElementById('analytics-btn').addEventListener('click', showAnalytics);
+    document.getElementById('reset-btn').addEventListener('click', resetAnkiStats);
+    document.getElementById('close-analytics-btn').addEventListener('click', closeAnalytics);
+    document.getElementById('analytics-overlay').addEventListener('mousedown', function(e){ if (e.target===this) closeAnalytics(); });
+    document.getElementById('go-anki-btn').addEventListener('click', function(){ switchTab('anki'); });
+
+    // TTS voices
+    if (window.speechSynthesis) {
+      populateVoices();
+      window.speechSynthesis.onvoiceschanged = populateVoices;
+    }
+
+    // Load local progress, then pull Gist in background and merge
+    loadLocalStorage();
+    gistLoad();
+  }
+
+  // ── Tab switching ─────────────────────────────────────────────────────────
+  function switchTab(name) {
+    document.querySelectorAll('.tab-pane').forEach(function(el){ el.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(el){ el.classList.remove('active'); });
+    document.getElementById(name).classList.add('active');
+    document.querySelector('[data-tab="'+name+'"]').classList.add('active');
+    if (name === 'anki' && !ankiSessionActive) startAnkiSession();
+  }
+
+  // ── Anki ──────────────────────────────────────────────────────────────────
+  // Weighted shuffle: key cards get 2 slots, normal cards get 1
+  function buildWeightedQueue(deck) {
+    var keys    = deck.filter(function(c){ return c.key; });
+    var normal  = deck.filter(function(c){ return !c.key; });
+    var pool = keys.concat(keys).concat(normal); // key cards appear twice
+    // Fisher-Yates shuffle
+    for (var i = pool.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+    }
+    return pool;
+  }
+
+  function startAnkiSession() {
+    ankiSessionActive = true;
+    loadLocalStorage();
+    sessionQueue = buildWeightedQueue(ankiCards); // always build fresh from source, never from saved deck
+    showNextAnkiCard();
+  }
+  function showNextAnkiCard() {
+    if (!sessionQueue.length) { endAnkiSession(); return; }
+    currentAnkiCard = sessionQueue[0];
+    ankiFrontShowing = true;
+    cardShownAt = Date.now();
+    displayAnkiCard();
+  }
+  function displayAnkiCard() {
+    document.getElementById('anki-front-text').textContent =
+      ankiFrontShowing ? currentAnkiCard.question : currentAnkiCard.answer;
+    // Amber tint for key cards
+    var card = document.getElementById('anki-front');
+    if (currentAnkiCard.key) {
+      card.style.borderColor = '#f59e0b';
+      card.style.background  = '#fffbeb';
+    } else {
+      card.style.borderColor = '';
+      card.style.background  = '';
+    }
+  }
+  function handleAnkiClick(e) {
+    e.preventDefault();
+    if (!ankiFrontShowing) {
+      if (e.button === 0) markAnkiAgain();
+      else if (e.button === 2) markAnkiGood();
+    } else {
+      if (e.button === 0) { ankiFrontShowing = false; displayAnkiCard(); }
+    }
+  }
+  function recordTime() {
+    if (!currentAnkiCard || !cardShownAt) return;
+    var elapsed = Date.now() - cardShownAt;
+    if (elapsed > 0 && elapsed <= MAX_RESPONSE_MS) {
+      var key = currentAnkiCard.question;
+      if (!cardHistory[key]) cardHistory[key] = { good:0, again:0, times:[] };
+      cardHistory[key].times.push(Math.round(elapsed/1000));
+    }
+  }
+  function markAnkiGood() {
+    if (!currentAnkiCard) return;
+    recordTime();
+    var key = currentAnkiCard.question;
+    if (!cardHistory[key]) cardHistory[key] = { good:0, again:0, times:[] };
+    cardHistory[key].good++;
+    sessionQueue.shift();
+    ankiStats.totalReviewed++; ankiStats.goodCount++;
+    if (currentAnkiCard.key) { ankiStats.keyReviewed++; ankiStats.keyGood++; }
+    saveLocalStorage(); updateStats(); showNextAnkiCard();
+  }
+  function markAnkiAgain() {
+    if (!currentAnkiCard) return;
+    recordTime();
+    var key = currentAnkiCard.question;
+    if (!cardHistory[key]) cardHistory[key] = { good:0, again:0, times:[] };
+    cardHistory[key].again++;
+    sessionQueue.push(sessionQueue.shift());
+    ankiStats.totalReviewed++; ankiStats.againCount++;
+    if (currentAnkiCard.key) { ankiStats.keyReviewed++; ankiStats.keyAgain++; }
+    saveLocalStorage(); updateStats(); showNextAnkiCard();
+  }
+  function updateStats() {
+    var total = ankiCards.length;
+    document.getElementById('total-reviewed').textContent = ankiStats.totalReviewed + '/' + total;
+    document.getElementById('good-count').textContent     = ankiStats.goodCount;
+    document.getElementById('again-count').textContent    = ankiStats.againCount;
+    var pr = ankiStats.totalReviewed > 0 ? Math.round(ankiStats.goodCount/ankiStats.totalReviewed*100) : 0;
+    document.getElementById('pass-rate').textContent = pr + '%';
+    // Key card row
+    document.getElementById('key-reviewed').textContent = ankiStats.keyReviewed;
+    document.getElementById('key-good').textContent     = ankiStats.keyGood;
+    document.getElementById('key-again').textContent    = ankiStats.keyAgain;
+    var kr = ankiStats.keyReviewed > 0 ? Math.round(ankiStats.keyGood/ankiStats.keyReviewed*100) : 0;
+    document.getElementById('key-rate').textContent = kr + '%';
+  }
+  function endAnkiSession() {
+    ankiSessionActive = false;
+    document.getElementById('anki-front-text').innerHTML =
+      '<div class="session-complete">' +
+        '<h3>✓ All cards correct!</h3>' +
+        '<p>Total reviewed: ' + ankiStats.totalReviewed + '</p>' +
+        '<p>Good: ' + ankiStats.goodCount + ' | Again: ' + ankiStats.againCount + '</p>' +
+        '<p style="margin-top:16px;"><button class="anki-btn anki-btn-primary" id="study-again-btn">Study Again</button></p>' +
+      '</div>';
+    document.getElementById('study-again-btn').addEventListener('click', startAnkiSession);
+  }
+  function resetAnkiStats() {
+    if (!confirm('Reset all Anki stats and history? This cannot be undone.')) return;
+    ankiStats = { totalReviewed:0, goodCount:0, againCount:0, keyReviewed:0, keyGood:0, keyAgain:0 };
+    cardHistory = {};
+    localStorage.removeItem(sKey('ankiStats'));
+    localStorage.removeItem(sKey('cardHistory'));
+    updateStats();
+    ankiSessionActive = false;
+    startAnkiSession();
+  }
+  function saveLocalStorage() {
+    localStorage.setItem(sKey('ankiStats'),   JSON.stringify(ankiStats));
+    localStorage.setItem(sKey('cardHistory'), JSON.stringify(cardHistory));
+    cpSyncProgress();
+  }
+  function loadLocalStorage() {
+    var s  = localStorage.getItem(sKey('ankiStats'));
+    var h2 = localStorage.getItem(sKey('cardHistory'));
+    if (s) {
+      ankiStats = JSON.parse(s);
+      if (ankiStats.keyReviewed === undefined) ankiStats.keyReviewed = 0;
+      if (ankiStats.keyGood     === undefined) ankiStats.keyGood     = 0;
+      if (ankiStats.keyAgain    === undefined) ankiStats.keyAgain    = 0;
+    }
+    if (h2) cardHistory = JSON.parse(h2);
+    updateStats();
+  }
+
+  // ── Analytics ─────────────────────────────────────────────────────────────
+  function showAnalytics() {
+    var body = document.getElementById('analytics-body');
+    var tr = ankiStats.totalReviewed;
+    var pr = tr > 0 ? Math.round(ankiStats.goodCount/tr*100) : 0;
+    var cardData = ankiCards.map(function(c) {
+      var hh = cardHistory[c.question] || { good:0, again:0, times:[] };
+      var total = hh.good + hh.again;
+      var avgTime = hh.times.length > 0 ? (hh.times.reduce(function(a,b){return a+b;},0)/hh.times.length).toFixed(1) : null;
+      var diff = total > 0 ? hh.again/total : 0;
+      return { question:c.question, good:hh.good, again:hh.again, total:total, avgTime:avgTime, difficulty:diff };
+    });
+    var hardest = cardData.filter(function(c){return c.total>0;}).sort(function(a,b){return b.difficulty-a.difficulty;}).slice(0,5);
+    var allTimes = Object.values(cardHistory).reduce(function(acc,h2){return acc.concat(h2.times);}, []);
+    var overallAvg = allTimes.length > 0 ? (allTimes.reduce(function(a,b){return a+b;},0)/allTimes.length).toFixed(1) : null;
+    var neverReviewed = cardData.filter(function(c){return c.total===0;}).length;
+    var mastered = cardData.filter(function(c){return c.total>0&&c.difficulty===0;}).length;
+
+    function statBox(val,lbl,col) {
+      return '<div style="background:#f7f8fa;border:1px solid #e5e7eb;border-radius:6px;padding:14px;text-align:center;"><div style="font-size:22px;font-weight:600;color:'+col+';">'+val+'</div><div style="font-size:11px;color:#57606a;margin-top:4px;text-transform:uppercase;letter-spacing:.5px;">'+lbl+'</div></div>';
+    }
+    function diffBar(d) {
+      var pct = Math.round(d*100);
+      var col = pct>=60?'#dc2626':pct>=30?'#d97706':'#16a34a';
+      return '<div style="display:flex;align-items:center;gap:8px;"><div style="flex:1;height:7px;background:#e5e7eb;border-radius:4px;overflow:hidden;"><div style="width:'+pct+'%;height:100%;background:'+col+';border-radius:4px;"></div></div><span style="font-size:12px;color:'+col+';font-weight:600;min-width:32px;">'+pct+'%</span></div>';
+    }
+    function rows(arr, size) {
+      return arr.map(function(c){
+        return '<tr style="border-top:1px solid #e5e7eb;">' +
+          '<td style="padding:9px 8px;font-size:'+size+'px;color:#1f2328;max-width:280px;">'+c.question+'</td>' +
+          '<td style="padding:9px 8px;text-align:center;font-size:'+size+'px;color:#16a34a;font-weight:600;">'+c.good+'</td>' +
+          '<td style="padding:9px 8px;text-align:center;font-size:'+size+'px;color:#dc2626;font-weight:600;">'+c.again+'</td>' +
+          '<td style="padding:9px 8px;min-width:110px;">'+(c.total>0?diffBar(c.difficulty):'<span style="font-size:11px;color:#aaa;">not seen</span>')+'</td>' +
+          '<td style="padding:9px 8px;text-align:center;font-size:'+size+'px;color:#57606a;">'+(c.avgTime!==null?c.avgTime+'s':'—')+'</td>' +
+          '</tr>';
+      }).join('');
+    }
+    var th = '<tr style="background:#f7f8fa;"><th style="padding:8px;text-align:left;font-size:11px;color:#57606a;font-weight:600;text-transform:uppercase;letter-spacing:.5px;">Question</th><th style="padding:8px;text-align:center;font-size:11px;color:#57606a;font-weight:600;">Good</th><th style="padding:8px;text-align:center;font-size:11px;color:#57606a;font-weight:600;">Again</th><th style="padding:8px;font-size:11px;color:#57606a;font-weight:600;">Difficulty</th><th style="padding:8px;text-align:center;font-size:11px;color:#57606a;font-weight:600;">Avg Time</th></tr>';
+    body.innerHTML =
+      '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;">' +
+        statBox(tr,'Total Reviews','#0a3c78') +
+        statBox(pr+'%','Pass Rate',pr>=80?'#16a34a':pr>=50?'#d97706':'#dc2626') +
+        statBox(overallAvg!==null?overallAvg+'s':'—','Avg Response','#7c5cd8') +
+        statBox(mastered+'/'+ankiCards.length,'Mastered','#16a34a') +
+      '</div>' +
+      '<h3 style="color:#0a3c78;font-size:14px;font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;">Hardest Cards</h3>' +
+      '<div style="overflow-x:auto;margin-bottom:24px;"><table style="width:100%;border-collapse:collapse;"><thead>'+th+'</thead><tbody>' +
+        (hardest.length ? rows(hardest,13) : '<tr><td colspan="5" style="padding:16px;text-align:center;color:#57606a;font-size:13px;">No cards reviewed yet.</td></tr>') +
+      '</tbody></table></div>' +
+      '<h3 style="color:#0a3c78;font-size:14px;font-weight:600;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px;">All Cards</h3>' +
+      '<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;"><thead>'+th+'</thead><tbody>' +
+        rows(cardData.slice().sort(function(a,b){return b.difficulty-a.difficulty||b.again-a.again;}), 12) +
+      '</tbody></table></div>' +
+      (neverReviewed > 0 ? '<p style="margin-top:14px;font-size:12px;color:#57606a;">'+neverReviewed+' card'+(neverReviewed>1?'s':'')+' not yet seen this session.</p>' : '');
+    document.getElementById('analytics-overlay').style.display = 'block';
+  }
+  function closeAnalytics() { document.getElementById('analytics-overlay').style.display = 'none'; }
+
+  // ── TTS ───────────────────────────────────────────────────────────────────
+  var ttsActiveBtn = null, ttsVoices = [];
+  function populateVoices() {
+    ttsVoices = window.speechSynthesis.getVoices();
+    var select = document.getElementById('tts-voice-select');
+    if (!select || !ttsVoices.length) return;
+    var preferred = ['Google UK English Female','Google UK English Male','Google US English','Samantha','Karen','Moira','Victoria','Daniel','Oliver','Microsoft Aria','Microsoft Jenny','Microsoft Guy'];
+    var english = ttsVoices.filter(function(v){return v.lang.startsWith('en');});
+    var others  = ttsVoices.filter(function(v){return !v.lang.startsWith('en');});
+    var score   = function(v){ var i=preferred.findIndex(function(p){return v.name.includes(p);}); return i===-1?999:i; };
+    english.sort(function(a,b){return score(a)-score(b);});
+    var sorted = english.concat(others);
+    select._sorted = sorted;
+    var savedName = localStorage.getItem('ttsVoiceName');
+    var targetName = savedName || 'Google UK English Female';
+    select.innerHTML = '';
+    var selectedIdx = 0;
+    sorted.forEach(function(v,i){
+      var opt = document.createElement('option');
+      opt.value = i; opt.textContent = v.name+' ('+v.lang+')';
+      select.appendChild(opt);
+      if (v.name === targetName) selectedIdx = i;
+    });
+    select.value = selectedIdx;
+  }
+  function getSelectedVoice() {
+    var select = document.getElementById('tts-voice-select');
+    if (!select||!select._sorted) return null;
+    var voice = select._sorted[parseInt(select.value)]||null;
+    if (voice) localStorage.setItem('ttsVoiceName', voice.name);
+    return voice;
+  }
+  function getSelectedRate() {
+    var sel = document.getElementById('tts-rate-select');
+    return sel ? parseFloat(sel.value) : 0.95;
+  }
+  function getSectionText(btn) {
+    var section = btn.closest('.learn-section');
+    var header  = section.querySelector('.learn-section-header');
+    var body    = section.querySelector('.learn-section-body');
+    var titleSpan = header ? header.querySelector('span:first-child') : null;
+    var rawTitle  = titleSpan ? titleSpan.textContent.trim() : '';
+    var match = rawTitle.match(/^(\d+)\s*[—\-]\s*(.+)$/);
+    var sectionNum  = match ? match[1] : '';
+    var sectionName = match ? match[2].replace(/&amp;/g,'and').replace(/&/g,'and') : rawTitle;
+    var bodyText = body ? body.innerText.trim() : '';
+    var intro = sectionNum ? 'Section '+sectionNum+'. '+sectionName+'.' : (sectionName ? sectionName+'.' : '');
+    return [intro, bodyText, 'Moving on.'].filter(Boolean).join('  ');
+  }
+  function toggleSectionSpeech(btn) {
+    if (ttsActiveBtn === btn) { stopSpeech(); return; }
+    stopSpeech();
+    var text = getSectionText(btn);
+    if (!text || !window.speechSynthesis) return;
+    var hdr  = btn.closest('.learn-section-header');
+    var body = hdr.nextElementSibling;
+    if (!body.classList.contains('open')) { body.classList.add('open'); hdr.classList.add('open'); }
+    var utt = new SpeechSynthesisUtterance(text);
+    utt.rate = getSelectedRate(); utt.pitch = 1;
+    var voice = getSelectedVoice();
+    if (voice) utt.voice = voice;
+    utt.onstart = function(){ ttsActiveBtn=btn; btn.textContent='⏸'; btn.classList.add('tts-active'); document.getElementById('tts-stop-btn').style.display='inline-block'; };
+    utt.onend   = function(){
+      resetTtsBtn(btn);
+      var nextSection = btn.closest('.learn-section').nextElementSibling;
+      if (nextSection&&nextSection.classList.contains('learn-section')) {
+        var nextBtn = nextSection.querySelector('.tts-btn');
+        if (nextBtn) toggleSectionSpeech(nextBtn);
+      }
+    };
+    utt.onerror = function(){ resetTtsBtn(btn); };
+    window.speechSynthesis.speak(utt);
+  }
+  function stopSpeech() {
+    window.speechSynthesis.cancel();
+    if (ttsActiveBtn) resetTtsBtn(ttsActiveBtn);
+    var stopBtn = document.getElementById('tts-stop-btn');
+    if (stopBtn) stopBtn.style.display = 'none';
+  }
+  function resetTtsBtn(btn) { btn.textContent='🔊'; btn.classList.remove('tts-active'); ttsActiveBtn=null; }
+  function toggleLearnSection(hdr, body) {
+    var isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    hdr.classList.toggle('open', !isOpen);
+  }
+
+  // ── Boot: fetch JSON and mount ─────────────────────────────────────────────
+  fetch(moduleMeta.file)
+    .then(function(r){ if (!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(mount)
+    .catch(function(err){
+      document.getElementById('app').innerHTML =
+        '<div style="padding:40px;text-align:center;color:#dc2626;">Failed to load module data.<br><small>'+err+'</small></div>';
+    });
+  </script>
+</body>
+</html>

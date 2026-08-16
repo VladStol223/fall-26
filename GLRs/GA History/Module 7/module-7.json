@@ -1,0 +1,120 @@
+{
+  "id": "ga-history-m7",
+  "course": "GA History",
+  "courseColor": "blue",
+  "moduleNumber": 7,
+  "title": "Sunbelt Era",
+  "subtitle": "Hartsfield-Jackson Airport & 1996 Olympics",
+  "storagePrefix": "m7",
+  "totalCards": 33,
+
+  "overview": {
+    "stats": [
+      { "value": "4,700",  "label": "Acres — Airport Complex" },
+      { "value": "110M+",  "label": "Passengers (2019)" },
+      { "value": "5",      "label": "Parallel Runways" },
+      { "value": "1990",   "label": "Year Atlanta Won Olympic Bid" }
+    ],
+    "people": [
+      { "name": "William B. Hartsfield",   "desc": "Founded the airport in 1925 on an abandoned racetrack; first commissioner." },
+      { "name": "Maynard Jackson",         "desc": "First Black mayor of a major southern city; led airport redevelopment in 1970s; name added 2003." },
+      { "name": "Billy Payne",             "desc": "Atlanta resident who revived the Olympic bid in 1987; assembled the Atlanta Nine." },
+      { "name": "Andrew Young",            "desc": "Mayor who backed the Olympic bid; his international connections in Africa & Asia were decisive." },
+      { "name": "Juan Antonio Samaranch", "desc": "IOC president who announced Atlanta's selection in Tokyo on Sept 18, 1990." },
+      { "name": "Dennis Berkholtz",        "desc": "Olympic handball player who first campaigned for Atlanta to bid for the 1984 Games." }
+    ],
+    "dates": [
+      { "year": "1925",         "event": "Hartsfield founds airport on abandoned racetrack" },
+      { "year": "1970s",        "event": "Maynard Jackson leads major airport redevelopment" },
+      { "year": "1984",         "event": "LA Olympics turns profit with private funding — game changer" },
+      { "year": "1987",         "event": "Billy Payne pitches Olympic bid to Mayor Andrew Young" },
+      { "year": "1988",         "event": "Atlanta wins USOC backing 14–2 over Minneapolis-St. Paul" },
+      { "year": "Sept 18, 1990","event": "IOC selects Atlanta in Tokyo; Samaranch makes announcement" },
+      { "year": "1992",         "event": "Shepherd Center wins Paralympic bid at Tignes, France" },
+      { "year": "1996",         "event": "Atlanta hosts Centennial Olympic Games & 10th Paralympic Games" },
+      { "year": "2000",         "event": "City Council approves capital improvement program for airport" },
+      { "year": "2003",         "event": "Airport renamed to include Maynard Jackson's name" },
+      { "year": "2006",         "event": "5th runway + 400-ft tower (tallest in North America) completed" },
+      { "year": "2012",         "event": "Maynard H. Jackson Jr. International Terminal opens (12 gates)" }
+    ],
+    "terms": [
+      { "term": "Atlanta Nine",    "def": "Payne's hand-picked, all-white team of lawyers & executives who ran the Olympic bid" },
+      { "term": "AOC / ACOG",      "def": "Atlanta Organizing Committee (bid) / Atlanta Committee for the Olympic Games (planning)" },
+      { "term": "USOC",            "def": "United States Olympic Committee — Atlanta beat Minneapolis-St. Paul 14–2 for US nomination" },
+      { "term": "IOC",             "def": "International Olympic Committee — 6 finalist cities voted in Tokyo; Atlanta won" },
+      { "term": "Centennial Games","def": "1996 marked the 100th anniversary of the modern Olympics — Athens was the sentimental favourite" },
+      { "term": "Category III ILS","def": "Instrument Landing System on 2 outer runways; lets planes land themselves in zero visibility" },
+      { "term": "TRACON",          "def": "Terminal Radar Approach Control — based in Peachtree City, handles aircraft within ~40 miles" },
+      { "term": "ARTCC",           "def": "Air Route Traffic Control Center — based in Hampton, manages en-route aircraft over GA & beyond" },
+      { "term": "Shepherd Center", "def": "Atlanta rehab hospital that bankrolled the separate Paralympic bid; won at Tignes 1992" },
+      { "term": "Dream Team",      "def": "Multi-racial coalition of young supporters who accompanied AOC to Tokyo for final IOC vote" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — Hartsfield-Jackson: Origins & Scale",
+      "body": "<p><mark>William B. Hartsfield</mark> founded the airport in <mark>1925</mark> on an abandoned racetrack south of Atlanta. The site was chosen specifically because it had room to grow — Atlanta had just been designated a stop on the federal mail route from New York to Miami, and expansion was inevitable from day one. Hartsfield served as the airport's first commissioner.</p><p>In <mark>2003</mark>, the name of former mayor <mark>Maynard Jackson</mark> was added to the airport's title. Jackson was the <mark>first African American mayor of a major southern city</mark>, and he led a major redevelopment of the airport in the 1970s.</p><p>By the numbers: the entire complex covers <mark>4,700 acres</mark>, with a 130-acre terminal complex housing more than 200 concession outlets. In 2019, over <mark>110 million passengers</mark> passed through — one of the highest totals in the world.</p>"
+    },
+    {
+      "title": "2 — Runways, Gates & Getting Around",
+      "body": "<p>The airport has <mark>5 parallel runways</mark>, all running east-to-west. Two are north of the terminals and three are south. Because all five run in the same direction, aircraft never have crossing flight paths, allowing near-continuous operation — in good weather, <mark>90+ aircraft can land and 100+ can depart per hour</mark>.</p><p>Inside runways (closest to terminals) are the longest because planes are heaviest at takeoff. The longest is <mark>12,390 feet</mark> — over two miles. The outside runways used for landing are 9,000 feet each and carry specialized <mark>Category III Instrument Landing Systems (ILS)</mark> that let modern aircraft land themselves in zero-visibility conditions using radio beams.</p><p>Once through security, passengers reach <mark>192 gates across Concourses A–F</mark> via an underground transportation mall. The mall has moving sidewalks and <mark>9 four-car automated trains</mark>. Putting passengers underground lets even the tallest jets taxi straight to any gate above.</p>"
+    },
+    {
+      "title": "3 — Air Traffic Control: 4 Layers",
+      "body": "<p>Managing one of the world's busiest airports requires four nested layers of control:</p><ol><li><strong>Ramp Control</strong> — Airlines manage ramp controllers who oversee aircraft at gates and on ramps. They sit in observation rooms atop the terminal.</li><li><strong>Ground &amp; Tower Control (FAA)</strong> — FAA controllers steer aircraft between ramps and runways (ground), and manage aircraft just before landing, on the runway, and just after takeoff (tower). They work from the airport tower using eyes, binoculars, and radar.</li><li><strong>TRACON</strong> — The <mark>Terminal Radar Approach Control</mark> in <mark>Peachtree City</mark> handles aircraft within about 40 miles. Controllers use radar screens only — the planes are too far to see.</li><li><strong>ARTCC</strong> — The Air Route Traffic Control Center in <mark>Hampton (Henry County)</mark> manages en-route aircraft over most of Georgia, Alabama, and neighboring states.</li></ol>"
+    },
+    {
+      "title": "4 — Expansion Milestones",
+      "body": "<p>In <mark>2000</mark>, Atlanta City Council approved a capital improvement program. The results unfolded over the next decade:</p><ul><li><strong>2006</strong> — Fifth runway completed, along with a <mark>400-foot air traffic control tower</mark>, the <mark>tallest in North America</mark>.</li><li><strong>2012</strong> — The <mark>Maynard H. Jackson Jr. International Terminal</mark> opened with 12 new gates, completing the 1999 Master Plan.</li></ul>"
+    },
+    {
+      "title": "5 — Atlanta's Road to the 1996 Olympics",
+      "body": "<p>Atlanta didn't just stumble into hosting the Olympics — it was a calculated, decade-long campaign.</p><p>The story starts in <mark>1984</mark>, when Los Angeles hosted the Olympics and turned a profit using private-sector funding. This \"game changer\" model made cities worldwide reconsider Olympic bids as investments rather than liabilities — previous games in Mexico City (1968), Munich (1972), and Montreal (1976) had been plagued by disaster, political unrest, and financial ruin.</p><p>In <mark>1987</mark>, Atlanta resident <mark>Billy Payne</mark> revived the Olympic idea — inspired by a successful church fundraising campaign — and pitched it to Mayor <mark>Andrew Young</mark>. Young embraced it; international investment was already his top priority.</p><p>Payne assembled the <mark>\"Atlanta Nine\"</mark> — lawyers, executives, and fundraisers — to run the bid. The group was hand-picked through professional networks and was affluent and all-white, which drew criticism given Atlanta's diverse population.</p>"
+    },
+    {
+      "title": "6 — Winning the Bid: National & International",
+      "body": "<p>First, Atlanta had to win domestically. In <mark>1988</mark>, the Atlanta Organizing Committee (AOC) beat Nashville, San Francisco, and <mark>Minneapolis-St. Paul in a 14-2 vote</mark> to earn USOC backing.</p><p>Then came the international campaign. The AOC toured IOC representatives in their home countries, decorated Atlanta with billboards, hosted city tours highlighting the city's <mark>civil rights history</mark>, and even commissioned a song: <em>\"The World Has One Dream.\"</em></p><p>The crown jewel of the presentation was a <mark>virtual reality video</mark> created with <mark>Georgia Tech</mark> — viewers flew through a 3D model of Atlanta. The studio <mark>PIXAR</mark> was consulted. It was groundbreaking computer-generated animation for the time.</p><p>The competition was stiff. Athens was the sentimental favorite (1996 marked the <mark>100th anniversary</mark> of the modern Games), and Toronto was a strong rival. But Athens had an unstable economy, Toronto faced visible protesters in Tokyo, Belgrade had political unrest, Manchester lacked facilities, and Melbourne's time zone posed broadcast problems. Atlanta's strong campaign outweighed its underdog status.</p><p>On <mark>September 18, 1990</mark>, IOC president <mark>Juan Antonio Samaranch</mark> announced Atlanta as the host city in Tokyo.</p>"
+    },
+    {
+      "title": "7 — The Paralympic Bid: A Separate Fight",
+      "body": "<p>Atlanta's Olympic win didn't automatically mean it would host the Paralympic Games — those bids were completely separate. ACOG (the Olympic planning committee) was initially reluctant and unprepared to take on the additional event.</p><p><mark>Atlanta's Shepherd Center</mark> stepped up as the primary early financial and operational supporter. They submitted a successful bid to the International Paralympic Committee at the <mark>1992 Winter Paralympic Games in Tignes, France</mark>. Atlanta ultimately hosted both the Olympic and <mark>10th Paralympic Games</mark> in 1996 — a unity that helped push future international agencies to combine their planning processes.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "Who founded Hartsfield-Jackson Airport and in what year?", "a": "William B. Hartsfield founded it in 1925 on an abandoned racetrack." },
+    { "q": "Why was the racetrack chosen as the airport site?", "a": "It offered room for expansion—important since Atlanta was a mail route hub (NY to Miami)." },
+    { "key": true,  "q": "Who was Maynard Jackson?", "a": "First African American mayor of a major southern city. Led airport redevelopment in 1970s." },
+    { "key": true,  "q": "What is significant about 5 parallel runways?", "a": "All east-west, allow simultaneous takeoffs/landings without crossing paths. 90+ landings/100+ departures per hour." },
+    { "q": "What is the total land area and terminal complex size of Hartsfield-Jackson?", "a": "4,700 acres total land area, with a 130-acre terminal complex." },
+    { "q": "How many passengers traveled through Hartsfield-Jackson in 2019?", "a": "110+ million passengers, making it one of the busiest airports in the world." },
+    { "q": "Describe the runway configuration at Hartsfield-Jackson.", "a": "5 parallel runways all running east-west: 2 north of terminals, 3 south. In fair weather: 90+ landings and 100+ departures per HOUR." },
+    { "q": "What are the lengths of the runways at Hartsfield-Jackson?", "a": "Inside runways: 12,390 ft and 10,000 ft. Outside runways: 9,000 ft each. Longer inner runways accommodate fully-fueled aircraft." },
+    { "q": "What is the underground transportation mall and its features?", "a": "Passengers access 192 gates across 6 concourses via an underground mall with moving sidewalks and 9 four-car automated trains." },
+    { "key": true,  "q": "What are the 4 layers of air traffic control at Hartsfield-Jackson?", "a": "Ground Control (FAA, ramps/runways), Tower Control (immediate landing/takeoff), TRACON (Peachtree City, 40 miles out), ARTCC (Hampton, en-route)." },
+    { "q": "What is Category III Instrument Landing System and why is it important?", "a": "Specialized technology on two outside runways allowing aircraft to land themselves using radio beams in zero-visibility conditions (fog, heavy rain)." },
+    { "q": "What major expansion milestones occurred in 2000-2012?", "a": "2000: capital improvement approved. 2006: fifth runway and 400-ft tower (tallest in NA) completed. 2012: Maynard Jackson International Terminal opened." },
+    { "key": true,  "q": "What was the significance of LA's 1984 Olympics to Atlanta?", "a": "LA's Olympics turned a profit using a privatized funding model, changing global perception of mega-events as investment opportunities." },
+    { "q": "Why did Atlanta fail to bid for the 1984 Olympics?", "a": "Recent Olympic disasters scared city leaders: Mexico City 1968 massacre, Munich 1972 political unrest, Montreal 1976 bankruptcy." },
+    { "q": "Who was Dennis Berkholtz and what did he campaign for?", "a": "Olympic handball player who campaigned in the 1970s to bring the 1984 Olympics to Atlanta. 'Atlanta & Georgia Olympics 1984' bumper stickers appeared." },
+    { "key": true,  "q": "Why did Mayor Andrew Young support Billy Payne's Olympic idea?", "a": "International investment was his top priority, federal funding declined, and mega-events were seen as investment opportunities." },
+    { "key": true,  "q": "What was the composition of the 'Atlanta Nine' and was it representative?", "a": "Hand-picked lawyers, executives, fundraisers—all affluent and all-white. Selected through professional networks, not elected to represent diverse Atlanta." },
+    { "key": true,  "q": "What was the National Bid Competition in 1988?", "a": "Atlanta beat Minneapolis-St. Paul 14-2 to win USOC endorsement, also competing against Nashville and San Francisco." },
+    { "q": "What cities competed with Atlanta for the 1996 Olympic Games?", "a": "Athens (Greece), Belgrade (Yugoslavia), Manchester (England), Melbourne (Australia), Toronto (Canada)." },
+    { "key": true,  "q": "Why did each competing city lose to Atlanta in the IOC vote?", "a": "Athens: economic instability. Belgrade: political unrest. Manchester: insufficient facilities. Melbourne: timezone concerns. Toronto: visible protest." },
+    { "q": "What marketing strategies did AOC use to generate local buy-in?", "a": "Merchandise, billboards, sporting events, MARTA tours, state-wide road shows, and the 'World Has One Dream' song." },
+    { "q": "How did AOC sell the Olympic bid to IOC representatives?", "a": "Visited representatives in home countries, toured King Center for civil rights history, positioned Atlanta as future-focused and tech-forward." },
+    { "q": "What was the Bid Book and the VR innovation?", "a": "5-volume boxed set submission. AOC partnered with Georgia Tech to create interactive VR where viewers 'flew through' 3D Atlanta. PIXAR consulted—groundbreaking CGI." },
+    { "q": "What was the main opposition to Atlanta's Olympic bid?", "a": "Community support and anti-poverty organizations distributed 'Keep the Olympics Out of Atlanta!' newsletters. Opposition was less visible than other cities." },
+    { "key": true,  "q": "When and where was Atlanta selected for the Olympics?", "a": "September 18, 1990 in Tokyo. IOC president Juan Antonio Samaranch announced the decision." },
+    { "q": "What were the key strengths of Atlanta's winning Olympic bid strategy?", "a": "Mayor Young's international political connections in Africa and Asia, civil rights narrative, tech innovation (VR), and competitors' weaknesses." },
+    { "key": true,  "q": "What is the significance of the 1996 Centennial Olympic Games?", "a": "1996 marked the 100th anniversary of the modern Olympics. Atlanta hosted both the Olympic Games and the 10th Paralympic Games." },
+    { "q": "How did the Paralympic bid differ from the Olympic bid?", "a": "Paralympic bid was separate process. Shepherd Center provided early support. Successful bid to International Paralympic Committee at 1992 Winter Games in Tignes." },
+    { "q": "What long-term impact did the 1996 Olympics have on Atlanta?", "a": "Atlanta became a major destination for mega-events (Super Bowl, NCAA Final Four), corporate relocations, and national conventions." },
+    { "q": "Who revived Atlanta's Olympic bid in 1987?", "a": "Billy Payne, inspired by church fundraising. Presented to Mayor Andrew Young." },
+    { "q": "What was the 'Atlanta Nine'?", "a": "Hand-picked team of lawyers, executives, fundraisers. Affluent, all-white group selected through professional networks." },
+    { "q": "How did Atlanta win USOC backing in 1988?", "a": "Beat Minneapolis-St. Paul 14-2. LA's 1984 success inspired global interest in hosting." },
+    { "q": "What innovation did Atlanta use in its IOC bid?", "a": "Interactive VR presentation with Georgia Tech. Viewers 'flew through' 3D Atlanta. PIXAR consulted. Groundbreaking CGI." }
+  ]
+}
