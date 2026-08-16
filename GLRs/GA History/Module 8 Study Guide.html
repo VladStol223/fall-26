@@ -1414,63 +1414,38 @@
     </script>
 
     <script>
-    // ── Copyparty progress sync (Module 8) ────────────────────────────────
-    const CP_BASE_M8     = 'https://storage.skalaapi.com';
-    const CP_USERNAME_M8 = 'vlad';
-    const CP_FILENAME_M8 = 'progress-m8.json';
+    // ── Gist proxy progress sync (Module 8) ──────────────────────────────
+    const PROXY_M8 = 'https://gist-proxy.vlad-stol223.workers.dev/progress';
 
-    async function cpHashM8(username, password) {
-        const data = new TextEncoder().encode(username + '|' + password);
-        const buf  = await crypto.subtle.digest('SHA-256', data);
-        return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
-    }
+    let gistDirty = false;
 
-    async function cpAuthHeaderM8(password) {
-        const hash = await cpHashM8(CP_USERNAME_M8, password);
-        return 'Basic ' + btoa(CP_USERNAME_M8 + ':' + password + hash);
-    }
+    // Called after every Good/Again — marks dirty, flushes on interval/unload
+    function cpSyncProgress() { gistDirty = true; }
 
-    async function cpUserDirM8(password) {
-        const hash = await cpHashM8(CP_USERNAME_M8, password);
-        return CP_BASE_M8 + '/user_data/' + hash;
-    }
-
-    function getCpPw() {
-        return sessionStorage.getItem('cp_pw') || '';
-    }
-
-    let cpDirty = false;
-
-    // Called after every Good/Again — just marks dirty, never fires a request
-    function cpSyncProgress() {
-        if (!getCpPw()) return;
-        cpDirty = true;
-    }
-
-    async function cpFlush() {
-        const pw = getCpPw();
-        if (!pw || !cpDirty) return;
-        cpDirty = false;
+    async function gistFlush() {
+        if (!gistDirty) return;
+        gistDirty = false;
         try {
-            const dir  = await cpUserDirM8(pw);
-            const auth = await cpAuthHeaderM8(pw);
-            const url  = dir + '/' + CP_FILENAME_M8;
-            const payload = {
+            // Read current snapshot, update Module 8 key, write back
+            const getRes = await fetch(PROXY_M8, { cache: 'no-store' });
+            let current = getRes.ok ? await getRes.json() : {};
+            current['GA History/Module 8'] = {
                 totalReviewed: ankiStats.totalReviewed,
                 goodCount:     ankiStats.goodCount,
                 againCount:    ankiStats.againCount,
                 mastered: Object.values(cardHistory).filter(h => h && h.good > 0 && h.good >= h.again).length,
                 total: 32
             };
-            await fetch(url, { method: 'DELETE', credentials: 'omit', cache: 'no-store', headers: { Authorization: auth } });
-            await fetch(url, { method: 'PUT', credentials: 'omit', cache: 'no-store', headers: { Authorization: auth, 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-        } catch(e) { cpDirty = true; }
+            await fetch(PROXY_M8, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(current)
+            });
+        } catch(e) { gistDirty = true; }
     }
 
-    // Fire at most once every 30 seconds
-    setInterval(cpFlush, 30000);
-    // Best-effort flush when leaving the page
-    window.addEventListener('pagehide', cpFlush);
+    setInterval(gistFlush, 30000);
+    window.addEventListener('pagehide', gistFlush);
     </script>
 </body>
 </html>
