@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Study Guide</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -12,7 +13,7 @@
       background-color: #f7f8fa;
       color: #1f2328;
       line-height: 1.6;
-      padding: 20px;
+      padding: 72px 20px 20px; /* top clears the fixed 36px toggle + 16px offset + gap */
     }
 
     .container {
@@ -244,8 +245,8 @@
 
   // ── Module registry — add new modules here ────────────────────────────────
   var MODULES = [
-    { id: 'ga-history-m7', course: 'GA History', num: 7, label: 'Sunbelt Era',    file: 'GLRs/GA History/Module 7/module-7.json' },
-    { id: 'ga-history-m8', course: 'GA History', num: 8, label: 'Modern Georgia', file: 'GLRs/GA History/Module 8/module-8.json' }
+    { id: 'ga-history-m7', course: 'GA History', num: 7, label: 'Sunbelt Era',    file: 'GLRs/GA History/Module 7/module-7.json', gistFile: 'ga-history.json' },
+    { id: 'ga-history-m8', course: 'GA History', num: 8, label: 'Modern Georgia', file: 'GLRs/GA History/Module 8/module-8.json', gistFile: 'ga-history.json' }
   ];
 
   // ── Resolve which module to load ──────────────────────────────────────────
@@ -288,27 +289,29 @@
   // ── Gist sync ─────────────────────────────────────────────────────────────
   // Saves per-card history keyed by module id so any device can resume exactly.
   // Shape: { "ga-history-m7": { "Who founded...": { good:3, again:1, times:[4,2] }, ... }, ... }
-  var PROXY = 'https://gist-proxy.vlad-stol223.workers.dev/progress';
+  var PROXY_BASE = 'https://gist-proxy.vlad-stol223.workers.dev/progress';
   var gistDirty = false;
+  function gistUrl() { return PROXY_BASE + '?file=' + moduleMeta.gistFile; }
   function cpSyncProgress() { gistDirty = true; }
   async function gistFlush() {
     if (!gistDirty) return;
     gistDirty = false;
     try {
-      var getRes = await fetch(PROXY, { cache: 'no-store' });
+      var url = gistUrl();
+      var getRes = await fetch(url, { cache: 'no-store' });
       var current = getRes.ok ? await getRes.json() : {};
       current[MOD.id] = cardHistory;
-      await fetch(PROXY, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(current) });
+      await fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(current) });
     } catch(e) { gistDirty = true; }
   }
   async function gistLoad() {
     try {
-      var res = await fetch(PROXY, { cache: 'no-store' });
+      var res = await fetch(gistUrl(), { cache: 'no-store' });
       if (!res.ok) return;
       var data = await res.json();
       var remote = data[MOD.id];
       if (!remote) return;
-      // Merge: for each card, take the version with more total reviews
+      // Merge: for each card take the version with more total reviews
       Object.keys(remote).forEach(function(q) {
         var r = remote[q];
         var l = cardHistory[q];
