@@ -1,6 +1,6 @@
 const GIST_ID   = '551d7ee7f903132853aed1b4466d0c3b';
 const GIST_FILE = 'progress.json';
-const GIST_URL  = `https://api.github.com/gists/${GIST_ID}`;
+const GIST_URL  = 'https://api.github.com/gists/' + GIST_ID;
 
 const CORS = {
   'Access-Control-Allow-Origin':  '*',
@@ -10,32 +10,53 @@ const CORS = {
 
 export default {
   async fetch(request, env) {
-    // CORS preflight
     if (request.method === 'OPTIONS') {
       return new Response(null, { headers: CORS });
     }
 
-    const auth = { Authorization: `Bearer ${env.GIST_PAT}`, Accept: 'application/vnd.github+json' };
+    const pat = env.GIST_PAT;
+    if (!pat) {
+      return new Response('GIST_PAT secret missing', { status: 500, headers: CORS });
+    }
 
-    // GET /progress — read the gist and return just the JSON content
+    const auth = {
+      'Authorization': 'Bearer ' + pat,
+      'Accept': 'application/vnd.github+json',
+      'User-Agent': 'gist-proxy/1.0'
+    };
+
     if (request.method === 'GET') {
-      const res  = await fetch(GIST_URL, { headers: auth, cache: 'no-store' });
+      const res = await fetch(GIST_URL, { headers: auth });
+      if (!res.ok) {
+        const text = await res.text();
+        return new Response('GitHub error ' + res.status + ': ' + text, { status: 502, headers: CORS });
+      }
       const gist = await res.json();
-      const file = gist.files?.[GIST_FILE];
-      const data = file ? JSON.parse(file.content) : {};
+      const file = gist.files && gist.files[GIST_FILE];
+      let data = {};
+      if (file && file.content) {
+        try {
+          data = JSON.parse(file.content);
+        } catch {
+          return new Response('Gist file contains invalid JSON', { status: 502, headers: CORS });
+        }
+      }
       return new Response(JSON.stringify(data), { headers: { ...CORS, 'Content-Type': 'application/json' } });
     }
 
-    // POST /progress — receive JSON body and write it to the gist
     if (request.method === 'POST') {
       const body    = await request.json();
       const payload = { files: { [GIST_FILE]: { content: JSON.stringify(body, null, 2) } } };
-      const res     = await fetch(GIST_URL, {
+      const res = await fetch(GIST_URL, {
         method:  'PATCH',
         headers: { ...auth, 'Content-Type': 'application/json' },
         body:    JSON.stringify(payload),
       });
-      return new Response(res.ok ? 'ok' : 'error', { status: res.status, headers: CORS });
+      if (!res.ok) {
+        const text = await res.text();
+        return new Response('GitHub error ' + res.status + ': ' + text, { status: 502, headers: CORS });
+      }
+      return new Response('ok', { status: 200, headers: CORS });
     }
 
     return new Response('Not found', { status: 404, headers: CORS });
