@@ -640,12 +640,12 @@
     #sidebar-toggle {
       position: fixed; top: 16px; left: 16px; z-index: 1001;
       width: 36px; height: 36px; border-radius: 8px; border: none;
-      background: var(--blue-700); color: white; cursor: pointer;
+      background: #0a3c78; color: white; cursor: pointer;
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
       transition: background .2s, left .28s cubic-bezier(.4,0,.2,1);
     }
-    #sidebar-toggle:hover { background: var(--blue-500); }
+    #sidebar-toggle:hover { background: #1e64b4; }
     #sidebar-toggle.shifted { left: 272px; }
 
     .toggle-bar { width: 18px; height: 2px; background: white; border-radius: 2px; transition: all .22s; }
@@ -663,7 +663,6 @@
       border-radius: 7px; background: rgba(255,255,255,.08); transition: background .18s;
     }
     .sidebar-home-link:hover { background: rgba(255,255,255,.16); }
-    .sidebar-home-link.current { background: rgba(59,130,212,.30); }
 
     .sidebar-nav { flex: 1; overflow-y: auto; padding: 14px 10px; }
     .sidebar-section-label {
@@ -676,10 +675,12 @@
       font-size: 13px; font-weight: 500; transition: background .18s, color .18s;
     }
     .sidebar-link:hover { background: rgba(255,255,255,.1); color: white; }
+    .sidebar-link.active { background: rgba(59,130,212,.30); color: white; }
     .sidebar-link-num {
       width: 22px; height: 22px; border-radius: 5px; background: rgba(255,255,255,.12);
       display: grid; place-items: center; font-size: 11px; font-weight: 700; flex-shrink: 0;
     }
+    .sidebar-link.active .sidebar-link-num { background: #3b82d4; }
     .sidebar-footer { padding: 14px 18px; border-top: 1px solid rgba(255,255,255,.1); font-size: 11px; color: rgba(255,255,255,.3); text-align: center; }
   </style>
 </head>
@@ -694,22 +695,12 @@
   <div id="sidebar-overlay"></div>
   <aside id="sidebar">
     <div class="sidebar-header">
-      <a class="sidebar-home-link current" href="index.html">
+      <a class="sidebar-home-link" href="index.html">
         <span style="font-size:18px;line-height:1;">🏠</span>
         <span>Study Hub</span>
       </a>
     </div>
-    <nav class="sidebar-nav">
-      <div class="sidebar-section-label">GA History</div>
-      <a class="sidebar-link" href="module.html?id=ga-history-m7">
-        <span class="sidebar-link-num">7</span>
-        <span>Sunbelt Era</span>
-      </a>
-      <a class="sidebar-link" href="module.html?id=ga-history-m8">
-        <span class="sidebar-link-num">8</span>
-        <span>Modern Georgia</span>
-      </a>
-    </nav>
+    <nav class="sidebar-nav" id="sidebar-nav"></nav>
     <div class="sidebar-footer">Fall '26 — Study Hub</div>
   </aside>
 
@@ -731,8 +722,6 @@
 
           <div class="module-list">
             <a class="module-row" href="module.html?id=ga-history-m7"
-               data-stats-key="ankiStats"
-               data-history-key="cardHistory"
                data-total="33"
                data-module-id="m7">
               <div class="module-num">7</div>
@@ -750,8 +739,6 @@
             </a>
 
             <a class="module-row" href="module.html?id=ga-history-m8"
-               data-stats-key="ankiStats_m8"
-               data-history-key="cardHistory_m8"
                data-total="32"
                data-module-id="m8">
               <div class="module-num">8</div>
@@ -817,104 +804,123 @@
   </div>
 
   <script>
-  // ── Gist proxy sync ───────────────────────────────────────────────────────
-  const PROXY = 'https://gist-proxy.vlad-stol223.workers.dev/progress';
+  // ── Progress display ──────────────────────────────────────────────────────
+  // Reads cardHistory_{prefix} from localStorage (written by module.html).
+  // Module rows carry data-module-id and data-total attributes.
 
-  // ── Sync chip ─────────────────────────────────────────────────────────────
+  var PROXY_BASE = 'https://gist-proxy.vlad-stol223.workers.dev/progress';
+
+  // Map module-id → { storagePrefix, gistFile, total }
+  var MODULE_META = {
+    'ga-history-m7': { prefix: 'm7', gistFile: 'ga-history.json', total: 33 },
+    'ga-history-m8': { prefix: 'm8', gistFile: 'ga-history.json', total: 32 }
+  };
+
   function showChip(state, text) {
     const chip = document.getElementById('sync-chip');
     chip.className = 'visible ' + state;
     chip.textContent = text;
-    if (state === 'saved') setTimeout(() => { chip.className = ''; }, 2500);
+    if (state === 'saved') setTimeout(function(){ chip.className = ''; }, 2500);
   }
 
-  // Fetch progress from proxy
-  async function gistFetch() {
-    try {
-      const res = await fetch(PROXY, { cache: 'no-store' });
-      if (!res.ok) return null;
-      return await res.json();
-    } catch(e) { return null; }
-  }
-
-  // Hydrate localStorage from Gist snapshot (server wins if totalReviewed is higher)
-  function hydrateFromSnapshot(snap) {
-    const map = {
-      'GA History/Module 7': { statsKey: 'ankiStats',    historyKey: 'cardHistory' },
-      'GA History/Module 8': { statsKey: 'ankiStats_m8', historyKey: 'cardHistory_m8' }
-    };
-    Object.entries(snap).forEach(function([id, val]) {
-      const keys = map[id];
-      if (!keys) return;
-      let local = null;
-      try { local = JSON.parse(localStorage.getItem(keys.statsKey)); } catch(e) {}
-      const localTotal = local ? (local.totalReviewed || 0) : 0;
-      if (val.totalReviewed > localTotal) {
-        localStorage.setItem(keys.statsKey, JSON.stringify({
-          totalReviewed: val.totalReviewed,
-          goodCount:     val.goodCount,
-          againCount:    val.againCount
-        }));
-      }
+  // Derive stats from cardHistory object
+  function statsFromHistory(history) {
+    var totalReviewed = 0, goodCount = 0, againCount = 0;
+    Object.values(history).forEach(function(h) {
+      totalReviewed += h.good + h.again;
+      goodCount     += h.good;
+      againCount    += h.again;
     });
+    return { totalReviewed: totalReviewed, goodCount: goodCount, againCount: againCount };
   }
 
-  // ── Render progress bars from localStorage ────────────────────────────────
+  function getHistory(prefix) {
+    try { return JSON.parse(localStorage.getItem('cardHistory_' + prefix)) || {}; } catch(e) { return {}; }
+  }
+
+  // Merge remote cardHistory into localStorage (more reviews wins per card)
+  function mergeHistory(prefix, remote) {
+    var local = getHistory(prefix);
+    Object.keys(remote).forEach(function(q) {
+      var r = remote[q], l = local[q];
+      if (!l || (r.good + r.again) > (l.good + l.again)) local[q] = r;
+    });
+    localStorage.setItem('cardHistory_' + prefix, JSON.stringify(local));
+  }
+
   function renderProgress() {
-    document.querySelectorAll('.module-row[data-stats-key]').forEach(function(row) {
-      const statsKey   = row.dataset.statsKey;
-      const historyKey = row.dataset.historyKey;
-      const total      = parseInt(row.dataset.total, 10);
-      const id         = row.dataset.moduleId;
-      const bar   = document.getElementById(id + '-bar');
-      const label = document.getElementById(id + '-label');
+    document.querySelectorAll('.module-row[data-module-id]').forEach(function(row) {
+      var moduleId = row.dataset.moduleId;          // e.g. "m7"  ← this is the SHORT id on the row
+      var total    = parseInt(row.dataset.total, 10);
+      var bar      = document.getElementById(moduleId + '-bar');
+      var label    = document.getElementById(moduleId + '-label');
       if (!bar || !label) return;
 
-      let stats = null;
-      try { stats = JSON.parse(localStorage.getItem(statsKey)); } catch(e) {}
-      let mastered = 0;
-      try {
-        const history = JSON.parse(localStorage.getItem(historyKey));
-        if (history) mastered = Object.values(history).filter(h => h && h.good > 0 && h.good >= h.again).length;
-      } catch(e) {}
+      // Find the matching full module id (ga-history-m7) by storagePrefix
+      var meta = null;
+      Object.keys(MODULE_META).forEach(function(id) {
+        if (MODULE_META[id].prefix === moduleId) meta = MODULE_META[id];
+      });
+      if (!meta) return;
 
-      if (stats && stats.totalReviewed > 0) {
-        const pct  = Math.round((stats.goodCount / stats.totalReviewed) * 100);
-        label.textContent = pct + '% acc';
-        label.style.color = pct >= 80 ? '#16a34a' : pct >= 50 ? '#b45309' : '#dc2626';
-        const fill = Math.min(100, Math.round((mastered / total) * 100));
-        bar.style.width = fill + '%';
-        if      (fill >= 80) bar.style.background = 'linear-gradient(90deg,#16a34a,#4ade80)';
-        else if (fill >= 40) bar.style.background = 'linear-gradient(90deg,#b45309,#fbbf24)';
-      } else {
+      var history = getHistory(meta.prefix);
+      var seen = Object.keys(history).length;
+      if (seen === 0) {
         label.textContent = 'Not started';
         bar.style.width = '0%';
+        return;
       }
+
+      var stats    = statsFromHistory(history);
+      var mastered = Object.values(history).filter(function(h){ return h.good > 0 && h.good >= h.again; }).length;
+      var pct      = stats.totalReviewed > 0 ? Math.round(stats.goodCount / stats.totalReviewed * 100) : 0;
+      var fill     = Math.min(100, Math.round(mastered / total * 100));
+
+      label.textContent = pct + '% acc';
+      label.style.color = pct >= 80 ? '#16a34a' : pct >= 50 ? '#b45309' : '#dc2626';
+      bar.style.width   = fill + '%';
+      if      (fill >= 80) bar.style.background = 'linear-gradient(90deg,#16a34a,#4ade80)';
+      else if (fill >= 40) bar.style.background = 'linear-gradient(90deg,#b45309,#fbbf24)';
+      else                 bar.style.background = '';
     });
 
-    const gaKeys    = ['ankiStats', 'ankiStats_m8'];
-    const gaTotal   = gaKeys.length;
-    const gaStarted = gaKeys.filter(k => { try { const s = JSON.parse(localStorage.getItem(k)); return s && s.totalReviewed > 0; } catch(e) { return false; } }).length;
-    const footerBar   = document.getElementById('ga-footer-bar');
-    const footerCount = document.getElementById('ga-footer-count');
+    // GA footer bar — fraction of modules with any reviews
+    var gaMetas  = Object.values(MODULE_META).filter(function(m){ return m.gistFile === 'ga-history.json'; });
+    var gaStarted = gaMetas.filter(function(m){ return Object.keys(getHistory(m.prefix)).length > 0; }).length;
+    var footerBar   = document.getElementById('ga-footer-bar');
+    var footerCount = document.getElementById('ga-footer-count');
     if (footerBar && footerCount) {
-      footerBar.style.width = Math.round((gaStarted / gaTotal) * 100) + '%';
-      footerCount.textContent = gaStarted + ' / ' + gaTotal + ' started';
+      footerBar.style.width = Math.round(gaStarted / gaMetas.length * 100) + '%';
+      footerCount.textContent = gaStarted + ' / ' + gaMetas.length + ' started';
     }
   }
 
-  // ── Boot ──────────────────────────────────────────────────────────────────
+  // Pull each unique gistFile, merge into localStorage, re-render
+  async function syncFromGist() {
+    var files = {};
+    Object.values(MODULE_META).forEach(function(m){ files[m.gistFile] = true; });
+    var fetches = Object.keys(files).map(async function(f) {
+      try {
+        var res = await fetch(PROXY_BASE + '?file=' + f, { cache: 'no-store' });
+        if (!res.ok) return;
+        var data = await res.json();
+        // data is { "ga-history-m7": { cardHistory }, ... }
+        Object.keys(MODULE_META).forEach(function(id) {
+          if (MODULE_META[id].gistFile === f && data[id]) {
+            mergeHistory(MODULE_META[id].prefix, data[id]);
+          }
+        });
+      } catch(e) {}
+    });
+    await Promise.all(fetches);
+  }
+
   (async function boot() {
     renderProgress();
     showChip('syncing', '⟳ Syncing…');
-    const snap = await gistFetch();
-    if (snap) {
-      hydrateFromSnapshot(snap);
-      renderProgress();
-      showChip('saved', '✓ Synced');
-    } else {
-      showChip('saved', '✓ No data yet');
-    }
+    await syncFromGist();
+    renderProgress();
+    showChip('saved', '✓ Synced');
   })();
   </script>
   <script>
@@ -929,6 +935,34 @@
     toggle.addEventListener('click', function() { open ? closeSidebar() : openSidebar(); });
     overlay.addEventListener('click', closeSidebar);
     document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && open) closeSidebar(); });
+  })();
+  </script>
+  <script>
+  // ── Sidebar nav (mirrors MODULES registry in module.html) ─────────────────
+  var MODULES = [
+    { id: 'ga-history-m7', course: 'GA History', num: 7, label: 'Sunbelt Era' },
+    { id: 'ga-history-m8', course: 'GA History', num: 8, label: 'Modern Georgia' }
+  ];
+  (function buildSidebar() {
+    var nav = document.getElementById('sidebar-nav');
+    var courses = {};
+    MODULES.forEach(function(m) {
+      if (!courses[m.course]) courses[m.course] = [];
+      courses[m.course].push(m);
+    });
+    Object.keys(courses).forEach(function(course) {
+      var label = document.createElement('div');
+      label.className = 'sidebar-section-label';
+      label.textContent = course;
+      nav.appendChild(label);
+      courses[course].forEach(function(m) {
+        var a = document.createElement('a');
+        a.className = 'sidebar-link';
+        a.href = 'module.html?id=' + m.id;
+        a.innerHTML = '<span class="sidebar-link-num">' + m.num + '</span><span>' + m.label + '</span>';
+        nav.appendChild(a);
+      });
+    });
   })();
   </script>
 </body>
