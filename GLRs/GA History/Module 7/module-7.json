@@ -116,5 +116,78 @@
     { "q": "What was the 'Atlanta Nine'?", "a": "Hand-picked team of lawyers, executives, fundraisers. Affluent, all-white group selected through professional networks." },
     { "q": "How did Atlanta win USOC backing in 1988?", "a": "Beat Minneapolis-St. Paul 14-2. LA's 1984 success inspired global interest in hosting." },
     { "q": "What innovation did Atlanta use in its IOC bid?", "a": "Interactive VR presentation with Georgia Tech. Viewers 'flew through' 3D Atlanta. PIXAR consulted. Groundbreaking CGI." }
+  ],
+
+  "quiz": [
+    {
+      "q": "Who founded Hartsfield-Jackson Atlanta International Airport and in what year?",
+      "options": ["Maynard Jackson, 1970", "William B. Hartsfield, 1925", "Billy Payne, 1987", "Andrew Young, 1976"],
+      "correct": 1,
+      "explanation": "William B. Hartsfield founded the airport in 1925 on an abandoned racetrack south of Atlanta."
+    },
+    {
+      "q": "How many parallel runways does Hartsfield-Jackson Airport have?",
+      "options": ["Three", "Four", "Five", "Six"],
+      "correct": 2,
+      "explanation": "The airport has 5 parallel runways, all running east-to-west, which allows near-continuous simultaneous operations."
+    },
+    {
+      "q": "In what year did the IOC select Atlanta as the host city for the 1996 Olympics?",
+      "options": ["1987", "1988", "1990", "1992"],
+      "correct": 2,
+      "explanation": "On September 18, 1990, IOC president Juan Antonio Samaranch announced Atlanta's selection in Tokyo."
+    },
+    {
+      "q": "Who was Maynard Jackson?",
+      "options": ["The founder of Atlanta's airport", "The first African American mayor of a major southern city", "The IOC president who selected Atlanta", "The leader of the Atlanta Nine"],
+      "correct": 1,
+      "explanation": "Maynard Jackson was the first African American mayor of a major southern city. His name was added to the airport in 2003."
+    },
+    {
+      "q": "Who revived Atlanta's Olympic bid in 1987?",
+      "options": ["Dennis Berkholtz", "Andrew Young", "Billy Payne", "Juan Antonio Samaranch"],
+      "correct": 2,
+      "explanation": "Billy Payne, inspired by a successful church fundraising campaign, pitched the Olympic bid to Mayor Andrew Young in 1987."
+    },
+    {
+      "q": "Were the 1996 Olympic Games the first that the city of Atlanta had bid for?",
+      "options": ["Yes, 1996 was Atlanta's first bid", "No, Atlanta also considered bidding for the 1984 Games"],
+      "correct": 1,
+      "explanation": "In the 1970s, Olympic handball player Dennis Berkholtz campaigned to convince Atlanta to bid for the 1984 Games."
+    },
+    {
+      "q": "What was the 'Atlanta Nine'?",
+      "options": [
+        "The nine finalist cities for the 1996 Olympics",
+        "Nine Georgia Tech engineers who built the VR presentation",
+        "Billy Payne's hand-picked team of lawyers, executives, and fundraisers",
+        "The nine IOC members who voted for Atlanta"
+      ],
+      "correct": 2,
+      "explanation": "The Atlanta Nine was Payne's hand-picked, all-white group of lawyers, executives, and fundraisers who ran the Olympic bid."
+    },
+    {
+      "q": "What city originally beat out Minneapolis-St. Paul in the 1988 USOC vote?",
+      "options": ["Nashville", "San Francisco", "Atlanta", "Los Angeles"],
+      "correct": 2,
+      "explanation": "Atlanta beat Minneapolis-St. Paul 14–2 to win the USOC endorsement, competing against Nashville and San Francisco."
+    },
+    {
+      "q": "Where is the TRACON (Terminal Radar Approach Control) for Hartsfield-Jackson located?",
+      "options": ["Hampton, Henry County", "Downtown Atlanta", "Peachtree City", "Clayton County"],
+      "correct": 2,
+      "explanation": "The TRACON is located in nearby Peachtree City and handles aircraft within about 40 miles of the airport."
+    },
+    {
+      "q": "What was the significance of the 1984 Los Angeles Olympic Games to Atlanta's bid?",
+      "options": [
+        "LA's failure showed Atlanta how to avoid mistakes",
+        "LA's profit using private-sector funding changed how cities viewed Olympic bids",
+        "LA's games first introduced the Paralympic Games model",
+        "LA's win inspired Dennis Berkholtz to campaign for Atlanta"
+      ],
+      "correct": 1,
+      "explanation": "The 1984 LA Olympics turned a profit using privatized funding — a 'game changer' that made cities see hosting as an investment opportunity."
+    }
   ]
 }

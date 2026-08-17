@@ -1,0 +1,193 @@
+{
+  "id": "ga-history-m4",
+  "course": "GA History",
+  "courseColor": "blue",
+  "moduleNumber": 4,
+  "title": "The Early New South Period",
+  "subtitle": "Atlanta Compromise, Leo Frank & the New South Vision",
+  "storagePrefix": "m4",
+  "totalCards": 30,
+
+  "overview": {
+    "stats": [
+      { "value": "Sept 18, 1895", "label": "Atlanta Compromise Speech (Cotton States Exposition)" },
+      { "value": "Apr 26, 1913",  "label": "Murder of Mary Phagan" },
+      { "value": "Aug 16, 1915", "label": "Lynching of Leo Frank in Marietta" },
+      { "value": "1986",         "label": "Year Leo Frank Was Posthumously Pardoned" }
+    ],
+    "people": [
+      { "name": "Booker T. Washington", "desc": "Black educator who delivered the Atlanta Compromise speech in 1895 at the Cotton States Exposition; advocated vocational education and social separation as a path to Black economic advancement." },
+      { "name": "W. E. B. Du Bois",     "desc": "Scholar at Atlanta University; challenged Washington's accommodationism in The Souls of Black Folk (1903); championed the 'talented tenth'; founded the Niagara Movement (1905) leading to the NAACP." },
+      { "name": "Leo Frank",            "desc": "Jewish superintendent of Atlanta's National Pencil Company; convicted of murdering 13-year-old Mary Phagan in 1913; lynched by a Marietta mob on August 16, 1915; posthumously pardoned in 1986." },
+      { "name": "Mary Phagan",          "desc": "Thirteen-year-old factory worker murdered at the National Pencil Company on April 26, 1913 (Confederate Memorial Day)." },
+      { "name": "Jim Conley",           "desc": "Black janitor at the pencil factory; the state's main witness against Frank; provided four contradictory affidavits; held in seclusion for six weeks before trial." },
+      { "name": "John M. Slaton",       "desc": "Georgia governor who reviewed 10,000+ pages of evidence, concluded Frank was innocent, and commuted his death sentence — then was forced to flee the state after riots." },
+      { "name": "Thomas E. Watson",     "desc": "Former Populist publisher of the Jeffersonian who ran an anti-Semitic campaign against Frank, inflaming public opinion and boosting his readership." },
+      { "name": "Henry Grady",          "desc": "Atlanta Constitution editor and champion of the 'New South' — his vision of a modernized, industrialized South shaped the era's economic development and racial accommodation." }
+    ],
+    "dates": [
+      { "year": "1880s",          "event": "Henry Grady promotes his 'New South' vision of industrialization and racial accommodation" },
+      { "year": "Sept 18, 1895", "event": "Booker T. Washington delivers the Atlanta Compromise speech at the Cotton States Exposition" },
+      { "year": "1897",          "event": "W. E. B. Du Bois joins Atlanta University faculty; begins challenging Washington's gradualism" },
+      { "year": "1903",          "event": "Du Bois publishes The Souls of Black Folk — crystallizes opposition to Washington" },
+      { "year": "1905",          "event": "Du Bois founds the Niagara Movement, which leads to the NAACP" },
+      { "year": "Apr 26, 1913", "event": "Mary Phagan murdered at the National Pencil Company in Atlanta on Confederate Memorial Day" },
+      { "year": "Aug 1913",      "event": "Leo Frank convicted based largely on Jim Conley's testimony" },
+      { "year": "June 1915",     "event": "Governor Slaton commutes Frank's sentence to life; riots erupt; Slaton flees Georgia" },
+      { "year": "Aug 16, 1915", "event": "Knights of Mary Phagan lynch Frank in Marietta; modern KKK revived at Stone Mountain months later" },
+      { "year": "1913",          "event": "Anti-Defamation League (ADL) founded in response to anti-Semitism in the Frank case" },
+      { "year": "1986",          "event": "Georgia State Board of Pardons and Paroles posthumously pardons Leo Frank" }
+    ],
+    "terms": [
+      { "term": "New South",             "def": "Post-Civil War movement, championed by Henry Grady, advocating Southern industrialization and economic modernization while maintaining racial hierarchy" },
+      { "term": "Atlanta Compromise",    "def": "Washington's 1895 strategy: Black Americans should focus on vocational advancement and accept social separation in exchange for white economic support" },
+      { "term": "Accommodationism",      "def": "Washington's approach — accept racial subordination temporarily while building economic standing; criticized by Du Bois as acquiescence to inferiority" },
+      { "term": "Talented Tenth",        "def": "Du Bois's concept — the top 10% of educated Black Americans should lead an immediate fight for full civil rights through legal and scholarly challenges" },
+      { "term": "Niagara Movement",      "def": "1905 organization founded by Du Bois advocating immediate civil rights; led directly to the creation of the NAACP" },
+      { "term": "NAACP",                 "def": "National Association for the Advancement of Colored People — grew out of the Niagara Movement; one of the nation's foremost civil rights organizations" },
+      { "term": "Anti-Defamation League","def": "Civil rights organization founded in 1913 in direct response to the anti-Semitism revealed by the Leo Frank case" },
+      { "term": "Knights of Mary Phagan","def": "The group of 25 prominent Marietta citizens who lynched Leo Frank on August 16, 1915; many later revived the modern KKK at Stone Mountain" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — Henry Grady and the New South Vision",
+      "body": "<p>In the decades after Reconstruction, Atlanta Constitution editor <mark>Henry Grady</mark> became the leading voice for what he called the <mark>\"New South\"</mark> — a vision of a modernized, industrialized South that would move beyond the Civil War's destruction. Grady argued the South needed to diversify its economy with factories, railroads, and commerce rather than depend solely on cotton.</p><p>The New South vision attracted Northern capital and industry to Georgia — transforming Atlanta from a war-ravaged railroad hub into a regional metropolis. But the New South was built on a racial bargain: economic modernization would proceed while <mark>white supremacy and racial segregation</mark> remained unchallenged. This tension set the stage for both the Atlanta Compromise and the Leo Frank case.</p>"
+    },
+    {
+      "title": "2 — The Atlanta Compromise Speech (1895)",
+      "body": "<p>On <mark>September 18, 1895</mark>, <mark>Booker T. Washington</mark> delivered his famous Atlanta Compromise speech at the <mark>Cotton States and International Exposition</mark> in Atlanta — widely regarded as one of the most significant speeches in American history.</p><p>Washington argued that Black Americans should focus on <mark>vocational and industrial education</mark> — agriculture, mechanics, commerce, domestic service — and avoid agitating for social equality, which he called \"but folly.\" His most famous metaphor: both races could <mark>\"be as separate as the fingers, yet one as the hand in all things essential to mutual progress.\"</mark></p><p>The speech was received with a standing ovation. The <em>Atlanta Constitution</em>'s editor Clark Howell called it <mark>\"the beginning of a moral revolution in America.\"</mark> It made Washington the <mark>most influential Black leader from 1895 to 1915</mark> — an advisor to presidents Theodore Roosevelt and William Howard Taft.</p>"
+    },
+    {
+      "title": "3 — Du Bois vs. Washington",
+      "body": "<p><mark>W. E. B. Du Bois</mark>, educated at Fisk, Harvard, and the University of Berlin, joined <mark>Atlanta University</mark>'s faculty in 1897. He initially recognized Washington's speech as important, but came to see its gradualism as acquiescence: <em>\"Mr. Washington represents in Negro thought the old attitude of adjustment and submission.\"</em></p><p>In <mark>1903</mark>, Du Bois published <em>The Souls of Black Folk</em>, crystallizing opposition to Washington. He called for the <mark>\"talented tenth\"</mark> — the most educated Black Americans — to launch <em>immediate</em> legal and scholarly attacks on racism, not wait for gradual economic uplift.</p><p>In <mark>1905</mark>, Du Bois founded the <mark>Niagara Movement</mark>, which led directly to the creation of the <mark>NAACP</mark>. Black leadership split into \"conservative\" Washington supporters and \"radical\" Du Bois supporters.</p>"
+    },
+    {
+      "title": "4 — The Leo Frank Case: Murder, Evidence & Trial",
+      "body": "<p>On <mark>April 26, 1913</mark> — <mark>Confederate Memorial Day</mark> — thirteen-year-old <mark>Mary Phagan</mark> went to the <mark>National Pencil Company</mark> in Atlanta to collect her weekly wages. <mark>Leo Frank</mark>, the Jewish superintendent from New York, paid her. The factory watchman found her body in the cellar that night.</p><p>Frank was arrested April 29. The key witness against him was <mark>Jim Conley</mark>, a Black janitor held in <mark>seclusion for six weeks</mark> before trial on orders from Solicitor General Hugh M. Dorsey. Conley provided <mark>four contradictory affidavits</mark> claiming Frank forced him to help dispose of Phagan's body. After <mark>25 days of trial</mark> before cheering crowds surrounding the courthouse, the jury found Frank guilty.</p><p>The case was a New South story: Northern factory owners like Frank came south to manage industries; the workforce included children like Phagan. Anti-Semitism, class resentment, and child labor conditions all simmered beneath the surface.</p>"
+    },
+    {
+      "title": "5 — Appeals, Commutation & Lynching",
+      "body": "<p>Frank's lawyers filed appeals to the Georgia Supreme Court and U.S. Supreme Court — all denied. Justices <mark>Oliver Wendell Holmes</mark> and <mark>Charles Evans Hughes</mark> dissented: <em>\"Mob law does not become due process of law by securing the assent of a terrorized jury.\"</em></p><p>Publisher <mark>Thomas E. Watson</mark> ran a vicious anti-Semitic campaign in the <em>Jeffersonian</em>, inflaming public opinion. Governor <mark>John M. Slaton</mark> reviewed over <mark>10,000 pages of documents</mark>, visited the factory, and concluded Frank was innocent — commuting his sentence to life imprisonment. Riots erupted across Atlanta. Slaton declared martial law and <mark>fled Georgia</mark>.</p><p>On <mark>August 16, 1915</mark>, <mark>25 prominent Marietta citizens</mark> — the <mark>Knights of Mary Phagan</mark> — drove to Milledgeville, took Frank from his cell, and hanged him in Marietta. Months later, many of these same men participated in the Stone Mountain ceremony that <mark>revived the modern Ku Klux Klan</mark>. The case directly inspired the founding of the <mark>Anti-Defamation League (ADL)</mark> in 1913.</p>"
+    },
+    {
+      "title": "6 — Legacy: Pardon, Popular Culture & Impact",
+      "body": "<p>In <mark>1982</mark>, eighty-three-year-old <mark>Alonzo Mann</mark> — who as an office boy had witnessed Jim Conley carrying Phagan's body — came forward publicly for the first time. Conley had threatened to kill him. His testimony supported Frank's innocence.</p><p>In <mark>1986</mark>, the Georgia State Board of Pardons and Paroles granted Frank a <mark>posthumous pardon</mark> — acknowledging the state's failure to protect him and to bring his killers to justice, without declaring guilt or innocence.</p><p>The case inspired a ballad by <mark>Fiddlin' John Carson</mark> (1915), the film <em>They Won't Forget</em> (1937), the TV mini-series <em>The Murder of Mary Phagan</em> (1988, starring Jack Lemmon), and Alfred Uhry's Broadway musical <em>Parade</em> (1999). In 2008 the William Breman Jewish Heritage Museum opened an exhibition: <em>Seeking Justice: The Leo Frank Case Revisited</em>.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What was Henry Grady's 'New South' vision?", "a": "A post-Civil War vision championed by Atlanta Constitution editor Henry Grady advocating Southern industrialization and economic modernization — attracting Northern capital while maintaining racial hierarchy." },
+    { "key": true,  "q": "What was the Atlanta Compromise speech and when was it delivered?", "a": "Booker T. Washington's September 18, 1895 address at the Cotton States Exposition in Atlanta. He urged Black Americans to focus on vocational work and accept social separation rather than agitate for immediate equality." },
+    { "q": "What was Washington's famous 'fingers and hand' metaphor?", "a": "'In all things purely social we can be as separate as the fingers, yet one as the hand in all things essential to mutual progress.' It accepted racial segregation while appealing for economic cooperation." },
+    { "key": true,  "q": "How did W. E. B. Du Bois respond to Washington's Atlanta Compromise?", "a": "He concluded Washington's gradualism was acquiescence — 'adjustment and submission.' In The Souls of Black Folk (1903), he called for the 'talented tenth' of Black Americans to pursue immediate civil rights through legal and scholarly challenges." },
+    { "q": "What was the 'talented tenth'?", "a": "Du Bois's concept that the top 10% of educated Black Americans should lead an immediate, uncompromising fight for full civil rights rather than accepting Washington's gradual vocational approach." },
+    { "key": true,  "q": "What organization grew out of Du Bois's Niagara Movement?", "a": "The NAACP. Du Bois founded the Niagara Movement in 1905 to advocate for immediate civil rights; it led directly to the creation of the National Association for the Advancement of Colored People." },
+    { "q": "What were the two Black intellectual camps that emerged from the Washington-Du Bois debate?", "a": "'Conservative' supporters of Washington's accommodationism vs. 'radical' supporters of Du Bois's demand for immediate civil rights. The split shaped Black political strategy for decades." },
+    { "key": true,  "q": "What was the Leo Frank case?", "a": "The 1913 murder trial of Leo Frank, Jewish superintendent of Atlanta's National Pencil Company, accused of killing 13-year-old factory worker Mary Phagan. He was convicted on questionable testimony and lynched by a mob in 1915." },
+    { "q": "When was Mary Phagan murdered and what was significant about the date?", "a": "April 26, 1913 — Confederate Memorial Day. She went to the National Pencil Company to collect her wages." },
+    { "key": true,  "q": "Who was the main witness against Leo Frank and why was his testimony questionable?", "a": "Jim Conley, a Black janitor held in seclusion for six weeks before trial on Solicitor Dorsey's orders. He gave four contradictory affidavits about how Frank allegedly disposed of Phagan's body." },
+    { "q": "What role did Thomas E. Watson play in the Frank case?", "a": "Publisher of the Jeffersonian; ran an anti-Semitic campaign against Frank that inflamed public opinion, boosted his readership, and pressured officials not to overturn the conviction." },
+    { "key": true,  "q": "What did Governor Slaton do in the Frank case and what happened to him?", "a": "After reviewing 10,000+ pages of evidence and visiting the factory, Slaton concluded Frank was innocent and commuted his death sentence. Riots erupted; he declared martial law and was forced to flee Georgia." },
+    { "key": true,  "q": "Who lynched Leo Frank, when, and what did those men do afterward?", "a": "August 16, 1915. Twenty-five prominent Marietta citizens — the 'Knights of Mary Phagan' — drove to Milledgeville, took Frank from his cell, and hanged him. Months later, many participated in the Stone Mountain ceremony that revived the modern KKK." },
+    { "q": "What Supreme Court justices dissented in Frank's case?", "a": "Oliver Wendell Holmes and Charles Evans Hughes: 'Mob law does not become due process of law by securing the assent of a terrorized jury.'" },
+    { "q": "What organization was directly inspired by the Leo Frank case?", "a": "The Anti-Defamation League (ADL) — founded in 1913 in response to the anti-Semitism exposed by Frank's trial and conviction." },
+    { "key": true,  "q": "What was Alonzo Mann's testimony and why was it significant?", "a": "In 1982, at age 83, Mann revealed he had seen Jim Conley — not Frank — carrying Phagan's body as a boy. Conley had threatened to kill him. His testimony supported Frank's innocence and helped lead to the 1986 pardon." },
+    { "q": "When and on what basis was Leo Frank posthumously pardoned?", "a": "1986. The Georgia Board of Pardons and Paroles cited the state's failure to protect Frank and to bring his killers to justice — without declaring guilt or innocence." },
+    { "q": "What broader social tensions did the Leo Frank case reveal about New South Atlanta?", "a": "Workers' resentment of Northern factory owners; latent anti-Semitism inflamed by Watson; child labor issues (Phagan worked in a factory at 13); and the brutality of Southern lynching culture." },
+    { "q": "What popular cultural works were inspired by the Leo Frank case?", "a": "Film: They Won't Forget (1937). TV: The Murder of Mary Phagan (1988, Jack Lemmon). Broadway: Parade (1999, Alfred Uhry). Museum: William Breman Jewish Heritage Museum exhibition (2008)." },
+    { "q": "What did the Frank case mean for Jewish communities in the South?", "a": "It struck fear in Jewish Southerners, causing them to carefully monitor their behavior in the region for the next fifty years — until the civil rights movement brought more significant changes." }
+  ],
+
+  "quiz": [
+    {
+      "q": "What was the core message of Henry Grady's 'New South' vision?",
+      "options": [
+        "The South should remain agricultural and reject Northern industrialism",
+        "The South should industrialize and modernize economically while maintaining racial hierarchy",
+        "The South should seek full political reunification with the North including Black suffrage",
+        "The South should invest primarily in education and civil rights"
+      ],
+      "correct": 1,
+      "explanation": "Henry Grady championed a New South of industrialization, Northern capital investment, and economic modernization — while the racial order of white supremacy was preserved."
+    },
+    {
+      "q": "What strategy did Booker T. Washington advocate in the Atlanta Compromise?",
+      "options": [
+        "Immediate legal challenges to segregation through federal courts",
+        "Black Americans should focus on vocational work and accept social separation rather than agitate for immediate equality",
+        "Black Americans should migrate north to escape racial oppression",
+        "Black Americans should form a separate nation within the United States"
+      ],
+      "correct": 1,
+      "explanation": "Washington advocated vocational-industrial education and social separation ('as separate as the fingers') while cooperating economically with whites — rejecting agitation for immediate social equality."
+    },
+    {
+      "q": "What was W. E. B. Du Bois's 'talented tenth' concept?",
+      "options": [
+        "Ten percent of federal jobs should be reserved for Black Americans",
+        "The most educated 10% of Black Americans should lead an immediate fight for full civil rights",
+        "Wealthy Black Americans should donate 10% of their income to civil rights causes",
+        "Only the top 10% of Black students should receive higher education"
+      ],
+      "correct": 1,
+      "explanation": "Du Bois believed the most educated Black Americans should lead an uncompromising, immediate fight for full civil rights through legal and scholarly means — the antithesis of Washington's gradual approach."
+    },
+    {
+      "q": "Why was Jim Conley's testimony in the Leo Frank trial considered questionable?",
+      "options": [
+        "He later recanted his testimony before the verdict was delivered",
+        "He had been held in seclusion for six weeks before trial and provided four contradictory affidavits",
+        "He was a convicted felon whose testimony was inadmissible",
+        "He admitted under cross-examination that he never saw Leo Frank"
+      ],
+      "correct": 1,
+      "explanation": "Jim Conley was held in seclusion on the prosecution's orders for six weeks before trial, and his account of how Frank disposed of Phagan's body changed across four contradictory affidavits."
+    },
+    {
+      "q": "What happened after Governor Slaton commuted Leo Frank's death sentence?",
+      "options": [
+        "Frank was quietly released from prison and left Georgia",
+        "Riots erupted across Atlanta; Slaton declared martial law and was forced to flee the state",
+        "The Georgia Supreme Court overruled Slaton's commutation",
+        "Frank was retried and acquitted by a new jury"
+      ],
+      "correct": 1,
+      "explanation": "Slaton's commutation of Frank's sentence enraged the public. Riots broke out, crowds marched on the governor's mansion, Slaton declared martial law, and when his term ended he fled Georgia and didn't return for a decade."
+    },
+    {
+      "q": "Who were the 'Knights of Mary Phagan' and what did they do afterward?",
+      "options": [
+        "A women's memorial society that built the Mary Phagan monument in Marietta",
+        "Twenty-five prominent Marietta citizens who lynched Frank in 1915; many later participated in reviving the modern KKK at Stone Mountain",
+        "A legal defense fund that appealed Frank's conviction to the federal courts",
+        "The jury foreman and alternates who convicted Frank at trial"
+      ],
+      "correct": 1,
+      "explanation": "The Knights of Mary Phagan lynched Frank on August 16, 1915. Months later, many of the same men participated in the Stone Mountain ceremony that revived the modern Ku Klux Klan."
+    },
+    {
+      "q": "What organization was founded in direct response to the Leo Frank case?",
+      "options": [
+        "The NAACP — National Association for the Advancement of Colored People",
+        "The Southern Poverty Law Center",
+        "The Anti-Defamation League (ADL)",
+        "The American Jewish Committee"
+      ],
+      "correct": 2,
+      "explanation": "The Anti-Defamation League was founded in 1913, directly inspired by the anti-Semitism exposed by the Leo Frank trial and conviction."
+    },
+    {
+      "q": "When was Leo Frank posthumously pardoned and why?",
+      "options": [
+        "1945 — by executive order after new forensic evidence emerged",
+        "1982 — after Alonzo Mann's testimony proved Conley carried the body",
+        "1986 — by the Georgia Board of Pardons and Paroles, acknowledging the state's failure to protect Frank and prosecute his killers",
+        "2001 — by the Georgia legislature passing a special civil rights resolution"
+      ],
+      "correct": 2,
+      "explanation": "In 1986 the Georgia Board of Pardons and Paroles pardoned Frank, citing the state's failure to protect him and failure to bring his killers to justice — without addressing guilt or innocence."
+    }
+  ]
+}

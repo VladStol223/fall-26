@@ -70,7 +70,7 @@
     }
 
     /* ── Nav ──────────────────────────────────────────────── */
-    nav {
+    .page-nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -453,29 +453,19 @@
       white-space: nowrap;
     }
 
-    /* ── Coming soon card ─────────────────────────────────── */
-    .coming-soon-row {
-      display: flex;
+    /* ── Course see-all link ──────────────────────────────────── */
+    .course-see-all {
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 12px;
-      border-radius: var(--radius-sm);
-      border: 1px dashed var(--border);
-      background: #fafbfc;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .cs-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 7px;
-      border: 1.5px dashed var(--border);
-      display: grid;
-      place-items: center;
+      gap: 4px;
       font-size: 12px;
-      flex-shrink: 0;
+      font-weight: 600;
+      color: var(--blue-500);
+      text-decoration: none;
+      margin-top: 10px;
+      transition: color var(--transition);
     }
+    .course-see-all:hover { color: var(--blue-700); }
 
     /* ── Card footer ──────────────────────────────────────── */
     .course-card-footer {
@@ -665,6 +655,12 @@
     .sidebar-home-link:hover { background: rgba(255,255,255,.16); }
 
     .sidebar-nav { flex: 1; overflow-y: auto; padding: 14px 10px; }
+    .sidebar-course-link {
+      display: flex; align-items: center; padding: 10px 8px 6px;
+      font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.55); text-decoration: none; transition: color .18s;
+    }
+    .sidebar-course-link:hover { color: white; }
     .sidebar-section-label {
       font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
       color: rgba(255,255,255,.4); padding: 10px 8px 6px;
@@ -714,52 +710,17 @@
 
       <!-- GA History -->
       <div class="course-card animate-in delay-2">
-        <div class="course-card-banner ga"></div>
+        <a class="course-card-banner ga" href="course.html?id=ga-history" style="display:block;text-decoration:none;"></a>
         <div class="course-card-body">
           <span class="course-tag ga">🍑 GA History</span>
-          <h3 class="course-name">Georgia History</h3>
-          <p class="course-desc">Post–Civil War through modern Georgia — Sunbelt Era, civil rights, economic growth, and contemporary government.</p>
+          <a href="course.html?id=ga-history" style="text-decoration:none;color:inherit;">
+            <h3 class="course-name" style="transition:color .18s;">Georgia History</h3>
+          </a>
+          <p class="course-desc">From colonial founding through modern Georgia — Sunbelt Era, civil rights, economic growth, and contemporary government.</p>
 
-          <div class="module-list">
-            <a class="module-row" href="module.html?id=ga-history-m7"
-               data-total="33"
-               data-module-id="m7">
-              <div class="module-num">7</div>
-              <div class="module-info">
-                <div class="module-title">Sunbelt Era</div>
-                <div class="module-subtitle">Growth, migration &amp; modern Georgia</div>
-              </div>
-              <div class="module-progress">
-                <span class="module-progress-label" id="m7-label">—</span>
-                <div class="module-progress-bar-wrap">
-                  <div class="module-progress-fill" id="m7-bar"></div>
-                </div>
-              </div>
-              <span class="module-arrow">→</span>
-            </a>
+          <div class="module-list" id="ga-module-list"></div>
 
-            <a class="module-row" href="module.html?id=ga-history-m8"
-               data-total="32"
-               data-module-id="m8">
-              <div class="module-num">8</div>
-              <div class="module-info">
-                <div class="module-title">Modern Georgia</div>
-                <div class="module-subtitle">Civil rights, politics &amp; economy</div>
-              </div>
-              <div class="module-progress">
-                <span class="module-progress-label" id="m8-label">—</span>
-                <div class="module-progress-bar-wrap">
-                  <div class="module-progress-fill" id="m8-bar"></div>
-                </div>
-              </div>
-              <span class="module-arrow">→</span>
-            </a>
-
-            <div class="coming-soon-row">
-              <div class="cs-icon">+</div>
-              <span>More modules coming soon…</span>
-            </div>
-          </div>
+          <a href="course.html?id=ga-history" class="course-see-all" id="ga-see-all">See all 8 modules →</a>
         </div>
 
         <div class="course-card-footer">
@@ -780,14 +741,6 @@
           <p class="course-desc">American history from Reconstruction to the present — key movements, conflicts, and turning points in US society.</p>
 
           <div class="module-list">
-            <div class="coming-soon-row">
-              <div class="cs-icon">+</div>
-              <span>Study guides coming soon…</span>
-            </div>
-            <div class="coming-soon-row">
-              <div class="cs-icon">+</div>
-              <span>Check back after the next module</span>
-            </div>
           </div>
         </div>
 
@@ -805,25 +758,29 @@
 
   <script>
   // ── Progress display ──────────────────────────────────────────────────────
-  // Reads cardHistory_{prefix} from localStorage (written by module.html).
-  // Module rows carry data-module-id and data-total attributes.
-
   var PROXY_BASE = 'https://gist-proxy.vlad-stol223.workers.dev/progress';
 
-  // Map module-id → { storagePrefix, gistFile, total }
-  var MODULE_META = {
-    'ga-history-m7': { prefix: 'm7', gistFile: 'ga-history.json', total: 33 },
-    'ga-history-m8': { prefix: 'm8', gistFile: 'ga-history.json', total: 32 }
+  // Ordered module definitions per course — drives the home-page card preview
+  var COURSE_MODULES = {
+    'ga-history': [
+      { id: 'ga-history-m1', num: 1, prefix: 'm1', total: 30, gistFile: 'ga-history.json', label: 'Colonial Georgia',                      subtitle: 'Oglethorpe, Trustees & early settlement' },
+      { id: 'ga-history-m2', num: 2, prefix: 'm2', total: 32, gistFile: 'ga-history.json', label: 'Gold Rush & Cherokee Removal',            subtitle: 'Dahlonega Mint, Trail of Tears & the Great Intrusion' },
+      { id: 'ga-history-m3', num: 3, prefix: 'm3', total: 30, gistFile: 'ga-history.json', label: 'Civil War & Reconstruction',              subtitle: 'Cornerstone Speech, Wartime Welfare & the Camilla Massacre' },
+      { id: 'ga-history-m4', num: 4, prefix: 'm4', total: 30, gistFile: 'ga-history.json', label: 'The Early New South Period',              subtitle: 'Atlanta Compromise, Leo Frank & the New South Vision' },
+      { id: 'ga-history-m5', num: 5, prefix: 'm5', total: 20, gistFile: 'ga-history.json', label: 'The Great Depression and World War II',   subtitle: 'Mill Workers, Georgia on the Homefront & the U-Boat Threat' },
+      { id: 'ga-history-m6', num: 6, prefix: 'm6', total: 27, gistFile: 'ga-history.json', label: 'Civil Rights Era',                       subtitle: 'Albany Movement, Pickrick Restaurant & the Fight for Equality' },
+      { id: 'ga-history-m7', num: 7, prefix: 'm7', total: 33, gistFile: 'ga-history.json', label: 'Sunbelt Era',                            subtitle: 'Hartsfield-Jackson Airport & 1996 Olympics' },
+      { id: 'ga-history-m8', num: 8, prefix: 'm8', total: 32, gistFile: 'ga-history.json', label: 'Modern Georgia',                         subtitle: 'State Flag, Ted Turner & the Film Industry' }
+    ]
   };
 
   function showChip(state, text) {
-    const chip = document.getElementById('sync-chip');
+    var chip = document.getElementById('sync-chip');
     chip.className = 'visible ' + state;
     chip.textContent = text;
     if (state === 'saved') setTimeout(function(){ chip.className = ''; }, 2500);
   }
 
-  // Derive stats from cardHistory object
   function statsFromHistory(history) {
     var totalReviewed = 0, goodCount = 0, againCount = 0;
     Object.values(history).forEach(function(h) {
@@ -838,7 +795,6 @@
     try { return JSON.parse(localStorage.getItem('cardHistory_' + prefix)) || {}; } catch(e) { return {}; }
   }
 
-  // Merge remote cardHistory into localStorage (more reviews wins per card)
   function mergeHistory(prefix, remote) {
     var local = getHistory(prefix);
     Object.keys(remote).forEach(function(q) {
@@ -848,67 +804,105 @@
     localStorage.setItem('cardHistory_' + prefix, JSON.stringify(local));
   }
 
+  // A module is "mastered" if it has cards, all cards seen, and accuracy ≥ 80%
+  function isMastered(m) {
+    if (!m.total) return false;
+    var history = getHistory(m.prefix);
+    var seen = Object.keys(history).length;
+    if (seen < m.total) return false;
+    var stats = statsFromHistory(history);
+    return stats.totalReviewed > 0 && Math.round(stats.goodCount / stats.totalReviewed * 100) >= 80;
+  }
+
+  function buildModuleRowEl(m) {
+    var history = getHistory(m.prefix);
+    var seen    = Object.keys(history).length;
+    var stats   = seen > 0 ? statsFromHistory(history) : null;
+    var pct     = stats && stats.totalReviewed > 0 ? Math.round(stats.goodCount / stats.totalReviewed * 100) : 0;
+    var fill    = m.total > 0 && seen > 0 ? Math.min(100, Math.round(seen / m.total * 100)) : 0;
+    var mastered = isMastered(m);
+
+    var a = document.createElement('a');
+    a.className = 'module-row' + (mastered ? ' mastered' : '');
+    a.href = 'module.html?id=' + m.id;
+
+    var numEl = document.createElement('div');
+    numEl.className = 'module-num';
+    numEl.textContent = m.num;
+
+    var infoEl = document.createElement('div');
+    infoEl.className = 'module-info';
+    infoEl.innerHTML = '<div class="module-title">' + m.label + '</div><div class="module-subtitle">' + m.subtitle + '</div>';
+
+    var progressEl = document.createElement('div');
+    progressEl.className = 'module-progress';
+
+    var labelEl = document.createElement('span');
+    labelEl.className = 'module-progress-label';
+    if (mastered) {
+      labelEl.textContent = '✓ Mastered';
+      labelEl.style.color = '#16a34a';
+    } else if (seen === 0) {
+      labelEl.textContent = 'Not started';
+    } else {
+      labelEl.textContent = pct + '% acc';
+      labelEl.style.color = pct >= 80 ? '#16a34a' : pct >= 50 ? '#b45309' : '#dc2626';
+    }
+
+    var barWrap = document.createElement('div'); barWrap.className = 'module-progress-bar-wrap';
+    var barFill = document.createElement('div'); barFill.className = 'module-progress-fill';
+    barFill.style.width = (mastered ? '100' : fill) + '%';
+    if (mastered || fill >= 80) barFill.style.background = 'linear-gradient(90deg,#16a34a,#4ade80)';
+    else if (fill >= 40) barFill.style.background = 'linear-gradient(90deg,#b45309,#fbbf24)';
+    barWrap.appendChild(barFill);
+
+    progressEl.appendChild(labelEl);
+    progressEl.appendChild(barWrap);
+
+    var arrow = document.createElement('span'); arrow.className = 'module-arrow'; arrow.textContent = '→';
+
+    a.appendChild(numEl); a.appendChild(infoEl); a.appendChild(progressEl); a.appendChild(arrow);
+    return a;
+  }
+
   function renderProgress() {
-    document.querySelectorAll('.module-row[data-module-id]').forEach(function(row) {
-      var moduleId = row.dataset.moduleId;          // e.g. "m7"  ← this is the SHORT id on the row
-      var total    = parseInt(row.dataset.total, 10);
-      var bar      = document.getElementById(moduleId + '-bar');
-      var label    = document.getElementById(moduleId + '-label');
-      if (!bar || !label) return;
+    // GA History — show first 3 unmastered modules in card preview
+    var gaList = document.getElementById('ga-module-list');
+    if (gaList) {
+      gaList.innerHTML = '';
+      var mods = COURSE_MODULES['ga-history'] || [];
+      var unmastered = mods.filter(function(m) { return !isMastered(m); });
+      var toShow = unmastered.length > 0 ? unmastered.slice(0, 3) : mods.slice(-3);
+      toShow.forEach(function(m) { gaList.appendChild(buildModuleRowEl(m)); });
+    }
 
-      // Find the matching full module id (ga-history-m7) by storagePrefix
-      var meta = null;
-      Object.keys(MODULE_META).forEach(function(id) {
-        if (MODULE_META[id].prefix === moduleId) meta = MODULE_META[id];
-      });
-      if (!meta) return;
-
-      var history = getHistory(meta.prefix);
-      var seen = Object.keys(history).length;
-      if (seen === 0) {
-        label.textContent = 'Not started';
-        bar.style.width = '0%';
-        return;
-      }
-
-      var stats    = statsFromHistory(history);
-      var mastered = Object.values(history).filter(function(h){ return h.good > 0 && h.good >= h.again; }).length;
-      var pct      = stats.totalReviewed > 0 ? Math.round(stats.goodCount / stats.totalReviewed * 100) : 0;
-      var fill     = Math.min(100, Math.round(mastered / total * 100));
-
-      label.textContent = pct + '% acc';
-      label.style.color = pct >= 80 ? '#16a34a' : pct >= 50 ? '#b45309' : '#dc2626';
-      bar.style.width   = fill + '%';
-      if      (fill >= 80) bar.style.background = 'linear-gradient(90deg,#16a34a,#4ade80)';
-      else if (fill >= 40) bar.style.background = 'linear-gradient(90deg,#b45309,#fbbf24)';
-      else                 bar.style.background = '';
-    });
-
-    // GA footer bar — fraction of modules with any reviews
-    var gaMetas  = Object.values(MODULE_META).filter(function(m){ return m.gistFile === 'ga-history.json'; });
-    var gaStarted = gaMetas.filter(function(m){ return Object.keys(getHistory(m.prefix)).length > 0; }).length;
+    // GA footer bar — fraction of modules mastered
+    var gaMods = COURSE_MODULES['ga-history'] || [];
+    var gaMastered = gaMods.filter(isMastered).length;
     var footerBar   = document.getElementById('ga-footer-bar');
     var footerCount = document.getElementById('ga-footer-count');
     if (footerBar && footerCount) {
-      footerBar.style.width = Math.round(gaStarted / gaMetas.length * 100) + '%';
-      footerCount.textContent = gaStarted + ' / ' + gaMetas.length + ' started';
+      footerBar.style.width = Math.round(gaMastered / gaMods.length * 100) + '%';
+      footerCount.textContent = gaMastered + ' / ' + gaMods.length + ' mastered';
+      if (gaMastered >= gaMods.length) footerBar.style.background = 'linear-gradient(90deg,#16a34a,#4ade80)';
     }
   }
 
   // Pull each unique gistFile, merge into localStorage, re-render
   async function syncFromGist() {
     var files = {};
-    Object.values(MODULE_META).forEach(function(m){ files[m.gistFile] = true; });
+    Object.values(COURSE_MODULES).forEach(function(arr) {
+      arr.forEach(function(m) { files[m.gistFile] = true; });
+    });
     var fetches = Object.keys(files).map(async function(f) {
       try {
         var res = await fetch(PROXY_BASE + '?file=' + f, { cache: 'no-store' });
         if (!res.ok) return;
         var data = await res.json();
-        // data is { "ga-history-m7": { cardHistory }, ... }
-        Object.keys(MODULE_META).forEach(function(id) {
-          if (MODULE_META[id].gistFile === f && data[id]) {
-            mergeHistory(MODULE_META[id].prefix, data[id]);
-          }
+        Object.values(COURSE_MODULES).forEach(function(arr) {
+          arr.forEach(function(m) {
+            if (m.gistFile === f && data[m.id]) mergeHistory(m.prefix, data[m.id]);
+          });
         });
       } catch(e) {}
     });
@@ -940,22 +934,30 @@
   <script>
   // ── Sidebar nav (mirrors MODULES registry in module.html) ─────────────────
   var MODULES = [
-    { id: 'ga-history-m7', course: 'GA History', num: 7, label: 'Sunbelt Era' },
-    { id: 'ga-history-m8', course: 'GA History', num: 8, label: 'Modern Georgia' }
+    { id: 'ga-history-m1', courseId: 'ga-history', course: 'GA History', num: 1, label: 'Colonial Georgia' },
+    { id: 'ga-history-m2', courseId: 'ga-history', course: 'GA History', num: 2, label: 'Gold Rush & Cherokee Removal' },
+    { id: 'ga-history-m3', courseId: 'ga-history', course: 'GA History', num: 3, label: 'Civil War & Reconstruction' },
+    { id: 'ga-history-m4', courseId: 'ga-history', course: 'GA History', num: 4, label: 'The Early New South Period' },
+    { id: 'ga-history-m5', courseId: 'ga-history', course: 'GA History', num: 5, label: 'The Great Depression and World War II' },
+    { id: 'ga-history-m6', courseId: 'ga-history', course: 'GA History', num: 6, label: 'Civil Rights Era' },
+    { id: 'ga-history-m7', courseId: 'ga-history', course: 'GA History', num: 7, label: 'Sunbelt Era' },
+    { id: 'ga-history-m8', courseId: 'ga-history', course: 'GA History', num: 8, label: 'Modern Georgia' }
   ];
   (function buildSidebar() {
     var nav = document.getElementById('sidebar-nav');
     var courses = {};
     MODULES.forEach(function(m) {
-      if (!courses[m.course]) courses[m.course] = [];
-      courses[m.course].push(m);
+      if (!courses[m.courseId]) courses[m.courseId] = { label: m.course, modules: [] };
+      courses[m.courseId].modules.push(m);
     });
-    Object.keys(courses).forEach(function(course) {
-      var label = document.createElement('div');
-      label.className = 'sidebar-section-label';
-      label.textContent = course;
-      nav.appendChild(label);
-      courses[course].forEach(function(m) {
+    Object.keys(courses).forEach(function(cid) {
+      var c = courses[cid];
+      var courseLink = document.createElement('a');
+      courseLink.className = 'sidebar-course-link';
+      courseLink.href = 'course.html?id=' + cid;
+      courseLink.textContent = c.label;
+      nav.appendChild(courseLink);
+      c.modules.forEach(function(m) {
         var a = document.createElement('a');
         a.className = 'sidebar-link';
         a.href = 'module.html?id=' + m.id;

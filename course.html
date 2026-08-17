@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Overview</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+      background-color: #f7f8fa;
+      color: #1f2328;
+      line-height: 1.6;
+      padding: 72px 20px 40px;
+    }
+
+    .container { max-width: 760px; margin: 0 auto; }
+
+    /* ── Header ── */
+    .course-header {
+      background: linear-gradient(135deg, #0a3c78 0%, #1e64b4 100%);
+      color: white; padding: 30px; border-radius: 8px;
+      margin-bottom: 28px; border-bottom: 4px solid #3b82d4;
+    }
+    .course-header-back { font-size: 12px; color: rgba(255,255,255,.7); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; margin-bottom: 12px; transition: color .15s; }
+    .course-header-back:hover { color: white; }
+    .course-header h1 { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+    .course-header p  { font-size: 14px; opacity: .9; }
+
+    /* ── Tabs ── */
+    .nav-tabs { display: flex; border-bottom: 1px solid #e5e7eb; background: white; border-radius: 8px 8px 0 0; flex-wrap: wrap; }
+    .nav-tabs button {
+      flex: 1; min-width: 120px; padding: 14px 16px; border: none;
+      background: none; font-size: 14px; font-weight: 500; color: #57606a;
+      cursor: pointer; transition: all .2s; border-bottom: 3px solid transparent;
+    }
+    .nav-tabs button.active  { color: #0a3c78; border-bottom-color: #0a3c78; background: white; }
+    .nav-tabs button:hover   { background: #f7f8fa; color: #0a3c78; }
+
+    .tab-content { background: white; border-radius: 0 0 8px 8px; box-shadow: 0 2px 8px rgba(0,0,0,.07); }
+    .tab-pane { display: none; padding: 28px; }
+    .tab-pane.active { display: block; animation: fadeIn .25s ease; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── Module list ── */
+    .modules-section h2 { font-size: 15px; font-weight: 700; color: #0a3c78; margin-bottom: 14px; }
+    .module-list { display: flex; flex-direction: column; gap: 8px; }
+    .module-row {
+      display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+      border: 1px solid #e5e7eb; border-radius: 7px; background: #fafbfc;
+      text-decoration: none; color: #1f2328; transition: all .2s;
+      position: relative; overflow: hidden;
+    }
+    .module-row::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, #eff6ff, transparent);
+      opacity: 0; transition: opacity .2s;
+    }
+    .module-row:hover::before { opacity: 1; }
+    .module-row:hover { border-color: #bfdbfe; transform: translateX(3px); }
+    .module-row.mastered { border-color: #bbf7d0; background: #f0fdf4; }
+    .module-num {
+      width: 28px; height: 28px; border-radius: 6px;
+      background: linear-gradient(135deg, #0a3c78, #3b82d4);
+      color: white; font-size: 12px; font-weight: 700;
+      display: grid; place-items: center; flex-shrink: 0; position: relative; z-index: 1;
+    }
+    .module-row.mastered .module-num { background: linear-gradient(135deg, #15803d, #4ade80); }
+    .module-info { flex: 1; position: relative; z-index: 1; }
+    .module-title    { font-size: 13px; font-weight: 600; }
+    .module-subtitle { font-size: 11px; color: #57606a; margin-top: 1px; }
+    .module-progress { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; min-width: 60px; position: relative; z-index: 1; }
+    .module-progress-label { font-size: 10px; font-weight: 600; color: #57606a; white-space: nowrap; }
+    .module-progress-bar-wrap { width: 60px; height: 4px; background: #e5e7eb; border-radius: 99px; overflow: hidden; }
+    .module-progress-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, #0a3c78, #3b82d4); transition: width .7s ease; width: 0%; }
+    .module-arrow { font-size: 14px; color: #9ca3af; position: relative; z-index: 1; transition: transform .2s, color .2s; }
+    .module-row:hover .module-arrow { transform: translateX(3px); color: #3b82d4; }
+
+    /* ── Quiz ── */
+    .quiz-locked {
+      text-align: center; padding: 40px 24px;
+      border: 2px dashed #e5e7eb; border-radius: 10px; background: #fafbfc;
+    }
+    .quiz-locked h3 { font-size: 17px; font-weight: 700; color: #57606a; margin-bottom: 8px; }
+    .quiz-locked p  { font-size: 13px; color: #9ca3af; }
+
+    .quiz-progress-bar { height: 6px; background: #e5e7eb; border-radius: 3px; overflow: hidden; margin-bottom: 24px; }
+    .quiz-progress-fill { height: 100%; background: #0a3c78; border-radius: 3px; transition: width .4s ease; }
+
+    .quiz-q-block { border: 2px solid #e5e7eb; border-radius: 8px; padding: 22px; margin-bottom: 16px; background: white; }
+    .quiz-q-block.answered-correct { border-color: #16a34a; background: #f0fdf4; }
+    .quiz-q-block.answered-wrong   { border-color: #dc2626; background: #fef2f2; }
+    .quiz-q-num  { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: #57606a; margin-bottom: 6px; }
+    .quiz-pts-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-bottom: 8px; background: #dbeafe; color: #0a3c78; }
+    .quiz-q-text { font-size: 15px; font-weight: 600; color: #1f2328; margin-bottom: 14px; line-height: 1.5; }
+    .quiz-opts { display: flex; flex-direction: column; gap: 7px; }
+    .quiz-opt {
+      display: flex; align-items: flex-start; gap: 11px; padding: 9px 13px;
+      border: 1.5px solid #e5e7eb; border-radius: 6px; cursor: pointer;
+      font-size: 14px; color: #1f2328; background: white;
+      transition: border-color .15s, background .15s; text-align: left; width: 100%;
+    }
+    .quiz-opt:hover:not(:disabled) { border-color: #0a3c78; background: #eff6ff; }
+    .quiz-opt.selected { border-color: #0a3c78; background: #eff6ff; }
+    .quiz-opt.correct  { border-color: #16a34a !important; background: #f0fdf4 !important; color: #15803d; font-weight: 600; }
+    .quiz-opt.wrong    { border-color: #dc2626 !important; background: #fef2f2 !important; color: #dc2626; text-decoration: line-through; }
+    .quiz-opt:disabled { cursor: default; }
+    .quiz-opt-letter {
+      width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid #d1d5db;
+      display: grid; place-items: center; font-size: 11px; font-weight: 700;
+      flex-shrink: 0; color: #57606a; background: #f7f8fa;
+    }
+    .quiz-opt.selected .quiz-opt-letter { border-color: #0a3c78; background: #0a3c78; color: white; }
+    .quiz-opt.correct  .quiz-opt-letter { border-color: #16a34a; background: #16a34a; color: white; }
+    .quiz-opt.wrong    .quiz-opt-letter { border-color: #dc2626; background: #dc2626; color: white; }
+    .quiz-feedback { font-size: 13px; margin-top: 10px; padding: 8px 12px; border-radius: 5px; display: none; line-height: 1.5; }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+    .quiz-feedback.wrong   { background: #fee2e2; color: #dc2626; border: 1px solid #fecaca; }
+    .quiz-actions { display: flex; justify-content: flex-end; margin-top: 14px; }
+    .quiz-submit-btn {
+      padding: 9px 22px; background: #0a3c78; color: white; border: none;
+      border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background .2s;
+    }
+    .quiz-submit-btn:hover { background: #1e64b4; }
+    .quiz-submit-btn:disabled { background: #9ca3af; cursor: default; }
+
+    .quiz-score-card { text-align: center; padding: 36px 24px; border: 2px solid #e5e7eb; border-radius: 10px; background: white; margin-bottom: 24px; }
+    .quiz-score-big   { font-size: 52px; font-weight: 800; color: #0a3c78; line-height: 1; }
+    .quiz-score-sub   { font-size: 15px; color: #57606a; margin-top: 8px; }
+    .quiz-score-grade { font-size: 22px; font-weight: 700; margin: 14px 0 6px; }
+    .quiz-retake-btn  { margin-top: 18px; padding: 10px 28px; background: #0a3c78; color: white; border: none; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; }
+    .quiz-retake-btn:hover { background: #1e64b4; }
+    .quiz-review-section { margin-top: 24px; }
+    .quiz-review-section h3 { font-size: 14px; font-weight: 700; color: #0a3c78; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 2px solid #e5e7eb; }
+    .quiz-finish-wrap { display: none; text-align: center; margin-top: 8px; padding: 20px 0; border-top: 1px solid #e5e7eb; }
+
+    /* ── Sidebar ── */
+    #sidebar {
+      position: fixed; top: 0; left: 0; height: 100%; width: 260px;
+      background: #0a2342; color: #e2e8f0; z-index: 1000;
+      display: flex; flex-direction: column;
+      transform: translateX(-260px);
+      transition: transform .28s cubic-bezier(.4,0,.2,1);
+      box-shadow: 4px 0 24px rgba(0,0,0,.18);
+    }
+    #sidebar.open { transform: translateX(0); }
+    #sidebar-toggle {
+      position: fixed; top: 16px; left: 16px; z-index: 1001;
+      width: 36px; height: 36px; border-radius: 8px; border: none;
+      background: #0a3c78; color: white; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.18); transition: background .2s, left .28s cubic-bezier(.4,0,.2,1);
+    }
+    #sidebar-toggle:hover { background: #1e64b4; }
+    #sidebar-toggle.shifted { left: 272px; }
+    .toggle-bar { width: 18px; height: 2px; background: white; border-radius: 2px; transition: all .22s; }
+    #sidebar-toggle.open .toggle-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #sidebar-toggle.open .toggle-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    #sidebar-toggle.open .toggle-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    #sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 999; }
+    #sidebar-overlay.visible { display: block; }
+    .sidebar-header { padding: 20px 18px 14px; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .sidebar-home-link {
+      display: flex; align-items: center; gap: 10px; text-decoration: none;
+      color: white; font-weight: 700; font-size: 14px; padding: 8px 10px;
+      border-radius: 7px; background: rgba(255,255,255,.08); transition: background .18s;
+    }
+    .sidebar-home-link:hover { background: rgba(255,255,255,.16); }
+    .sidebar-nav { flex: 1; overflow-y: auto; padding: 14px 10px; }
+    .sidebar-course-link {
+      display: flex; align-items: center; padding: 10px 8px 6px;
+      font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.55); text-decoration: none; transition: color .18s;
+    }
+    .sidebar-course-link:hover { color: white; }
+    .sidebar-course-link.active { color: #93c5fd; }
+    .sidebar-link {
+      display: flex; align-items: center; gap: 10px; padding: 9px 10px;
+      border-radius: 7px; text-decoration: none; color: rgba(255,255,255,.78);
+      font-size: 13px; font-weight: 500; transition: background .18s, color .18s;
+    }
+    .sidebar-link:hover { background: rgba(255,255,255,.1); color: white; }
+    .sidebar-link-num {
+      width: 22px; height: 22px; border-radius: 5px; background: rgba(255,255,255,.12);
+      display: grid; place-items: center; font-size: 11px; font-weight: 700; flex-shrink: 0;
+    }
+    .sidebar-footer { padding: 14px 18px; border-top: 1px solid rgba(255,255,255,.1); font-size: 11px; color: rgba(255,255,255,.3); text-align: center; }
+
+    .footer { padding: 16px 0; text-align: center; font-size: 12px; color: #9ca3af; margin-top: 24px; border-top: 1px solid #e5e7eb; }
+  </style>
+</head>
+<body>
+
+  <button id="sidebar-toggle" aria-label="Toggle navigation">
+    <span class="toggle-bar"></span>
+    <span class="toggle-bar"></span>
+    <span class="toggle-bar"></span>
+  </button>
+  <div id="sidebar-overlay"></div>
+  <aside id="sidebar">
+    <div class="sidebar-header">
+      <a class="sidebar-home-link" href="index.html">
+        <span style="font-size:18px;line-height:1;">🏠</span>
+        <span>Study Hub</span>
+      </a>
+    </div>
+    <nav class="sidebar-nav" id="sidebar-nav"></nav>
+    <div class="sidebar-footer">Fall '26 — Study Hub</div>
+  </aside>
+
+  <div class="container" id="app">
+    <div style="padding:40px;text-align:center;color:#57606a;">Loading…</div>
+  </div>
+
+  <script>
+  // ── Sidebar toggle ────────────────────────────────────────────────────────
+  (function() {
+    var toggle  = document.getElementById('sidebar-toggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebar-overlay');
+    var open    = false;
+    function openSidebar()  { open=true;  sidebar.classList.add('open');    toggle.classList.add('open','shifted');    overlay.classList.add('visible'); }
+    function closeSidebar() { open=false; sidebar.classList.remove('open'); toggle.classList.remove('open','shifted'); overlay.classList.remove('visible'); }
+    toggle.addEventListener('click', function() { open ? closeSidebar() : openSidebar(); });
+    overlay.addEventListener('click', closeSidebar);
+    document.addEventListener('keydown', function(e) { if (e.key==='Escape' && open) closeSidebar(); });
+  })();
+
+  // ── Course & module registry ──────────────────────────────────────────────
+  var COURSES = {
+    'ga-history': {
+      label: 'Georgia History',
+      tag:   '🍑 GA History',
+      desc:  'From colonial founding through modern Georgia — Sunbelt Era, civil rights, economic growth, and contemporary government.',
+      quizFile: 'GLRs/GA History/ga-history-final-quiz.json',
+      modules: [
+        { id: 'ga-history-m1', num: 1, prefix: 'm1', total: 30, label: 'Colonial Georgia',                      subtitle: 'Oglethorpe, Trustees & early settlement' },
+        { id: 'ga-history-m2', num: 2, prefix: 'm2', total: 32, label: 'Gold Rush & Cherokee Removal',            subtitle: 'Dahlonega Mint, Trail of Tears & the Great Intrusion' },
+        { id: 'ga-history-m3', num: 3, prefix: 'm3', total: 30, label: 'Civil War & Reconstruction',              subtitle: 'Cornerstone Speech, Wartime Welfare & the Camilla Massacre' },
+        { id: 'ga-history-m4', num: 4, prefix: 'm4', total: 30, label: 'The Early New South Period',              subtitle: 'Atlanta Compromise, Leo Frank & the New South Vision' },
+        { id: 'ga-history-m5', num: 5, prefix: 'm5', total: 20, label: 'The Great Depression and World War II',   subtitle: 'Mill Workers, Georgia on the Homefront & the U-Boat Threat' },
+        { id: 'ga-history-m6', num: 6, prefix: 'm6', total: 27, label: 'Civil Rights Era',                       subtitle: 'Albany Movement, Pickrick Restaurant & the Fight for Equality' },
+        { id: 'ga-history-m7', num: 7, prefix: 'm7', total: 33, label: 'Sunbelt Era',                            subtitle: 'Hartsfield-Jackson Airport & 1996 Olympics' },
+        { id: 'ga-history-m8', num: 8, prefix: 'm8', total: 32, label: 'Modern Georgia',                         subtitle: 'State Flag, Ted Turner & the Film Industry' }
+      ]
+    }
+  };
+
+  var MODULES_ALL = [];
+  Object.keys(COURSES).forEach(function(cid) {
+    COURSES[cid].modules.forEach(function(m) { MODULES_ALL.push({ courseId: cid, course: COURSES[cid].label, m: m }); });
+  });
+
+  // ── Resolve course from URL ───────────────────────────────────────────────
+  var params   = new URLSearchParams(location.search);
+  var courseId = params.get('id') || 'ga-history';
+  var COURSE   = COURSES[courseId] || COURSES['ga-history'];
+
+  // ── Build sidebar ─────────────────────────────────────────────────────────
+  (function buildSidebar() {
+    var nav = document.getElementById('sidebar-nav');
+    Object.keys(COURSES).forEach(function(cid) {
+      var c = COURSES[cid];
+      var cl = document.createElement('a');
+      cl.className = 'sidebar-course-link' + (cid === courseId ? ' active' : '');
+      cl.href = 'course.html?id=' + cid;
+      cl.textContent = c.label;
+      nav.appendChild(cl);
+      c.modules.forEach(function(m) {
+        var a = document.createElement('a');
+        a.className = 'sidebar-link';
+        a.href = 'module.html?id=' + m.id;
+        a.innerHTML = '<span class="sidebar-link-num">' + m.num + '</span><span>' + m.label + '</span>';
+        nav.appendChild(a);
+      });
+    });
+  })();
+
+  // ── Progress helpers ──────────────────────────────────────────────────────
+  function getHistory(prefix) {
+    try { return JSON.parse(localStorage.getItem('cardHistory_' + prefix)) || {}; } catch(e) { return {}; }
+  }
+  function statsFromHistory(history) {
+    var t=0, g=0;
+    Object.values(history).forEach(function(h){ t += h.good+h.again; g += h.good; });
+    return { total: t, good: g };
+  }
+  function isMastered(m) {
+    if (!m.total) return false;
+    var hist = getHistory(m.prefix);
+    if (Object.keys(hist).length < m.total) return false;
+    var s = statsFromHistory(hist);
+    return s.total > 0 && Math.round(s.good/s.total*100) >= 80;
+  }
+
+  function buildModuleRow(m) {
+    var hist    = getHistory(m.prefix);
+    var seen    = Object.keys(hist).length;
+    var s       = seen > 0 ? statsFromHistory(hist) : null;
+    var pct     = s && s.total > 0 ? Math.round(s.good/s.total*100) : 0;
+    var fill    = m.total > 0 && seen > 0 ? Math.min(100, Math.round(seen/m.total*100)) : 0;
+    var mastered = isMastered(m);
+
+    var a = document.createElement('a');
+    a.className = 'module-row' + (mastered ? ' mastered' : '');
+    a.href = 'module.html?id=' + m.id;
+
+    var num = document.createElement('div'); num.className = 'module-num'; num.textContent = m.num;
+    var info = document.createElement('div'); info.className = 'module-info';
+    info.innerHTML = '<div class="module-title">'+m.label+'</div><div class="module-subtitle">'+m.subtitle+'</div>';
+    var prog = document.createElement('div'); prog.className = 'module-progress';
+    var lbl = document.createElement('span'); lbl.className = 'module-progress-label';
+    if (mastered) { lbl.textContent = '✓ Mastered'; lbl.style.color = '#16a34a'; }
+    else if (seen === 0) { lbl.textContent = 'Not started'; }
+    else { lbl.textContent = pct+'% acc'; lbl.style.color = pct>=80?'#16a34a':pct>=50?'#b45309':'#dc2626'; }
+    var bw = document.createElement('div'); bw.className = 'module-progress-bar-wrap';
+    var bf = document.createElement('div'); bf.className = 'module-progress-fill';
+    bf.style.width = (mastered ? 100 : fill) + '%';
+    if (mastered || fill>=80) bf.style.background='linear-gradient(90deg,#16a34a,#4ade80)';
+    else if (fill>=40) bf.style.background='linear-gradient(90deg,#b45309,#fbbf24)';
+    bw.appendChild(bf); prog.appendChild(lbl); prog.appendChild(bw);
+    var arr = document.createElement('span'); arr.className = 'module-arrow'; arr.textContent = '→';
+    a.appendChild(num); a.appendChild(info); a.appendChild(prog); a.appendChild(arr);
+    return a;
+  }
+
+  // ── Quiz state ────────────────────────────────────────────────────────────
+  var quizState = null;
+
+  function buildQuizUI(container, questions) {
+    container.innerHTML = '';
+    quizState = { questions: questions, answers: {}, submitted: {}, score: 0 };
+
+    var pbWrap = document.createElement('div'); pbWrap.className = 'quiz-progress-bar';
+    var pbFill = document.createElement('div'); pbFill.className = 'quiz-progress-fill'; pbFill.id = 'q-pb'; pbFill.style.width = '0%';
+    pbWrap.appendChild(pbFill); container.appendChild(pbWrap);
+
+    var letters = ['A','B','C','D','E'];
+    questions.forEach(function(q, qi) {
+      var block = document.createElement('div'); block.className = 'quiz-q-block'; block.id = 'q-block-' + qi;
+      block.innerHTML =
+        '<div class="quiz-q-num">Question ' + (qi+1) + '</div>' +
+        '<div class="quiz-pts-badge">1 pt</div>' +
+        '<div class="quiz-q-text">' + q.q + '</div>';
+      var opts = document.createElement('div'); opts.className = 'quiz-opts';
+      q.options.forEach(function(opt, oi) {
+        var btn = document.createElement('button'); btn.className = 'quiz-opt';
+        btn.innerHTML = '<span class="quiz-opt-letter">'+letters[oi]+'</span><span>'+opt+'</span>';
+        btn.addEventListener('click', (function(qi2, oi2){ return function(){ selectOpt(qi2, oi2); }; })(qi, oi));
+        opts.appendChild(btn);
+      });
+      block.appendChild(opts);
+      var fb = document.createElement('div'); fb.className = 'quiz-feedback'; fb.id = 'q-fb-'+qi;
+      block.appendChild(fb);
+      var act = document.createElement('div'); act.className = 'quiz-actions';
+      var sub = document.createElement('button'); sub.className = 'quiz-submit-btn'; sub.id = 'q-sub-'+qi;
+      sub.textContent = 'Submit'; sub.disabled = true;
+      sub.addEventListener('click', (function(qi2){ return function(){ submitQuestion(qi2); }; })(qi));
+      act.appendChild(sub); block.appendChild(act);
+      container.appendChild(block);
+    });
+
+    var finWrap = document.createElement('div'); finWrap.className = 'quiz-finish-wrap'; finWrap.id = 'q-finish-wrap';
+    finWrap.innerHTML = '<button class="quiz-submit-btn" id="q-finish-btn" style="padding:12px 36px;font-size:15px;">See My Results</button>';
+    container.appendChild(finWrap);
+  }
+
+  function selectOpt(qi, oi) {
+    if (!quizState || quizState.submitted[qi]) return;
+    quizState.answers[qi] = oi;
+    var block = document.getElementById('q-block-' + qi);
+    block.querySelectorAll('.quiz-opt').forEach(function(b){ b.classList.remove('selected'); });
+    block.querySelectorAll('.quiz-opt')[oi].classList.add('selected');
+    var sub = document.getElementById('q-sub-' + qi); if (sub) sub.disabled = false;
+    updateQuizProgress();
+  }
+
+  function submitQuestion(qi) {
+    if (!quizState || quizState.submitted[qi] || quizState.answers[qi] === undefined) return;
+    quizState.submitted[qi] = true;
+    var q = quizState.questions[qi];
+    var chosen = quizState.answers[qi];
+    var correct = chosen === q.correct;
+    if (correct) quizState.score++;
+
+    var block = document.getElementById('q-block-'+qi);
+    block.classList.add(correct ? 'answered-correct' : 'answered-wrong');
+    block.querySelectorAll('.quiz-opt').forEach(function(btn, oi) {
+      btn.disabled = true;
+      if (oi === q.correct) { btn.classList.add('correct'); btn.classList.remove('selected'); }
+      else if (oi === chosen && !correct) btn.classList.add('wrong');
+    });
+    var fb = document.getElementById('q-fb-'+qi);
+    if (correct) { fb.className = 'quiz-feedback show correct'; fb.textContent = '✓ Correct! ' + (q.explanation || ''); }
+    else { fb.className = 'quiz-feedback show wrong'; fb.textContent = '✗ Incorrect. Correct answer: ' + q.options[q.correct] + (q.explanation ? ' — ' + q.explanation : ''); }
+    var sub = document.getElementById('q-sub-'+qi); if (sub) sub.style.display = 'none';
+    updateQuizProgress();
+
+    var allDone = Object.keys(quizState.submitted).length === quizState.questions.length;
+    if (allDone) {
+      var fw = document.getElementById('q-finish-wrap');
+      if (fw) {
+        fw.style.display = 'block';
+        document.getElementById('q-finish-btn').addEventListener('click', showResults);
+      }
+    }
+  }
+
+  function updateQuizProgress() {
+    var pb = document.getElementById('q-pb');
+    if (pb && quizState) pb.style.width = Math.round(Object.keys(quizState.answers).length / quizState.questions.length * 100) + '%';
+  }
+
+  function showResults() {
+    var container = document.getElementById('quiz-body');
+    if (!container || !quizState) return;
+    var score = quizState.score, total = quizState.questions.length;
+    var pct = Math.round(score/total*100);
+    var grade, gradeColor;
+    if (pct>=90){grade='A';gradeColor='#16a34a';}
+    else if(pct>=80){grade='B';gradeColor='#16a34a';}
+    else if(pct>=70){grade='C';gradeColor='#d97706';}
+    else if(pct>=60){grade='D';gradeColor='#d97706';}
+    else{grade='F';gradeColor='#dc2626';}
+
+    var rows = quizState.questions.map(function(q,qi){
+      var c = quizState.submitted[qi] && quizState.answers[qi]===q.correct;
+      var chosen = quizState.answers[qi] !== undefined ? q.options[quizState.answers[qi]] : '(not answered)';
+      return '<div style="padding:10px 0;border-top:1px solid #e5e7eb;">' +
+        '<div style="font-size:13px;font-weight:600;color:#1f2328;margin-bottom:3px;"><span style="margin-right:6px;">'+(c?'✓':'✗')+'</span>Q'+(qi+1)+'. '+q.q+'</div>'+
+        (!c?'<div style="font-size:12px;color:#dc2626;">Your answer: '+chosen+'</div>':'')+
+        (!c?'<div style="font-size:12px;color:#16a34a;">Correct: '+q.options[q.correct]+'</div>':'')+
+        (q.explanation?'<div style="font-size:12px;color:#57606a;margin-top:2px;">'+q.explanation+'</div>':'')+
+      '</div>';
+    }).join('');
+
+    container.innerHTML =
+      '<div class="quiz-score-card">' +
+        '<div class="quiz-score-big">'+score+'/'+total+'</div>' +
+        '<div class="quiz-score-sub">'+pct+'% — '+score+' correct out of '+total+' questions</div>' +
+        '<div class="quiz-score-grade" style="color:'+gradeColor+';">'+grade+'</div>' +
+        '<button class="quiz-retake-btn" id="q-retake-btn">Retake Quiz</button>' +
+      '</div>' +
+      '<div class="quiz-review-section"><h3>Review</h3>' + rows + '</div>';
+
+    document.getElementById('q-retake-btn').addEventListener('click', function() {
+      buildQuizUI(container, quizState.questions);
+    });
+  }
+
+  // ── Mount ─────────────────────────────────────────────────────────────────
+  function mount() {
+    document.title = COURSE.label + ' — Course Overview';
+    var app = document.getElementById('app');
+    app.innerHTML = '';
+
+    // Header
+    var hdr = document.createElement('div'); hdr.className = 'course-header';
+    hdr.innerHTML =
+      '<a class="course-header-back" href="index.html">← Study Hub</a>' +
+      '<h1>' + COURSE.label + '</h1>' +
+      '<p>' + COURSE.desc + '</p>';
+    app.appendChild(hdr);
+
+    // Tab bar
+    var tabs = document.createElement('div'); tabs.className = 'nav-tabs';
+    [['modules','Modules'],['quiz','Final Quiz']].forEach(function(pair, i) {
+      var btn = document.createElement('button');
+      btn.className = i===0 ? 'tab-btn active' : 'tab-btn';
+      btn.setAttribute('data-tab', pair[0]);
+      btn.textContent = pair[1];
+      btn.addEventListener('click', function(){ switchTab(pair[0]); });
+      tabs.appendChild(btn);
+    });
+
+    // Tab content wrapper
+    var tabContent = document.createElement('div'); tabContent.className = 'tab-content';
+    tabContent.appendChild(tabs);
+
+    // Modules pane
+    var modPane = document.createElement('div'); modPane.className = 'tab-pane active'; modPane.id = 'tab-modules';
+    var modSection = document.createElement('div'); modSection.className = 'modules-section';
+    var modH2 = document.createElement('h2'); modH2.textContent = 'All Modules';
+    var modList = document.createElement('div'); modList.className = 'module-list'; modList.id = 'course-module-list';
+    COURSE.modules.forEach(function(m) { modList.appendChild(buildModuleRow(m)); });
+    modSection.appendChild(modH2); modSection.appendChild(modList);
+    modPane.appendChild(modSection);
+    tabContent.appendChild(modPane);
+
+    // Quiz pane
+    var quizPane = document.createElement('div'); quizPane.className = 'tab-pane'; quizPane.id = 'tab-quiz';
+    var quizBody = document.createElement('div'); quizBody.id = 'quiz-body';
+    quizBody.innerHTML = '<div style="padding:20px;text-align:center;color:#9ca3af;font-size:13px;">Loading quiz…</div>';
+    quizPane.appendChild(quizBody);
+    tabContent.appendChild(quizPane);
+
+    app.appendChild(tabContent);
+    app.appendChild(Object.assign(document.createElement('div'), { className: 'footer', textContent: 'Made with IBM Bob' }));
+
+    // Load quiz JSON
+    if (COURSE.quizFile) {
+      fetch(COURSE.quizFile)
+        .then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
+        .then(function(data) {
+          if (data && data.questions && data.questions.length) {
+            buildQuizUI(quizBody, data.questions);
+          } else {
+            quizBody.innerHTML = '<div class="quiz-locked"><h3>No quiz available yet</h3><p>Quiz questions will be added after module content is complete.</p></div>';
+          }
+        })
+        .catch(function() {
+          quizBody.innerHTML = '<div class="quiz-locked"><h3>No quiz available yet</h3><p>Quiz questions will be added after module content is complete.</p></div>';
+        });
+    }
+  }
+
+  function switchTab(name) {
+    document.querySelectorAll('.tab-pane').forEach(function(el){ el.classList.remove('active'); });
+    document.querySelectorAll('.tab-btn').forEach(function(el){ el.classList.remove('active'); });
+    document.getElementById('tab-' + name).classList.add('active');
+    document.querySelector('[data-tab="' + name + '"]').classList.add('active');
+  }
+
+  mount();
+  </script>
+</body>
+</html>

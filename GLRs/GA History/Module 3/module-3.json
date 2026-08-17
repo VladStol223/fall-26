@@ -1,0 +1,199 @@
+{
+  "id": "ga-history-m3",
+  "course": "GA History",
+  "courseColor": "blue",
+  "moduleNumber": 3,
+  "title": "Civil War & Reconstruction",
+  "subtitle": "Cornerstone Speech, Wartime Welfare & the Camilla Massacre",
+  "storagePrefix": "m3",
+  "totalCards": 30,
+
+  "overview": {
+    "stats": [
+      { "value": "57%",     "label": "Georgia War Budget Spent on Welfare (1863–64)" },
+      { "value": "$16.5M+", "label": "Indigent Soldiers' Family Fund (1863–65)" },
+      { "value": "~12",     "label": "Marchers Killed at the Camilla Massacre (1868)" },
+      { "value": "28",      "label": "Black Legislators Expelled from GA Legislature (1868)" }
+    ],
+    "people": [
+      { "name": "Alexander H. Stephens", "desc": "VP of the Confederate States; delivered the Cornerstone Speech in Savannah on March 21, 1861, explicitly identifying slavery as the CSA's founding principle." },
+      { "name": "Governor Joseph E. Brown", "desc": "Georgia's Civil War governor who championed wartime welfare measures; declared the 'bread question' crucial to Georgia's survival in 1863." },
+      { "name": "Philip Joiner",          "desc": "Southwest Georgia Republican representative expelled from the legislature for being at least one-eighth Black; led the march from Albany to Camilla on September 19, 1868." },
+      { "name": "Francis F. Putney",      "desc": "Northern Republican who co-led the Camilla march with Philip Joiner and William P. Pierce." },
+      { "name": "C. C. Jones",            "desc": "Mayor of Savannah who presided at the Athenaeum when Stephens delivered the Cornerstone Speech." }
+    ],
+    "dates": [
+      { "year": "Jan 19, 1861",   "event": "Georgia secedes from the Union" },
+      { "year": "Mar 21, 1861",  "event": "Alexander Stephens delivers the Cornerstone Speech, Savannah" },
+      { "year": "1863",           "event": "Bread riots across Georgia; serious drought and early frost; legislature passes first corn appropriation act" },
+      { "year": "1863–64",        "event": "Georgia war welfare peaks: state spends 57% of all funds on relief measures" },
+      { "year": "Sept 19, 1863",  "event": "Battle of Chickamauga fought in northwest Georgia" },
+      { "year": "1864",           "event": "Atlanta Campaign begins; both armies forage Georgia countryside; refugee crisis grows" },
+      { "year": "July 1868",      "event": "Georgia readmitted to Union under Radical Reconstruction — then expels 28 Black legislators" },
+      { "year": "Sept 19, 1868",  "event": "Camilla Massacre — white mob opens fire on Republican marchers; ~12 killed, ~30 wounded" },
+      { "year": "1998",           "event": "Camilla residents publicly acknowledge and commemorate the massacre for the first time" }
+    ],
+    "terms": [
+      { "term": "Cornerstone Speech",         "def": "March 21, 1861 address by Confederate VP Stephens explicitly stating that slavery — not states' rights — was the Confederacy's founding 'cornerstone'" },
+      { "term": "Indigent Soldiers' Families Fund", "def": "Georgia's primary wartime welfare fund providing cash to soldiers' families; appropriated $16.5M+ across 1863–65" },
+      { "term": "Cotton cards",               "def": "Wire-bristle tools used to process raw cotton into thread; Georgia appropriated ~$1.3M to provide them to citizens during the cloth shortage" },
+      { "term": "Bread riots",                "def": "1863 uprisings across Georgia, particularly by women, in response to critical food shortages caused by drought, war, and military impressment" },
+      { "term": "Radical Reconstruction",     "def": "Congressional program requiring southern states to ratify constitutional amendments and guarantee Black political rights before readmission to the Union" },
+      { "term": "Camilla Massacre",           "def": "September 19, 1868 — a white mob in Camilla, Georgia opened fire on a Black Republican political march; ~12 killed; prompted re-imposition of military rule in Georgia" },
+      { "term": "Lost Cause",                 "def": "Post-war revisionist narrative claiming the Civil War was about states' rights rather than slavery — directly contradicted by the Cornerstone Speech" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — The Cornerstone Speech: Georgia Secedes",
+      "body": "<p>On <mark>January 19, 1861</mark>, Georgia seceded from the Union — the fifth state to do so. Georgia congressman <mark>Alexander H. Stephens</mark> was named Vice President of the new Confederate States of America. On <mark>March 21, 1861</mark>, Stephens addressed the largest audience ever assembled at the <mark>Savannah Athenaeum</mark>, introduced by Mayor <mark>C. C. Jones</mark>.</p><p>Stephens described the Confederate constitution as <mark>\"decidedly better than the old\"</mark> — and identified what it had resolved: the central unresolved tension of the old republic. That tension was <mark>African slavery</mark> — what he called <em>\"the immediate cause of the late rupture and present revolution.\"</em></p><p>He then delivered the speech's most famous passage: <em>\"Our new government is founded upon exactly the opposite idea; its foundations are laid, its <mark>corner-stone rests, upon the great truth that the negro is not equal to the white man</mark>; that slavery, subordination to the superior race, is his natural and normal condition.\"</em> He claimed the Confederacy was <mark>\"the first government ever instituted\"</mark> upon this principle in the history of the world.</p>"
+    },
+    {
+      "title": "2 — The Cornerstone Speech: Historical Significance",
+      "body": "<p>Stephens attacked the Founding Fathers — particularly <mark>Thomas Jefferson</mark> — as <mark>\"fundamentally wrong\"</mark> for believing slavery violated natural law. Their error, he said, was assuming racial equality. He called abolitionists <mark>\"fanatics\"</mark> suffering from \"a species of insanity.\"</p><p>Stephens predicted his racial ideology would be \"universally acknowledged\" just as the theories of <mark>Galileo</mark>, <mark>Adam Smith</mark>, and William Harvey were eventually accepted after initial rejection. The speech was later disavowed by Stephens during Reconstruction, but historians treat the published transcript as authentic.</p><p>The Cornerstone Speech is historically critical because it was delivered <mark>before the Civil War began</mark> — making it an unambiguous refutation of the <mark>\"Lost Cause\"</mark> narrative that the war was about states' rights rather than slavery.</p>"
+    },
+    {
+      "title": "3 — Welfare & Poverty During the Civil War",
+      "body": "<p>Georgia's civilian population felt the war's economic effects almost immediately. As the conflict progressed, the home front faced growing shortages of <mark>food, salt, cloth, and cash</mark>. Governor <mark>Joseph E. Brown</mark> and the legislature responded with unprecedented welfare programs.</p><p>In <mark>1863</mark>, a serious drought and early frost created a critical food crisis. <mark>Bread riots</mark> broke out across the state, led especially by women. The legislature passed <mark>three corn appropriation acts totaling $1.89 million</mark> — first priority always went to <mark>Confederate soldiers' families</mark>, who received corn at no charge. <mark>Salt</mark> (crucial for curing meat and tanning leather) cost the state over <mark>$1 million</mark>. Cotton cards — wire tools for processing raw cotton — received <mark>~$1.3 million</mark> in appropriations. The <mark>Indigent Soldiers' Families Fund</mark> provided direct cash: $2.5M in 1863, $6M in 1864, $8M in 1865 (in heavily inflated Confederate currency).</p><p>By fiscal year 1863–64, Georgia spent <mark>57% of all appropriated funds</mark> on welfare. Notably, all these programs were for <mark>white Georgians only</mark> — enslaved people and free Black Georgians received nothing.</p>"
+    },
+    {
+      "title": "4 — The Camilla Massacre (1868)",
+      "body": "<p>Two months after Georgia was readmitted to the Union under <mark>Radical Reconstruction</mark> in July 1868, the state legislature took a shocking step: it expelled <mark>28 newly elected members</mark> who were at least one-eighth Black. Among those removed was southwest Georgia representative <mark>Philip Joiner</mark>.</p><p>On <mark>September 19, 1868</mark>, Joiner and northerners <mark>Francis F. Putney</mark> and <mark>William P. Pierce</mark> led a march of several hundred Black Georgians and a few whites from <mark>Albany to Camilla</mark> — the Mitchell County seat — to attend a Republican political rally.</p><p>Mitchell County whites were determined no Republican rally would occur. As marchers entered the courthouse square, <mark>whites stationed in storefronts opened fire</mark> — killing about <mark>a dozen people</mark> and wounding possibly <mark>thirty others</mark>. Hostile whites continued assaulting marchers for several miles as they returned to Albany.</p><p>The massacre was reported nationally. Republicans and Democrats both used it in the <mark>1868 presidential campaign</mark>. The violence intimidated Black voters; white Democrats — the racial minority in the region — won the election through a combination of intimidation and ballot fraud. Congress was appalled and required Georgia to undergo military rule again. The Camilla Massacre remained part of southwest Georgia's <mark>hidden history until 1998</mark>, when Camilla residents publicly acknowledged and commemorated it for the first time.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "Who delivered the Cornerstone Speech, when, and where?", "a": "Alexander H. Stephens, VP of the CSA, on March 21, 1861 at the Savannah Athenaeum." },
+    { "key": true,  "q": "What did Stephens say was the 'cornerstone' of the Confederate government?", "a": "'The great truth that the negro is not equal to the white man; that slavery, subordination to the superior race, is his natural and normal condition.' He called the Confederacy the first government in world history based on this principle." },
+    { "q": "How did Stephens characterize the Founding Fathers' views on slavery?", "a": "He called them 'fundamentally wrong' — their belief that slavery violated natural law rested on the erroneous assumption of racial equality." },
+    { "key": true,  "q": "Why is the Cornerstone Speech the primary refutation of the 'Lost Cause'?", "a": "It was delivered before the Civil War began, by the Confederate VP himself, explicitly stating slavery — not states' rights — was the immediate cause of secession and the foundation of the new government." },
+    { "q": "What scientific analogies did Stephens use to argue his ideology would prevail?", "a": "He compared it to Galileo's astronomy, Adam Smith's economics, and Harvey's theory of blood circulation — all initially rejected, later universally accepted." },
+    { "key": true,  "q": "What conditions on the Georgia home front led to bread riots in 1863?", "a": "A serious drought, early frost, and military impressment of food created critical shortages. Women led bread riots across Georgia early in 1863 as food became scarce." },
+    { "q": "Who was Governor Joseph E. Brown and what did he say about the food crisis?", "a": "Georgia's Civil War governor. In 1863 he declared the 'bread question' was crucial to Georgia's success and pushed the legislature to fund corn distribution." },
+    { "key": true,  "q": "What were the three main welfare goods Georgia distributed during the Civil War?", "a": "Corn ($1.89M in three appropriation acts), salt (over $1M), and cotton cards (~$1.3M). The Indigent Soldiers' Families Fund provided additional cash relief." },
+    { "q": "Who received priority in Georgia's wartime welfare programs?", "a": "Confederate soldiers' families — they received corn, salt, and cotton cards for free. The destitute came next; those who could pay did so at reduced rates. Unionists were denied aid entirely." },
+    { "q": "Who was explicitly excluded from Georgia's wartime welfare?", "a": "Enslaved people (expected to depend on their enslavers) and the free Black population — no provisions were made for either group. Enslaved people did not receive federal Freedmen's Bureau rations until after the war." },
+    { "key": true,  "q": "What percentage of Georgia's 1863–64 budget went to welfare programs?", "a": "57% of all appropriated funds — including over 50% from direct welfare (corn, salt, cotton cards, Indigent Soldiers' Fund) and additional indirect welfare expenditures." },
+    { "q": "What was the Indigent Soldiers' Families Fund?", "a": "Georgia's main wartime cash relief program for soldiers' families. Appropriations: $2.5M (1863), $6M (1864), $8M (1865) — all in heavily inflated Confederate currency." },
+    { "q": "Why were cotton cards so important to distribute during the Civil War?", "a": "They were wire-bristle tools used to process raw cotton into thread for home cloth production. Many textile mills had closed, making home production of cloth essential." },
+    { "key": true,  "q": "What triggered the Camilla Massacre?", "a": "On September 19, 1868, Philip Joiner (a Black Republican expelled from the Georgia legislature) led hundreds of Black Georgians from Albany to Camilla to attend a Republican rally. Mitchell County whites opened fire as the march entered the courthouse square." },
+    { "key": true,  "q": "What happened to the 28 Black legislators in Georgia in 1868?", "a": "Two months after Georgia was readmitted to the Union, the state legislature expelled 28 newly elected members who were at least one-eighth Black — including Philip Joiner, who then led the Camilla march." },
+    { "q": "What were the casualties and immediate aftermath of the Camilla Massacre?", "a": "About a dozen killed, possibly 30 wounded. Hostile whites continued assaulting marchers for miles. News spread nationally; Congress required Georgia to undergo military rule again under Radical Reconstruction." },
+    { "q": "How did white Democrats use the Camilla Massacre politically?", "a": "The violence intimidated Black voters who stayed home on election day. White leaders also committed ballot fraud — misplacing or changing Black votes to Democratic ones. White Democrats, though the racial minority in southwest Georgia, won the election." },
+    { "key": true,  "q": "How long was the Camilla Massacre hidden from public acknowledgment?", "a": "130 years — it remained part of southwest Georgia's hidden past until 1998, when Camilla residents publicly acknowledged and commemorated the massacre for the first time." },
+    { "q": "What did Congress do in response to the Camilla Massacre?", "a": "Republican members were appalled at the violence and electoral fraud; Congress required Georgia to once more undergo military rule and Radical Reconstruction." },
+    { "q": "What was Radical Reconstruction?", "a": "Congressional program requiring former Confederate states to ratify constitutional amendments (13th, 14th, 15th) and guarantee Black political rights before being readmitted to the Union." },
+    { "q": "Who were Francis F. Putney and William P. Pierce?", "a": "Northern Republicans who co-led the Camilla march with Philip Joiner on September 19, 1868." },
+    { "q": "What was the political context of the Camilla Massacre nationally?", "a": "It occurred during the 1868 presidential campaign. Both Republicans and Democrats used it to argue their positions on Reconstruction — Republicans pointing to Southern violence, Democrats using it to stoke fears of Black political power." },
+    { "q": "Why was salt so critical during the Civil War and how did Georgia handle its shortage?", "a": "Salt was essential for curing meat, tanning leather, dyeing fabric, and feeding livestock. Lacking a substantial salt industry, Georgia imported it from Virginia and Louisiana via railroad (free shipping), spending over $1M." }
+  ],
+
+  "quiz": [
+    {
+      "q": "What did Alexander Stephens identify as the 'cornerstone' of the Confederate government?",
+      "options": [
+        "States' rights and limited federal government",
+        "Free trade and opposition to Northern tariffs",
+        "The principle that the negro is not equal to the white man and slavery is his natural condition",
+        "Southern agricultural heritage and the plantation economy"
+      ],
+      "correct": 2,
+      "explanation": "Stephens stated: 'Our new government is founded...its corner-stone rests, upon the great truth that the negro is not equal to the white man; that slavery, subordination to the superior race, is his natural and normal condition.'"
+    },
+    {
+      "q": "Why is the Cornerstone Speech considered a refutation of the 'Lost Cause' narrative?",
+      "options": [
+        "It was written by Ulysses S. Grant to expose Confederate motivations",
+        "It was delivered before the Civil War began, by the Confederate VP himself, explicitly stating slavery was the cause of secession",
+        "It showed the South was willing to compromise on slavery before the war started",
+        "It proved that most Confederate soldiers privately opposed slavery"
+      ],
+      "correct": 1,
+      "explanation": "The speech, delivered March 21, 1861 — before the Civil War began — is a primary source from Confederate leadership explicitly naming slavery as the 'immediate cause' of secession and the 'cornerstone' of the new government."
+    },
+    {
+      "q": "What caused bread riots across Georgia in early 1863?",
+      "options": [
+        "The Union blockade prevented all food imports into Georgia",
+        "A serious drought, early frost, and military impressment of food created critical shortages on the home front",
+        "Governor Brown ordered all food stockpiles transferred to the Confederate Army",
+        "Textile workers went on strike, blocking the distribution of food rations"
+      ],
+      "correct": 1,
+      "explanation": "In 1863 Georgia experienced a serious drought and early frost, while both armies foraged the countryside. Food shortages reached a crisis point, and women-led bread riots broke out across the state."
+    },
+    {
+      "q": "What were Georgia's three primary wartime welfare goods, and who received them for free?",
+      "options": [
+        "Weapons, horses, and land — distributed to all white male citizens",
+        "Corn, salt, and cotton cards — free to Confederate soldiers' families and the destitute",
+        "Wheat, tobacco, and medicine — free to all Georgia citizens regardless of status",
+        "Flour, firewood, and clothing — free to Unionists and Confederate supporters alike"
+      ],
+      "correct": 1,
+      "explanation": "The state distributed corn ($1.89M), salt ($1M+), and cotton cards (~$1.3M). Confederate soldiers' families and the destitute received all three for free; others paid reduced rates."
+    },
+    {
+      "q": "Who was explicitly excluded from Georgia's wartime welfare programs?",
+      "options": [
+        "Recent immigrants who had not yet become Georgia citizens",
+        "Confederate deserters and Unionists only",
+        "Enslaved people and free Black Georgians — no provisions were made for either group",
+        "Women who had not lost a husband or son to the war"
+      ],
+      "correct": 2,
+      "explanation": "Georgia's welfare programs were designed for white Georgians only. Enslaved people were expected to depend on their enslavers. Free Black Georgians received nothing. Neither group received Freedmen's Bureau rations until after the war."
+    },
+    {
+      "q": "What triggered the Camilla Massacre of September 19, 1868?",
+      "options": [
+        "A dispute over cotton prices escalated into racial violence at the Camilla courthouse",
+        "Philip Joiner and hundreds of Black Georgians marched from Albany to Camilla to attend a Republican political rally — and white residents opened fire",
+        "Federal troops attempted to arrest local Democratic leaders, sparking a white uprising",
+        "Newly freed Black Georgians tried to occupy a plantation near Camilla, Georgia"
+      ],
+      "correct": 1,
+      "explanation": "Philip Joiner — a Black legislator recently expelled from the Georgia legislature — led hundreds of Black Georgians from Albany to Camilla for a Republican rally. Whites stationed in storefronts opened fire as the march entered the courthouse square."
+    },
+    {
+      "q": "What happened to Georgia's 28 Black legislators two months before the Camilla Massacre?",
+      "options": [
+        "They were assassinated in a separate attack in Atlanta",
+        "They were expelled from the state legislature because they were at least one-eighth Black",
+        "They were arrested for allegedly inciting insurrection under Georgia law",
+        "They voluntarily resigned in protest of Georgia's refusal to ratify the 15th Amendment"
+      ],
+      "correct": 1,
+      "explanation": "Just two months after Georgia was readmitted to the Union, the state legislature expelled 28 newly elected members because they were at least one-eighth Black — including Philip Joiner, who then led the Camilla march."
+    },
+    {
+      "q": "What was the long-term outcome of the Camilla Massacre?",
+      "options": [
+        "Georgia was permanently divided into two military districts as punishment",
+        "Congress required Georgia to undergo military rule again; the massacre wasn't publicly acknowledged locally until 1998",
+        "The perpetrators were tried and convicted in federal court, setting a precedent for civil rights",
+        "Georgia's Black legislators were immediately reinstated by federal order"
+      ],
+      "correct": 1,
+      "explanation": "Congress re-imposed military rule on Georgia in response to the violence and fraud. The massacre itself remained part of southwest Georgia's hidden past until 1998, when Camilla residents publicly acknowledged and commemorated it for the first time."
+    },
+    {
+      "q": "What percentage of Georgia's 1863–64 war budget went to welfare programs?",
+      "options": ["About 15%", "About 30%", "About 45%", "More than 57%"],
+      "correct": 3,
+      "explanation": "Georgia spent over 57% of all appropriated funds on welfare in fiscal year 1863–64, including 50.6% on direct welfare (corn, salt, cotton cards, Indigent Soldiers' Fund) and additional indirect welfare expenditures."
+    },
+    {
+      "q": "What was the political impact of the Camilla Massacre on the 1868 election?",
+      "options": [
+        "It energized Black voters across Georgia, delivering the state to Republicans",
+        "The violence intimidated Black voters; combined with ballot fraud, it allowed white Democrats (the racial minority) to win the election",
+        "It had no effect because federal troops were present at all polling places",
+        "It led to immediate federal prosecution of the perpetrators, restoring Black confidence"
+      ],
+      "correct": 1,
+      "explanation": "The massacre intimidated Black voters who stayed home on election day. White leaders also committed ballot fraud — deliberately misplacing or changing Black votes. White Democrats, though the racial minority in southwest Georgia, carried the election."
+    }
+  ]
+}

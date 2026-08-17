@@ -1,0 +1,156 @@
+{
+  "courseId": "ga-history",
+  "title": "Georgia History — Final Quiz",
+  "questions": [
+    {
+      "q": "How many times did Georgia change its state flag from 2001 to 2003?",
+      "options": ["1", "2", "3", "4"],
+      "correct": 1,
+      "explanation": "Georgia had three different flags in only 27 months: the 1956 flag → 2001 Barnes flag → 2003 Perdue flag. That's 2 changes."
+    },
+    {
+      "q": "The Atlanta spokesman for the New South creed was",
+      "options": ["Booker T. Washington", "Henry Grady", "Alexander Stephens", "Leo Frank"],
+      "correct": 1,
+      "explanation": "Henry Grady, editor of the Atlanta Constitution, was the leading advocate of the New South philosophy promoting industrialization and reconciliation with the North."
+    },
+    {
+      "q": "What happened to Leo Frank in Marietta in 1915?",
+      "options": ["He was pardoned by Governor John M. Slaton", "He was arrested", "He was hanged by a mob", "He was chased out of town"],
+      "correct": 2,
+      "explanation": "Leo Frank was kidnapped from prison and lynched by a mob in Marietta, Georgia in 1915, despite his sentence having been commuted by Governor Slaton."
+    },
+    {
+      "q": "Dahlonega was",
+      "options": ["where the Georgia gold rush began in 1829", "where the last Cherokee Indians remained in Georgia", "the birthplace of Alexander Stephens", "the largest cotton-producing town in Georgia"],
+      "correct": 0,
+      "explanation": "The discovery of gold near Dahlonega in 1829 sparked America's first major gold rush, predating the California gold rush by nearly two decades."
+    },
+    {
+      "q": "Tomochichi was the chief of the __________ Indians.",
+      "options": ["Cherokee", "Seminole", "Yamacraw", "Choctaw"],
+      "correct": 2,
+      "explanation": "Tomochichi was the chief of the Yamacraw Indians and played a critical role in welcoming James Oglethorpe and the first Georgia colonists in 1733."
+    },
+    {
+      "q": "How did World War II affect Georgia's economy?",
+      "options": ["More workers went on strike than ever before", "Unemployment soared", "The war brought federal money into the state", "Many businesses closed as men entered the military"],
+      "correct": 2,
+      "explanation": "WWII brought massive federal investment into Georgia through military bases, shipyards, and defense industries, transforming the state's economy."
+    },
+    {
+      "q": "What happened in Camilla in 1868?",
+      "options": ["Black Republicans were murdered", "The Georgia General Assembly was disbanded", "Jefferson Davis was captured", "Women burned down a cotton mill"],
+      "correct": 0,
+      "explanation": "In the Camilla Massacre of 1868, white Democrats attacked a peaceful political march of Black Republicans, killing at least a dozen people."
+    },
+    {
+      "q": "The Pickrick Restaurant became infamous for a standoff over",
+      "options": ["desegregation", "women's rights", "unfair labor practices", "protests against US involvement in the Vietnam War"],
+      "correct": 0,
+      "explanation": "Lester Maddox, owner of the Pickrick Restaurant in Atlanta, violently resisted desegregation in 1964, using ax handles to drive away Black customers — and was later elected Governor."
+    },
+    {
+      "q": "During the Civil War, women rioted in Valdosta because of",
+      "options": ["an invasion by Union soldiers", "the high price of cotton", "a shortage of food", "widespread homelessness"],
+      "correct": 2,
+      "explanation": "In April 1863, women in Valdosta and other Georgia towns rioted over severe food shortages caused by the Confederate war effort depleting local food supplies."
+    },
+    {
+      "q": "Were the 1996 Olympic Games the first that the city of Atlanta had bid for?",
+      "options": ["Yes", "No"],
+      "correct": 1,
+      "explanation": "No — in the 1970s, Olympic handball player Dennis Berkholtz campaigned to convince Atlanta to bid for the 1984 Games, but the city ultimately did not submit a bid."
+    },
+    {
+      "q": "James Oglethorpe was a British",
+      "options": ["prisoner", "general", "king", "textile manufacturer"],
+      "correct": 1,
+      "explanation": "James Oglethorpe was a British general and philanthropist who founded the colony of Georgia in 1733 and served as its first governor."
+    },
+    {
+      "q": "Who founded Hartsfield-Jackson Atlanta International Airport and in what year?",
+      "options": ["Maynard Jackson, 1970", "William B. Hartsfield, 1925", "Andrew Young, 1984", "Billy Payne, 1990"],
+      "correct": 1,
+      "explanation": "William B. Hartsfield founded the airport in 1925 on an abandoned racetrack south of Atlanta, and served as its first commissioner."
+    },
+    {
+      "q": "What was the significance of Georgia's 1956 flag change?",
+      "options": [
+        "It restored the original 1879 flag design",
+        "It added the Confederate battle flag as a response to Brown v. Board of Education",
+        "It removed all Confederate symbolism from the flag",
+        "It was designed by Governor Marvin Griffin to honor Civil War veterans"
+      ],
+      "correct": 1,
+      "explanation": "The Confederate battle flag was added to Georgia's state flag in 1956 as an act of 'massive resistance' to the Supreme Court's desegregation ruling in Brown v. Board of Education."
+    },
+    {
+      "q": "When did CNN begin broadcasting and how many homes did it reach at launch?",
+      "options": ["January 1, 1976 — 500,000 homes", "June 1, 1980 — 1.7 million homes", "June 1, 1985 — 5 million homes", "January 1, 1984 — 2 million homes"],
+      "correct": 1,
+      "explanation": "Ted Turner's Cable News Network (CNN) launched on June 1, 1980, reaching 1.7 million homes as the world's first 24-hour all-news cable channel."
+    },
+    {
+      "q": "What film launched Georgia's modern film industry in the 1970s, and which governor created a state film commission in response?",
+      "options": [
+        "Smokey and the Bandit — Governor Perdue",
+        "Deliverance (1972) — Governor Jimmy Carter",
+        "Driving Miss Daisy — Governor Zell Miller",
+        "Gone with the Wind — Governor Ellis Arnall"
+      ],
+      "correct": 1,
+      "explanation": "Deliverance (1972), filmed along the Chattooga River in Rabun County, brought Hollywood's attention to Georgia. Governor Jimmy Carter established a state film commission in 1973 to attract more productions."
+    },
+    {
+      "q": "Who was Denmark Groover and what did he admit near his death?",
+      "options": [
+        "The architect of the 2001 flag; admitted it was too controversial",
+        "Governor Griffin's floor leader in 1956 who admitted anger over integration drove the flag change",
+        "A civil rights leader who admitted collaborating with segregationists",
+        "The designer of Hartsfield Airport who admitted taking bribes"
+      ],
+      "correct": 1,
+      "explanation": "Denmark Groover was Governor Griffin's floor leader in 1956 who repeatedly denied racial motivation. Near death at age 79, he admitted that anger over federal integration orders had indeed been a driving factor."
+    },
+    {
+      "q": "What was Ted Turner's major philanthropic achievement in 1997?",
+      "options": [
+        "He donated $500 million to start the Turner Foundation for environmental conservation",
+        "He pledged $1 billion to the United Nations — the largest single private donation in UN history",
+        "He funded the Nuclear Threat Initiative with $1 billion",
+        "He donated the CNN headquarters building to Georgia Tech"
+      ],
+      "correct": 1,
+      "explanation": "In 1997, Ted Turner pledged $1 billion to the United Nations, believed to be the largest single private donation in UN history at that time."
+    },
+    {
+      "q": "On what date did the IOC select Atlanta as the host city for the 1996 Olympics, and where?",
+      "options": ["September 18, 1990, in Tokyo", "April 30, 1988, in Washington D.C.", "March 2, 1992, in Tignes, France", "June 1, 1990, in Atlanta"],
+      "correct": 0,
+      "explanation": "On September 18, 1990, IOC president Juan Antonio Samaranch announced Atlanta as the host city during the final vote in Tokyo."
+    },
+    {
+      "q": "What are the two parts of Georgia's 2008 film tax credit?",
+      "options": [
+        "15% base credit + 5% for hiring Georgia residents",
+        "20% base credit + 10% for featuring the Georgia peach logo",
+        "25% flat credit for all productions",
+        "30% credit for productions over $5 million"
+      ],
+      "correct": 1,
+      "explanation": "Governor Perdue signed a 20% base tax credit with an additional 10% credit if the production features the Georgia peach logo promoting the state."
+    },
+    {
+      "q": "What is Trilith Studios and when did it open?",
+      "options": [
+        "Tyler Perry's studio complex in Atlanta, opened 2006",
+        "The renamed Georgia Film School in Savannah, opened 2010",
+        "British Pinewood Studios' first U.S. location in Fayette County, opened 2013",
+        "A Universal Studios theme park in Gwinnett County, opened 2015"
+      ],
+      "correct": 2,
+      "explanation": "Trilith Studios (formerly Pinewood Atlanta) was British Pinewood Studios' first U.S. location, built in Fayette County in 2013, cementing Atlanta's status as 'Hollywood of the South.'"
+    }
+  ]
+}

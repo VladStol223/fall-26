@@ -117,5 +117,108 @@
     { "q": "What film schools and festivals support Georgia's independent film scene?", "a": "SCAD (hosts Savannah Film Festival), Georgia State University film program, Atlanta Film Festival (Atlanta Film Society). Out on Film has sponsored LGBTQ films independently since 2008." },
     { "key": true,  "q": "What was the significance of the first national flag of the Confederacy to Georgia's flag history?", "a": "It was the basis for Georgia's 1879 flag AND the current 2003/2004 flag. The Stars and Bars appears in both, though in very different contexts — 1879 for heritage, 2003 as a compromise design." },
     { "q": "What state does Ted Turner rank as the largest private landholder, and what business did he launch related to it?", "a": "He held that title until 2011, owning 1.9 million acres in 10 states and 2 countries. He launched Ted's Montana Grill, a bison meat restaurant chain, in 2003." }
+  ],
+
+  "quiz": [
+    {
+      "q": "How many times did Georgia change its state flag from 2001 to 2003?",
+      "options": ["1", "2", "3", "4"],
+      "correct": 1,
+      "explanation": "Georgia had three different flags in only 27 months: the 1956 flag → the 2001 Barnes flag → the 2003 Perdue flag. That's 2 changes."
+    },
+    {
+      "q": "Why was the Confederate battle flag added to Georgia's state flag in 1956?",
+      "options": [
+        "To honor Civil War veterans on the flag's 100th anniversary",
+        "As a direct response to Brown v. Board of Education and resistance to school desegregation",
+        "Because Governor Talmadge redesigned all state symbols",
+        "To match the flags of other Southern states"
+      ],
+      "correct": 1,
+      "explanation": "Georgia's 1956 legislative session was devoted to 'massive resistance' to Brown v. Board of Education (1954–55). The Confederate battle flag was added as a symbol of defiance."
+    },
+    {
+      "q": "What unique record does Georgia hold regarding state flags?",
+      "options": [
+        "Georgia has never changed its flag",
+        "Georgia has had more state flags than any other U.S. state",
+        "Georgia was the first state to adopt a Confederate emblem",
+        "Georgia's flag was the first designed by a woman"
+      ],
+      "correct": 1,
+      "explanation": "Georgia has had more state flags than any other U.S. state, including three different flags in only 27 months."
+    },
+    {
+      "q": "When did CNN begin broadcasting and how many homes did it initially reach?",
+      "options": ["June 1, 1976 — 500,000 homes", "January 1, 1980 — 1 million homes", "June 1, 1980 — 1.7 million homes", "June 1, 1985 — 5 million homes"],
+      "correct": 2,
+      "explanation": "CNN (Cable News Network) launched on June 1, 1980, available in 1.7 million homes."
+    },
+    {
+      "q": "What film launched Georgia's film industry and which governor created a state film commission in response?",
+      "options": [
+        "Smokey and the Bandit — Governor Perdue",
+        "Deliverance (1972) — Governor Jimmy Carter",
+        "Driving Miss Daisy — Governor Zell Miller",
+        "Glory (1990) — Governor Roy Barnes"
+      ],
+      "correct": 1,
+      "explanation": "Deliverance (1972), filmed in Rabun County, brought Hollywood's attention to Georgia. Governor Jimmy Carter established a state film commission in 1973."
+    },
+    {
+      "q": "What are the two parts of Georgia's 2008 film tax credit?",
+      "options": [
+        "15% base credit + 5% for hiring Georgia residents",
+        "20% base credit + 10% for featuring the Georgia peach logo",
+        "25% flat credit for all productions",
+        "10% base credit + 20% for productions over $10 million"
+      ],
+      "correct": 1,
+      "explanation": "Governor Perdue signed a 20% base tax credit with an additional 10% credit if the final product features the Georgia peach logo."
+    },
+    {
+      "q": "Who was Denmark Groover and what did he admit near his death?",
+      "options": [
+        "A state senator who designed the 2003 flag; he admitted it was based on the Confederacy",
+        "Governor Griffin's floor leader in 1956 who admitted anger over integration had driven the flag change",
+        "The architect who designed the 2001 Barnes flag",
+        "A CNN producer who admitted Turner had faked his 1977 America's Cup win"
+      ],
+      "correct": 1,
+      "explanation": "Denmark Groover was Griffin's floor leader who repeatedly denied racial motivation for the 1956 flag change, but admitted near death at age 79 that integration anger had been a factor."
+    },
+    {
+      "q": "How did Governor Roy Barnes change the state flag in 2001?",
+      "options": [
+        "He put it to a public vote and the majority chose a new design",
+        "He worked privately with architect Cecil Alexander to design HB 16, which passed January 30, 2001",
+        "He restored the pre-1956 flag by executive order",
+        "He appointed a bipartisan commission that spent two years designing a new flag"
+      ],
+      "correct": 1,
+      "explanation": "Barnes worked privately with architect Cecil Alexander on HB 16, which he rushed through the legislature before opposition could organize. It passed January 30, 2001."
+    },
+    {
+      "q": "What was the Pinewood Atlanta / Trilith Studios milestone for Georgia's film industry?",
+      "options": [
+        "It was built in 2000 as the first studio in the Southeast",
+        "British Pinewood Studios opened their first U.S. location in Fayette County in 2013",
+        "Tyler Perry built it in 2006 as the headquarters of Tyler Perry Studios",
+        "It was converted from an old Atlanta Olympic venue in 1997"
+      ],
+      "correct": 1,
+      "explanation": "British Pinewood Studios opened their first U.S. location (now called Trilith) in Fayette County in 2013, helping cement Atlanta as 'Hollywood of the South.'"
+    },
+    {
+      "q": "What was Ted Turner's major philanthropic achievement in 1997?",
+      "options": [
+        "He donated $500 million to found the Turner Foundation for environmental conservation",
+        "He pledged $1 billion to the United Nations — believed to be the largest single private UN donation in history",
+        "He established the Goodwill Games endowment fund with $250 million",
+        "He donated the MGM film library to the Library of Congress"
+      ],
+      "correct": 1,
+      "explanation": "In 1997, Turner pledged $1 billion to the United Nations — believed to be the largest single private donation in UN history."
+    }
   ]
 }

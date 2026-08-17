@@ -1,0 +1,182 @@
+{
+  "id": "ga-history-m6",
+  "course": "GA History",
+  "courseColor": "blue",
+  "moduleNumber": 6,
+  "title": "Civil Rights Era",
+  "subtitle": "Albany Movement, Pickrick Restaurant & the Fight for Equality",
+  "storagePrefix": "m6",
+  "totalCards": 27,
+
+  "overview": {
+    "stats": [
+      { "value": "500+",  "label": "Protesters Jailed in Albany by December 1961" },
+      { "value": "1961",  "label": "Year Albany Movement Founded" },
+      { "value": "1964",  "label": "Year of Civil Rights Act & Pickrick Incident" },
+      { "value": "3",     "label": "Albany Arrests of Martin Luther King Jr." }
+    ],
+    "people": [
+      { "name": "Martin Luther King Jr.",   "desc": "SCLC leader who joined the Albany Movement in December 1961; arrested three times; later acknowledged Albany's failures informed Birmingham's strategy." },
+      { "name": "Laurie Pritchett",         "desc": "Albany police chief who neutralized King's strategy by ordering mass arrests without public brutality — denying the movement national media sympathy." },
+      { "name": "Charles Sherrod",          "desc": "SNCC field organizer who traveled to Albany in October 1961 to organize the Black community for direct action." },
+      { "name": "Cordell Reagon",           "desc": "SNCC organizer who worked with Sherrod to lead nonviolent tactics workshops before the Albany campaign launched." },
+      { "name": "William G. Anderson",      "desc": "Local doctor elected president of the Albany Movement; invited King to Albany in December 1961." },
+      { "name": "Lester Maddox",            "desc": "Segregationist owner of the Pickrick restaurant who drove off Black seminary students with pickaxe handles; later became governor of Georgia." },
+      { "name": "Constance Baker Motley",   "desc": "NAACP Legal Defense Fund attorney who filed the landmark lawsuit (Mock v. Maddox) enforcing the Civil Rights Act of 1964 against the Pickrick." },
+      { "name": "Ralph Abernathy",          "desc": "SCLC leader who was jailed alongside King during the Albany campaign; after release, joked 'I've been thrown out of lots of places in my day, but never before have I been thrown out of jail.'" }
+    ],
+    "dates": [
+      { "year": "Nov 1, 1961",    "event": "ICC ban on racial segregation in interstate bus terminals takes effect; SNCC tests it in Albany" },
+      { "year": "Nov 17, 1961",   "event": "Albany Movement founded by SNCC, NAACP, Ministerial Alliance, Federation of Women's Clubs, and Negro Voters League" },
+      { "year": "Dec 15, 1961",   "event": "King arrives in Albany; speaks at Shiloh Baptist Church mass meeting" },
+      { "year": "Dec 16, 1961",   "event": "King, Anderson, and Abernathy jailed on charges of parading without a permit" },
+      { "year": "Jul 10, 1962",   "event": "King and Abernathy found guilty; choose to serve 45-day jail sentence" },
+      { "year": "Jul 12, 1962",   "event": "King and Abernathy unexpectedly released — bail paid by an unidentified Black man" },
+      { "year": "Aug 10, 1962",   "event": "King agrees to leave Albany and halt demonstrations — effectively ending his involvement" },
+      { "year": "1964",           "event": "Civil Rights Act signed; three Black seminary students attempt to desegregate the Pickrick restaurant; Lester Maddox drives them off with pickaxe handles" },
+      { "year": "2022 (approx.)", "event": "Georgia Tech Unity Plaza dedicated at former Pickrick site; honors the three seminary students" }
+    ],
+    "terms": [
+      { "term": "Albany Movement",   "def": "Broad civil rights coalition formed Nov 17, 1961 in Albany, Georgia; targeted all forms of segregation using mass demonstrations, jail-ins, sit-ins, boycotts, and litigation" },
+      { "term": "SNCC",              "def": "Student Nonviolent Coordinating Committee — sent Charles Sherrod and Cordell Reagon to Albany in October 1961 to organize direct action" },
+      { "term": "SCLC",              "def": "Southern Christian Leadership Conference — King's organization; joined the Albany Movement in December 1961" },
+      { "term": "Jail-in",           "def": "Deliberate arrest as protest tactic — Albany protesters chose imprisonment over bail to highlight injustice and strain local systems" },
+      { "term": "ICC ruling",        "def": "Interstate Commerce Commission's November 1, 1961 ban on racial segregation in interstate bus terminals — triggered SNCC's Albany campaign" },
+      { "term": "Pickrick restaurant","def": "Atlanta segregationist restaurant owned by Lester Maddox; site of a 1964 confrontation after the Civil Rights Act; students were driven off with pickaxe handles" },
+      { "term": "Mock v. Maddox",    "def": "Federal lawsuit filed by NAACP attorney Constance Baker Motley that enforced the Civil Rights Act against Lester Maddox's Pickrick restaurant" },
+      { "term": "Unity Plaza",       "def": "Georgia Tech memorial at the former Pickrick site honoring George Willis Jr., Albert Dunn, and Woodrow T. Lewis — the three seminary students who attempted desegregation in 1964" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — The Albany Movement: Origins",
+      "body": "<p>The <mark>Albany Movement</mark> was formed on <mark>November 17, 1961</mark> by representatives from <mark>SNCC</mark>, the NAACP, the Ministerial Alliance, the Federation of Women's Clubs, and the Negro Voters League. It aimed to challenge <mark>all forms of segregation and discrimination</mark> in Albany, Georgia — making it broader in scope than most civil rights campaigns.</p><p>SNCC members <mark>Charles Sherrod</mark> and <mark>Cordell Reagon</mark> had arrived in Albany in October 1961 to organize the Black community. On <mark>November 1</mark>, the <mark>Interstate Commerce Commission (ICC)</mark> ban on racial segregation in interstate bus terminals went into effect. Sherrod and Reagon used it as an opportunity — sending nine Albany State College students to conduct a sit-in at the bus terminal. Though none were arrested, the action inspired local Black leaders to formally found the movement. <mark>Dr. William G. Anderson</mark> and <mark>Slater King</mark> were elected president and vice president.</p>"
+    },
+    {
+      "title": "2 — King Arrives; Strategy & Setbacks",
+      "body": "<p>By December 1961, more than <mark>500 protesters</mark> had been jailed. Anderson invited <mark>Martin Luther King Jr.</mark> to reinvigorate the movement. SNCC members worried that King's presence would undermine local leadership — they didn't want communities to feel \"only a particular individual could save them.\"</p><p>King arrived on <mark>December 15</mark>, spoke at a mass meeting at <mark>Shiloh Baptist Church</mark>, and was jailed the next day alongside Anderson and <mark>Ralph Abernathy</mark> on charges of parading without a permit. Albany Police Chief <mark>Laurie Pritchett</mark> had studied King's tactics and countered them deliberately: he ordered <mark>mass arrests but no public brutality</mark> — denying the movement the national media sympathy that images of violence would have generated.</p><p>After King's first arrest, city officials reached an agreement: if King left Albany, the city would comply with the ICC ruling and release jailed protesters. After King left, <mark>the city failed to uphold the agreement</mark>.</p>"
+    },
+    {
+      "title": "3 — King's Return, Jail, and Departure",
+      "body": "<p>On <mark>July 10, 1962</mark>, King and Abernathy were found guilty of the December 1961 charges — ordered to pay $178 or serve 45 days. They chose jail, explaining: <em>\"The time has now come when we must practice civil disobedience in a true sense.\"</em></p><p>On <mark>July 12</mark>, an unidentified Black man paid their bail and they were released — an outcome Abernathy joked about: <em>\"I've been thrown out of lots of places in my day, but never before have I been thrown out of jail.\"</em></p><p>Following his third arrest, King agreed on <mark>August 10, 1962</mark> to leave Albany and halt demonstrations, effectively ending his involvement. In a 1965 interview, King acknowledged the mistake: <em>\"The mistake I made there was to protest against segregation generally rather than against a single and distinct facet of it.\"</em> The lessons of Albany directly informed the <mark>Birmingham Campaign (1963)</mark> — more targeted, more strategically confrontational.</p>"
+    },
+    {
+      "title": "4 — The Pickrick Restaurant & Unity Plaza",
+      "body": "<p>In <mark>1964</mark>, after the <mark>Civil Rights Act</mark> was signed into law, three Black seminary students from the <mark>Interdenominational Theological Center</mark> — <mark>George Willis Jr.</mark>, <mark>Albert Dunn</mark>, and <mark>Woodrow T. Lewis</mark> — attempted to desegregate the <mark>Pickrick restaurant</mark> in Atlanta, owned by ardent segregationist <mark>Lester Maddox</mark>.</p><p>Maddox and his supporters violently chased them away with <mark>pickaxe handles</mark> and a gun. <mark>Constance Baker Motley</mark>, an NAACP Legal Defense Fund attorney, filed a landmark federal lawsuit — <mark>Mock v. Maddox</mark> — which enforced the newly passed Civil Rights Act against Maddox. Despite this defeat in court, Maddox later became <mark>Governor of Georgia</mark>.</p><p>The site of the Pickrick is today the <mark>Georgia Tech Unity Plaza</mark>, part of the campus EcoCommons. It features three extruded pillars representing the three students, concrete wall openings symbolizing their breakthrough, and a contemplative grove with long-leaf pine trees. It honors the bravery of the students and acknowledges the history of the site.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "When was the Albany Movement founded and by whom?", "a": "November 17, 1961 — founded by representatives from SNCC, the NAACP, the Ministerial Alliance, the Federation of Women's Clubs, and the Negro Voters League." },
+    { "q": "What triggered SNCC's decision to launch direct action in Albany?", "a": "The ICC's November 1, 1961 ban on racial segregation in interstate bus terminals — Sherrod and Reagon sent Albany State students to test it at the bus terminal." },
+    { "key": true,  "q": "Who was Laurie Pritchett and why was he effective against the Albany Movement?", "a": "Albany's police chief. He studied King's nonviolent tactics and responded with mass arrests but no public brutality — denying the movement the media-grabbing images of violence that would have generated national sympathy." },
+    { "q": "Why did SNCC members have reservations about King joining the Albany Movement?", "a": "They worried King's style would make communities feel 'only a particular individual could save them' rather than empowering local people to take action on their own." },
+    { "key": true,  "q": "What was King's self-assessed mistake in Albany?", "a": "'The mistake I made there was to protest against segregation generally rather than against a single and distinct facet of it. Our protest was so vague that we got nothing.' The broad scope left protesters demoralized." },
+    { "q": "How many protesters were jailed in Albany by December 1961?", "a": "More than 500 protesters had been jailed by December 1961." },
+    { "q": "What happened when King and Abernathy were released from jail on July 12, 1962?", "a": "Their bail had been paid by an unidentified Black man — an unexpected release. Abernathy joked: 'I've never before been thrown out of jail.'" },
+    { "key": true,  "q": "How did the Albany Movement's failure inform later civil rights strategy?", "a": "King acknowledged the lessons of Albany helped future campaigns. The Birmingham Campaign (1963) was more targeted, focusing on a single facet of segregation and deliberately provoking a more visible and brutal response." },
+    { "q": "What organizations formed the Albany Movement coalition?", "a": "SNCC, NAACP, Ministerial Alliance, Federation of Women's Clubs, and the Negro Voters League." },
+    { "q": "Who were the SNCC organizers who launched the Albany campaign?", "a": "Charles Sherrod and Cordell Reagon, who arrived in Albany in October 1961 to organize direct action protests." },
+    { "key": true,  "q": "Who were the three seminary students who tried to desegregate the Pickrick restaurant in 1964?", "a": "George Willis Jr., Albert Dunn, and Woodrow T. Lewis — students from the Interdenominational Theological Center who were chased away with pickaxe handles." },
+    { "q": "Who owned the Pickrick restaurant and what did he do?", "a": "Lester Maddox, an ardent segregationist. When the three seminary students tried to enter after the Civil Rights Act passed, he and supporters drove them off with pickaxe handles and a gun." },
+    { "key": true,  "q": "What was Mock v. Maddox and who filed it?", "a": "A federal lawsuit filed by NAACP Legal Defense Fund attorney Constance Baker Motley that enforced the Civil Rights Act of 1964 against Lester Maddox's Pickrick restaurant." },
+    { "q": "What happened to Lester Maddox after losing the Mock v. Maddox lawsuit?", "a": "Despite — or arguably because of — his high-profile segregationist stand, Maddox was later elected Governor of Georgia." },
+    { "key": true,  "q": "What is Georgia Tech's Unity Plaza and what does it commemorate?", "a": "A memorial at the former Pickrick restaurant site honoring George Willis Jr., Albert Dunn, and Woodrow T. Lewis. Features three pillars (the students' bravery), concrete wall openings (their breakthrough), and a contemplative grove." },
+    { "q": "What was the ICC ruling and why did it matter for Albany?", "a": "The November 1, 1961 Interstate Commerce Commission ban on racial segregation in interstate bus terminals. SNCC used it as the trigger to test desegregation in Albany." },
+    { "q": "What charges were King and Abernathy convicted of in July 1962?", "a": "Parading without a permit — stemming from their December 1961 arrest in Albany. They were ordered to pay $178 or serve 45 days; they chose jail." },
+    { "q": "What was the organizational tension between SNCC and SCLC in Albany?", "a": "Competition for financial support and power, and disagreement over leadership style. SCLC's assumption of control prompted SNCC to 'recapture its dominant position.' King said any division was 'a breakdown of communications.'" },
+    { "key": true,  "q": "What agreement was reached after King's first Albany arrest, and what happened?", "a": "City officials agreed to comply with the ICC ruling and release jailed protesters if King left Albany. King left — but the city failed to uphold its end of the agreement." }
+  ],
+
+  "quiz": [
+    {
+      "q": "When was the Albany Movement founded and which organizations formed it?",
+      "options": [
+        "March 1960 — SCLC, NAACP, and the Montgomery Improvement Association",
+        "November 17, 1961 — SNCC, NAACP, Ministerial Alliance, Federation of Women's Clubs, and Negro Voters League",
+        "January 1962 — SNCC and SCLC after King's first visit to Albany",
+        "October 1961 — SNCC alone, before inviting other organizations"
+      ],
+      "correct": 1,
+      "explanation": "The Albany Movement was formally founded on November 17, 1961 by a coalition of SNCC, NAACP, Ministerial Alliance, Federation of Women's Clubs, and the Negro Voters League."
+    },
+    {
+      "q": "How did Albany Police Chief Laurie Pritchett counter King's nonviolent strategy?",
+      "options": [
+        "He deputized local white citizens to physically block marches",
+        "He obtained a federal injunction banning all protests in Albany",
+        "He ordered mass arrests but no public brutality — denying the movement media-generating images of violence",
+        "He negotiated directly with SNCC to prevent King from entering Albany"
+      ],
+      "correct": 2,
+      "explanation": "Pritchett studied King's tactics and recognized that images of police brutality generated national sympathy. By ordering arrests without violence, he neutralized the movement's strategy of provoking a visible, brutal response."
+    },
+    {
+      "q": "What was King's self-assessment of the Albany Movement's failure?",
+      "options": [
+        "He blamed Pritchett's brutality for making protest impossible",
+        "He said the movement protested segregation 'generally rather than against a single and distinct facet of it' — leaving protesters demoralized with nothing concrete gained",
+        "He blamed SNCC's organizational conflict with SCLC for undermining the campaign",
+        "He said the movement moved too fast and alienated moderate white allies"
+      ],
+      "correct": 1,
+      "explanation": "King acknowledged in a 1965 interview that the Albany mistake was protesting too broadly: 'Our protest was so vague that we got nothing, and the people were left very depressed and in despair.'"
+    },
+    {
+      "q": "What tactic did Albany protesters use that involved deliberately choosing jail over bail?",
+      "options": [
+        "Sit-in",
+        "Boycott",
+        "Jail-in",
+        "Freedom ride"
+      ],
+      "correct": 2,
+      "explanation": "The jail-in — deliberately accepting arrest and refusing bail — was used to strain local jail capacity, demonstrate commitment, and highlight injustice."
+    },
+    {
+      "q": "Who were the three seminary students who attempted to desegregate the Pickrick restaurant in 1964?",
+      "options": [
+        "John Lewis, Julian Bond, and Stokely Carmichael",
+        "George Willis Jr., Albert Dunn, and Woodrow T. Lewis from the Interdenominational Theological Center",
+        "Andrew Young, Jesse Jackson, and Ralph Abernathy",
+        "Charlayne Hunter, Hamilton Holmes, and Vernon Jordan"
+      ],
+      "correct": 1,
+      "explanation": "George Willis Jr., Albert Dunn, and Woodrow T. Lewis were students from the Interdenominational Theological Center who attempted to desegregate the Pickrick after the Civil Rights Act was signed."
+    },
+    {
+      "q": "What happened to Lester Maddox after his stand at the Pickrick?",
+      "options": [
+        "He was sentenced to federal prison for violating the Civil Rights Act",
+        "He fled Georgia to avoid the Mock v. Maddox lawsuit",
+        "Despite losing the lawsuit, he was later elected Governor of Georgia",
+        "He converted to supporting civil rights after an SCLC dialogue"
+      ],
+      "correct": 2,
+      "explanation": "Lester Maddox's high-profile segregationist stand at the Pickrick actually bolstered his political standing among white conservatives. He later became Governor of Georgia."
+    },
+    {
+      "q": "What is Georgia Tech's Unity Plaza and what does it honor?",
+      "options": [
+        "A memorial to Atlanta's civil rights marchers who passed through the Georgia Tech campus in 1965",
+        "A memorial at the former Pickrick restaurant site honoring the three seminary students chased away by Maddox in 1964",
+        "A tribute to SNCC's founding at Georgia Tech in 1960",
+        "A park commemorating the Albany Movement's Albany State College student organizers"
+      ],
+      "correct": 1,
+      "explanation": "Unity Plaza sits at the site of the former Pickrick restaurant and honors George Willis Jr., Albert Dunn, and Woodrow T. Lewis — the three seminary students who attempted desegregation there in 1964."
+    },
+    {
+      "q": "How did the failures of the Albany Movement directly contribute to the success of the Birmingham Campaign (1963)?",
+      "options": [
+        "King recruited Albany veterans to lead Birmingham protests",
+        "Albany's broad scope and vague goals taught King to focus on a single, concrete target and provoke a more visible response — lessons applied in Birmingham",
+        "Albany's legal losses created precedents that were reversed in Birmingham's courts",
+        "The national media coverage of Albany generated the political pressure that enabled Birmingham"
+      ],
+      "correct": 1,
+      "explanation": "King acknowledged that Albany's mistakes — especially the broad, unfocused scope — informed the much more targeted Birmingham strategy, which deliberately confronted Bull Connor's brutal response on national television."
+    }
+  ]
+}

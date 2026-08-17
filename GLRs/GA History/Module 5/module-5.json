@@ -1,0 +1,149 @@
+{
+  "id": "ga-history-m5",
+  "course": "GA History",
+  "courseColor": "blue",
+  "moduleNumber": 5,
+  "title": "The Great Depression and World War II",
+  "subtitle": "Mill Workers, Georgia on the Homefront & the U-Boat Threat",
+  "storagePrefix": "m5",
+  "totalCards": 20,
+
+  "overview": {
+    "stats": [
+      { "value": "320,000",  "label": "Georgians Who Served in WWII" },
+      { "value": "28,000",   "label": "Workers at Bell Bomber Plant, Marietta" },
+      { "value": "~200",     "label": "Liberty Ships Built in Savannah & Brunswick" },
+      { "value": "Apr 8, 1942", "label": "Date of U-Boat Attack off St. Simons Island" }
+    ],
+    "people": [
+      { "name": "Carl Vinson",       "desc": "Georgia congressman who helped bring military installations to every major Georgia city during WWII — a key driver of wartime federal investment in the state." },
+      { "name": "Richard Russell",   "desc": "Georgia senator who partnered with Vinson to secure massive federal military investment in Georgia during WWII." },
+      { "name": "Reinhard Hardegen", "desc": "German Lt. Commander of submarine U-123; sank three ships off Georgia's coast in April 1942, killing 23 crewmen." },
+      { "name": "Harry Truman",      "desc": "U.S. President who declared an official end to World War II on December 31, 1946." }
+    ],
+    "dates": [
+      { "year": "1929–1930s",    "event": "Great Depression devastates Georgia's agricultural and textile economy" },
+      { "year": "1930s",         "event": "Georgia mill workers and their communities shaped by the textile industry; unionization efforts and labor tensions" },
+      { "year": "1941–1945",     "event": "WWII: 320,000 Georgians serve; massive military-industrial buildup across the state" },
+      { "year": "Apr 8, 1942",   "event": "German U-boat U-123 sinks three ships off St. Simons Island; 23 crewmen killed; windows shatter in Brunswick" },
+      { "year": "1942",          "event": "U.S. Navy adopts British convoy system after Georgia coast U-boat attacks" },
+      { "year": "Dec 31, 1946",  "event": "President Truman declares official end to World War II" }
+    ],
+    "terms": [
+      { "term": "Bell Bomber plant",  "def": "WWII factory in Marietta where 28,000 Georgians manufactured B-29 Superfortress bombers" },
+      { "term": "Liberty ships",      "def": "Mass-produced cargo vessels built in Savannah and Brunswick shipyards; nearly 200 built to transport troops and supplies to the front" },
+      { "term": "Fort Benning",       "def": "Army base in Columbus — the largest infantry training school in the world during WWII" },
+      { "term": "Robins Field",       "def": "Military installation in Macon that employed 13,000 civilians during WWII" },
+      { "term": "U-123",              "def": "German submarine commanded by Reinhard Hardegen that sank three ships off St. Simons Island on April 8, 1942" },
+      { "term": "Convoy system",      "def": "British naval strategy adopted by the U.S. Navy after the 1942 Georgia coast attacks; provided around-the-clock protection for Allied shipping" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — The Mill Industry and Georgia's Workers",
+      "body": "<p>In the late nineteenth and early twentieth centuries, the textile mill industry was a cornerstone of Georgia's industrial New South economy. Mill towns — company-owned communities built around cotton mills — spread across the state, particularly in the Piedmont region.</p><p>Mill workers lived in a world controlled by their employers: company-owned houses, company stores, and company churches. The mills employed entire families, including children. The work was dangerous, the hours were long, and wages were low.</p><p>The mill industry transformed rural Georgians into an industrial working class. By the time of the Great Depression in the 1930s, this community had developed its own distinct culture, labor consciousness, and ultimately — in the face of devastating economic collapse — a central role in shaping modern Georgia's workforce and economy.</p>"
+    },
+    {
+      "title": "2 — World War II Transforms Georgia",
+      "body": "<p>World War II had a profound impact on Georgia. Some <mark>320,000 Georgians</mark> served in the U.S. Armed Forces, and thousands more — including <mark>historic numbers of women</mark> — served in wartime industries.</p><p>The war brought a massive infusion of <mark>federal dollars</mark> into Georgia. Thanks primarily to <mark>Congressman Carl Vinson</mark> and <mark>Senator Richard Russell</mark>, every major Georgia city gained a military installation:</p><ul><li><strong>Fort Benning (Columbus)</strong> — the <mark>largest infantry training school in the world</mark></li><li><strong>Robins Field (Macon)</strong> — employed <mark>13,000 civilians</mark></li><li><strong>University of Georgia Naval School</strong> — trained <mark>2,000 combat pilots</mark></li><li><strong>Hunter Field (Savannah)</strong> and <strong>Camp Gordon (Augusta)</strong> — trained enlisted men</li><li><strong>Bell Bomber plant (Marietta)</strong> — <mark>28,000 Georgians</mark> built B-29 bombers</li><li><strong>Savannah &amp; Brunswick shipyards</strong> — built nearly <mark>200 Liberty ships</mark></li></ul><p>WWII <mark>ended the Great Depression in Georgia</mark>, transformed the state's economy, and accelerated urbanization and changes in race relations. Its impact was felt long after President Truman declared the official end to the war on <mark>December 31, 1946</mark>.</p>"
+    },
+    {
+      "title": "3 — German U-Boat Attacks Off Georgia's Coast",
+      "body": "<p>The Nazis brought World War II directly to Georgia when a German U-boat sank three ships off the coast in <mark>1942</mark>. Georgia seemed an unlikely target: short coastline, shallow waters, and multiple nearby military bases. But antisubmarine patrols were <mark>uncoordinated</mark> and many coastal communities ignored <mark>blackout orders</mark>.</p><p>On <mark>April 8, 1942</mark>, German Lt. Commander <mark>Reinhard Hardegen</mark> in submarine <mark>U-123</mark> spotted the oil tanker <em>Oklahoma</em> silhouetted against the brightly lit St. Simons Island shore. His torpedo sank the ship and <mark>shattered windows in Brunswick</mark>. He also sank the <em>Esso Baton Rouge</em> and a third vessel the next morning. <mark>Twenty-three crewmen were killed</mark>. Georgians panicked as rumors spread of Germans landing on the coast.</p><p>In response, the U.S. Navy adopted the <mark>British convoy system</mark>, giving Allied ships in Georgia waters <mark>around-the-clock protection</mark> from that point forward.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "How many Georgians served in the U.S. Armed Forces during WWII?", "a": "Approximately 320,000 Georgians served in the Armed Forces; thousands more, including historic numbers of women, served in wartime industries." },
+    { "q": "Which two Georgia politicians secured military installations across Georgia during WWII?", "a": "Congressman Carl Vinson and Senator Richard Russell." },
+    { "key": true,  "q": "What was the Bell Bomber plant and where was it?", "a": "A Marietta factory where 28,000 Georgians manufactured B-29 Superfortress bombers during WWII — one of the largest wartime industrial facilities in the South." },
+    { "q": "What was Fort Benning's distinction during WWII?", "a": "Located in Columbus, it was the largest infantry training school in the world during World War II." },
+    { "q": "How many Liberty ships were built in Georgia's WWII shipyards?", "a": "Nearly 200 Liberty ships were built in Savannah and Brunswick to transport men and supplies to the front." },
+    { "key": true,  "q": "What happened off St. Simons Island on April 8, 1942?", "a": "German Lt. Commander Reinhard Hardegen in U-123 sank three ships — the Oklahoma, the Esso Baton Rouge, and a third vessel — killing 23 crewmen. The Oklahoma's blast shattered windows in Brunswick." },
+    { "q": "Why did the U-boat attack succeed despite Georgia's proximity to military bases?", "a": "Antisubmarine patrols were uncoordinated, and coastal communities ignored blackout orders — the Oklahoma was visible, silhouetted against the brightly lit St. Simons Island shore." },
+    { "key": true,  "q": "What three major effects did WWII have on Georgia?", "a": "1) Ended the Great Depression in Georgia. 2) Transformed the state's economy through federal military investment. 3) Accelerated urbanization and changes in race relations." },
+    { "q": "What U.S. naval strategy was adopted after the Georgia U-boat attacks?", "a": "The British convoy system — providing Allied ships in Georgia waters with around-the-clock protection." },
+    { "q": "When did President Truman declare the official end of World War II?", "a": "December 31, 1946." },
+    { "q": "What did Robins Field in Macon contribute during WWII?", "a": "It was a major military installation that employed 13,000 civilians." },
+    { "q": "What did the University of Georgia's Naval School do during WWII?", "a": "It trained 2,000 combat pilots for the war effort." },
+    { "key": true,  "q": "What role did the mill industry play in shaping Georgia before the Depression?", "a": "The textile mill industry created company-owned mill towns across the Georgia Piedmont, transforming rural Georgians into an industrial working class — shaping the state's economy, labor culture, and community life before the Great Depression hit." },
+    { "q": "What were the main features of Georgia mill towns?", "a": "Company-owned housing, company stores, company churches — total employer control over workers' lives. Entire families including children worked in the mills." },
+    { "q": "What was the German submarine's number that attacked Georgia's coast?", "a": "U-123, commanded by German Lt. Commander Reinhard Hardegen." }
+  ],
+
+  "quiz": [
+    {
+      "q": "How many Georgians served in the U.S. Armed Forces during World War II?",
+      "options": ["About 80,000", "About 150,000", "About 320,000", "About 500,000"],
+      "correct": 2,
+      "explanation": "Approximately 320,000 Georgians served in the Armed Forces during WWII, with thousands more serving in wartime industries including historic numbers of women."
+    },
+    {
+      "q": "Which two politicians were most responsible for bringing military installations to every major Georgia city during WWII?",
+      "options": [
+        "President Roosevelt and Governor Ellis Arnall",
+        "Congressman Carl Vinson and Senator Richard Russell",
+        "Senator Walter George and Governor Eugene Talmadge",
+        "Congressman Robert Ramspeck and Senator Tom Connally"
+      ],
+      "correct": 1,
+      "explanation": "Congressman Carl Vinson and Senator Richard Russell were the architects of Georgia's wartime military build-up, ensuring every major Georgia city had a military installation."
+    },
+    {
+      "q": "What was the Bell Bomber plant and where was it located?",
+      "options": [
+        "A naval aircraft factory in Savannah employing 15,000 workers",
+        "A Marietta factory where 28,000 Georgians built B-29 Superfortress bombers",
+        "A Fort Benning facility that manufactured small arms for infantry",
+        "An Augusta factory producing military vehicles under a federal contract"
+      ],
+      "correct": 1,
+      "explanation": "The Bell Bomber plant in Marietta employed 28,000 Georgians manufacturing B-29 Superfortress bombers — one of the largest wartime industrial facilities in the entire South."
+    },
+    {
+      "q": "What happened off the coast of St. Simons Island on April 8, 1942?",
+      "options": [
+        "A U.S. destroyer was sunk by a Japanese submarine",
+        "German U-boat U-123 sank three Allied ships, killing 23 crewmen and shattering windows in Brunswick",
+        "A successful U.S. convoy repelled a German U-boat attack",
+        "A domestic oil tanker exploded, initially mistaken for an enemy attack"
+      ],
+      "correct": 1,
+      "explanation": "Lt. Commander Reinhard Hardegen of U-123 spotted the oil tanker Oklahoma silhouetted against the lit shore, sank it (shattering windows in Brunswick), then sank two more vessels. 23 crewmen died."
+    },
+    {
+      "q": "Why was Georgia's coast vulnerable to U-boat attacks despite nearby military bases?",
+      "options": [
+        "All Navy ships had been deployed to the Pacific after Pearl Harbor",
+        "Antisubmarine patrols were uncoordinated and coastal communities ignored blackout orders — making ships visible against the lit-up shore",
+        "The shallow water was thought to prevent U-boats from operating near the coast",
+        "Georgia's military bases were training facilities, not combat-ready units"
+      ],
+      "correct": 1,
+      "explanation": "Despite proximity to military bases, antisubmarine patrols were uncoordinated and coastal communities ignored blackouts — the Oklahoma was spotted because it was silhouetted against the brightly lit St. Simons Island shore."
+    },
+    {
+      "q": "What were the three major effects of World War II on Georgia?",
+      "options": [
+        "It extended the Depression, increased rural poverty, and shrank Atlanta",
+        "It ended the Great Depression, transformed Georgia's economy, and accelerated urbanization and racial change",
+        "It created new cotton subsidies, expanded agriculture, and reduced industrial growth",
+        "It shifted Georgia's economy toward services and reduced manufacturing"
+      ],
+      "correct": 1,
+      "explanation": "WWII ended the Great Depression in Georgia, transformed the state's economy through massive federal military investment, and accelerated urbanization and changes in race relations."
+    },
+    {
+      "q": "What naval strategy did the U.S. adopt after the U-boat attacks off Georgia?",
+      "options": [
+        "They closed all Atlantic coastal shipping for the duration of the war",
+        "They stationed a permanent destroyer squadron off Savannah",
+        "They adopted the British convoy system, providing around-the-clock protection for Allied ships in Georgia waters",
+        "They built underwater nets and mines along the Georgia coastline"
+      ],
+      "correct": 2,
+      "explanation": "After the April 1942 attacks, the U.S. Navy adopted the British convoy system — providing Allied ships in Georgia waters with around-the-clock protection."
+    }
+  ]
+}

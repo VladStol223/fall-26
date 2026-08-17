@@ -1,0 +1,205 @@
+{
+  "id": "ga-history-m1",
+  "course": "GA History",
+  "courseColor": "blue",
+  "moduleNumber": 1,
+  "title": "Colonial Georgia",
+  "subtitle": "Oglethorpe, Trustees & Early Settlement",
+  "storagePrefix": "m1",
+  "totalCards": 30,
+
+  "overview": {
+    "stats": [
+      { "value": "114",      "label": "First Colonists on the Anne (1733)" },
+      { "value": "1732",     "label": "Year Charter Granted" },
+      { "value": "1735",     "label": "Year Slavery Formally Banned" },
+      { "value": "1751",     "label": "Year Slavery Permitted" }
+    ],
+    "people": [
+      { "name": "James Edward Oglethorpe", "desc": "Founder of Georgia colony; led first 114 colonists to Yamacraw Bluff on Feb 1, 1733; military hero of Battle of Bloody Marsh (1742)." },
+      { "name": "Tomochichi",              "desc": "Mico (chief) of the Yamacraw Indians; welcomed Oglethorpe; accompanied him to England in 1734; died 1739." },
+      { "name": "Mary Musgrove",           "desc": "Daughter of an English father and Creek mother; served as interpreter between the colonists and Yamacraw." },
+      { "name": "Patrick Tailfer",         "desc": "Lowland Scot settler and leader of the 'malcontents' who campaigned to overturn the slavery ban." },
+      { "name": "Thomas Stephens",         "desc": "Son of the Trustees' secretary; lobbied Parliament to make funding of Georgia conditional on allowing slavery." }
+    ],
+    "dates": [
+      { "year": "June 9, 1732",     "event": "Crown grants charter to the Trustees for Establishing the Colony of Georgia" },
+      { "year": "Feb 1, 1733",      "event": "Oglethorpe lands 114 colonists at Yamacraw Bluff — site of modern Savannah" },
+      { "year": "1734",             "event": "Tomochichi and delegation travel to England with Oglethorpe" },
+      { "year": "1735",             "event": "House of Commons passes legislation formally prohibiting slavery in Georgia" },
+      { "year": "1738",             "event": "Highland Scots at Darien petition supporting the slavery ban" },
+      { "year": "1742",             "event": "Battle of Bloody Marsh — Oglethorpe defeats Spanish invasion on St. Simons Island" },
+      { "year": "Oct 5, 1739",      "event": "Tomochichi dies; Oglethorpe holds military funeral in his honor" },
+      { "year": "1750",             "event": "Trustees agree to lift the ban on slavery; new code takes effect Jan 1, 1751" },
+      { "year": "1752",             "event": "Trustees' Royal Charter expires" },
+      { "year": "June 30, 1785",    "event": "Oglethorpe dies at Cranham Hall at age 88" }
+    ],
+    "terms": [
+      { "term": "Trustees",          "def": "Board of philanthropists granted a 21-year charter to found and govern Georgia; banned slavery and promoted religious freedom" },
+      { "term": "Yamacraw",          "def": "Small band of Lower Creek Indians at Yamacraw Bluff; welcomed colonists under Mico Tomochichi" },
+      { "term": "Placer mining",     "def": "Mining gold that has washed down hillsides into streams; the early, low-capital gold-mining method" },
+      { "term": "Battle of Bloody Marsh", "def": "1742 victory by Oglethorpe's militia over Spanish invaders on St. Simons Island; turned the tide for English control of the Southeast" },
+      { "term": "Malcontents",       "def": "Pro-slavery settlers (led by Tailfer & Stephens) who bombarded Trustees with petitions demanding slavery be permitted" },
+      { "term": "Nescit Cedere",     "def": "Oglethorpe University motto ('one who does not know how to give up'), adopted from the Oglethorpe family crest" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — Who Was James Edward Oglethorpe?",
+      "body": "<p><mark>James Edward Oglethorpe</mark> was born on <mark>December 22, 1696</mark>, in Yorkshire, England. After graduating from Eton and Corpus Christi College, Oxford, he began a military career in 1717, fighting against the Turks under Prince Eugene of Savoy.</p><p>From <mark>1722 to 1743</mark> Oglethorpe served in the British House of Commons, gaining a reputation as the <mark>champion of the oppressed</mark>. He pressed for the elimination of English prison abuses and, in 1732, defended the North American colonies' right to trade freely with Britain.</p><p>The prison reforms Oglethorpe championed inspired him to propose a charity colony in America. On <mark>June 9, 1732</mark>, the crown granted a charter to the <mark>Trustees for Establishing the Colony of Georgia</mark>. Oglethorpe led the first group of <mark>114 colonists</mark> on the frigate <em>Anne</em>, landing at the site of today's <mark>Savannah on February 1, 1733</mark>. The original charter <mark>banned slavery</mark> and granted <mark>religious freedom</mark>, leading to the foundation of a Jewish community in Savannah.</p>"
+    },
+    {
+      "title": "2 — The Battle of Bloody Marsh & Legacy",
+      "body": "<p>In <mark>1742</mark>, Oglethorpe called upon his military experience and Georgia's militia to defend the colony from a <mark>Spanish invasion on St. Simons Island</mark>. He defeated the invaders in the <mark>Battle of Bloody Marsh</mark>, credited as the turning point between England and Spain's fight for control of southeastern North America.</p><p>In 1746, Oglethorpe was falsely accused of treason and driven from public life. He remained an <mark>outspoken opponent of slavery</mark> throughout his life. At age 88 he died at <mark>Cranham Hall on June 30, 1785</mark> — shortly after calling on John Adams to express his \"great esteem\" for the new United States.</p><p>At Oglethorpe University, his legacy lives on in <em>Oglethorpe Day</em> (second Wednesday in February), the motto <em>Nescit Cedere</em> (\"one who does not know how to give up\"), Gothic revival architecture modeled on Corpus Christi College Oxford, and the mascot the <mark>Stormy Petrel</mark>.</p>"
+    },
+    {
+      "title": "3 — Oglethorpe & Tomochichi",
+      "body": "<p><mark>Tomochichi</mark> was the mico (chief) of the <mark>Yamacraw Indians</mark> — a small band of Lower Creek Indians living at Yamacraw Bluff when Oglethorpe arrived. He welcomed Oglethorpe and the colonists, allowing some ill settlers to stay in the village while Savannah was built. <mark>Mary Musgrove</mark> (English father, Creek mother) served as interpreter.</p><p>Tomochichi welcomed the English because it gave his people — exiles from the Lower Creek Confederacy — the chance to trade and establish diplomatic connections. In <mark>1734</mark>, Tomochichi, his wife Senauki, adopted son Toonahowi, and six Lower Creek tribesmen accompanied Oglethorpe to England to seek assurances of education and fair trade.</p><p>Tomochichi helped the colonists lay out roads, including the first road from Savannah to Darien. He died on <mark>October 5, 1739</mark>. Oglethorpe honored him with a military funeral; a granite boulder in <mark>Wright Square in Savannah</mark> marks his grave today.</p>"
+    },
+    {
+      "title": "4 — Slavery: Banned, Then Demanded",
+      "body": "<p>Between <mark>1735 and 1750</mark>, Georgia was the <mark>only British American colony</mark> to attempt to prohibit Black slavery as public policy. The Trustees banned slavery not as a matter of principle, but because it threatened their social and economic design for the colony — and because Spain offered freedom to enslaved people who escaped to Florida, making slavery a military liability.</p><p>By the late 1730s, a coalition of <mark>\"malcontents\"</mark> led by <mark>Patrick Tailfer</mark> and <mark>Thomas Stephens</mark> bombarded the Trustees with petitions arguing slavery was economically necessary. South Carolina planters, eager to expand their rice economy into Georgia, fueled the pressure.</p><p>After Oglethorpe's defeat of the Spanish at Bloody Marsh in 1742 removed the military argument against slavery, the Trustees' resistance weakened. By the <mark>mid-1740s</mark> enslaved Africans were being illicitly imported, especially through Augusta. The Trustees accepted the inevitable — the ban was lifted in <mark>1750</mark>, with slavery taking effect <mark>January 1, 1751</mark>.</p>"
+    },
+    {
+      "title": "5 — Slavery Permitted & Its Growth",
+      "body": "<p>Once the ban was lifted, Carolina planters flooded into the Georgia Lowcountry, bringing enslaved people with them and quickly dominating the colony's government. In <mark>1755</mark>, they replaced the Trustees' slave code with one virtually identical to South Carolina's.</p><p>Between <mark>1750 and 1775</mark>, Georgia's enslaved population grew from fewer than <mark>500</mark> to approximately <mark>18,000</mark>. Beginning in the mid-1760s, Georgia imported captive workers directly from Africa — mainly from Angola, Sierra Leone, and the Gambia — for physically demanding work in the rice fields.</p><p>Enslaved individuals had no legal right to private lives. Despite the daunting odds, they resisted their owners in ways including running away, and acts of physical and verbal resistance. The American Revolution (1775–83) would offer the best prospect of freedom.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "Who founded the colony of Georgia and when?", "a": "James Edward Oglethorpe founded Georgia. He led 114 colonists on the frigate Anne, landing at Yamacraw Bluff (Savannah) on February 1, 1733." },
+    { "q": "When was the charter for Georgia granted and to whom?", "a": "June 9, 1732. Granted to the Trustees for Establishing the Colony of Georgia." },
+    { "key": true,  "q": "What two rights did the original Georgia charter guarantee?", "a": "It banned slavery and granted religious freedom — leading to a Jewish community in Savannah." },
+    { "q": "What was Oglethorpe's reputation in the British House of Commons?", "a": "Champion of the oppressed — he pressed for prison reform and defended colonial trade rights." },
+    { "key": true,  "q": "What was the Battle of Bloody Marsh and why was it significant?", "a": "1742 battle on St. Simons Island where Oglethorpe defeated a Spanish invasion. It was the turning point settling English vs. Spanish control of southeastern North America." },
+    { "q": "Who was Tomochichi and what role did he play?", "a": "Mico (chief) of the Yamacraw Indians. He welcomed Oglethorpe, allowed ill colonists to shelter in his village, helped lay out roads, and accompanied Oglethorpe to England in 1734." },
+    { "q": "Who served as interpreter between the colonists and the Yamacraw?", "a": "Mary Musgrove — daughter of an English father and Creek mother, married to John Musgrove." },
+    { "q": "Why did Tomochichi welcome the English colonists?", "a": "As exiles from the Lower Creek Confederacy, the Yamacraw needed diplomatic and trade connections with the English to prove their value to other Creek communities." },
+    { "key": true,  "q": "Why did the Trustees ban slavery in Georgia?", "a": "Not as a matter of principle, but because: (1) it conflicted with their economic design for the colony, and (2) Spain offered freedom to enslaved people who fled to Florida, making slavery a military security threat." },
+    { "q": "Who were the 'malcontents' and what did they want?", "a": "Pro-slavery settlers led by Patrick Tailfer and Thomas Stephens who bombarded the Trustees with petitions demanding that slavery be permitted, arguing the Trustees' economic design was impractical." },
+    { "q": "Which groups supported the Trustees' ban on slavery?", "a": "The Highland Scots settlers at Darien (1738 petition) and the Salzburger community at Ebenezer (Pastor Johann Martin Boltzius)." },
+    { "key": true,  "q": "When did slavery become legal in Georgia and what triggered the change?", "a": "Effective January 1, 1751 (agreed 1750). The Spanish military threat was gone after Bloody Marsh (1742), Oglethorpe lost interest, and illicit importation was already widespread." },
+    { "q": "How did Georgia's enslaved population change between 1750 and 1775?", "a": "Grew from fewer than 500 to approximately 18,000. After mid-1760s, enslaved Africans were imported directly from Angola, Sierra Leone, and the Gambia." },
+    { "q": "Where is Tomochichi's grave and how is it marked?", "a": "Wright Square in Savannah. A granite boulder (placed 1899) with a copper plaque marks the site." },
+    { "key": true,  "q": "What is the Oglethorpe University motto and what does it mean?", "a": "Nescit Cedere — Latin for 'one who does not know how to give up.' Adopted from the Oglethorpe family crest." },
+    { "q": "What was Oglethorpe Day and when is it held?", "a": "Annual commemoration of Oglethorpe's arrival in Savannah (Feb 1, 1733). Held on the second Wednesday in February at Oglethorpe University." },
+    { "q": "What inspired the Gothic revival architecture at Oglethorpe University?", "a": "Corpus Christi College, Oxford — Oglethorpe's honorary alma mater." },
+    { "q": "What happened when Oglethorpe tried to have the slavery ban backed by Parliament?", "a": "In 1735, Parliament passed legislation prohibiting slavery in Georgia — the Trustees' influence persuaded the House of Commons that the Spanish threat and Georgia's survival depended on the ban." },
+    { "q": "What did Thomas Stephens do to pressure the Trustees regarding slavery?", "a": "Went to London to lobby Parliament, trying to make its financial support for Georgia conditional on permitting slavery. Largely unsuccessful while Spain remained a threat." },
+    { "q": "What happened after the slavery ban was lifted in terms of plantation economy?", "a": "Carolina planters flooded into the Georgia Lowcountry; in 1755 they replaced the Trustees' slave code with one identical to South Carolina's, creating a slave-based rice economy." },
+    { "q": "What was the significance of the 1742 Battle of Bloody Marsh on the slavery debate?", "a": "Oglethorpe's defeat of the Spanish removed the key military argument against slavery (Spain no longer offered freedom to escaped enslaved people). This weakened the Trustees' position." },
+    { "q": "What was the frigate that brought the first colonists to Georgia?", "a": "The Anne — carrying 114 colonists to Yamacraw Bluff on February 1, 1733." },
+    { "q": "Why did Tomochichi travel to England in 1734?", "a": "To seek assurances from the British government that his people would benefit from education and fair trade policies with the English." },
+    { "q": "When and how did Tomochichi die?", "a": "October 5, 1739 — he was ill in his home village and could not attend Oglethorpe's successful 1739 trip to Lower Creek territory. Oglethorpe honored him with a military funeral." },
+    { "key": true,  "q": "What were the two main reasons the Trustees' ban on slavery failed?", "a": "1) Loss of military justification after Bloody Marsh (1742). 2) Weakened leadership — Oglethorpe lost interest and the health of Egmont (the Trustees' leader) declined, allowing illicit importation to continue unchecked." },
+    { "q": "How did Oglethorpe's background shape his approach to Georgia?", "a": "Military career gave him tactical skill (Bloody Marsh); parliamentary career gave him legislative influence (prison reform, slavery ban); his personal opposition to slavery remained throughout his life." },
+    { "q": "What was the earliest road built with Tomochichi's help?", "a": "The first road from Savannah to Darien (New Inverness) to the south." },
+    { "q": "How did Oglethorpe die and what were his final words about America?", "a": "Died at Cranham Hall, June 30, 1785, age 88. Three weeks before, he called on John Adams to express his 'great esteem and regard for America.'" },
+    { "q": "What was the 1755 slave code in Georgia?", "a": "After the slavery ban was lifted, South Carolina planters replaced the Trustees' modest code with one virtually identical to South Carolina's, greatly restricting enslaved people's rights." },
+    { "q": "What is the Stormy Petrel and how is it connected to Oglethorpe?", "a": "Oglethorpe University's mascot. According to legend, the small seabird inspired Oglethorpe while aboard ship to Georgia in 1732." }
+  ],
+
+  "quiz": [
+    {
+      "q": "Who led the first 114 colonists to Georgia and in what year did they arrive?",
+      "options": ["James Oglethorpe, 1732", "James Oglethorpe, 1733", "Tomochichi, 1733", "The Trustees, 1735"],
+      "correct": 1,
+      "explanation": "Oglethorpe led 114 colonists on the frigate Anne, landing at Yamacraw Bluff (site of Savannah) on February 1, 1733."
+    },
+    {
+      "q": "What two rights did the original Georgia charter guarantee that were unusual for the time?",
+      "options": [
+        "Universal male suffrage and free land",
+        "A ban on slavery and religious freedom",
+        "Free trade and prohibition of debtors' prison",
+        "Self-governance and freedom of the press"
+      ],
+      "correct": 1,
+      "explanation": "The original charter banned slavery and granted religious freedom — the latter led to a Jewish community being founded in Savannah."
+    },
+    {
+      "q": "What was the Battle of Bloody Marsh (1742) and why was it significant?",
+      "options": [
+        "A battle against Creek Indians that opened up land for settlement",
+        "A dispute between colonists and the Trustees over slavery",
+        "Oglethorpe's militia defeating a Spanish invasion on St. Simons Island — securing English control of the Southeast",
+        "A naval battle in Savannah Harbor against French privateers"
+      ],
+      "correct": 2,
+      "explanation": "Oglethorpe and his militia defeated Spanish invaders on St. Simons Island in 1742. It is credited as the turning point that settled English vs. Spanish control of southeastern North America."
+    },
+    {
+      "q": "Why did the Trustees originally ban slavery in Georgia?",
+      "options": [
+        "They opposed slavery as a moral principle",
+        "The charter required it because Quaker investors demanded it",
+        "It threatened the colony's economic design and posed a military security risk (Spain offered freedom to escaped enslaved people)",
+        "They wanted Georgia to be different from Virginia and South Carolina"
+      ],
+      "correct": 2,
+      "explanation": "The Trustees were not opposed to slavery in principle. They banned it because it conflicted with their economic vision and because Spain's promise of freedom to escaped enslaved people threatened the colony's military security."
+    },
+    {
+      "q": "Who was Tomochichi and why did he welcome the English colonists?",
+      "options": [
+        "A Creek chief who was bribed by Oglethorpe with trade goods",
+        "Mico of the Yamacraw, who welcomed colonists to gain trade and diplomatic standing after his exile from the Lower Creek Confederacy",
+        "A British interpreter who helped Oglethorpe negotiate with the Spanish",
+        "The leader of the Muscogee (Creek) who sold land to the Trustees"
+      ],
+      "correct": 1,
+      "explanation": "Tomochichi was mico (chief) of the Yamacraw. As exiles from the Lower Creek Confederacy, his people needed the English connection to prove their value and restore their standing."
+    },
+    {
+      "q": "When did slavery become legally permitted in Georgia?",
+      "options": ["1735", "1742", "1751", "1755"],
+      "correct": 2,
+      "explanation": "The Trustees agreed to lift the ban in 1750; slavery took effect January 1, 1751."
+    },
+    {
+      "q": "What happened to Georgia's enslaved population between 1750 and 1775?",
+      "options": [
+        "It remained under 1,000 due to ongoing restrictions",
+        "It grew from fewer than 500 to approximately 18,000",
+        "It was abolished again under the Revolutionary War government",
+        "It grew to about 5,000, mostly from natural population growth"
+      ],
+      "correct": 1,
+      "explanation": "Georgia's enslaved population exploded from fewer than 500 to approximately 18,000 people in those 25 years, as Carolina planters flooded in and imports from Africa began in the mid-1760s."
+    },
+    {
+      "q": "What is the Oglethorpe University motto Nescit Cedere and where does it come from?",
+      "options": [
+        "\"Truth above all\" — from the Georgia colony's founding charter",
+        "\"One who does not know how to give up\" — from the Oglethorpe family crest",
+        "\"For God and country\" — a tribute to Oglethorpe's military service",
+        "\"Forward always\" — coined by Thornwell Jacobs in 1916"
+      ],
+      "correct": 1,
+      "explanation": "Nescit Cedere is Latin for 'one who does not know how to give up.' It was adopted from the Oglethorpe family crest as the university's motto."
+    },
+    {
+      "q": "What was the role of Mary Musgrove in early colonial Georgia?",
+      "options": [
+        "She was a Trustee representative who managed land grants in Savannah",
+        "She served as interpreter between the English colonists and the Yamacraw Indians",
+        "She founded the first school for Cherokee children in Georgia",
+        "She led the petition against slavery on behalf of the Salzburger community"
+      ],
+      "correct": 1,
+      "explanation": "Mary Musgrove (née Coosaponakeesa) had an English father and Creek mother and served as the crucial interpreter between Oglethorpe's colonists and Tomochichi's Yamacraw."
+    },
+    {
+      "q": "What ultimately caused the Trustees' slavery ban to collapse?",
+      "options": [
+        "Parliament voted to override the charter due to economic pressure from South Carolina",
+        "Oglethorpe personally reversed his position after returning from Bloody Marsh",
+        "The defeat of Spain at Bloody Marsh removed the military argument; settler pressure grew; and Oglethorpe and key Trustees lost interest, allowing illicit importation to spread",
+        "The Crown refused to renew the charter unless slavery was permitted"
+      ],
+      "correct": 2,
+      "explanation": "After Bloody Marsh eliminated the military rationale, Oglethorpe and Egmont lost interest, illicit importation of enslaved Africans grew (especially through Augusta), and the Trustees bowed to the inevitable by 1750."
+    }
+  ]
+}

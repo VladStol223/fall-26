@@ -1,0 +1,209 @@
+{
+  "id": "ga-history-m2",
+  "course": "GA History",
+  "courseColor": "blue",
+  "moduleNumber": 2,
+  "title": "Gold Rush & Cherokee Removal",
+  "subtitle": "Dahlonega Mint, Trail of Tears & the Great Intrusion",
+  "storagePrefix": "m2",
+  "totalCards": 32,
+
+  "overview": {
+    "stats": [
+      { "value": "1829",   "label": "First Documented Gold Discovery in Georgia" },
+      { "value": "$6M+",   "label": "Face Value of Coins Minted at Dahlonega (1838–1861)" },
+      { "value": "4,000+", "label": "Cherokees Who Died on the Trail of Tears" },
+      { "value": "1838",   "label": "Year of Cherokee Forced Removal" }
+    ],
+    "people": [
+      { "name": "Benjamin Parks",     "desc": "Prospector credited (anecdotally) with an early gold discovery near the Chestatee River in 1828; recalled the 'Great Intrusion' in 1894." },
+      { "name": "John Ross",          "desc": "Principal Chief of the Cherokee Nation; led legal resistance and ultimately led 16,000 Cherokees on the Trail of Tears." },
+      { "name": "Major Ridge",        "desc": "Cherokee leader of the 'Treaty Party'; signed the Treaty of New Echota (1835) without national authority." },
+      { "name": "Sequoyah",           "desc": "Created the Cherokee syllabary, enabling Cherokees to read, write, and publish newspapers in their own language." },
+      { "name": "Andrew Jackson",     "desc": "U.S. President who declared removal a national objective; signed the Indian Removal Act (1830); refused to enforce Worcester v. Georgia." },
+      { "name": "Matthew Stephenson", "desc": "Assayer at the Dahlonega Mint; famously tried to dissuade miners from leaving for California in 1849 ('There's millions in it')." }
+    ],
+    "dates": [
+      { "year": "Aug 1, 1829",   "event": "Georgia Journal publishes first documented notice of gold in Georgia" },
+      { "year": "1830",          "event": "Spring: 4,000 miners working Yahoola Creek alone; Indian Removal Act signed" },
+      { "year": "1832",          "event": "Auraria reaches population of 1,000; Worcester v. Georgia — Supreme Court sides with Cherokees (Jackson ignores it)" },
+      { "year": "1833",          "event": "Licklog renamed Dahlonega (Cherokee: 'golden/yellow'); ~1,000 people in town, 5,000 in county" },
+      { "year": "1835",          "event": "Treaty of New Echota signed by Treaty Party — without authority of Principal Chief Ross" },
+      { "year": "1838",          "event": "Dahlonega Mint opens; U.S. Army rounds up Cherokees into stockades" },
+      { "year": "1838–1839",     "event": "Trail of Tears — forced removal to Indian Territory (present-day Oklahoma); 4,000–5,000 die" },
+      { "year": "1849",          "event": "California gold rush draws Georgia miners west; Stephenson's famous 'millions in it' speech" },
+      { "year": "1861",          "event": "Dahlonega Mint closes as Civil War begins; produced nearly 1.5 million coins worth $6+ million" }
+    ],
+    "terms": [
+      { "term": "Great Intrusion",       "def": "Contemporary term for the sudden flood of thousands of prospectors into the Cherokee Nation after gold was discovered (1829–30)" },
+      { "term": "Placer mining",         "def": "Mining gold that has washed down hillsides into streams; the early low-capital method requiring only pan and shovel" },
+      { "term": "Vein (hard-rock) mining","def": "More capital-intensive mining requiring tunnels, rafters, and stamp mills to extract gold from underground rock veins" },
+      { "term": "Dahlonega Mint",        "def": "Federal Branch Mint established 1838; coined over $6 million face value of gold coins before closing in 1861" },
+      { "term": "Treaty of New Echota",  "def": "1835 treaty signed by the Treaty Party (Major Ridge) without Chief Ross's authority; required Cherokees to exchange their lands and relocate to Oklahoma" },
+      { "term": "Trail of Tears",        "def": "Forced march of approximately 16,000 Cherokees to Indian Territory (Oklahoma) in winter 1838–39; 4,000–5,000 died" },
+      { "term": "Cherokee syllabary",    "def": "Writing system created by Sequoyah that allowed Cherokees to read, write, and publish in their own language" },
+      { "term": "Cherokee Triumvirate",  "def": "John Ross, Charles Hicks, and Major Ridge — early leaders of Cherokee resistance to removal" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — The Georgia Gold Rush Begins",
+      "body": "<p>No one is certain who first found gold in Georgia, but the first documented evidence came on <mark>August 1, 1829</mark>, when the <em>Georgia Journal</em> published a letter from Habersham County reporting two gold mines. One popular story credits <mark>Benjamin Parks</mark> with kicking up an unusual-looking stone near the <mark>Chestatee River</mark> in 1828.</p><p>By late 1829, north Georgia — then known as the <mark>Cherokee Nation</mark> — was flooded by thousands of prospectors. Spring 1830 reports noted <mark>4,000 miners working Yahoola Creek alone</mark>. This sudden flood was called even at the time the <mark>Great Intrusion</mark>. The Cherokee Phoenix described: \"Our neighbors who regard no law…are now reaping a plentiful harvest.\"</p><p>Gold rush towns exploded: <mark>Auraria</mark> grew to 1,000 by 1832. The county seat was renamed <mark>Dahlonega</mark> in 1833 — from the Cherokee word <em>talonega</em>, meaning golden or yellow — with nearly 1,000 people crowded into the settlement and 5,000 in the surrounding county.</p>"
+    },
+    {
+      "title": "2 — Mining Methods & the Dahlonega Mint",
+      "body": "<p>Early miners used <mark>placer mining</mark> — panning and shoveling gold that had washed into mountain streams. As towns and capital grew, <mark>vein (hard-rock) mining</mark> emerged, requiring tunnels, rafters to prevent cave-ins, and <mark>stamp mills</mark> to crush the ore.</p><p>Trade in the gold region suffered from limited currency — merchants determined the gold's worth and demanded immediate payment. Congress responded by establishing the <mark>federal Branch Mint at Dahlonega</mark>, which opened in <mark>1838</mark>. In its first year it coined over <mark>$100,000</mark> worth of gold. By the time it closed in <mark>1861</mark>, it had produced <mark>nearly 1.5 million gold coins</mark> with a face value of more than <mark>$6 million</mark>.</p><p>When the California gold rush arrived in 1849, assayer <mark>Dr. Matthew Stephenson</mark> famously mounted the courthouse steps to urge miners to stay: <em>\"There's millions in it.\"</em> They left anyway.</p>"
+    },
+    {
+      "title": "3 — Cherokee Resistance to Removal",
+      "body": "<p>By the nineteenth century the Cherokees had lived in the interior Southeast for hundreds of years. They embraced a U.S. \"civilization program\" — establishing courts, a republican government, and in 1827 a written <mark>constitution</mark>. <mark>Sequoyah</mark> created the <mark>Cherokee syllabary</mark>, enabling Cherokees to read and publish in their own language.</p><p>The <mark>Cherokee Triumvirate</mark> — <mark>John Ross</mark>, Charles Hicks, and Major Ridge — led resistance. In 1825, <mark>New Echota</mark> (near present-day Calhoun, GA) became the Cherokee capital. The National Council enacted a law <mark>prohibiting the sale of national land upon penalty of death</mark>.</p><p>After Andrew Jackson was elected in 1828 and declared removal a national objective, Congress passed the <mark>Indian Removal Act (1830)</mark>. The Supreme Court sided with the Cherokees in <mark>Worcester v. Georgia (1832)</mark>, but President Jackson <mark>refused to enforce the ruling</mark>. Georgia extended its laws over Cherokee territory, seized lands, and distributed them by lottery to white Georgians.</p>"
+    },
+    {
+      "title": "4 — The Trail of Tears",
+      "body": "<p>The Treaty of <mark>New Echota (1835)</mark> was signed by <mark>Major Ridge</mark>'s Treaty Party without the authority of Principal Chief Ross or the Cherokee government. It required the Nation to exchange its homeland for land in present-day <mark>Oklahoma</mark> and relocate within two years. The U.S. Senate ratified it by a <mark>margin of one vote</mark>.</p><p>Chief Ross gathered <mark>16,000 Cherokee signatures</mark> against the treaty but was overruled. In 1838, President <mark>Martin Van Buren</mark> ordered U.S. troops into Cherokee territory. Soldiers rounded Cherokees into temporary stockades, then marched them to Indian Territory during a <mark>bitterly cold winter of 1838–39</mark>. At least <mark>4,000–5,000 Cherokees died</mark> — including Ross's wife Quatie — on this <em>trail where they cried</em>, known as the <mark>Trail of Tears</mark>.</p><p>Once in Oklahoma, men who had opposed the unauthorized treaty killed Major Ridge, his son John Ridge, and Elias Boudinot for violating the law against land sales. The Cherokees revived their national institutions and continued as an independent, self-sufficient nation.</p>"
+    },
+    {
+      "title": "5 — After the Gold Rush",
+      "body": "<p>Just as the Dahlonega Mint opened and the last Cherokees were removed, the gold itself was playing out. By the early 1840s, placer deposits were nearly exhausted and hard-rock veins were harder to mine.</p><p>A brief resurgence came in the 1850s when miners returned from California with <mark>hydraulic mining</mark> techniques. But the Civil War closed the Mint in 1861. Large companies — including the Dahlonega Consolidated Gold Mining Company on Yahoola Creek, once the <mark>largest gold-processing plant east of the Mississippi</mark> — set up operations around 1900 but couldn't turn a profit.</p><p>Gold fever endures in north Georgia today: the <mark>Dahlonega Gold Museum</mark> occupies the old 1836 Lumpkin County Courthouse; <mark>thirteen ounces of gold</mark> cover the steeple of North Georgia College's Price Memorial Hall; <mark>forty-three ounces</mark> cover the dome of the state capitol. Every October, the <mark>Gold Rush Days Festival</mark> draws would-be prospectors to Dahlonega.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "When was the first documented evidence of gold in Georgia and where?", "a": "August 1, 1829 — the Georgia Journal published a letter from Habersham County reporting two gold mines. Earlier finds (like Benjamin Parks' near the Chestatee River) are anecdotal." },
+    { "q": "What was the 'Great Intrusion'?", "a": "The term used at the time for the flood of thousands of prospectors into the Cherokee Nation after gold was discovered. By spring 1830, 4,000 miners worked Yahoola Creek alone." },
+    { "key": true,  "q": "What does Dahlonega mean and why was the town renamed?", "a": "From the Cherokee talonega, meaning 'golden' or 'yellow.' The county seat was renamed Dahlonega in 1833 at the center of the gold region in Lumpkin County." },
+    { "q": "What was placer mining?", "a": "Mining gold that has washed down from hillsides and collected along mountain streams. Required only pan and shovel — low capital, popular with early miners." },
+    { "q": "What was vein (hard-rock) mining and how did it differ from placer mining?", "a": "Required tunnels underground, rafters to prevent cave-ins, and stamp mills to crush ore. Far more capital-intensive than placer mining." },
+    { "key": true,  "q": "When did the Dahlonega Mint open and what was its output?", "a": "Opened 1838. Coined over $100,000 in its first year. By closing in 1861, it produced nearly 1.5 million gold coins with a face value over $6 million." },
+    { "q": "Who was Matthew Stephenson and what is he famous for saying?", "a": "Assayer at the Dahlonega Mint who tried to stop miners from leaving for California in 1849. Famously said 'There's millions in it' pointing to Findley Ridge. They left anyway." },
+    { "q": "What is the Cherokee syllabary and who created it?", "a": "A writing system created by Sequoyah that allowed Cherokees to read, write, record laws, and publish newspapers in their own language." },
+    { "key": true,  "q": "What was the Treaty of New Echota (1835) and why was it controversial?", "a": "Signed by Major Ridge's Treaty Party — not by Principal Chief John Ross or the Cherokee government — requiring the Nation to relocate to Oklahoma. Ratified by the Senate by one vote." },
+    { "q": "What was the Cherokee Triumvirate?", "a": "John Ross, Charles Hicks, and Major Ridge — the early leadership coalition of the Cherokee Nation during the resistance to removal." },
+    { "key": true,  "q": "What was Worcester v. Georgia (1832) and what happened after the ruling?", "a": "The Supreme Court declared Georgia had violated Cherokee sovereignty. President Andrew Jackson refused to enforce the ruling and continued pressing for removal." },
+    { "key": true,  "q": "How many Cherokees died on the Trail of Tears and who ordered the removal?", "a": "Scholars estimate 4,000–5,000 Cherokees died (about one-fifth of the population). President Martin Van Buren ordered U.S. troops to round up and march the Cherokees in winter 1838–39." },
+    { "q": "What was the Indian Removal Act (1830)?", "a": "Legislation passed by Congress that authorized the president to negotiate removal treaties with eastern tribes. Signed by Andrew Jackson." },
+    { "q": "Why did Andrew Jackson pursue Cherokee removal?", "a": "He called the policy of negotiating with Indian tribes as sovereign nations an 'absurdity.' He also favored white settler access to Cherokee land for cotton agriculture and gold." },
+    { "q": "What did Chief John Ross do in response to the Treaty of New Echota?", "a": "Gathered 16,000 Cherokee signatures against the treaty, proving the majority opposed it. But the U.S. Senate ratified it by one vote anyway." },
+    { "key": true,  "q": "What happened to Major Ridge and Elias Boudinot after the Trail of Tears?", "a": "They were killed in Indian Territory by opponents who invoked the law that prohibited the sale of Cherokee lands — a law they had violated by signing the Treaty of New Echota." },
+    { "q": "What was the Georgia land lottery system?", "a": "Between 1805 and 1832, Georgia distributed Cherokee and Creek land to white Georgians through a lottery system. Nearly three-quarters of Georgia's land was allocated this way." },
+    { "q": "Where was the Cherokee capital established and when?", "a": "New Echota, near present-day Calhoun, Georgia — established in 1825. The Cherokee National Council there enacted laws including one prohibiting land sales on pain of death." },
+    { "q": "What gold-related items can be seen in Georgia today as reminders of the gold rush?", "a": "13 oz gold on North Georgia College's Price Memorial Hall; 43 oz gold on the state capitol dome; Dahlonega Gold Museum (in old 1836 courthouse); annual Gold Rush Days Festival." },
+    { "q": "What mining technique did Georgia miners bring back from California in the 1850s?", "a": "Hydraulic mining — caused a brief resurgence of gold mining activity in Georgia." },
+    { "q": "What legal moves did the Cherokees make before removal?", "a": "Cherokee Nation v. Georgia (1831): Marshall ruled they were a 'domestic dependent nation.' Worcester v. Georgia (1832): Court said Georgia violated Cherokee sovereignty. Both decisions were ignored by Jackson." },
+    { "q": "Who were Auraria's population and when did it peak?", "a": "Auraria was an instant boomtown — the first major gold rush settlement. By 1832 it had a population of 1,000." },
+    { "key": true,  "q": "What caused the Georgia gold rush to end?", "a": "Placer deposits were played out by the early 1840s. Hard-rock veins became harder to mine. The California gold rush (1849) drew remaining miners west. The Civil War closed the Mint in 1861." },
+    { "q": "What was the Dahlonega Consolidated Gold Mining Company?", "a": "A large company that erected the biggest gold-processing plant east of the Mississippi on Yahoola Creek around 1900. It could not turn a profit and went out of business." },
+    { "q": "What does the Cherokee Phoenix reference in the module?", "a": "The Cherokee-language newspaper, which described the Great Intrusion: 'Our neighbors who regard no law...are now reaping a plentiful harvest.'" },
+    { "q": "What was the role of Georgia politicians like George Troup in removal?", "a": "Georgia politicians increasingly pressured the federal government to fulfill the Compact of 1802 — in which the federal government agreed to extinguish Indian land titles and remove tribes from Georgia." },
+    { "q": "What terms did the U.S. offer the Cherokees in the Treaty of New Echota?", "a": "$5 million, compensation for buildings/fixtures, and transportation costs. The U.S. promised to honor title to new land, respect political autonomy, and protect from future trespasses." },
+    { "key": true,  "q": "How many Cherokees opposed the Treaty of New Echota?", "a": "16,000 signed Chief Ross's petition against the treaty — the vast majority of the Cherokee population. Yet the U.S. Senate ratified it by one vote." },
+    { "q": "What happened to the Georgia land lottery after the Cherokee removal?", "a": "Cherokee land divided into parcels and distributed by lottery to white Georgians; the lottery system had allocated nearly three-quarters of all land in Georgia between 1805 and 1832." },
+    { "q": "What was the first documented evidence of gold in Georgia?", "a": "August 1, 1829 — a letter published in the Georgia Journal from a 'gentleman of the first respectability in Habersham County' reporting two gold mines." },
+    { "q": "What was Auraria?", "a": "An instant gold rush boomtown in present-day Lumpkin County near Dahlonega. By 1832 it had grown to a population of 1,000." },
+    { "q": "Why did Thomas Jefferson originally support Indian removal?", "a": "He believed Native Americans could acculturate at their own pace and retain autonomy west of the Mississippi, away from American settler encroachment. He viewed removal as beneficial to both races." }
+  ],
+
+  "quiz": [
+    {
+      "q": "When was the first documented evidence of gold in Georgia published?",
+      "options": ["1825", "1829", "1833", "1838"],
+      "correct": 1,
+      "explanation": "The Georgia Journal published a letter on August 1, 1829, from Habersham County reporting two gold mines — the first documented notice of gold in Georgia."
+    },
+    {
+      "q": "What was the 'Great Intrusion'?",
+      "options": [
+        "The U.S. Army's forced removal of the Cherokees in 1838",
+        "The sudden flood of thousands of gold miners into the Cherokee Nation after the 1829 discovery",
+        "Georgia's legal takeover of Cherokee lands through the lottery system",
+        "The influx of South Carolina planters after the slavery ban was lifted"
+      ],
+      "correct": 1,
+      "explanation": "Even at the time, the sudden rush of thousands of prospectors into the Cherokee Nation was called the 'Great Intrusion.' By spring 1830, 4,000 miners worked Yahoola Creek alone."
+    },
+    {
+      "q": "When did the federal Branch Mint open in Dahlonega and what was its total output?",
+      "options": [
+        "1829; $1 million in coins",
+        "1833; $3 million in coins",
+        "1838; nearly 1.5 million coins worth over $6 million",
+        "1849; $500,000 in coins before closing"
+      ],
+      "correct": 2,
+      "explanation": "The Dahlonega Mint opened in 1838 and by its 1861 closing had produced nearly 1.5 million gold coins with a face value of over $6 million."
+    },
+    {
+      "q": "Who created the Cherokee syllabary and why was it significant?",
+      "options": [
+        "John Ross — to communicate secretly during treaty negotiations",
+        "Sequoyah — it enabled Cherokees to read, write, record laws, and publish newspapers in their own language",
+        "Major Ridge — to document the treaty terms in Cherokee",
+        "Thomas Jefferson — as part of the 'civilization program' for Native Americans"
+      ],
+      "correct": 1,
+      "explanation": "Sequoyah created the Cherokee syllabary, giving Cherokees the ability to read, write, and publish in their own language — a sign of the Cherokee Nation's embrace of 'civilization.'"
+    },
+    {
+      "q": "What was controversial about the Treaty of New Echota (1835)?",
+      "options": [
+        "It was signed in secret and never ratified by the U.S. Senate",
+        "It was signed by Major Ridge's Treaty Party without the authority of Principal Chief John Ross or the Cherokee government",
+        "It gave Cherokees only 60 days to relocate instead of two years",
+        "It was declared unconstitutional by the Supreme Court but enforced anyway"
+      ],
+      "correct": 1,
+      "explanation": "The Treaty Party (Major Ridge, John Ridge, Elias Boudinot) signed the treaty without authority from Chief Ross or the Cherokee national government. Chief Ross gathered 16,000 signatures against it, yet the Senate ratified it by one vote."
+    },
+    {
+      "q": "What was Worcester v. Georgia (1832) and what was its outcome?",
+      "options": [
+        "The Supreme Court upheld Georgia's right to remove the Cherokees",
+        "The Supreme Court ruled Georgia had violated Cherokee sovereignty — but President Jackson refused to enforce the decision",
+        "Congress overturned the decision and passed the Indian Removal Act",
+        "The Supreme Court ordered Georgia to compensate Cherokees for seized land"
+      ],
+      "correct": 1,
+      "explanation": "The Supreme Court ruled that Georgia had violated Cherokee sovereign status. President Jackson refused to enforce the ruling and continued pressing for removal."
+    },
+    {
+      "q": "How many Cherokees are estimated to have died on the Trail of Tears?",
+      "options": ["About 500", "About 1,000", "4,000–5,000", "Nearly 10,000"],
+      "correct": 2,
+      "explanation": "Scholars estimate that 4,000–5,000 Cherokees — roughly one-fifth of the entire Cherokee population — died on the forced march to Indian Territory in winter 1838–39."
+    },
+    {
+      "q": "What famous quote is attributed to Dahlonega Mint assayer Matthew Stephenson in 1849?",
+      "options": [
+        "\"Gold is where you find it — stay and find it here.\"",
+        "\"There's millions in it\" — urging miners to stay rather than leave for California",
+        "\"The gold belongs to Georgia — not to California.\"",
+        "\"Every ounce mined in Dahlonega is an ounce lost to the Union.\""
+      ],
+      "correct": 1,
+      "explanation": "When miners were preparing to leave for the California gold rush, Stephenson mounted the courthouse steps and shouted 'There's millions in it' pointing to Findley Ridge south of Dahlonega. They left anyway."
+    },
+    {
+      "q": "How did gold mining in Georgia endure into the modern era?",
+      "options": [
+        "The Dahlonega Mint was reopened after the Civil War and continued until 1920",
+        "Georgia still mines over $50 million in gold annually",
+        "Gold fever endures in museums, golden domes, and the annual Gold Rush Days Festival in Dahlonega",
+        "Cherokee descendants won the right to mine gold in their territory under a 1970 treaty"
+      ],
+      "correct": 2,
+      "explanation": "The Dahlonega Gold Museum, 13 oz of gold on North Georgia College's Price Memorial Hall, 43 oz on the state capitol dome, and the annual Gold Rush Days Festival all keep the gold rush spirit alive."
+    },
+    {
+      "q": "What happened to Major Ridge and Elias Boudinot after the Trail of Tears?",
+      "options": [
+        "They were elected to the new Cherokee government in Oklahoma",
+        "They were killed by opponents invoking the Cherokee law that prohibited the sale of national land",
+        "They were tried and imprisoned by the U.S. government for treaty violations",
+        "They returned to Georgia and were granted land by the state legislature"
+      ],
+      "correct": 1,
+      "explanation": "In Indian Territory, opponents killed the Ridges and Boudinot for violating the law that prohibited selling Cherokee lands — the very law the Cherokee government had enacted to protect its territory."
+    }
+  ]
+}
