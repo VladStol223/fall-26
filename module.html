@@ -136,14 +136,19 @@
 
     /* ── Concentric rings progress ── */
     .anki-rings-wrap {
-      display: flex; align-items: center; gap: 20px; margin: 20px 0;
+      display: flex; align-items: center; justify-content: center; gap: 24px; margin: 20px 0;
       background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px 20px;
     }
     .anki-rings-svg { flex-shrink: 0; }
-    .anki-rings-legend { display: flex; flex-direction: column; gap: 10px; }
+    .anki-rings-legend { display: flex; flex-direction: column; gap: 10px; min-width: 130px; }
     .anki-rings-legend-row { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #1f2328; }
     .anki-rings-legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
     .anki-rings-legend-val { font-weight: 700; margin-left: auto; padding-left: 12px; }
+    @media (max-width: 520px) {
+      .anki-rings-wrap { flex-direction: column; align-items: center; gap: 16px; }
+      .anki-rings-legend { flex-direction: row; flex-wrap: wrap; justify-content: center; min-width: unset; gap: 8px 20px; }
+      .anki-rings-legend-val { padding-left: 6px; }
+    }
 
     .anki-stats { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin: 16px 0 0; }
     .anki-stat      { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 6px; padding: 12px; text-align: center; }
@@ -354,13 +359,31 @@
       var remote = data[MOD.id];
       if (!remote) return;
       // Merge: for each card take the version with more total reviews
+      var changed = false;
       Object.keys(remote).forEach(function(q) {
         var r = remote[q];
         var l = cardHistory[q];
         if (!l || (r.good + r.again) > (l.good + l.again)) {
           cardHistory[q] = r;
+          changed = true;
         }
       });
+      if (!changed) return;
+      // Recompute ankiStats from the merged history so saved stats stay in sync
+      var totGood = 0, totAgain = 0, keyGood = 0, keyAgain = 0;
+      var keyQuestions = new Set(ankiCards.filter(function(c){ return c.key; }).map(function(c){ return c.question; }));
+      Object.keys(cardHistory).forEach(function(q) {
+        var h = cardHistory[q];
+        totGood  += h.good;
+        totAgain += h.again;
+        if (keyQuestions.has(q)) { keyGood += h.good; keyAgain += h.again; }
+      });
+      ankiStats.goodCount     = totGood;
+      ankiStats.againCount    = totAgain;
+      ankiStats.totalReviewed = totGood + totAgain;
+      ankiStats.keyGood       = keyGood;
+      ankiStats.keyAgain      = keyAgain;
+      ankiStats.keyReviewed   = keyGood + keyAgain;
       saveLocalStorage();
       updateStats();
     } catch(e) {}
@@ -516,13 +539,15 @@
       '<div id="anki-session">' +
         // Concentric rings SVG
         '<div class="anki-rings-wrap">' +
+          '<div class="anki-rings-legend">' +
+            '<div class="anki-rings-legend-row"><span class="anki-rings-legend-dot" style="background:#3b82d4;"></span><span>Cards seen</span><span class="anki-rings-legend-val" id="legend-total">0</span></div>' +
+            '<div class="anki-rings-legend-row"><span class="anki-rings-legend-dot" style="background:#3b82d4;opacity:.4;"></span><span>Good / Again</span><span class="anki-rings-legend-val" id="legend-good-again">0 / 0</span></div>' +
+          '</div>' +
           '<svg class="anki-rings-svg" id="anki-rings-svg" width="110" height="110" viewBox="0 0 110 110">' +
-            // outer track + fill (total acc)
             '<circle cx="55" cy="55" r="44" fill="none" stroke="#e5e7eb" stroke-width="10"/>' +
             '<circle cx="55" cy="55" r="44" fill="none" stroke="#3b82d4" stroke-width="10" stroke-linecap="round"' +
               ' stroke-dasharray="276.46" stroke-dashoffset="276.46" id="ring-outer"' +
               ' transform="rotate(-90 55 55)" style="transition:stroke-dashoffset .6s ease;"/>' +
-            // inner track + fill (key rate)
             '<circle cx="55" cy="55" r="29" fill="none" stroke="#fde68a" stroke-width="9"/>' +
             '<circle cx="55" cy="55" r="29" fill="none" stroke="#f59e0b" stroke-width="9" stroke-linecap="round"' +
               ' stroke-dasharray="182.21" stroke-dashoffset="182.21" id="ring-inner"' +
@@ -531,8 +556,6 @@
             '<text x="55" y="65" text-anchor="middle" font-size="10" fill="#57606a">acc</text>' +
           '</svg>' +
           '<div class="anki-rings-legend">' +
-            '<div class="anki-rings-legend-row"><span class="anki-rings-legend-dot" style="background:#3b82d4;"></span><span>Total reviewed</span><span class="anki-rings-legend-val" id="legend-total">0</span></div>' +
-            '<div class="anki-rings-legend-row"><span class="anki-rings-legend-dot" style="background:#3b82d4;opacity:.4;"></span><span>Good / Again</span><span class="anki-rings-legend-val" id="legend-good-again">0 / 0</span></div>' +
             '<div class="anki-rings-legend-row"><span class="anki-rings-legend-dot" style="background:#f59e0b;"></span><span>Key rate</span><span class="anki-rings-legend-val" id="legend-key-rate">0%</span></div>' +
             '<div class="anki-rings-legend-row"><span class="anki-rings-legend-dot" style="background:#f59e0b;opacity:.4;"></span><span>Key good / again</span><span class="anki-rings-legend-val" id="legend-key-good-again">0 / 0</span></div>' +
           '</div>' +
@@ -736,7 +759,8 @@
     var lga = document.getElementById('legend-good-again');
     var lkr = document.getElementById('legend-key-rate');
     var lkg = document.getElementById('legend-key-good-again');
-    if (lt)  lt.textContent  = ankiStats.totalReviewed + ' / ' + ankiCards.length;
+    var uniqueSeen = Object.keys(cardHistory).length;
+    if (lt)  lt.textContent  = uniqueSeen + ' / ' + ankiCards.length;
     if (lga) lga.textContent = ankiStats.goodCount + ' / ' + ankiStats.againCount;
     if (lkr) lkr.textContent = kr + '%';
     if (lkg) lkg.textContent = ankiStats.keyGood + ' / ' + ankiStats.keyAgain;
