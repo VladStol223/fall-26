@@ -345,9 +345,16 @@
     gistDirty = false;
     try {
       var url = gistUrl();
+      // Always fetch the latest remote first so we never clobber another module's data
       var getRes = await fetch(url, { cache: 'no-store' });
       var current = getRes.ok ? await getRes.json() : {};
-      current[MOD.id] = cardHistory;
+      // Merge our module in: per-card take the version with more total reviews
+      var existing = current[MOD.id] || {};
+      Object.keys(cardHistory).forEach(function(q) {
+        var l = cardHistory[q], r = existing[q];
+        if (!r || (l.good + l.again) >= (r.good + r.again)) existing[q] = l;
+      });
+      current[MOD.id] = existing;
       await fetch(url, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(current) });
     } catch(e) { gistDirty = true; }
   }
@@ -369,21 +376,7 @@
         }
       });
       if (!changed) return;
-      // Recompute ankiStats from the merged history so saved stats stay in sync
-      var totGood = 0, totAgain = 0, keyGood = 0, keyAgain = 0;
-      var keyQuestions = new Set(ankiCards.filter(function(c){ return c.key; }).map(function(c){ return c.question; }));
-      Object.keys(cardHistory).forEach(function(q) {
-        var h = cardHistory[q];
-        totGood  += h.good;
-        totAgain += h.again;
-        if (keyQuestions.has(q)) { keyGood += h.good; keyAgain += h.again; }
-      });
-      ankiStats.goodCount     = totGood;
-      ankiStats.againCount    = totAgain;
-      ankiStats.totalReviewed = totGood + totAgain;
-      ankiStats.keyGood       = keyGood;
-      ankiStats.keyAgain      = keyAgain;
-      ankiStats.keyReviewed   = keyGood + keyAgain;
+      recomputeAnkiStats();
       saveLocalStorage();
       updateStats();
     } catch(e) {}
@@ -676,7 +669,6 @@
 
   function startAnkiSession() {
     ankiSessionActive = true;
-    loadLocalStorage();
     sessionQueue = buildWeightedQueue(ankiCards); // always build fresh from source, never from saved deck
     showNextAnkiCard();
   }
@@ -780,27 +772,40 @@
     if (!confirm('Reset all Anki stats and history? This cannot be undone.')) return;
     ankiStats = { totalReviewed:0, goodCount:0, againCount:0, keyReviewed:0, keyGood:0, keyAgain:0 };
     cardHistory = {};
-    localStorage.removeItem(sKey('ankiStats'));
     localStorage.removeItem(sKey('cardHistory'));
+    // Push the cleared state to the gist so other devices don't restore old data
+    gistDirty = true;
+    gistFlush();
     updateStats();
     ankiSessionActive = false;
     startAnkiSession();
   }
   function saveLocalStorage() {
-    localStorage.setItem(sKey('ankiStats'),   JSON.stringify(ankiStats));
     localStorage.setItem(sKey('cardHistory'), JSON.stringify(cardHistory));
     cpSyncProgress();
   }
+  function recomputeAnkiStats() {
+    var totGood = 0, totAgain = 0, keyGood = 0, keyAgain = 0;
+    var keyQuestions = new Set(ankiCards.filter(function(c){ return c.key; }).map(function(c){ return c.question; }));
+    Object.keys(cardHistory).forEach(function(q) {
+      var h = cardHistory[q];
+      totGood  += h.good;
+      totAgain += h.again;
+      if (keyQuestions.has(q)) { keyGood += h.good; keyAgain += h.again; }
+    });
+    ankiStats.goodCount     = totGood;
+    ankiStats.againCount    = totAgain;
+    ankiStats.totalReviewed = totGood + totAgain;
+    ankiStats.keyGood       = keyGood;
+    ankiStats.keyAgain      = keyAgain;
+    ankiStats.keyReviewed   = keyGood + keyAgain;
+  }
   function loadLocalStorage() {
-    var s  = localStorage.getItem(sKey('ankiStats'));
     var h2 = localStorage.getItem(sKey('cardHistory'));
-    if (s) {
-      ankiStats = JSON.parse(s);
-      if (ankiStats.keyReviewed === undefined) ankiStats.keyReviewed = 0;
-      if (ankiStats.keyGood     === undefined) ankiStats.keyGood     = 0;
-      if (ankiStats.keyAgain    === undefined) ankiStats.keyAgain    = 0;
-    }
     if (h2) cardHistory = JSON.parse(h2);
+    // Always recompute ankiStats from cardHistory — the saved ankiStats object
+    // can diverge from cardHistory (e.g. after a gist merge on another device).
+    recomputeAnkiStats();
     updateStats();
   }
 
