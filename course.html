@@ -246,6 +246,66 @@
         { id: 'ga-history-m7', num: 7, prefix: 'm7', total: 33, label: 'Sunbelt Era',                            subtitle: 'Hartsfield-Jackson Airport & 1996 Olympics' },
         { id: 'ga-history-m8', num: 8, prefix: 'm8', total: 32, label: 'Modern Georgia',                         subtitle: 'State Flag, Ted Turner & the Film Industry' }
       ]
+    },
+    'capstone-design': {
+      label: 'Capstone Design',
+      tag:   '⚙️ ME 4182',
+      desc:  'Senior capstone design project. Teams design, build, and test an engineering system from concept through prototype.',
+      instructor: 'Jariwala, Amit',
+      schedule: 'Mon/Wed 12:30–2:25 PM · Scheller 300 + Lab AL',
+      crn: '86507 / 87887',
+      quizFile: null,
+      modules: []
+    },
+    'engineering-economy': {
+      label: 'Engineering Economy',
+      tag:   '📊 ISYE 3025',
+      desc:  'Economic analysis for engineering decisions — time value of money, present worth, rate of return, depreciation, and capital budgeting.',
+      instructor: 'Ayer, Tugba',
+      schedule: 'Mon/Wed 9:30–10:20 AM · Scheller Tower 0230',
+      crn: '92327',
+      quizFile: null,
+      modules: []
+    },
+    'engineering-in-history': {
+      label: 'Engineering in History',
+      tag:   '📜 HTS 1081',
+      desc:  'History of technology and engineering from the Industrial Revolution to the present, exploring social, political, and economic dimensions.',
+      instructor: 'Schatzberg, Eric',
+      schedule: 'Mon/Wed 3:30–4:45 PM · Skiles 270',
+      crn: '92359',
+      quizFile: null,
+      modules: []
+    },
+    'government-us': {
+      label: 'Government of the U.S.',
+      tag:   '🏛️ POLS 1101',
+      desc:  'Introduction to American national government — constitutional foundations, federalism, civil liberties, Congress, the Presidency, and the judiciary.',
+      instructor: 'Polak, Michael',
+      schedule: 'Mon/Wed 8:00–9:15 AM · D.M. Smith 115',
+      crn: '82292',
+      quizFile: null,
+      modules: []
+    },
+    'me-systems-lab': {
+      label: 'ME Systems Laboratory',
+      tag:   '🔬 ME 3058',
+      desc:  'Experimental methods in ME systems — measurement techniques, data acquisition, signal processing, and analysis of thermal-fluid and mechanical systems.',
+      instructor: 'MacNair, David',
+      schedule: 'Mon/Wed 11:00–11:50 AM · IC 103 + Lab L02',
+      crn: '94440 / 94442',
+      quizFile: null,
+      modules: []
+    },
+    'refrigeration-ac': {
+      label: 'Refrigeration and Air Conditioning',
+      tag:   '❄️ ME 4321',
+      desc:  'Thermodynamic principles of refrigeration and HVAC systems — vapor-compression cycles, psychrometrics, heat load calculations, and system design.',
+      instructor: 'Haynes, Comas',
+      schedule: 'Mon/Wed 9:30–10:45 AM · Guggenheim 246',
+      crn: '94371',
+      quizFile: null,
+      modules: []
     }
   };
 
@@ -483,10 +543,32 @@
     // Modules pane
     var modPane = document.createElement('div'); modPane.className = 'tab-pane active'; modPane.id = 'tab-modules';
     var modSection = document.createElement('div'); modSection.className = 'modules-section';
-    var modH2 = document.createElement('h2'); modH2.textContent = 'All Modules';
-    var modList = document.createElement('div'); modList.className = 'module-list'; modList.id = 'course-module-list';
-    COURSE.modules.forEach(function(m) { modList.appendChild(buildModuleRow(m)); });
-    modSection.appendChild(modH2); modSection.appendChild(modList);
+
+    if (COURSE.modules.length > 0) {
+      var modH2 = document.createElement('h2'); modH2.textContent = 'All Modules';
+      var modList = document.createElement('div'); modList.className = 'module-list'; modList.id = 'course-module-list';
+      COURSE.modules.forEach(function(m) { modList.appendChild(buildModuleRow(m)); });
+      modSection.appendChild(modH2); modSection.appendChild(modList);
+    } else {
+      // No modules yet — show course info card
+      var infoRows = [];
+      if (COURSE.instructor) infoRows.push(['👤 Instructor', COURSE.instructor]);
+      if (COURSE.schedule)   infoRows.push(['🕐 Schedule',   COURSE.schedule]);
+      if (COURSE.crn)        infoRows.push(['🔢 CRN',        COURSE.crn]);
+      modSection.innerHTML =
+        '<div style="border:2px dashed #e5e7eb;border-radius:10px;padding:32px 24px;background:#fafbfc;">' +
+          '<h3 style="font-size:16px;font-weight:700;color:#0a3c78;margin-bottom:6px;">Course Info</h3>' +
+          '<p style="font-size:13px;color:#57606a;margin-bottom:20px;">' + COURSE.desc + '</p>' +
+          '<table style="width:100%;border-collapse:collapse;">' +
+            infoRows.map(function(r){
+              return '<tr><td style="padding:7px 12px 7px 0;font-size:13px;font-weight:600;color:#1f2328;white-space:nowrap;vertical-align:top;">' + r[0] + '</td>' +
+                     '<td style="padding:7px 0;font-size:13px;color:#57606a;">' + r[1] + '</td></tr>';
+            }).join('') +
+          '</table>' +
+          '<p style="font-size:12px;color:#9ca3af;margin-top:20px;">Study materials and modules will be added here as the semester progresses.</p>' +
+        '</div>';
+    }
+
     modPane.appendChild(modSection);
     tabContent.appendChild(modPane);
 
@@ -514,6 +596,8 @@
         .catch(function() {
           quizBody.innerHTML = '<div class="quiz-locked"><h3>No quiz available yet</h3><p>Quiz questions will be added after module content is complete.</p></div>';
         });
+    } else if (COURSE.modules.length === 0) {
+      quizBody.innerHTML = '<div class="quiz-locked"><h3>No quiz available yet</h3><p>Quiz questions will be added after module content is complete.</p></div>';
     }
   }
 

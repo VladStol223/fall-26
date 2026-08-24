@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fall '26 — Study Hub</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
-  <meta name="description" content="Interactive study guides for GA History and US History — Fall 2026." />
+  <meta name="description" content="Study hub for Fall 2026 — GA History, Engineering Economy, Capstone Design, Government of the U.S., and more." />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -249,6 +250,16 @@
       margin-bottom: 56px;
     }
 
+    /* ── Campus map ───────────────────────────────────────── */
+    .map-section {
+      margin-bottom: 56px;
+    }
+    #campus-map {
+      width: 100%; height: 380px; border-radius: var(--radius-md);
+      border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
     /* ── Course card ──────────────────────────────────────── */
     .course-card {
       background: var(--surface);
@@ -271,8 +282,12 @@
       height: 8px;
     }
 
-    .course-card-banner.ga  { background: linear-gradient(90deg, var(--blue-700), var(--blue-400)); }
-    .course-card-banner.us  { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+    .course-card-banner.ga   { background: linear-gradient(90deg, var(--blue-700), var(--blue-400)); }
+    .course-card-banner.us   { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+    .course-card-banner.me   { background: linear-gradient(90deg, #0f766e, #34d399); }
+    .course-card-banner.isye { background: linear-gradient(90deg, #b45309, #fbbf24); }
+    .course-card-banner.hts  { background: linear-gradient(90deg, #9a3412, #fb923c); }
+    .course-card-banner.pols { background: linear-gradient(90deg, #1e3a5f, #6b9bd2); }
 
     .course-card-body {
       padding: 24px 24px 16px;
@@ -295,8 +310,12 @@
       width: fit-content;
     }
 
-    .course-tag.ga { background: var(--blue-50); color: var(--blue-700); border: 1px solid var(--blue-200); }
-    .course-tag.us { background: #f5f3ff; color: #6d28d9; border: 1px solid #ddd6fe; }
+    .course-tag.ga   { background: var(--blue-50);  color: var(--blue-700); border: 1px solid var(--blue-200); }
+    .course-tag.us   { background: #f5f3ff;  color: #6d28d9;  border: 1px solid #ddd6fe; }
+    .course-tag.me   { background: #f0fdf4;  color: #0f766e;  border: 1px solid #a7f3d0; }
+    .course-tag.isye { background: #fffbeb;  color: #b45309;  border: 1px solid #fde68a; }
+    .course-tag.hts  { background: #fff7ed;  color: #9a3412;  border: 1px solid #fed7aa; }
+    .course-tag.pols { background: #eff6ff;  color: #1e3a5f;  border: 1px solid #bfdbfe; }
 
     .course-name {
       font-size: 19px;
@@ -705,7 +724,167 @@
 
   <div class="page">
 
-    <!-- Course Cards -->
+    <!-- ── Fall 2026 Courses ── -->
+    <div class="section-header animate-in delay-1">
+      <span class="section-pill blue">📚 Fall 2026</span>
+      <h2 class="section-title">My Courses</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="courses-grid">
+
+      <!-- Capstone Design -->
+      <div class="course-card animate-in delay-2">
+        <a class="course-card-banner me" href="course.html?id=capstone-design" style="display:block;text-decoration:none;"></a>
+        <div class="course-card-body">
+          <span class="course-tag me">⚙️ ME 4182</span>
+          <a href="course.html?id=capstone-design" style="text-decoration:none;color:inherit;">
+            <h3 class="course-name" style="transition:color .18s;">Capstone Design</h3>
+          </a>
+          <p class="course-desc">Senior capstone design project — teams design, build, and test an engineering system from concept through prototype.</p>
+          <div style="font-size:12px;color:var(--muted);margin-top:auto;padding-top:8px;">
+            <div>👤 Jariwala, Amit &nbsp;·&nbsp; Mon/Wed 12:30–2:25 PM</div>
+            <div style="margin-top:2px;">📍 Scheller 300 &nbsp;·&nbsp; CRN: 86507 / 87887</div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="footer-progress-label">No modules yet</span>
+          <div class="footer-progress-bar-wrap"><div class="footer-progress-fill" style="background:linear-gradient(90deg,#0f766e,#34d399);width:0%"></div></div>
+          <span class="footer-count">—</span>
+        </div>
+      </div>
+
+      <!-- Engineering Economy -->
+      <div class="course-card animate-in delay-3">
+        <a class="course-card-banner isye" href="course.html?id=engineering-economy" style="display:block;text-decoration:none;"></a>
+        <div class="course-card-body">
+          <span class="course-tag isye">📊 ISYE 3025</span>
+          <a href="course.html?id=engineering-economy" style="text-decoration:none;color:inherit;">
+            <h3 class="course-name" style="transition:color .18s;">Engineering Economy</h3>
+          </a>
+          <p class="course-desc">Economic analysis for engineering decisions — time value of money, present worth, rate of return, depreciation, and capital budgeting.</p>
+          <div style="font-size:12px;color:var(--muted);margin-top:auto;padding-top:8px;">
+            <div>👤 Ayer, Tugba &nbsp;·&nbsp; Mon/Wed 9:30–10:20 AM</div>
+            <div style="margin-top:2px;">📍 Scheller Tower 0230 &nbsp;·&nbsp; CRN: 92327</div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="footer-progress-label">No modules yet</span>
+          <div class="footer-progress-bar-wrap"><div class="footer-progress-fill" style="background:linear-gradient(90deg,#b45309,#fbbf24);width:0%"></div></div>
+          <span class="footer-count">—</span>
+        </div>
+      </div>
+
+      <!-- Engineering in History -->
+      <div class="course-card animate-in delay-4">
+        <a class="course-card-banner hts" href="course.html?id=engineering-in-history" style="display:block;text-decoration:none;"></a>
+        <div class="course-card-body">
+          <span class="course-tag hts">📜 HTS 1081</span>
+          <a href="course.html?id=engineering-in-history" style="text-decoration:none;color:inherit;">
+            <h3 class="course-name" style="transition:color .18s;">Engineering in History</h3>
+          </a>
+          <p class="course-desc">History of technology and engineering from the Industrial Revolution to the present — social, political, and economic dimensions.</p>
+          <div style="font-size:12px;color:var(--muted);margin-top:auto;padding-top:8px;">
+            <div>👤 Schatzberg, Eric &nbsp;·&nbsp; Mon/Wed 3:30–4:45 PM</div>
+            <div style="margin-top:2px;">📍 Skiles 270 &nbsp;·&nbsp; CRN: 92359</div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="footer-progress-label">No modules yet</span>
+          <div class="footer-progress-bar-wrap"><div class="footer-progress-fill" style="background:linear-gradient(90deg,#9a3412,#fb923c);width:0%"></div></div>
+          <span class="footer-count">—</span>
+        </div>
+      </div>
+
+      <!-- Government of the U.S. -->
+      <div class="course-card animate-in delay-5">
+        <a class="course-card-banner pols" href="course.html?id=government-us" style="display:block;text-decoration:none;"></a>
+        <div class="course-card-body">
+          <span class="course-tag pols">🏛️ POLS 1101</span>
+          <a href="course.html?id=government-us" style="text-decoration:none;color:inherit;">
+            <h3 class="course-name" style="transition:color .18s;">Government of the U.S.</h3>
+          </a>
+          <p class="course-desc">Introduction to American national government — constitutional foundations, federalism, civil liberties, Congress, the Presidency, and the judiciary.</p>
+          <div style="font-size:12px;color:var(--muted);margin-top:auto;padding-top:8px;">
+            <div>👤 Polak, Michael &nbsp;·&nbsp; Mon/Wed 8:00–9:15 AM</div>
+            <div style="margin-top:2px;">📍 D.M. Smith 115 &nbsp;·&nbsp; CRN: 82292</div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="footer-progress-label">No modules yet</span>
+          <div class="footer-progress-bar-wrap"><div class="footer-progress-fill" style="background:linear-gradient(90deg,#1e3a5f,#6b9bd2);width:0%"></div></div>
+          <span class="footer-count">—</span>
+        </div>
+      </div>
+
+      <!-- ME Systems Laboratory -->
+      <div class="course-card animate-in delay-1">
+        <a class="course-card-banner me" href="course.html?id=me-systems-lab" style="display:block;text-decoration:none;"></a>
+        <div class="course-card-body">
+          <span class="course-tag me">🔬 ME 3058</span>
+          <a href="course.html?id=me-systems-lab" style="text-decoration:none;color:inherit;">
+            <h3 class="course-name" style="transition:color .18s;">ME Systems Laboratory</h3>
+          </a>
+          <p class="course-desc">Experimental methods in ME systems — measurement techniques, data acquisition, signal processing, and thermal-fluid analysis.</p>
+          <div style="font-size:12px;color:var(--muted);margin-top:auto;padding-top:8px;">
+            <div>👤 MacNair, David &nbsp;·&nbsp; Mon/Wed 11:00–11:50 AM + Lab</div>
+            <div style="margin-top:2px;">📍 IC 103 / MRDC 3321 &nbsp;·&nbsp; CRN: 94440 / 94442</div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="footer-progress-label">No modules yet</span>
+          <div class="footer-progress-bar-wrap"><div class="footer-progress-fill" style="background:linear-gradient(90deg,#0f766e,#34d399);width:0%"></div></div>
+          <span class="footer-count">—</span>
+        </div>
+      </div>
+
+      <!-- Refrigeration and Air Conditioning -->
+      <div class="course-card animate-in delay-2">
+        <a class="course-card-banner me" href="course.html?id=refrigeration-ac" style="display:block;text-decoration:none;"></a>
+        <div class="course-card-body">
+          <span class="course-tag me">❄️ ME 4321</span>
+          <a href="course.html?id=refrigeration-ac" style="text-decoration:none;color:inherit;">
+            <h3 class="course-name" style="transition:color .18s;">Refrigeration and Air Conditioning</h3>
+          </a>
+          <p class="course-desc">Thermodynamic principles of refrigeration and HVAC systems — vapor-compression cycles, psychrometrics, heat loads, and system design.</p>
+          <div style="font-size:12px;color:var(--muted);margin-top:auto;padding-top:8px;">
+            <div>👤 Haynes, Comas &nbsp;·&nbsp; Mon/Wed 9:30–10:45 AM</div>
+            <div style="margin-top:2px;">📍 Guggenheim 246 &nbsp;·&nbsp; CRN: 94371</div>
+          </div>
+        </div>
+        <div class="course-card-footer">
+          <span class="footer-progress-label">No modules yet</span>
+          <div class="footer-progress-bar-wrap"><div class="footer-progress-fill" style="background:linear-gradient(90deg,#0f766e,#34d399);width:0%"></div></div>
+          <span class="footer-count">—</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── Campus Map ── -->
+    <div class="map-section animate-in delay-3">
+      <div class="section-header">
+        <span class="section-pill blue">🗺️ GT Campus</span>
+        <h2 class="section-title">Class Locations</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div id="map-day-bar" style="
+        display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;
+      "></div>
+      <div id="campus-map"></div>
+      <div id="map-no-class" style="
+        display:none; text-align:center; padding:14px 0 4px;
+        font-size:13px; color:var(--muted);
+      ">No classes scheduled on this day.</div>
+    </div>
+
+    <!-- ── GLRs ── -->
+    <div class="section-header animate-in delay-1">
+      <span class="section-pill gold">📖 Study Guides</span>
+      <h2 class="section-title">Guided Learning Resources</h2>
+      <div class="section-divider"></div>
+    </div>
+
     <div class="courses-grid">
 
       <!-- GA History -->
@@ -752,6 +931,7 @@
           <span class="footer-count">0 modules ready</span>
         </div>
       </div>
+
     </div>
 
   </div>
@@ -932,29 +1112,31 @@
   })();
   </script>
   <script>
-  // ── Sidebar nav (mirrors MODULES registry in module.html) ─────────────────
-  var MODULES = [
-    { id: 'ga-history-m1', courseId: 'ga-history', course: 'GA History', num: 1, label: 'Colonial Georgia' },
-    { id: 'ga-history-m2', courseId: 'ga-history', course: 'GA History', num: 2, label: 'Gold Rush & Cherokee Removal' },
-    { id: 'ga-history-m3', courseId: 'ga-history', course: 'GA History', num: 3, label: 'Civil War & Reconstruction' },
-    { id: 'ga-history-m4', courseId: 'ga-history', course: 'GA History', num: 4, label: 'The Early New South Period' },
-    { id: 'ga-history-m5', courseId: 'ga-history', course: 'GA History', num: 5, label: 'The Great Depression and World War II' },
-    { id: 'ga-history-m6', courseId: 'ga-history', course: 'GA History', num: 6, label: 'Civil Rights Era' },
-    { id: 'ga-history-m7', courseId: 'ga-history', course: 'GA History', num: 7, label: 'Sunbelt Era' },
-    { id: 'ga-history-m8', courseId: 'ga-history', course: 'GA History', num: 8, label: 'Modern Georgia' }
+  // ── Sidebar nav ───────────────────────────────────────────────────────────
+  var COURSES_NAV = [
+    { id: 'ga-history', label: 'GA History', modules: [
+      { id: 'ga-history-m1', num: 1, label: 'Colonial Georgia' },
+      { id: 'ga-history-m2', num: 2, label: 'Gold Rush & Cherokee Removal' },
+      { id: 'ga-history-m3', num: 3, label: 'Civil War & Reconstruction' },
+      { id: 'ga-history-m4', num: 4, label: 'The Early New South Period' },
+      { id: 'ga-history-m5', num: 5, label: 'The Great Depression and World War II' },
+      { id: 'ga-history-m6', num: 6, label: 'Civil Rights Era' },
+      { id: 'ga-history-m7', num: 7, label: 'Sunbelt Era' },
+      { id: 'ga-history-m8', num: 8, label: 'Modern Georgia' }
+    ]},
+    { id: 'capstone-design',        label: 'Capstone Design',                   modules: [] },
+    { id: 'engineering-economy',    label: 'Engineering Economy',                modules: [] },
+    { id: 'engineering-in-history', label: 'Engineering in History',             modules: [] },
+    { id: 'government-us',          label: 'Government of the U.S.',             modules: [] },
+    { id: 'me-systems-lab',         label: 'ME Systems Laboratory',              modules: [] },
+    { id: 'refrigeration-ac',       label: 'Refrigeration and Air Conditioning', modules: [] }
   ];
   (function buildSidebar() {
     var nav = document.getElementById('sidebar-nav');
-    var courses = {};
-    MODULES.forEach(function(m) {
-      if (!courses[m.courseId]) courses[m.courseId] = { label: m.course, modules: [] };
-      courses[m.courseId].modules.push(m);
-    });
-    Object.keys(courses).forEach(function(cid) {
-      var c = courses[cid];
+    COURSES_NAV.forEach(function(c) {
       var courseLink = document.createElement('a');
       courseLink.className = 'sidebar-course-link';
-      courseLink.href = 'course.html?id=' + cid;
+      courseLink.href = 'course.html?id=' + c.id;
       courseLink.textContent = c.label;
       nav.appendChild(courseLink);
       c.modules.forEach(function(m) {
@@ -965,6 +1147,179 @@
         nav.appendChild(a);
       });
     });
+  })();
+  </script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLEo=" crossorigin=""></script>
+  <script>
+  // ── Campus map ────────────────────────────────────────────────────────────
+  (function initMap() {
+    // days: 1=Mon,2=Tue,3=Wed,4=Thu,5=Fri  (JS getDay: 0=Sun,1=Mon...6=Sat)
+    // All classes are Mon/Wed only.
+    // Each slot: { course, code, room, time, startMin (for sort), color }
+    var BUILDINGS = [
+      {
+        name: 'Scheller College of Business',
+        lat: 33.77564, lng: -84.39628,
+        slots: [
+          { course:'Capstone Design',       code:'ME 4182',   room:'Rm 300',  time:'12:30–2:25 PM',  startMin:750, color:'#0f766e', days:[1,3] },
+          { course:'Engineering Economy',   code:'ISYE 3025', room:'Rm 0230', time:'9:30–10:20 AM',  startMin:570, color:'#b45309', days:[1,3] }
+        ]
+      },
+      {
+        name: 'Skiles Classroom Building',
+        lat: 33.77452, lng: -84.39685,
+        slots: [
+          { course:'Engineering in History',code:'HTS 1081',  room:'Rm 270',  time:'3:30–4:45 PM',   startMin:930, color:'#9a3412', days:[1,3] }
+        ]
+      },
+      {
+        name: 'D.M. Smith Building',
+        lat: 33.77372, lng: -84.39958,
+        slots: [
+          { course:'Government of the U.S.',code:'POLS 1101', room:'Rm 115',  time:'8:00–9:15 AM',   startMin:480, color:'#1e3a5f', days:[1,3] }
+        ]
+      },
+      {
+        name: 'Instructional Center',
+        lat: 33.77508, lng: -84.39547,
+        slots: [
+          { course:'ME Systems Lab',        code:'ME 3058',   room:'Rm 103',  time:'11:00–11:50 AM', startMin:660, color:'#0f766e', days:[1,3] }
+        ]
+      },
+      {
+        name: 'MRDC',
+        lat: 33.77195, lng: -84.39660,
+        slots: [
+          { course:'ME Systems Lab (Lab)',  code:'ME 3058',   room:'Rm 3321', time:'12:30–3:15 PM',  startMin:750, color:'#0f766e', days:[3] }
+        ]
+      },
+      {
+        name: 'Guggenheim Building',
+        lat: 33.77238, lng: -84.39628,
+        slots: [
+          { course:'Refrigeration & AC',    code:'ME 4321',   room:'Rm 246',  time:'9:30–10:45 AM',  startMin:570, color:'#0f766e', days:[1,3] }
+        ]
+      }
+    ];
+
+    var DAYS = [
+      { label:'Mon', jsDay:1 },
+      { label:'Tue', jsDay:2 },
+      { label:'Wed', jsDay:3 },
+      { label:'Thu', jsDay:4 },
+      { label:'Fri', jsDay:5 }
+    ];
+
+    // Sat(6)/Sun(0) → show Monday
+    var todayJs = new Date().getDay();
+    var activeDayJs = (todayJs === 0 || todayJs === 6) ? 1 : todayJs;
+
+    // ── Build day pill bar ────────────────────────────────────────────────
+    var bar = document.getElementById('map-day-bar');
+    DAYS.forEach(function(d) {
+      var btn = document.createElement('button');
+      var isToday = (d.jsDay === todayJs) || (todayJs === 0 && d.jsDay === 1) || (todayJs === 6 && d.jsDay === 1);
+      var isActive = d.jsDay === activeDayJs;
+      btn.setAttribute('data-jsday', d.jsDay);
+      btn.textContent = d.label + (isToday ? ' ·today' : '');
+      btn.style.cssText = [
+        'padding:5px 14px', 'border-radius:99px', 'border:1px solid',
+        'font-size:12px', 'font-weight:600', 'cursor:pointer',
+        'transition:all .18s', 'font-family:inherit'
+      ].join(';');
+      setDayBtnStyle(btn, isActive);
+      btn.addEventListener('click', function() {
+        activeDayJs = d.jsDay;
+        bar.querySelectorAll('button').forEach(function(b){
+          setDayBtnStyle(b, +b.getAttribute('data-jsday') === activeDayJs);
+        });
+        renderDay(activeDayJs);
+      });
+      bar.appendChild(btn);
+    });
+
+    function setDayBtnStyle(btn, active) {
+      if (active) {
+        btn.style.background = '#0a3c78';
+        btn.style.color = 'white';
+        btn.style.borderColor = '#0a3c78';
+      } else {
+        btn.style.background = 'white';
+        btn.style.color = '#57606a';
+        btn.style.borderColor = '#e5e7eb';
+      }
+    }
+
+    // ── Init Leaflet map ──────────────────────────────────────────────────
+    var map = L.map('campus-map', { zoomControl: true, scrollWheelZoom: false })
+      .setView([33.7740, -84.3970], 16);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 19
+    }).addTo(map);
+
+    map.on('focus', function(){ map.scrollWheelZoom.enable(); });
+    map.on('blur',  function(){ map.scrollWheelZoom.disable(); });
+
+    // ── Per-building markers (persistent, updated on day switch) ─────────
+    var markers = [];
+    BUILDINGS.forEach(function(b) {
+      var el = document.createElement('div'); // dot element, mutated per render
+      var icon = L.divIcon({ className: '', html: el, iconSize:[18,18], iconAnchor:[9,9], popupAnchor:[0,-12] });
+      var marker = L.marker([b.lat, b.lng], { icon: icon }).addTo(map);
+      markers.push({ building: b, marker: marker, el: el });
+    });
+
+    // ── Render for a given JS day number ─────────────────────────────────
+    function renderDay(jsDay) {
+      var anyActive = false;
+      markers.forEach(function(m) {
+        var b = m.building;
+        var active = b.slots.some(function(s){ return s.days.indexOf(jsDay) !== -1; });
+        if (active) anyActive = true;
+
+        // Dot style
+        var dotColor = active ? b.slots.filter(function(s){ return s.days.indexOf(jsDay) !== -1; })[0].color : '#d1d5db';
+        var size = active ? 16 : 10;
+        m.el.style.cssText = [
+          'width:'+size+'px', 'height:'+size+'px', 'border-radius:50%',
+          'background:'+dotColor, 'border:2.5px solid white',
+          'box-shadow:0 1px 5px rgba(0,0,0,'+(active?'.35':'.15')+')',
+          'margin-top:'+(active?'1':'4')+'px',
+          'transition:all .22s'
+        ].join(';');
+
+        // Popup
+        var daySlots = b.slots
+          .filter(function(s){ return s.days.indexOf(jsDay) !== -1; })
+          .sort(function(a,b){ return a.startMin - b.startMin; });
+
+        var popupHtml;
+        if (!active) {
+          popupHtml = '<div style="font-family:-apple-system,\'Segoe UI\',sans-serif;">' +
+            '<div style="font-size:12px;font-weight:700;color:#57606a;">' + b.name + '</div>' +
+            '<div style="font-size:11px;color:#9ca3af;margin-top:3px;">No classes today</div></div>';
+        } else {
+          popupHtml = '<div style="font-family:-apple-system,\'Segoe UI\',sans-serif;min-width:190px;">' +
+            '<div style="font-size:13px;font-weight:700;color:#0a3c78;margin-bottom:8px;">' + b.name + '</div>' +
+            daySlots.map(function(s){
+              return '<div style="margin-bottom:6px;padding:6px 8px;background:#f7f8fa;border-radius:5px;border-left:3px solid '+s.color+';">' +
+                '<div style="font-size:12px;font-weight:700;color:#1f2328;">' + s.course + '</div>' +
+                '<div style="font-size:11px;color:#57606a;margin-top:1px;">' + s.code + ' · ' + s.room + '</div>' +
+                '<div style="font-size:11px;color:#57606a;">' + s.time + '</div>' +
+              '</div>';
+            }).join('') +
+          '</div>';
+        }
+        m.marker.unbindPopup().bindPopup(popupHtml, { maxWidth: 280 });
+      });
+
+      document.getElementById('map-no-class').style.display = anyActive ? 'none' : 'block';
+    }
+
+    // Initial render
+    renderDay(activeDayJs);
   })();
   </script>
 </body>

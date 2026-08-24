@@ -125,14 +125,38 @@
       padding: 20px; border-radius: 6px; background: white; border: 2px solid #e5e7eb;
       min-height: 250px; display: flex; align-items: center; justify-content: center;
       text-align: center; font-size: 20px; margin: 20px 0; cursor: pointer;
-      transition: border-color .2s, background .2s, transform .18s, box-shadow .2s;
+      transition: border-color .2s, background .2s, box-shadow .2s;
       user-select: none; -webkit-user-select: none;
+      will-change: transform, opacity;
     }
     .anki-card-content:hover { box-shadow: 0 4px 12px rgba(59,130,212,.15); border-color: #3b82d4; }
 
     /* swipe feedback flashes */
     .anki-card-content.flash-good  { border-color: #16a34a !important; background: #f0fdf4 !important; }
     .anki-card-content.flash-again { border-color: #dc2626 !important; background: #fef2f2 !important; }
+
+    /* card animations */
+    @keyframes anki-flip {
+      0%   { transform: rotateY(0deg)   scaleX(1);    opacity: 1; }
+      40%  { transform: rotateY(6deg)   scaleX(.97);  opacity: .85; }
+      100% { transform: rotateY(0deg)   scaleX(1);    opacity: 1; }
+    }
+    @keyframes anki-exit-left {
+      0%   { transform: translateX(0);    opacity: 1; }
+      100% { transform: translateX(-28px); opacity: 0; }
+    }
+    @keyframes anki-exit-right {
+      0%   { transform: translateX(0);    opacity: 1; }
+      100% { transform: translateX(28px); opacity: 0; }
+    }
+    @keyframes anki-enter {
+      0%   { transform: scale(.97); opacity: 0; }
+      100% { transform: scale(1);   opacity: 1; }
+    }
+    .anki-card-content.anim-flip       { animation: anki-flip       .22s ease both; }
+    .anki-card-content.anim-exit-left  { animation: anki-exit-left  .18s ease both; pointer-events: none; }
+    .anki-card-content.anim-exit-right { animation: anki-exit-right .18s ease both; pointer-events: none; }
+    .anki-card-content.anim-enter      { animation: anki-enter      .18s ease both; }
 
     /* ── Concentric rings progress ── */
     .anki-rings-wrap {
@@ -669,7 +693,16 @@
 
   function startAnkiSession() {
     ankiSessionActive = true;
-    sessionQueue = buildWeightedQueue(ankiCards); // always build fresh from source, never from saved deck
+    // Filter out cards already mastered (good > again from history) so they
+    // don't keep pulling down accuracy in new sessions. If everything is
+    // mastered, study all cards again.
+    var due = ankiCards.filter(function(c) {
+      var h = cardHistory[c.question];
+      if (!h) return true;                 // never seen → include
+      return h.good <= h.again;            // net-negative or tied → include
+    });
+    if (!due.length) due = ankiCards;      // full reset when everything mastered
+    sessionQueue = buildWeightedQueue(due);
     showNextAnkiCard();
   }
   function showNextAnkiCard() {
@@ -677,9 +710,9 @@
     currentAnkiCard = sessionQueue[0];
     ankiFrontShowing = true;
     cardShownAt = Date.now();
-    displayAnkiCard();
+    displayAnkiCard(true); // true = play enter animation
   }
-  function displayAnkiCard() {
+  function displayAnkiCard(enterAnim) {
     document.getElementById('anki-front-text').textContent =
       ankiFrontShowing ? currentAnkiCard.question : currentAnkiCard.answer;
     // Amber tint for key cards
@@ -691,6 +724,21 @@
       card.style.borderColor = '';
       card.style.background  = '';
     }
+    if (enterAnim) {
+      card.classList.remove('anim-enter');
+      void card.offsetWidth; // reflow to restart animation
+      card.classList.add('anim-enter');
+      card.addEventListener('animationend', function h(){ card.classList.remove('anim-enter'); card.removeEventListener('animationend', h); });
+    }
+  }
+  function ankiFlipReveal() {
+    var card = document.getElementById('anki-front');
+    card.classList.remove('anim-flip');
+    void card.offsetWidth;
+    card.classList.add('anim-flip');
+    card.addEventListener('animationend', function h(){ card.classList.remove('anim-flip'); card.removeEventListener('animationend', h); });
+    ankiFrontShowing = false;
+    displayAnkiCard();
   }
   function handleAnkiClick(e) {
     e.preventDefault();
@@ -698,7 +746,7 @@
       if (e.button === 0) markAnkiAgain();
       else if (e.button === 2) markAnkiGood();
     } else {
-      if (e.button === 0) { ankiFrontShowing = false; displayAnkiCard(); }
+      if (e.button === 0) ankiFlipReveal();
     }
   }
   function recordTime() {
@@ -719,7 +767,8 @@
     sessionQueue.shift();
     ankiStats.totalReviewed++; ankiStats.goodCount++;
     if (currentAnkiCard.key) { ankiStats.keyReviewed++; ankiStats.keyGood++; }
-    saveLocalStorage(); updateStats(); showNextAnkiCard();
+    saveLocalStorage(); updateStats();
+    ankiExitThen('anim-exit-right', showNextAnkiCard);
   }
   function markAnkiAgain() {
     if (!currentAnkiCard) return;
@@ -730,7 +779,19 @@
     sessionQueue.push(sessionQueue.shift());
     ankiStats.totalReviewed++; ankiStats.againCount++;
     if (currentAnkiCard.key) { ankiStats.keyReviewed++; ankiStats.keyAgain++; }
-    saveLocalStorage(); updateStats(); showNextAnkiCard();
+    saveLocalStorage(); updateStats();
+    ankiExitThen('anim-exit-left', showNextAnkiCard);
+  }
+  function ankiExitThen(cls, cb) {
+    var card = document.getElementById('anki-front');
+    card.classList.remove('anim-exit-left', 'anim-exit-right');
+    void card.offsetWidth;
+    card.classList.add(cls);
+    card.addEventListener('animationend', function h(){
+      card.classList.remove(cls);
+      card.removeEventListener('animationend', h);
+      cb();
+    });
   }
   function updateStats() {
     var pr = ankiStats.totalReviewed > 0 ? Math.round(ankiStats.goodCount/ankiStats.totalReviewed*100) : 0;
