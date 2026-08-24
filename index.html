@@ -6,7 +6,7 @@
   <title>Fall '26 — Study Hub</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
   <meta name="description" content="Study hub for Fall 2026 — GA History, Engineering Economy, Capstone Design, Government of the U.S., and more." />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -868,9 +868,19 @@
         <h2 class="section-title">Class Locations</h2>
         <div class="section-divider"></div>
       </div>
-      <div id="map-day-bar" style="
-        display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;
-      "></div>
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+        <div id="map-day-bar" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
+        <button id="map-debug-btn" style="
+          padding:4px 12px; border-radius:99px; border:1px solid #e5e7eb;
+          background:white; color:#57606a; font-size:12px; font-weight:600;
+          cursor:pointer; font-family:inherit; transition:all .18s;
+        ">📍 Debug coords</button>
+      </div>
+      <div id="map-debug-bar" style="
+        display:none; background:#fffbeb; border:1px solid #fde68a; border-radius:6px;
+        padding:8px 12px; font-size:12px; color:#92400e; margin-bottom:8px;
+        font-family:monospace; display:none;
+      ">Click anywhere on the map to copy its coordinates.</div>
       <div id="campus-map"></div>
       <div id="map-no-class" style="
         display:none; text-align:center; padding:14px 0 4px;
@@ -1149,55 +1159,66 @@
     });
   })();
   </script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLEo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
   <script>
   // ── Campus map ────────────────────────────────────────────────────────────
   (function initMap() {
-    // days: 1=Mon,2=Tue,3=Wed,4=Thu,5=Fri  (JS getDay: 0=Sun,1=Mon...6=Sat)
-    // All classes are Mon/Wed only.
-    // Each slot: { course, code, room, time, startMin (for sort), color }
+    // jsDay: 1=Mon 2=Tue 3=Wed 4=Thu 5=Fri  (JS getDay: 0=Sun … 6=Sat)
     var BUILDINGS = [
       {
-        name: 'Scheller College of Business',
-        lat: 33.77564, lng: -84.39628,
+        name: 'John Lewis Student Center (Capstone lecture)',
+        lat: 33.77391, lng: -84.39885,
         slots: [
-          { course:'Capstone Design',       code:'ME 4182',   room:'Rm 300',  time:'12:30–2:25 PM',  startMin:750, color:'#0f766e', days:[1,3] },
-          { course:'Engineering Economy',   code:'ISYE 3025', room:'Rm 0230', time:'9:30–10:20 AM',  startMin:570, color:'#b45309', days:[1,3] }
+          { course:'Capstone Design',       code:'ME 4182',   room:'Theater/Atlantic', time:'12:30–2:25 PM', startMin:750, color:'#0f766e', days:[1] }
+        ]
+      },
+      {
+        name: 'Exhibition Hall Midtown Ballroom (Capstone lab)',
+        lat: 33.77461, lng: -84.40168,
+        slots: [
+          { course:'Capstone Design (Lab)', code:'ME 4182',   room:'Exhibition Hall',  time:'12:30–3:15 PM', startMin:750, color:'#0f766e', days:[3] }
+        ]
+      },
+      {
+        name: 'George Tower / Scheller Tower',
+        lat: 33.77724, lng: -84.38806,
+        slots: [
+          { course:'Engineering Economy',   code:'ISYE 3025', room:'Rm 0230', time:'9:30–10:20 AM',  startMin:570, color:'#b45309', days:[3]   }
         ]
       },
       {
         name: 'Skiles Classroom Building',
-        lat: 33.77452, lng: -84.39685,
+        lat: 33.77362, lng: -84.39632,
         slots: [
-          { course:'Engineering in History',code:'HTS 1081',  room:'Rm 270',  time:'3:30–4:45 PM',   startMin:930, color:'#9a3412', days:[1,3] }
+          { course:'Engineering in History',code:'HTS 1081',  room:'Rm 270',  time:'3:30–4:45 PM',   startMin:930, color:'#9a3412', days:[2,4] }
         ]
       },
       {
         name: 'D.M. Smith Building',
-        lat: 33.77372, lng: -84.39958,
+        lat: 33.77365, lng: -84.39516,
         slots: [
-          { course:'Government of the U.S.',code:'POLS 1101', room:'Rm 115',  time:'8:00–9:15 AM',   startMin:480, color:'#1e3a5f', days:[1,3] }
+          { course:'Government of the U.S.',code:'POLS 1101', room:'Rm 115',  time:'8:00–9:15 AM',   startMin:480, color:'#1e3a5f', days:[2,4] }
         ]
       },
       {
         name: 'Instructional Center',
-        lat: 33.77508, lng: -84.39547,
+        lat: 33.77543, lng: -84.40127,
         slots: [
-          { course:'ME Systems Lab',        code:'ME 3058',   room:'Rm 103',  time:'11:00–11:50 AM', startMin:660, color:'#0f766e', days:[1,3] }
+          { course:'ME Systems Lab',        code:'ME 3058',   room:'Rm 103',  time:'11:00–11:50 AM', startMin:660, color:'#6366f1', days:[3,5] }
         ]
       },
       {
         name: 'MRDC',
-        lat: 33.77195, lng: -84.39660,
+        lat: 33.77671, lng: -84.40066,
         slots: [
-          { course:'ME Systems Lab (Lab)',  code:'ME 3058',   room:'Rm 3321', time:'12:30–3:15 PM',  startMin:750, color:'#0f766e', days:[3] }
+          { course:'ME Systems Lab (Lab)',  code:'ME 3058',   room:'Rm 3321', time:'12:30–3:15 PM',  startMin:750, color:'#6366f1', days:[2]   }
         ]
       },
       {
         name: 'Guggenheim Building',
-        lat: 33.77238, lng: -84.39628,
+        lat: 33.77160, lng: -84.39580,
         slots: [
-          { course:'Refrigeration & AC',    code:'ME 4321',   room:'Rm 246',  time:'9:30–10:45 AM',  startMin:570, color:'#0f766e', days:[1,3] }
+          { course:'Refrigeration & AC',    code:'ME 4321',   room:'Rm 246',  time:'9:30–10:45 AM',  startMin:570, color:'#0f766e', days:[2,4] }
         ]
       }
     ];
@@ -1233,6 +1254,7 @@
         bar.querySelectorAll('button').forEach(function(b){
           setDayBtnStyle(b, +b.getAttribute('data-jsday') === activeDayJs);
         });
+        map.closePopup();
         renderDay(activeDayJs);
       });
       bar.appendChild(btn);
@@ -1254,6 +1276,15 @@
     var map = L.map('campus-map', { zoomControl: true, scrollWheelZoom: false })
       .setView([33.7740, -84.3970], 16);
 
+    // arrowPane: above polylines (400), below distPane
+    map.createPane('arrowPane');
+    map.getPane('arrowPane').style.zIndex = 450;
+    map.getPane('arrowPane').style.pointerEvents = 'none';
+    // distPane: above arrows, below building markers (600)
+    map.createPane('distPane');
+    map.getPane('distPane').style.zIndex = 520;
+    map.getPane('distPane').style.pointerEvents = 'none';
+
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       maxZoom: 19
@@ -1265,14 +1296,54 @@
     // ── Per-building markers (persistent, updated on day switch) ─────────
     var markers = [];
     BUILDINGS.forEach(function(b) {
-      var el = document.createElement('div'); // dot element, mutated per render
+      var el = document.createElement('div');
       var icon = L.divIcon({ className: '', html: el, iconSize:[18,18], iconAnchor:[9,9], popupAnchor:[0,-12] });
       var marker = L.marker([b.lat, b.lng], { icon: icon }).addTo(map);
       markers.push({ building: b, marker: marker, el: el });
     });
 
+    // Arrow layers cleared and redrawn each render
+    var arrowLayers = [];
+
+    function clearArrows() {
+      arrowLayers.forEach(function(l){ map.removeLayer(l); });
+      arrowLayers = [];
+    }
+
+    // Place evenly-spaced arrowheads along a segment from->to.
+    // spacing is in pixels at current zoom.
+    function drawArrowsAlongSegment(from, to, col) {
+      var pxFrom = map.latLngToContainerPoint(L.latLng(from[0], from[1]));
+      var pxTo   = map.latLngToContainerPoint(L.latLng(to[0],   to[1]));
+      var dx = pxTo.x - pxFrom.x;
+      var dy = pxTo.y - pxFrom.y;
+      var lenPx = Math.sqrt(dx*dx + dy*dy);
+      // bearing for the SVG rotation (atan2 in screen coords: x=east, y=south)
+      var deg = Math.atan2(dx, -dy) * 180 / Math.PI; // 0=up=north on screen
+
+      var spacingPx = 40; // ~0.5 inch at 96dpi
+      var count = Math.floor(lenPx / spacingPx);
+      if (count < 1) count = 1;
+
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="-6 -6 12 12">' +
+        '<polygon points="0,-5 4,3 -4,3" fill="' + col + '" opacity="0.7"' +
+        ' transform="rotate(' + deg.toFixed(1) + ')"/>' +
+        '</svg>';
+      var icon = L.divIcon({ className:'', html:svg, iconSize:[12,12], iconAnchor:[6,6] });
+
+      for (var i = 1; i <= count; i++) {
+        var t   = i / (count + 1);
+        var pxX = pxFrom.x + dx * t;
+        var pxY = pxFrom.y + dy * t;
+        var ll  = map.containerPointToLatLng(L.point(pxX, pxY));
+        var m   = L.marker(ll, { icon:icon, interactive:false, pane:'arrowPane' }).addTo(map);
+        arrowLayers.push(m);
+      }
+    }
+
     // ── Render for a given JS day number ─────────────────────────────────
     function renderDay(jsDay) {
+      clearArrows();
       var anyActive = false;
       markers.forEach(function(m) {
         var b = m.building;
@@ -1301,6 +1372,7 @@
             '<div style="font-size:12px;font-weight:700;color:#57606a;">' + b.name + '</div>' +
             '<div style="font-size:11px;color:#9ca3af;margin-top:3px;">No classes today</div></div>';
         } else {
+          var mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + b.lat + ',' + b.lng;
           popupHtml = '<div style="font-family:-apple-system,\'Segoe UI\',sans-serif;min-width:190px;">' +
             '<div style="font-size:13px;font-weight:700;color:#0a3c78;margin-bottom:8px;">' + b.name + '</div>' +
             daySlots.map(function(s){
@@ -1310,9 +1382,133 @@
                 '<div style="font-size:11px;color:#57606a;">' + s.time + '</div>' +
               '</div>';
             }).join('') +
+            '<a href="' + mapsUrl + '" target="_blank" rel="noopener" style="' +
+              'display:inline-flex;align-items:center;gap:5px;margin-top:4px;' +
+              'font-size:11px;font-weight:600;color:#1a73e8;text-decoration:none;">' +
+              '📍 Open in Google Maps' +
+            '</a>' +
           '</div>';
         }
         m.marker.unbindPopup().bindPopup(popupHtml, { maxWidth: 280 });
+      });
+
+      // ── Draw arrows + time labels in time order for this day ─────────────
+      var activeNodes = [];
+      BUILDINGS.forEach(function(b) {
+        var daySlots = b.slots
+          .filter(function(s){ return s.days.indexOf(jsDay) !== -1; })
+          .sort(function(a,c){ return a.startMin - c.startMin; });
+        if (daySlots.length) {
+          activeNodes.push({
+            lat: b.lat, lng: b.lng,
+            startMin: daySlots[0].startMin,
+            time: daySlots[0].time.split('–')[0].trim(), // just the start time
+            color: daySlots[0].color
+          });
+        }
+      });
+      activeNodes.sort(function(a,b){ return a.startMin - b.startMin; });
+
+      // Draw lines + arrows + distance label
+      for (var i = 0; i < activeNodes.length - 1; i++) {
+        var a = activeNodes[i], b = activeNodes[i+1];
+        var line = L.polyline([[a.lat, a.lng],[b.lat, b.lng]], {
+          color: '#0a3c78', weight: 2, opacity: 0.40, dashArray: '5, 6'
+        }).addTo(map);
+        arrowLayers.push(line);
+        drawArrowsAlongSegment([a.lat, a.lng], [b.lat, b.lng], '#0a3c78');
+
+        // Haversine distance in miles
+        var R = 3958.8;
+        var dLat = (b.lat - a.lat) * Math.PI / 180;
+        var dLon = (b.lng - a.lng) * Math.PI / 180;
+        var sinDLat = Math.sin(dLat / 2);
+        var sinDLon = Math.sin(dLon / 2);
+        var hav = sinDLat*sinDLat + Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*sinDLon*sinDLon;
+        var miles = R * 2 * Math.asin(Math.sqrt(hav));
+        var distText = miles < 0.1 ? (miles * 5280).toFixed(0) + ' ft' : parseFloat(miles.toFixed(2)) + ' mi';
+
+        // Midpoint lat/lng
+        var midLat = (a.lat + b.lat) / 2;
+        var midLng = (a.lng + b.lng) / 2;
+
+        // Bearing angle in screen space for CSS rotation
+        var pxA = map.latLngToContainerPoint(L.latLng(a.lat, a.lng));
+        var pxB = map.latLngToContainerPoint(L.latLng(b.lat, b.lng));
+        var angleDeg = Math.atan2(pxB.y - pxA.y, pxB.x - pxA.x) * 180 / Math.PI;
+        // Keep text readable — flip if it would be upside-down
+        if (angleDeg > 90 || angleDeg < -90) angleDeg += 180;
+
+        var distHtml =
+          '<div style="' +
+            'display:inline-block;' +
+            'transform:rotate(' + angleDeg.toFixed(1) + 'deg);' +
+            'transform-origin:center center;' +
+            'white-space:nowrap;font-size:10px;font-weight:700;' +
+            'color:#c2410c;' +
+            'background:rgba(255,255,255,0.95);' +
+            'padding:0 2px;border-radius:2px;' +
+            'line-height:1.3;' +
+            'position:relative;z-index:520;' +
+          '">' + distText + '</div>';
+
+        var distIcon = L.divIcon({
+          className: '',
+          html: '<div style="display:flex;justify-content:center;align-items:center;position:relative;z-index:520;">' + distHtml + '</div>',
+          iconSize: [0, 0],
+          iconAnchor: [0, 7]
+        });
+        var dm = L.marker([midLat, midLng], { icon: distIcon, interactive: false, pane: 'distPane' }).addTo(map);
+        arrowLayers.push(dm);
+      }
+
+      // Draw time labels — position above/below based on line direction
+      // Rule: line comes from above (prev node higher on screen = smaller pxY)
+      //       → label goes BELOW the dot (don't overlap the line above)
+      //       line comes from below → label goes ABOVE
+      // First node has no incoming line, so use outgoing direction flipped.
+      activeNodes.forEach(function(node, i) {
+        var nodePx     = map.latLngToContainerPoint(L.latLng(node.lat, node.lng));
+        var above; // true = render label above dot
+
+        if (i === 0 && activeNodes.length > 1) {
+          // No incoming line. Use outgoing direction.
+          var nextPx = map.latLngToContainerPoint(L.latLng(activeNodes[1].lat, activeNodes[1].lng));
+          // Line goes downward (next Y > node Y) → label above (opposite of line direction)
+          above = nextPx.y > nodePx.y;
+        } else if (i > 0) {
+          var prevPx = map.latLngToContainerPoint(L.latLng(activeNodes[i-1].lat, activeNodes[i-1].lng));
+          // Line comes from above (prev Y < node Y) → label below
+          above = prevPx.y >= nodePx.y;
+        } else {
+          above = true;
+        }
+
+        // Label HTML — compact pill, fixed width so centering is predictable
+        var html =
+          '<div style="' +
+            'background:white;border:1px solid #e5e7eb;border-radius:4px;' +
+            'padding:1px 5px;font-size:11px;font-weight:700;color:#0a3c78;' +
+            'white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.10);' +
+            'line-height:1.4;display:inline-block;' +
+          '">' + node.time + '</div>';
+
+        // Wrap in a centering div so iconAnchor[0]=half works cleanly
+        // We don't know exact width, so use text-align:center + a wide-enough wrapper
+        var wrapped = '<div style="text-align:center;width:70px;margin-left:-35px;">' + html + '</div>';
+
+        // iconAnchor y: if above, anchor bottom of wrapper (offsetY = wrapper height ~18px + gap 8px)
+        //               if below, anchor top of wrapper (offsetY = -(dot radius + gap))
+        var anchorY = above ? 26 : -8;
+
+        var labelIcon = L.divIcon({
+          className: '',
+          html: wrapped,
+          iconSize: [0, 0],
+          iconAnchor: [0, anchorY]
+        });
+        var lm = L.marker([node.lat, node.lng], { icon: labelIcon, interactive: false }).addTo(map);
+        arrowLayers.push(lm);
       });
 
       document.getElementById('map-no-class').style.display = anyActive ? 'none' : 'block';
@@ -1320,6 +1516,43 @@
 
     // Initial render
     renderDay(activeDayJs);
+
+    // ── Debug mode ────────────────────────────────────────────────────────
+    var debugActive = false;
+    var debugBar    = document.getElementById('map-debug-bar');
+    var debugBtn    = document.getElementById('map-debug-btn');
+
+    debugBtn.addEventListener('click', function() {
+      debugActive = !debugActive;
+      if (debugActive) {
+        debugBtn.style.background    = '#fef3c7';
+        debugBtn.style.borderColor   = '#fde68a';
+        debugBtn.style.color         = '#92400e';
+        debugBtn.textContent         = '📍 Debug ON — click map';
+        debugBar.style.display       = 'block';
+        debugBar.textContent         = 'Click anywhere on the map to copy its coordinates.';
+        map.getContainer().style.cursor = 'crosshair';
+      } else {
+        debugBtn.style.background    = 'white';
+        debugBtn.style.borderColor   = '#e5e7eb';
+        debugBtn.style.color         = '#57606a';
+        debugBtn.textContent         = '📍 Debug coords';
+        debugBar.style.display       = 'none';
+        map.getContainer().style.cursor = '';
+      }
+    });
+
+    map.on('click', function(e) {
+      if (!debugActive) return;
+      var lat = e.latlng.lat.toFixed(5);
+      var lng = e.latlng.lng.toFixed(5);
+      var text = lat + ', ' + lng;
+      navigator.clipboard.writeText(text).then(function() {
+        debugBar.textContent = '✓ Copied: ' + text;
+      }).catch(function() {
+        debugBar.textContent = '📋 ' + text + '  (select & copy manually)';
+      });
+    });
   })();
   </script>
 </body>
