@@ -794,8 +794,15 @@
     });
   }
   function updateStats() {
-    var pr = ankiStats.totalReviewed > 0 ? Math.round(ankiStats.goodCount/ankiStats.totalReviewed*100) : 0;
-    var kr = ankiStats.keyReviewed   > 0 ? Math.round(ankiStats.keyGood/ankiStats.keyReviewed*100)    : 0;
+    // Unique-card counts: good = ever marked good; again = seen but never good yet
+    var totalCards    = ankiCards.length;
+    var totalKeyCards = ankiCards.filter(function(c){ return c.key; }).length;
+    var uniqueGood    = ankiCards.filter(function(c){ var h = cardHistory[c.question]; return h && h.good > 0; }).length;
+    var uniqueAgain   = ankiCards.filter(function(c){ var h = cardHistory[c.question]; return h && h.again > 0 && h.good === 0; }).length;
+    var uniqueKeyGood  = ankiCards.filter(function(c){ return c.key && cardHistory[c.question] && cardHistory[c.question].good > 0; }).length;
+    var uniqueKeyAgain = ankiCards.filter(function(c){ return c.key && cardHistory[c.question] && cardHistory[c.question].again > 0 && cardHistory[c.question].good === 0; }).length;
+    var pr = totalCards    > 0 ? Math.round(uniqueGood    / totalCards    * 100) : 0;
+    var kr = totalKeyCards > 0 ? Math.round(uniqueKeyGood / totalKeyCards * 100) : 0;
 
     // Rings
     var outerCirc = 2 * Math.PI * 44; // 276.46
@@ -814,17 +821,19 @@
     var lkg = document.getElementById('legend-key-good-again');
     var uniqueSeen = Object.keys(cardHistory).length;
     if (lt)  lt.textContent  = uniqueSeen + ' / ' + ankiCards.length;
-    if (lga) lga.textContent = ankiStats.goodCount + ' / ' + ankiStats.againCount;
+    if (lga) lga.textContent = uniqueGood + ' / ' + uniqueAgain;
     if (lkr) lkr.textContent = kr + '%';
-    if (lkg) lkg.textContent = ankiStats.keyGood + ' / ' + ankiStats.keyAgain;
+    if (lkg) lkg.textContent = uniqueKeyGood + ' / ' + uniqueKeyAgain;
   }
   function endAnkiSession() {
     ankiSessionActive = false;
+    var uGood  = ankiCards.filter(function(c){ var h = cardHistory[c.question]; return h && h.good > 0; }).length;
+    var uAgain = ankiCards.filter(function(c){ var h = cardHistory[c.question]; return h && h.again > 0 && h.good === 0; }).length;
     document.getElementById('anki-front-text').innerHTML =
       '<div class="session-complete">' +
         '<h3>✓ All cards correct!</h3>' +
-        '<p>Total reviewed: ' + ankiStats.totalReviewed + '</p>' +
-        '<p>Good: ' + ankiStats.goodCount + ' | Again: ' + ankiStats.againCount + '</p>' +
+        '<p>Cards seen: ' + Object.keys(cardHistory).length + ' / ' + ankiCards.length + '</p>' +
+        '<p>Good: ' + uGood + ' | Again: ' + uAgain + '</p>' +
         '<p style="margin-top:16px;"><button class="anki-btn anki-btn-primary" id="study-again-btn">Study Again</button></p>' +
       '</div>';
     document.getElementById('study-again-btn').addEventListener('click', startAnkiSession);
@@ -873,8 +882,9 @@
   // ── Analytics ─────────────────────────────────────────────────────────────
   function showAnalytics() {
     var body = document.getElementById('analytics-body');
-    var tr = ankiStats.totalReviewed;
-    var pr = tr > 0 ? Math.round(ankiStats.goodCount/tr*100) : 0;
+    var totalCards = ankiCards.length;
+    var uniqueGood = ankiCards.filter(function(c){ var h = cardHistory[c.question]; return h && h.good > 0; }).length;
+    var pr = totalCards > 0 ? Math.round(uniqueGood / totalCards * 100) : 0;
     var cardData = ankiCards.map(function(c) {
       var hh = cardHistory[c.question] || { good:0, again:0, times:[] };
       var total = hh.good + hh.again;

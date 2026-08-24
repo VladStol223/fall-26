@@ -343,24 +343,19 @@
   function getHistory(prefix) {
     try { return JSON.parse(localStorage.getItem('cardHistory_' + prefix)) || {}; } catch(e) { return {}; }
   }
-  function statsFromHistory(history) {
-    var t=0, g=0;
-    Object.values(history).forEach(function(h){ t += h.good+h.again; g += h.good; });
-    return { total: t, good: g };
-  }
   function isMastered(m) {
     if (!m.total) return false;
     var hist = getHistory(m.prefix);
     if (Object.keys(hist).length < m.total) return false;
-    var s = statsFromHistory(hist);
-    return s.total > 0 && Math.round(s.good/s.total*100) >= 80;
+    var uniqueGood = Object.values(hist).filter(function(h){ return h.good > 0; }).length;
+    return Math.round(uniqueGood / m.total * 100) >= 80;
   }
 
   function buildModuleRow(m) {
     var hist    = getHistory(m.prefix);
     var seen    = Object.keys(hist).length;
-    var s       = seen > 0 ? statsFromHistory(hist) : null;
-    var pct     = s && s.total > 0 ? Math.round(s.good/s.total*100) : 0;
+    var uniqueGood = Object.values(hist).filter(function(h){ return h.good > 0; }).length;
+    var pct     = m.total > 0 && seen > 0 ? Math.round(uniqueGood / m.total * 100) : 0;
     var fill    = m.total > 0 && seen > 0 ? Math.min(100, Math.round(seen/m.total*100)) : 0;
     var mastered = isMastered(m);
 
