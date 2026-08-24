@@ -870,11 +870,13 @@
       </div>
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
         <div id="map-day-bar" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
+        <!-- debug-btn hidden — keep for future use
         <button id="map-debug-btn" style="
           padding:4px 12px; border-radius:99px; border:1px solid #e5e7eb;
           background:white; color:#57606a; font-size:12px; font-weight:600;
           cursor:pointer; font-family:inherit; transition:all .18s;
         ">📍 Debug coords</button>
+        -->
       </div>
       <div id="map-debug-bar" style="
         display:none; background:#fffbeb; border:1px solid #fde68a; border-radius:6px;
@@ -1256,6 +1258,7 @@
         });
         map.closePopup();
         renderDay(activeDayJs);
+        panToActiveMarkers(activeDayJs);
       });
       bar.appendChild(btn);
     });
@@ -1514,14 +1517,30 @@
       document.getElementById('map-no-class').style.display = anyActive ? 'none' : 'block';
     }
 
+    // ── Pan/fit map to active markers for a given day ────────────────────
+    function panToActiveMarkers(jsDay) {
+      var pts = [];
+      BUILDINGS.forEach(function(b) {
+        var active = b.slots.some(function(s){ return s.days.indexOf(jsDay) !== -1; });
+        if (active) pts.push([b.lat, b.lng]);
+      });
+      if (!pts.length) return;
+      if (pts.length === 1) {
+        map.setView(pts[0], Math.max(map.getZoom(), 16), { animate: true });
+      } else {
+        map.fitBounds(pts, { padding: [50, 50], maxZoom: 17, animate: true });
+      }
+    }
+
     // Initial render
     renderDay(activeDayJs);
 
     // ── Debug mode ────────────────────────────────────────────────────────
     var debugActive = false;
     var debugBar    = document.getElementById('map-debug-bar');
-    var debugBtn    = document.getElementById('map-debug-btn');
+    // var debugBtn = document.getElementById('map-debug-btn'); // hidden
 
+    /* debug button listener — kept for future use
     debugBtn.addEventListener('click', function() {
       debugActive = !debugActive;
       if (debugActive) {
@@ -1540,7 +1559,7 @@
         debugBar.style.display       = 'none';
         map.getContainer().style.cursor = '';
       }
-    });
+    }); // end debug btn listener */
 
     map.on('click', function(e) {
       if (!debugActive) return;
