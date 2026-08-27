@@ -1,0 +1,113 @@
+{
+  "id": "refrigeration-ac-thermo",
+  "course": "Refrigeration and Air Conditioning",
+  "courseColor": "blue",
+  "moduleNumber": 1,
+  "title": "Thermodynamics Review",
+  "subtitle": "Vapor Compression Cycle · COP · p-h Diagrams · Refrigerants",
+  "storagePrefix": "rac-thermo",
+  "totalCards": 32,
+
+  "overview": {
+    "stats": [
+      { "value": "4",    "label": "Core topic areas" },
+      { "value": "32",   "label": "Anki flash cards" },
+      { "value": "12",   "label": "Quiz questions" },
+      { "value": "Ch. 2","label": "Textbook source (HVAC Simplified)" }
+    ],
+    "people": [
+      { "name": "S. P. Kavanaugh", "desc": "Author of HVAC Simplified — the primary textbook for ME 4321. Chapter 2 covers the thermodynamics prerequisites reviewed here." }
+    ],
+    "dates": [
+      { "year": "1996",  "event": "Montreal Protocol CFCs phase-out complete — R-12 and R-11 banned" },
+      { "year": "~2020", "event": "HCFCs (R-22) phase-out target under amended Montreal Protocol" }
+    ],
+    "terms": [
+      { "term": "VCC (Vapor Compression Cycle)", "def": "The dominant HVAC refrigeration method: compressor → condenser → expansion device → evaporator. Transfers heat from low to high temperature using work input." },
+      { "term": "COP (Coefficient of Performance)", "def": "Dimensionless ratio of desired heat output (or cooling effect) to compressor work input. Can exceed 1 because heat is pumped, not generated." },
+      { "term": "Isentropic process",   "def": "Reversible adiabatic process — entropy is constant (s₁ = s₂). Models ideal compressor compression." },
+      { "term": "Isenthalpic process",  "def": "Constant-enthalpy process (h₃ = h₄). Models adiabatic expansion across the expansion device." },
+      { "term": "Superheat",            "def": "Refrigerant temperature above its saturation temperature at the current pressure. 10–20°F at compressor inlet prevents liquid slugging." },
+      { "term": "Subcooling",           "def": "Liquid refrigerant cooled ~15°F below condensing saturation temperature. Ensures 100% liquid at expansion device and increases system capacity." },
+      { "term": "EER",                  "def": "Energy Efficiency Ratio (Btu/W·h). COP = EER / 3.412. Higher EER = more efficient." },
+      { "term": "ODP / GWP",            "def": "Ozone Depletion Potential (relative to R-11); Global Warming Potential (relative to CO₂). CFCs: high ODP. HFCs: ODP=0 but high GWP." }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 · The Vapor Compression Cycle",
+      "body": "<p>The purpose of a <mark>refrigeration cycle</mark> is to transfer heat from a region of <mark>low temperature</mark> to a region of <mark>higher temperature</mark>. The dominant method in HVAC is the <mark>single-stage vapor compression cycle (VCC)</mark>. The cycle has four processes and four key state points:</p><ul><li><strong>Point 1→2 (Compressor):</strong> Low-pressure gas is compressed to high pressure and temperature. Ideally <mark>isentropic</mark> (s₁ = s₂).</li><li><strong>Point 2→3 (Condenser):</strong> Superheated vapor is cooled then condensed to <mark>saturated liquid</mark> at constant pressure. Heat is rejected to the environment.</li><li><strong>Point 3→4 (Expansion Device):</strong> High-pressure liquid drops to low pressure at constant enthalpy (<mark>h₃ = h₄</mark>). Refrigerant partially flashes to vapor.</li><li><strong>Point 4→1 (Evaporator):</strong> Low-pressure mixture evaporates at constant pressure, absorbing heat from the cooled space.</li></ul><p>Because heat is \"pumped,\" the system delivers more heat to the condenser than the work input — which is why <mark>COP can exceed 1</mark>.</p>"
+    },
+    {
+      "title": "2 · COP and Carnot Efficiency",
+      "body": "<p>The <mark>Coefficient of Performance (COP)</mark> is the ratio of desired output to work input. For the ideal Carnot cycle:</p><p style=\"font-family:monospace;background:#f0f4f8;border-left:3px solid #3b82d4;padding:8px 12px;margin:8px 0;border-radius:0 4px 4px 0;\">COP_cooling = T_evap / (T_cond − T_evap) &nbsp; [absolute °R or K]<br>COP_heating &nbsp;= T_cond / (T_cond − T_evap)<br>COP_heating = COP_cooling + 1 &nbsp; (always)</p><p>For real cycles using p-h diagram enthalpy values:</p><p style=\"font-family:monospace;background:#f0f4f8;border-left:3px solid #3b82d4;padding:8px 12px;margin:8px 0;border-radius:0 4px 4px 0;\">COP_c = (h₁ − h₄) / (h₂ − h₁)<br>COP_h = (h₂ − h₃) / (h₂ − h₁)</p><p>Real COP is always <mark>less than Carnot</mark> due to irreversibilities. In US practice: <mark>COP = EER / 3.412</mark> and for chillers: <mark>COP = 3.52 / (kW/ton)</mark>.</p>"
+    },
+    {
+      "title": "3 · Thermodynamic Properties & the p-h Diagram",
+      "body": "<p>Key properties: <mark>Enthalpy (h)</mark> = u + pv (Btu/lb) — total energy tracked at each cycle point. <mark>Entropy (s)</mark> — irreversible processes generate it. <mark>Saturation temperature</mark> — temperature at which phase change occurs at a given pressure; high-side = <mark>condensing temperature t_c</mark>, low-side = <mark>evaporating temperature t_e</mark>.</p><p>The <mark>pressure-enthalpy (p-h) diagram</mark> has enthalpy on the x-axis, pressure on y-axis. The dome-shaped curve separates: left of dome = <mark>subcooled liquid</mark>; under dome = <mark>two-phase mixture</mark>; right of dome = <mark>superheated vapor</mark>.</p><p>A <mark>superheat</mark> of 10–20°F at compressor inlet protects against liquid slugging. <mark>Subcooling</mark> of ~15°F at the condenser outlet ensures 100% liquid enters the expansion device and increases system capacity.</p>"
+    },
+    {
+      "title": "4 · Real Cycle Irreversibilities",
+      "body": "<p>The <mark>second law of thermodynamics</mark> governs real system behavior. Every real process generates entropy, reducing efficiency below the Carnot ideal. Key irreversibilities in a real VCC:</p><ul><li>Superheated inlet gas → lower density → reduced mass flow → reduced capacity</li><li>Pressure drops across valves, ports, mufflers → more work required</li><li>Condenser operates at temperatures <mark>above</mark> the ideal condensing temperature</li><li>Evaporator operates at temperatures <mark>below</mark> the ideal evaporating temperature</li><li><mark>Zeotropic refrigerant blends</mark> exhibit temperature glide during phase change → lower efficiency</li></ul><p>An <mark>isentropic process</mark> has constant entropy (s₁ = s₂). An <mark>adiabatic expansion</mark> across the expansion valve is modeled as isenthalpic (h₃ = h₄) — not isentropic because entropy increases.</p>"
+    },
+    {
+      "title": "5 · Refrigerants: Types, Numbering & Environment",
+      "body": "<p>The refrigerant numbering formula for methane/ethane/propane derivatives:</p><p style=\"font-family:monospace;background:#f0f4f8;border-left:3px solid #3b82d4;padding:8px 12px;margin:8px 0;border-radius:0 4px 4px 0;\">R-[C−1][H+1][F] &nbsp; e.g. R-22 = CHClF₂ → R-022</p><p>Refrigerant families: <mark>CFCs (R-1xx, R-5xx)</mark> — high ozone depletion; phased out by <mark>1996 Montreal Protocol</mark>. <mark>HCFCs (R-22)</mark> — lower ODP (0.034); phase-out ~2020. <mark>HFCs (R-134a, R-410a, R-407c)</mark> — zero ODP; still have <mark>GWP</mark> concerns.</p><p>Environmental metrics: <mark>ODP</mark> (Ozone Depletion Potential, relative to R-11). <mark>GWP</mark> (Global Warming Potential, relative to CO₂). <mark>TEWI</mark> — Total Equivalent Warming Impact, combines GWP + energy consumption effect.</p><p>ASHRAE Standard 34 safety classification: letter = toxicity (A = low, B = toxic); number = flammability (1 = none, 2 = low, 3 = high). e.g. <mark>R-134a = A1</mark>.</p>"
+    },
+    {
+      "title": "6 · Expansion Devices & Compressor Types",
+      "body": "<p><strong>Expansion Devices:</strong> <mark>TXV (Thermostatic Expansion Valve)</mark> — senses suction superheat via a bulb; rising superheat opens valve for more flow; self-regulating. <mark>Capillary tube</mark> — fixed length/diameter; simple but cannot modulate; used in small units. <mark>Short-tube restrictor</mark> — compact version; can act as check valve in heat pump. <mark>Four-way reversing valve</mark> — routes refrigerant to switch heat pump between heating and cooling modes.</p><p><strong>Compressor Types:</strong> <mark>Hermetic reciprocating</mark> — motor + compressor sealed; common small-to-medium. <mark>Hermetic scroll</mark> — orbiting scroll; fewer moving parts, slightly higher efficiency. <mark>Rotary vane</mark> — medium applications. <mark>Twin-screw (open drive)</mark> — larger commercial. <mark>Centrifugal</mark> — large commercial chillers; highest capacity.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What is the purpose of a refrigeration cycle?", "a": "To transfer heat from a region of low temperature to a region of higher temperature, using work input." },
+    { "key": true,  "q": "Name the four processes of the ideal vapor compression cycle in order.", "a": "1→2: Isentropic compression · 2→3: Constant-pressure condensation · 3→4: Isenthalpic expansion · 4→1: Constant-pressure evaporation." },
+    { "q": "What is the condition at the compressor inlet (Point 1) in the ideal VCC?", "a": "Saturated vapor at the evaporating temperature and pressure (low side)." },
+    { "q": "What happens in the condenser (Point 2→3)?", "a": "Superheated vapor is desuperheated, then condensed to saturated liquid at constant pressure. Heat is rejected to the environment." },
+    { "key": true,  "q": "What is the thermodynamic relationship across the expansion device? Why?", "a": "h₃ = h₄ (isenthalpic). The expansion is adiabatic with no work done, so enthalpy is conserved." },
+    { "q": "Why can COP of a refrigeration cycle exceed 1?", "a": "Heat is pumped rather than generated. The cycle moves existing thermal energy, so the delivered heat or cooling effect can exceed the compressor work input." },
+    { "key": true,  "q": "Write the Carnot COP formula for a cooling cycle.", "a": "COP_c = T_e / (T_c − T_e) — temperatures must be in absolute units (°R or K)." },
+    { "key": true,  "q": "Write the Carnot COP formula for a heating (heat pump) cycle.", "a": "COP_h = T_c / (T_c − T_e). Always: COP_h = COP_c + 1." },
+    { "q": "Write the real-cycle COP_cooling using enthalpy.", "a": "COP_c = (h₁ − h₄) / (h₂ − h₁) = cooling effect ÷ compressor work." },
+    { "q": "How do you convert EER (Btu/W·h) to COP?", "a": "COP = EER / 3.412." },
+    { "q": "How do you convert kW/ton to COP?", "a": "COP = 3.52 / (kW/ton). A ton = 12,000 Btu/h." },
+    { "q": "How is 1 ton of refrigeration defined?", "a": "The rate of heat removal needed to convert 2000 lb of water at 32°F to ice at 32°F in 24 hours = 12,000 Btu/h." },
+    { "q": "Define enthalpy (h).", "a": "h = u + pv. Sum of internal energy and pressure × volume work. Units: Btu/lb." },
+    { "q": "Define entropy (s).", "a": "Ratio of heat absorbed by a substance to the absolute temperature at which it was added. Irreversible processes generate entropy." },
+    { "q": "What is an isentropic process?", "a": "A reversible adiabatic process — entropy is constant (s₁ = s₂). Ideal compressor compression is isentropic." },
+    { "q": "What is an adiabatic process?", "a": "A process where no heat is exchanged with the surroundings. Note: adiabatic ≠ isentropic unless also reversible." },
+    { "q": "What is the condensing temperature (t_c)?", "a": "The saturation temperature on the high-pressure side — the temperature at which the refrigerant condenses at the condenser operating pressure." },
+    { "q": "What is the evaporating temperature (t_e)?", "a": "The saturation temperature on the low-pressure side — the temperature at which refrigerant evaporates at the evaporator operating pressure." },
+    { "q": "What is superheat in a refrigerant system?", "a": "Temperature of the refrigerant above its saturation temperature at the current pressure. Measured at the compressor inlet; protects against liquid slugging." },
+    { "key": true,  "q": "What is subcooling? Why is it used?", "a": "Cooling the liquid refrigerant ~15°F below its saturation temperature at condenser pressure. Ensures 100% liquid enters expansion device and increases system capacity." },
+    { "q": "On a p-h diagram, what do the left and right sides of the saturation dome represent?", "a": "Left = saturated liquid line · Right = saturated vapor line · Under dome = two-phase mixture · Right of dome = superheated vapor · Left of dome = subcooled liquid." },
+    { "q": "On a p-h diagram, the isentropic compression line runs in which direction?", "a": "Vertically up-and-to-the-right — constant entropy line (isentrope) from low-pressure saturated vapor into the superheated vapor region." },
+    { "q": "Name three sources of irreversibility in a real vapor compression cycle.", "a": "1) Pressure drops across valves/ports · 2) Heat generation from friction · 3) Finite heat exchangers (condenser runs hotter than ideal; evaporator runs colder than ideal)." },
+    { "q": "Why does superheated inlet gas reduce compressor capacity?", "a": "Superheated gas has lower density (higher specific volume) → lower mass flow rate per unit displacement → reduced refrigeration capacity." },
+    { "key": true,  "q": "What is the refrigerant numbering formula for methane/ethane/propane derivatives?", "a": "R-[C−1][H+1][F]. e.g. R-22 (CHClF₂): [1−1][1+1][2] = R-022." },
+    { "q": "What are the three CFC/HCFC/HFC families and their key environmental difference?", "a": "CFCs: High ODP, phased out 1996 · HCFCs: Lower ODP (R-22 ODP=0.034), phase-out ~2020 · HFCs: Zero ODP but high GWP (R-134a, R-410a)." },
+    { "q": "What does ODP stand for and what is it relative to?", "a": "Ozone Depletion Potential. Relative to R-11 (CCl₃F = 1.0). HFCs have ODP = 0." },
+    { "q": "What is TEWI?", "a": "Total Equivalent Warming Impact — combines the refrigerant's direct GWP with the indirect greenhouse gas emissions from the energy needed to run the system." },
+    { "q": "What does ASHRAE Standard 34 safety class 'A2' mean?", "a": "A = low chronic toxicity · 2 = low flammability (low LFL and heat of combustion < 8174 Btu/lb)." },
+    { "key": true,  "q": "How does a TXV (thermostatic expansion valve) control refrigerant flow?", "a": "A sensing bulb on the suction line detects superheat. Rising superheat → higher bulb pressure → diaphragm opens valve → more refrigerant flow → superheat drops back to set point." },
+    { "q": "What is the advantage of a scroll compressor over a reciprocating compressor?", "a": "Fewer moving parts, smoother operation, and slightly higher efficiency due to reduced friction and pressure losses." },
+    { "q": "What does a four-way reversing valve do in a heat pump?", "a": "It reverses the refrigerant flow direction to switch between heating and cooling modes, swapping the roles of the indoor and outdoor coils as condenser/evaporator." }
+  ],
+
+  "quiz": [
+    { "q": "In the ideal VCC, what is the thermodynamic process across the expansion device?", "options": ["Isentropic (constant entropy)", "Isothermal (constant temperature)", "Isenthalpic (constant enthalpy)", "Isobaric (constant pressure)"], "correct": 2, "explanation": "h₃ = h₄. The expansion is adiabatic with no work output, so enthalpy is conserved. It is not isentropic because entropy increases (irreversible)." },
+    { "q": "A system has T_evap = 40°F (500°R) and T_cond = 120°F (580°R). What is the Carnot COP for cooling?", "options": ["6.25", "4.83", "5.75", "7.25"], "correct": 0, "explanation": "COP_c = T_e / (T_c − T_e) = 500 / (580 − 500) = 500/80 = 6.25." },
+    { "q": "What does a higher EER value indicate?", "options": ["More refrigerant is needed", "Less efficient system", "More efficient system", "Higher condensing pressure"], "correct": 2, "explanation": "EER = capacity (Btu/h) / power (W). Higher EER = more cooling per watt of electricity consumed = more efficient." },
+    { "q": "Which refrigerant property is constant along the lines inside the saturation dome on a p-h diagram?", "options": ["Temperature and pressure", "Entropy only", "Enthalpy only", "Specific volume"], "correct": 0, "explanation": "Inside the two-phase dome, temperature and pressure are coupled (saturation condition) — both remain constant as quality changes." },
+    { "q": "R-22 has an ODP of 0.034. What does this mean for ozone depletion compared to R-11?", "options": ["3.4× worse than R-11", "Causes 3.4% of the ozone depletion of R-11", "Zero ozone depletion", "34× worse than R-11"], "correct": 1, "explanation": "ODP is relative to R-11 = 1.0. ODP of 0.034 means R-22 causes 3.4% of the ozone destruction that R-11 would." },
+    { "q": "In a real VCC, a compressor with superheated suction gas will have _______ compared to saturated vapor inlet.", "options": ["Higher mass flow rate, higher capacity", "Lower mass flow rate, lower capacity", "Same mass flow rate, lower efficiency", "Higher pressure ratio, higher efficiency"], "correct": 1, "explanation": "Superheated gas has lower density → compressor moves less mass per revolution → lower refrigerant mass flow → lower cooling capacity." },
+    { "q": "What is the definition of 1 ton of refrigeration?", "options": ["1,000 Btu/h", "12,000 Btu/h", "3,412 Btu/h", "144,000 Btu/day"], "correct": 1, "explanation": "1 ton = 12,000 Btu/h. It equals the rate needed to freeze 1 ton (2000 lb) of water at 32°F in 24 hours." },
+    { "q": "Which component in a heat pump system allows switching between heating and cooling modes?", "options": ["TXV", "Scroll compressor", "Four-way reversing valve", "Capillary tube"], "correct": 2, "explanation": "The four-way reversing valve routes refrigerant so the indoor coil acts as condenser (heating) or evaporator (cooling)." },
+    { "q": "What ASHRAE Standard 34 safety classification does R-134a belong to?", "options": ["B2 — toxic, low flammability", "A1 — low toxicity, no flame propagation", "A3 — low toxicity, high flammability", "B1 — toxic, no flame propagation"], "correct": 1, "explanation": "R-134a is classified A1: A = no identifiable chronic toxicity; 1 = no flame propagation in standard air." },
+    { "q": "For R-22, using the numbering rule R-[C−1][H+1][F], CHClF₂ gives:", "options": ["R-12", "R-22", "R-134a", "R-502"], "correct": 1, "explanation": "Carbon=1→C−1=0; Hydrogen=1→H+1=2; Fluorine=2. Result: R-022 = R-22." },
+    { "q": "Subcooling the liquid refrigerant 15°F below the condensing temperature:", "options": ["Increases compressor work required", "Reduces system capacity", "Increases system capacity and ensures 100% liquid at expansion device", "Has no effect on cycle performance"], "correct": 2, "explanation": "Subcooling lowers liquid enthalpy (h₃), allowing more heat absorption in the evaporator and preventing flash gas at the expansion device." },
+    { "q": "In the p-h cycle diagram, which leg represents the compressor work input?", "options": ["h₁ − h₄ (evaporator)", "h₂ − h₃ (condenser)", "h₃ − h₄ (expansion)", "h₂ − h₁ (compressor)"], "correct": 3, "explanation": "w_comp = h₂ − h₁. The compressor raises enthalpy from low-side saturated vapor (h₁) to high-side superheated vapor (h₂)." }
+  ]
+}

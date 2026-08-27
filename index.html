@@ -847,15 +847,15 @@
             <h3 class="course-name" style="transition:color .18s;">Refrigeration and Air Conditioning</h3>
           </a>
           <p class="course-desc">Thermodynamic principles of refrigeration and HVAC systems — vapor-compression cycles, psychrometrics, heat loads, and system design.</p>
-          <div style="font-size:12px;color:var(--muted);margin-top:auto;padding-top:8px;">
-            <div>👤 Haynes, Comas &nbsp;·&nbsp; Mon/Wed 9:30–10:45 AM</div>
-            <div style="margin-top:2px;">📍 Guggenheim 246 &nbsp;·&nbsp; CRN: 94371</div>
-          </div>
+
+          <div class="module-list" id="rac-module-list"></div>
+
+          <a href="course.html?id=refrigeration-ac" class="course-see-all" id="rac-see-all">See all 1 module →</a>
         </div>
         <div class="course-card-footer">
-          <span class="footer-progress-label">No modules yet</span>
-          <div class="footer-progress-bar-wrap"><div class="footer-progress-fill" style="background:linear-gradient(90deg,#0f766e,#34d399);width:0%"></div></div>
-          <span class="footer-count">—</span>
+          <span class="footer-progress-label">Progress</span>
+          <div class="footer-progress-bar-wrap"><div class="footer-progress-fill me" id="rac-footer-bar" style="background:linear-gradient(90deg,#0f766e,#34d399);width:0%"></div></div>
+          <span class="footer-count" id="rac-footer-count">—</span>
         </div>
       </div>
 
@@ -1011,6 +1011,9 @@
       { id: 'eng-history-w13', num: 13, prefix: 'eih-w13', total: 15, gistFile: 'eng-history.json', label: 'Neglecting Safety 2: Quebec Bridge',            subtitle: 'Kranakis — Fixing the Blame (2004)' },
       { id: 'eng-history-w14', num: 14, prefix: 'eih-w14', total: 16, gistFile: 'eng-history.json', label: 'Neglecting Safety 3: Boeing 737 Max',           subtitle: 'Tkacik — When engineers yield to accountants' },
       { id: 'eng-history-w15', num: 15, prefix: 'eih-w15', total: 15, gistFile: 'eng-history.json', label: 'History and the Ethical Engineer',              subtitle: 'Course wrap-up · Final exam prep' }
+    ],
+    'refrigeration-ac': [
+      { id: 'rac-thermo', num: 1, prefix: 'rac-thermo', total: 32, gistFile: 'refrigeration-ac.json', label: 'Thermodynamics Review', subtitle: 'Vapor-compression cycle · Refrigerants · COP · Psychrometrics' }
     ]
   };
 
@@ -1107,27 +1110,38 @@
     return a;
   }
 
-  function renderProgress() {
-    // GA History — show first 3 unmastered modules in card preview
-    var gaList = document.getElementById('ga-module-list');
-    if (gaList) {
-      gaList.innerHTML = '';
-      var mods = COURSE_MODULES['ga-history'] || [];
-      var unmastered = mods.filter(function(m) { return !isMastered(m); });
-      var toShow = unmastered.length > 0 ? unmastered.slice(0, 3) : mods.slice(-3);
-      toShow.forEach(function(m) { gaList.appendChild(buildModuleRowEl(m)); });
-    }
+  // Maps courseId → DOM element id prefixes for the home-page cards
+  var COURSE_CARD_IDS = {
+    'ga-history':            { list: 'ga-module-list',  bar: 'ga-footer-bar',  count: 'ga-footer-count'  },
+    'us-history':            { list: 'ush-module-list', bar: 'ush-footer-bar', count: 'ush-footer-count' },
+    'engineering-in-history':{ list: 'eih-module-list', bar: 'eih-footer-bar', count: 'eih-footer-count' },
+    'refrigeration-ac':      { list: 'rac-module-list', bar: 'rac-footer-bar', count: 'rac-footer-count' }
+  };
 
-    // GA footer bar — fraction of modules mastered
-    var gaMods = COURSE_MODULES['ga-history'] || [];
-    var gaMastered = gaMods.filter(isMastered).length;
-    var footerBar   = document.getElementById('ga-footer-bar');
-    var footerCount = document.getElementById('ga-footer-count');
-    if (footerBar && footerCount) {
-      footerBar.style.width = Math.round(gaMastered / gaMods.length * 100) + '%';
-      footerCount.textContent = gaMastered + ' / ' + gaMods.length + ' mastered';
-      if (gaMastered >= gaMods.length) footerBar.style.background = 'linear-gradient(90deg,#16a34a,#4ade80)';
-    }
+  function renderProgress() {
+    Object.keys(COURSE_CARD_IDS).forEach(function(courseId) {
+      var ids  = COURSE_CARD_IDS[courseId];
+      var mods = COURSE_MODULES[courseId] || [];
+
+      // Module list preview — show the 1 next unmastered module (or the last one)
+      var listEl = document.getElementById(ids.list);
+      if (listEl) {
+        listEl.innerHTML = '';
+        var unmastered = mods.filter(function(m) { return !isMastered(m); });
+        var toShow = unmastered.length > 0 ? unmastered.slice(0, 1) : mods.slice(-1);
+        toShow.forEach(function(m) { listEl.appendChild(buildModuleRowEl(m)); });
+      }
+
+      // Footer progress bar
+      var mastered   = mods.filter(isMastered).length;
+      var footerBar  = document.getElementById(ids.bar);
+      var footerCount = document.getElementById(ids.count);
+      if (footerBar && footerCount && mods.length > 0) {
+        footerBar.style.width = Math.round(mastered / mods.length * 100) + '%';
+        footerCount.textContent = mastered + ' / ' + mods.length + ' mastered';
+        if (mastered >= mods.length) footerBar.style.background = 'linear-gradient(90deg,#16a34a,#4ade80)';
+      }
+    });
   }
 
   // Pull each unique gistFile, merge into localStorage, re-render
@@ -1211,7 +1225,9 @@
     ]},
     { id: 'government-us',          label: 'Government of the U.S.',             modules: [] },
     { id: 'me-systems-lab',         label: 'ME Systems Laboratory',              modules: [] },
-    { id: 'refrigeration-ac',       label: 'Refrigeration and Air Conditioning', modules: [] }
+    { id: 'refrigeration-ac',       label: 'Refrigeration and Air Conditioning', modules: [
+      { id: 'rac-thermo', num: 1, label: 'Thermodynamics Review' }
+    ]}
   ];
   (function buildSidebar() {
     var nav = document.getElementById('sidebar-nav');
