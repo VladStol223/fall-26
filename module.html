@@ -5,6 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Study Guide</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
+  <!-- MathJax v3: renders \(...\) inline and \[...\] display math in learn section bodies -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(','\\)']],
+        displayMath: [['\\[','\\]']],
+        tags: 'none'
+      },
+      svg: { fontCache: 'global', scale: 1.05 },
+      options: {
+        skipHtmlTags: ['script','noscript','style','textarea','pre','mark'],
+        processHtmlClass: 'math-content'
+      },
+      startup: { typeset: false }   // we trigger typesetting manually per-section
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -200,6 +217,16 @@
     .learn-section-body ol, .learn-section-body ul { padding-left: 22px; margin-top: 8px; }
     .learn-section-body li   { margin-bottom: 6px; }
     mark { background: #fef9c3; padding: 1px 3px; border-radius: 2px; }
+
+    /* ── Math formula display blocks ── */
+    .math-block {
+      background: #f0f4f8; border-left: 3px solid #3b82d4;
+      padding: 10px 16px; margin: 10px 0; border-radius: 0 4px 4px 0;
+      overflow-x: auto; text-align: center;
+    }
+    /* MathJax SVG sizing */
+    .math-block mjx-container { display: block; margin: 4px auto; }
+    .learn-section-body mjx-container[jax="SVG"] { vertical-align: middle; }
 
     /* ── Anki ── */
     .anki-container { display: flex; flex-direction: column; gap: 20px; }
@@ -1388,6 +1415,10 @@
     var isOpen = body.classList.contains('open');
     body.classList.toggle('open', !isOpen);
     hdr.classList.toggle('open', !isOpen);
+    // Typeset any LaTeX in this section body on first open
+    if (!isOpen && window.MathJax && MathJax.typesetPromise) {
+      MathJax.typesetPromise([body]).catch(function(){});
+    }
   }
 
   // ── Reading panel sync ────────────────────────────────────────────────────

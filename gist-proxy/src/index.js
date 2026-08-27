@@ -1,10 +1,12 @@
 const GIST_ID  = '551d7ee7f903132853aed1b4466d0c3b';
 const GIST_URL = 'https://api.github.com/gists/' + GIST_ID;
 
-// Allowed file names — extend this list as new classes are added
+// Allowed file names — one per course, extend as new courses are added
 const ALLOWED_FILES = new Set([
   'ga-history.json',
   'us-history.json',
+  'eng-history.json',
+  'refrigeration-ac.json',
 ]);
 
 const DEFAULT_FILE = 'ga-history.json';
