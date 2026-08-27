@@ -1,0 +1,114 @@
+{
+  "id": "us-history-m2",
+  "course": "US History",
+  "courseColor": "blue",
+  "moduleNumber": 2,
+  "title": "Expansion, Democracy & Reform",
+  "subtitle": "Louisiana Purchase · Jacksonian Democracy · Mexican-American War · Seneca Falls · Fugitive Slave Act",
+  "storagePrefix": "ush-m2",
+  "totalCards": 25,
+
+  "overview": {
+    "stats": [
+      { "value": "$15M",  "label": "Cost of the Louisiana Purchase (1803)" },
+      { "value": "827K",  "label": "Square miles acquired in Louisiana Purchase" },
+      { "value": "1848",  "label": "Year of Seneca Falls Convention" },
+      { "value": "332",   "label": "Fugitive slaves returned (out of 343 tried, 1850–1860)" }
+    ],
+    "people": [
+      { "name": "Thomas Jefferson",       "desc": "President who engineered the Louisiana Purchase; sent Monroe and Livingston to Paris; called it 'a fugitive occurrence' when the full territory was offered." },
+      { "name": "Andrew Jackson",         "desc": "Hero of the Creek War and Battle of New Orleans; won popular vote in 1824 but lost presidency; won landslide in 1828; championed Indian Removal Act of 1830." },
+      { "name": "Abraham Lincoln",        "desc": "Whig congressman who introduced the 'Spot Resolutions' in 1847, challenging Polk's justification for the Mexican-American War." },
+      { "name": "Elizabeth Cady Stanton", "desc": "Co-organizer of the Seneca Falls Convention (1848); primary author of the Declaration of Sentiments; foundational figure in American women's suffrage." },
+      { "name": "Lucretia Mott",          "desc": "Quaker abolitionist who co-organized Seneca Falls with Stanton; both were excluded from the 1840 World Anti-Slavery Convention in London." }
+    ],
+    "dates": [
+      { "year": "1802–1803",      "event": "Spain cedes Louisiana back to France; Jefferson sends Monroe to Paris; Purchase negotiated for $15 million" },
+      { "year": "Oct 20, 1803",   "event": "Senate ratifies Louisiana Purchase treaty (24–7); U.S. doubles in size" },
+      { "year": "1803–1806",      "event": "Lewis and Clark Expedition crosses the Louisiana territory to the Pacific" },
+      { "year": "Aug 30, 1813",   "event": "Fort Mims Massacre — Creek War begins" },
+      { "year": "Aug 9, 1814",    "event": "Treaty of Fort Jackson — Creeks surrender 23 million acres" },
+      { "year": "1824",           "event": "Election of 1824: Jackson wins popular and electoral vote but loses presidency in House to Adams — 'Corrupt Bargain'" },
+      { "year": "1828",           "event": "Jackson wins presidency in landslide; Jacksonian Democracy begins" },
+      { "year": "1830",           "event": "Indian Removal Act passed by Congress" },
+      { "year": "1846–1848",      "event": "Mexican-American War; Lincoln introduces Spot Resolutions" },
+      { "year": "Jul 19–20, 1848","event": "Seneca Falls Convention; Declaration of Sentiments adopted" },
+      { "year": "1850",           "event": "Fugitive Slave Act passed as part of Compromise of 1850" },
+      { "year": "Jun 28, 1864",   "event": "Fugitive Slave Acts finally repealed by Congress" }
+    ],
+    "terms": [
+      { "term": "Louisiana Purchase",       "def": "1803 U.S. purchase of ~827,000 square miles from France for $15 million, doubling the nation's size; negotiated by Monroe and Livingston" },
+      { "term": "Corrupt Bargain",          "def": "Jackson's accusation that Adams and Clay made a secret deal in 1824: Clay swung House votes to Adams, who then made Clay Secretary of State" },
+      { "term": "Indian Removal Act (1830)","def": "Legislation authorizing forced relocation of Southeastern tribes west of the Mississippi; led to the Trail of Tears" },
+      { "term": "Spot Resolutions",         "def": "Lincoln's 1847 congressional resolutions demanding Polk identify the exact spot where American blood was shed, challenging the war's justification" },
+      { "term": "Declaration of Sentiments","def": "Document produced at Seneca Falls (1848), modeled on the Declaration of Independence; asserted 'all men and women are created equal' and demanded women's equal rights" },
+      { "term": "Fugitive Slave Act (1850)","def": "Required federal government to help recapture escaped slaves; fugitives had no right to testify or jury trial; commissioners earned $10 ruling for owners, $5 ruling for accused" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1. The Louisiana Purchase (1803)",
+      "body": "<p>In <mark>1803</mark>, the United States completed one of history's most transformative land deals: the <mark>Louisiana Purchase</mark>. For <mark>$15 million</mark>, the U.S. acquired approximately <mark>827,000 square miles</mark> west of the Mississippi River from France—effectively doubling the nation's size.</p><p>President <mark>Thomas Jefferson</mark> grew alarmed when Spain transferred Louisiana back to <mark>Napoleon Bonaparte</mark> in 1802, threatening American access to the <mark>Mississippi River</mark> and <mark>port of New Orleans</mark>. He sent <mark>James Monroe</mark> alongside U.S. Minister <mark>Robert Livingston</mark> to Paris. Napoleon's ambitions were collapsing—the French army in <mark>Saint Domingue (Haiti)</mark> had been decimated by yellow fever and rebellion, and war with Britain loomed. Foreign Minister <mark>Talleyrand</mark> offered to sell all of Louisiana on <mark>April 11, 1803</mark>. Monroe and Livingston agreed on <mark>April 30</mark>. The Senate ratified the treaty on <mark>October 20, 1803</mark>, by <mark>24 to 7</mark>.</p>"
+    },
+    {
+      "title": "2. The Creek War & Indian Removal",
+      "body": "<p>On <mark>August 30, 1813</mark>, Creek Indians known as the <mark>Red Sticks</mark> attacked American settlers at <mark>Fort Mims</mark>, killing 400–500 settlers—the <mark>Fort Mims Massacre</mark>. <mark>Andrew Jackson</mark> led militiamen who destroyed Creek villages, then routed the Creeks at the <mark>Battle of Horseshoe Bend</mark> on <mark>March 27, 1814</mark>, killing ~800 warriors. On <mark>August 9, 1814</mark>, Jackson signed the <mark>Treaty of Fort Jackson</mark>, forcing the Creeks to surrender approximately <mark>23 million acres</mark>.</p><p>As president, Jackson championed the <mark>Indian Removal Act of 1830</mark>, resulting in forced mass migrations—most infamously the <mark>Trail of Tears</mark> for the Cherokee.</p>"
+    },
+    {
+      "title": "3. The Election of 1824 & the 'Corrupt Bargain'",
+      "body": "<p>In the <mark>election of 1824</mark>, four candidates competed. <mark>Andrew Jackson</mark> won the most popular votes (<mark>152,901</mark>) and the most electoral votes (<mark>99</mark>) but fell short of a majority. Under the <mark>Twelfth Amendment</mark>, the House chose among the top three. <mark>Henry Clay</mark>, as Speaker, swung votes to <mark>John Quincy Adams</mark>, who then appointed Clay as <mark>Secretary of State</mark>.</p><p>Jackson called it a <mark>\"corrupt bargain\"</mark> and spent the next four years building a grassroots campaign. The <mark>1828 election</mark> turned out twice the 1824 voters—Jackson won in a landslide with a <mark>95 electoral vote</mark> margin, launching <mark>Jacksonian Democracy</mark>.</p>"
+    },
+    {
+      "title": "4. Lincoln & the Mexican-American War (1846–1848)",
+      "body": "<p>In <mark>1846</mark>, President <mark>James K. Polk</mark> called for war with Mexico, claiming Mexico had \"shed the blood of our citizens on our own soil.\" In December <mark>1847</mark>, Whig Congressman <mark>Abraham Lincoln</mark> introduced his <mark>\"Spot Resolutions\"</mark>—demanding Polk identify the exact \"particular spot\" where American blood was first shed. Lincoln argued the spot was disputed or Mexican territory, making the war <mark>immoral, proslavery</mark>, and a threat to <mark>republican values</mark>. He was denied renomination by his own party. The war ended with the <mark>Treaty of Guadalupe Hidalgo (1848)</mark>, ceding vast southwestern territories to the U.S.</p>"
+    },
+    {
+      "title": "5. The Seneca Falls Convention (1848)",
+      "body": "<p>On <mark>July 19–20, 1848</mark>, approximately <mark>300 people</mark> gathered at the <mark>Wesleyan Chapel in Seneca Falls, New York</mark>. Organized by <mark>Elizabeth Cady Stanton</mark> and <mark>Lucretia Mott</mark>—who had met in London at the <mark>World Anti-Slavery Convention</mark> when all female delegates were barred from participating—the convention produced the <mark>Declaration of Sentiments</mark>: \"We hold these truths to be self-evident, that all men <em>and women</em> are created equal...\"</p><p>Sixty-eight women and thirty-two men signed it. The most controversial demand was the <mark>right to vote</mark>. The convention launched the organized <mark>American women's suffrage movement</mark>.</p>"
+    },
+    {
+      "title": "6. The Fugitive Slave Act of 1850",
+      "body": "<p>The <mark>Fugitive Slave Act of 1850</mark>, part of the <mark>Compromise of 1850</mark>, required the U.S. government to actively help slave owners recapture escaped slaves. Fugitives could <mark>not testify on their own behalf</mark> and had <mark>no right to a jury trial</mark>. Special commissioners earned <mark>$10</mark> if they ruled for the slave owner, only <mark>$5</mark> if they sided with the accused. Of <mark>343 fugitive slaves</mark> tried between 1850 and 1860, <mark>332 were returned to slavery</mark>.</p><p>The Act galvanized abolitionists, expanded the <mark>Underground Railroad</mark>, and led eight Northern states to pass <mark>personal liberty laws</mark>. Anti–Fugitive Slave Act riots erupted in <mark>1851</mark>. The Acts were repealed on <mark>June 28, 1864</mark>.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What was the Louisiana Purchase, and how much did the U.S. pay?", "a": "An 1803 land deal in which the U.S. purchased approximately 827,000 square miles of territory west of the Mississippi River from France for $15 million, doubling the nation's size." },
+    { "q": "Why did Jefferson become alarmed about Louisiana in 1802?", "a": "Spain transferred Louisiana back to France under Napoleon, threatening American access to the Mississippi River and the port of New Orleans, critical for U.S. commerce." },
+    { "q": "Who negotiated the Louisiana Purchase in Paris?", "a": "U.S. Minister Robert Livingston and special envoy James Monroe negotiated the deal on April 30, 1803." },
+    { "q": "Why did Napoleon agree to sell all of Louisiana?", "a": "The French army in Saint Domingue (Haiti) had been devastated by yellow fever and slave rebellion; war with Britain loomed; without Haiti, Louisiana had little value." },
+    { "q": "By what vote did the U.S. Senate ratify the Louisiana Purchase treaty?", "a": "24 to 7, on October 20, 1803." },
+    { "key": true,  "q": "What was the Fort Mims Massacre (1813)?", "a": "On August 30, 1813, Red Stick Creek warriors attacked Fort Mims near Lake Tensaw, Alabama, killing 400–500 American settlers, sparking the Creek War." },
+    { "q": "What was the outcome of the Battle of Horseshoe Bend (1814)?", "a": "Andrew Jackson's force routed the Creeks on March 27, 1814, killing about 800 Creek warriors, effectively ending the Creek War." },
+    { "q": "What did the Treaty of Fort Jackson (August 9, 1814) require?", "a": "Creek Indians were forced to surrender approximately 23 million acres—more than half of present-day Alabama and part of southern Georgia." },
+    { "q": "What was the Indian Removal Act of 1830?", "a": "Legislation championed by President Jackson authorizing negotiation of treaties requiring Southeastern tribes to relocate west of the Mississippi, leading to forced mass migrations like the Trail of Tears." },
+    { "key": true,  "q": "In the election of 1824, who won the popular vote, and what happened?", "a": "Andrew Jackson won the most popular votes (152,901) and the most electoral votes (99) but did not win a majority. The House of Representatives chose John Quincy Adams instead." },
+    { "q": "Why did Jackson call the election of 1824 a 'corrupt bargain'?", "a": "He claimed Adams and Henry Clay made a secret deal — Clay used his influence as House Speaker to swing votes to Adams, and Adams then appointed Clay as Secretary of State." },
+    { "q": "What constitutional provision determined the outcome of the 1824 election?", "a": "The Twelfth Amendment, which requires the House to choose the president when no candidate wins an Electoral College majority." },
+    { "q": "How did Jackson win the 1828 election, and what did it signal?", "a": "Jackson won in a landslide with a 95 electoral vote margin, turning out twice the 1824 voters. It signaled the rise of Jacksonian Democracy and populist politics." },
+    { "key": true,  "q": "What were Lincoln's 'Spot Resolutions' (1847)?", "a": "A series of resolutions introduced by Congressman Abraham Lincoln demanding that President Polk identify the exact spot where American blood was first shed, challenging the justification for the Mexican-American War." },
+    { "q": "How did Lincoln characterize the Mexican-American War?", "a": "He called it immoral, proslavery, and a threat to republican values, arguing the war was initiated on territory that was not clearly American soil." },
+    { "key": true,  "q": "When and where was the Seneca Falls Convention held?", "a": "July 19–20, 1848, at the Wesleyan Chapel in Seneca Falls, New York." },
+    { "q": "Who organized the Seneca Falls Convention, and how did they meet?", "a": "Elizabeth Cady Stanton and Lucretia Mott, who met in London at the World Anti-Slavery Convention (1840) when female delegates were barred from participating." },
+    { "key": true,  "q": "What was the Declaration of Sentiments?", "a": "The document produced at Seneca Falls, modeled on the Declaration of Independence, asserting that 'all men and women are created equal' and demanding women's equal rights in politics, education, employment, religion, and morals." },
+    { "q": "What was the most controversial demand at Seneca Falls?", "a": "Women's right to vote (suffrage)." },
+    { "key": true,  "q": "How did the Fugitive Slave Act of 1850 work?", "a": "It required the federal government to actively help slave owners recapture escaped slaves. Fugitives could not testify in their defense and had no jury trial right. Commissioners were paid $10 to rule for slave owners but only $5 to rule for the accused." },
+    { "q": "How many of the 343 fugitive slaves tried under the 1850 Act were returned to slavery?", "a": "332 out of 343—about 97%." },
+    { "q": "What were 'personal liberty laws' in the context of the Fugitive Slave Act?", "a": "Laws passed by eight Northern states prohibiting state officials from assisting in the capture and return of fugitive slaves." },
+    { "q": "When was the Fugitive Slave Act finally repealed?", "a": "June 28, 1864." },
+    { "q": "What role did the Grimké sisters play in the women's rights movement?", "a": "Sarah and Angelina Grimké were abolitionist-feminists who argued in the late 1830s that women had equal moral and political rights to men, providing intellectual groundwork for Seneca Falls." },
+    { "q": "What connected the abolitionist movement and the women's rights movement before Seneca Falls?", "a": "Women's rights advocates gained allies, strategies, and platforms through abolitionism, and both movements challenged fundamental inequalities rooted in the American democratic tradition." }
+  ],
+
+  "quiz": [
+    { "q": "How much did the United States pay France for the Louisiana Purchase?", "options": ["$5 million", "$10 million", "$15 million", "$20 million"], "correct": 2, "explanation": "The U.S. paid $15 million for approximately 827,000 square miles, doubling the nation's size." },
+    { "q": "Why did Napoleon agree to sell all of Louisiana to the United States?", "options": ["He needed to fund wars in Europe and had lost Haiti to disease and rebellion", "He was pressured by Spain to abandon North America", "The U.S. threatened military force", "Congress approved a special appropriation to entice France"], "correct": 0, "explanation": "Napoleon's army in Saint Domingue (Haiti) was destroyed by disease and revolt, war with Britain loomed, and Louisiana had little value without the Caribbean colony." },
+    { "q": "The Creek War began with what event in 1813?", "options": ["The Battle of Horseshoe Bend", "The Fort Mims Massacre", "The Battle of New Orleans", "The signing of the Treaty of Fort Jackson"], "correct": 1, "explanation": "On August 30, 1813, Red Stick Creek warriors attacked Fort Mims, killing 400–500 settlers, igniting the Creek War." },
+    { "q": "In the 1824 election, why did Jackson lose the presidency despite winning the most votes?", "options": ["He was disqualified by the Electoral College", "The House of Representatives chose Adams under the Twelfth Amendment", "A recount gave Adams more popular votes", "Jackson withdrew from the race"], "correct": 1, "explanation": "No candidate won an Electoral College majority, so the House chose from the top three candidates. Clay's influence swung votes to Adams." },
+    { "q": "Lincoln's 'Spot Resolutions' challenged which president's justification for war?", "options": ["James Monroe", "John Tyler", "James K. Polk", "Zachary Taylor"], "correct": 2, "explanation": "Lincoln challenged President James K. Polk's claim that Mexico had shed 'American blood on American soil,' demanding proof of the exact location." },
+    { "q": "The Declaration of Sentiments at Seneca Falls was modeled directly on which document?", "options": ["The U.S. Constitution", "The Mayflower Compact", "The Declaration of Independence", "The Bill of Rights"], "correct": 2, "explanation": "The Seneca Falls Declaration of Sentiments closely paraphrased the Declaration of Independence, substituting 'all men and women are created equal.'" },
+    { "q": "Under the Fugitive Slave Act of 1850, a commissioner earned ____ ruling for the slave owner versus ____ for the accused.", "options": ["$5 / $10", "$10 / $5", "$15 / $10", "$20 / $5"], "correct": 1, "explanation": "Commissioners received $10 to rule for slave owners but only $5 to rule for the accused fugitive—a structure widely criticized as corrupt." },
+    { "q": "The Seneca Falls Convention was organized by which two women?", "options": ["Sojourner Truth and Susan B. Anthony", "Sarah Grimké and Angelina Grimké", "Elizabeth Cady Stanton and Lucretia Mott", "Lucy Stone and Abby Kelley"], "correct": 2, "explanation": "Elizabeth Cady Stanton and Lucretia Mott organized Seneca Falls after both were excluded as women delegates from the 1840 World Anti-Slavery Convention in London." }
+  ]
+}

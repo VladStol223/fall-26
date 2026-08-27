@@ -1,0 +1,83 @@
+{
+  "id": "eng-history-w10",
+  "course": "Engineering in History",
+  "courseColor": "blue",
+  "moduleNumber": 10,
+  "title": "Engineering and Totalitarianism",
+  "subtitle": "Loren Graham — The Ghost of the Executed Engineer (1996) · Exam 2 Week",
+  "storagePrefix": "eih-w10",
+  "totalCards": 16,
+
+  "overview": {
+    "stats": [
+      { "value": "1929–53", "label": "Stalin's purge era — engineers persecuted" },
+      { "value": "1996", "label": "Graham's book published" },
+      { "value": "Nov 3", "label": "Second in-class essay exam" },
+      { "value": "Wks 6–10", "label": "Exam 2 covers weeks 6–10" }
+    ],
+    "people": [
+      { "name": "Loren R. Graham", "desc": "Harvard science historian and Russia scholar; The Ghost of the Executed Engineer (1996) uses the fate of Soviet engineer Peter Palchinsky to explore technology and totalitarianism." },
+      { "name": "Peter Palchinsky", "desc": "Russian/Soviet engineer executed by Stalin in 1929; advocated for worker welfare and efficient use of resources; his fate is Graham's central case study." },
+      { "name": "Joseph Stalin", "desc": "Soviet dictator; industrialized the USSR through brutal five-year plans that sacrificed worker welfare for production quotas; engineers who raised safety or human concerns were executed as 'wreckers.'" }
+    ],
+    "dates": [
+      { "year": "1917", "event": "Russian Revolution — engineers initially cooperate with Bolsheviks" },
+      { "year": "1929", "event": "Peter Palchinsky executed by Stalin on spurious charges — engineers who questioned policy became 'wreckers'" },
+      { "year": "1930s–50s", "event": "Stalin's Great Terror: thousands of engineers arrested, shot, or sent to labor camps" },
+      { "year": "1991", "event": "Soviet Union collapses — Graham argues poor engineering culture was a contributing factor" },
+      { "year": "Nov 3, 2026", "event": "Second in-class essay exam, covering weeks 6–10" }
+    ],
+    "terms": [
+      { "term": "Palchinsky principles", "def": "Graham's term for Palchinsky's three engineering values: (1) consider local social/geographical conditions; (2) anticipate human costs; (3) design for continuous learning and correction" },
+      { "term": "Wrecker (vreditel')", "def": "Soviet term for engineers or managers accused of sabotage; used to persecute any engineer who raised technical concerns that challenged official plans" },
+      { "term": "Gigantism", "def": "Stalin's preference for enormous, showcase industrial projects regardless of efficiency — political symbolism over engineering rationality" },
+      { "term": "Engineer as political actor", "def": "Graham's argument: the Soviet case shows that engineers who stay 'apolitical' are not neutral — by executing orders without question, they enable atrocities" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — Graham and Peter Palchinsky",
+      "body": "<p><mark>Loren R. Graham</mark>'s short book uses the life and death of <mark>Peter Palchinsky</mark> as a lens on technology and totalitarianism. Palchinsky was a brilliant Russian engineer — expert in mines, metallurgy, and industrial organization — who participated in Russia's industrialization both before and after the <mark>1917 Revolution</mark>.</p><p>Palchinsky was also something rare: an engineer who insisted on considering <mark>worker welfare</mark>, <mark>social conditions</mark>, and <mark>long-term sustainability</mark> alongside technical efficiency. This made him politically dangerous. Stalin had him shot in <mark>1929</mark> on fabricated charges of sabotage — one of the first of thousands of engineers to die in the purges.</p>"
+    },
+    {
+      "title": "2 — The Palchinsky Principles",
+      "body": "<p>Graham distills Palchinsky's approach into three principles: (1) <mark>Consider local conditions</mark> — no engineering solution transfers perfectly across different social, geographical, and cultural contexts. (2) <mark>Anticipate human costs</mark> — worker health, safety, and welfare must be central to design, not afterthoughts. (3) <mark>Design for learning</mark> — good engineering admits uncertainty and builds in mechanisms for correction and improvement.</p><p>These principles are a direct counter to the Soviet approach of <mark>gigantism</mark> — building enormous, politically symbolic projects regardless of efficiency, human cost, or local conditions. Stalin wanted showcase victories; Palchinsky wanted sustainable engineering.</p>"
+    },
+    {
+      "title": "3 — Stalin's Engineering Culture: Wreckers and Gigantism",
+      "body": "<p>Under Stalin, the Soviet state treated engineering as a branch of political compliance. Any engineer who raised concerns about a project could be labeled a <mark>\"wrecker\" (vreditel')</mark> — a saboteur — and arrested, shot, or sent to labor camps. The result was an engineering culture based on <mark>fear and silence</mark>: engineers learned to report what the party wanted to hear, not what was technically accurate.</p><p>Stalin's preference for <mark>gigantism</mark> — enormous dams, factories, canals — prioritized political symbolism over engineering rationality. Projects were often built with slave labor, at catastrophic human cost, and with design decisions made by politicians rather than engineers. The results were structurally sound in some cases but achieved at needless human cost.</p>"
+    },
+    {
+      "title": "4 — The Ghost of Palchinsky: Engineers and Political Responsibility",
+      "body": "<p>Graham's central argument is that <mark>engineers cannot be apolitical</mark>. Palchinsky tried to be a good engineer within the Soviet system — raising concerns, advocating for workers, seeking rational solutions. The state executed him for it. But engineers who accepted political compliance and stopped raising concerns enabled atrocities.</p><p>The \"ghost\" of Palchinsky haunts Soviet engineering: his principles — consider social context, protect workers, design for learning — were suppressed, and the consequences contributed to the <mark>Soviet Union's ultimate technological decline</mark> and collapse in 1991. Graham argues that better engineering culture could have produced a different outcome.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "Who was Peter Palchinsky and why is he Graham's central case study?", "a": "A brilliant Soviet engineer executed by Stalin in 1929. He advocated for worker welfare, local conditions, and sustainable engineering — making him politically dangerous. His fate illustrates the fate of independent engineering judgment under totalitarianism." },
+    { "key": true,  "q": "What are the three 'Palchinsky Principles' Graham identifies?", "a": "(1) Consider local social/geographical conditions; (2) Anticipate human costs and worker welfare; (3) Design for continuous learning and correction — admit uncertainty and build in mechanisms for improvement." },
+    { "key": true,  "q": "What does Graham mean by the 'ghost' of the executed engineer?", "a": "Palchinsky's suppressed principles haunt Soviet engineering — by silencing his approach (social context, worker welfare, learning from failure), the USSR built a culture of fear that contributed to its technological decline and 1991 collapse." },
+    { "q": "What is 'gigantism' as Stalin practiced it?", "a": "The preference for enormous, politically symbolic industrial projects regardless of efficiency or human cost — showcase victories over rational engineering." },
+    { "q": "What was a 'wrecker' (vreditel') in the Soviet system?", "a": "An engineer or manager accused of sabotage — the label used to persecute any engineer who raised technical concerns that challenged official plans." },
+    { "key": true,  "q": "What is Graham's central argument about engineers and political responsibility?", "a": "Engineers cannot be apolitical. Staying silent and compliant enables atrocities; raising concerns risks punishment; either way, engineering choices are political acts." },
+    { "q": "What were the consequences of Soviet engineering culture based on fear and silence?", "a": "Engineers reported what the party wanted to hear, not technical reality — leading to catastrophically inefficient projects, enormous human costs, and ultimately contributing to the USSR's technological failure." },
+    { "q": "How does Palchinsky contrast with Taylor and Ford (Week 9)?", "a": "Taylor and Ford optimized for efficiency without regard for workers; Palchinsky insisted on worker welfare and social context as central engineering concerns — opposite approaches to the 'labor problem.'" },
+    { "q": "What was Palchinsky's fate in 1929?", "a": "Executed by Stalin on fabricated charges of sabotage — one of the first of thousands of engineers killed in the purges." },
+    { "q": "Who is Loren R. Graham and what is his expertise?", "a": "Harvard historian of science; Russia scholar; The Ghost of the Executed Engineer (1996) is his case study of technology under Soviet totalitarianism." },
+    { "q": "What exam occurs on November 3, and what does it cover?", "a": "The second in-class essay exam, covering weeks 6–10 of the course." },
+    { "q": "Why did Stalin execute engineers who raised concerns?", "a": "Any concern about a project could be labeled sabotage ('wrecking') — raising technical objections threatened political narratives about Soviet industrial superiority." },
+    { "q": "What does the Soviet engineering case show about the relationship between political systems and technological outcomes?", "a": "Authoritarian political systems that suppress independent engineering judgment produce worse engineering — political compliance overrides technical rationality with catastrophic results." },
+    { "q": "How does the Soviet case connect to Riley's Week 1 argument about engineering and authority?", "a": "The Soviet engineers who stopped questioning authority represent the extreme endpoint of Riley's critique — uncritical compliance with authority taken to its logical and lethal conclusion." },
+    { "q": "What physical infrastructure projects illustrate Soviet gigantism?", "a": "The White Sea Canal (built with slave labor, nearly useless), enormous Stalinist hydroelectric dams, massive steel plants — built for political symbolism, often inefficiently." },
+    { "q": "What broader lesson does Graham draw for engineering education?", "a": "Engineering education must teach social and political context, worker welfare, and the courage to raise concerns — the Palchinsky principles should be central to engineering ethics." }
+  ],
+
+  "quiz": [
+    { "q": "What are the three 'Palchinsky Principles' that Graham identifies?", "options": ["Speed, cost, and safety", "Consider local conditions, anticipate human costs, and design for continuous learning and correction", "Maximize output, minimize waste, ensure political compliance", "International standards, peer review, and government oversight"], "correct": 1, "explanation": "Graham distills Palchinsky's engineering philosophy into: respect local social/geographic context; protect worker welfare; build in mechanisms for learning from mistakes." },
+    { "q": "What happened to Soviet engineers who raised technical concerns under Stalin?", "options": ["They were promoted for their honesty", "They were labeled 'wreckers' (vrediteli) and could be arrested, executed, or sent to labor camps", "Their concerns were investigated independently", "They were reassigned to less sensitive projects"], "correct": 1, "explanation": "The 'wrecker' label allowed Stalin to persecute any engineer whose concerns challenged official plans — creating a culture of fear and silence." },
+    { "q": "What is Graham's central argument about engineers and politics?", "options": ["Engineers should stay strictly apolitical", "Good engineers must advocate for efficiency above all else", "Engineers cannot be apolitical — staying silent and compliant enables atrocities", "Political engagement always improves engineering outcomes"], "correct": 2, "explanation": "Graham argues that Palchinsky's fate demonstrates engineers must engage politically — silence is not neutrality, it is complicity." },
+    { "q": "What does 'gigantism' mean in the context of Stalin's industrial policy?", "options": ["Building factories larger than physically necessary for safety", "The preference for enormous, politically symbolic projects regardless of efficiency or human cost", "A Soviet engineering philosophy emphasizing scale over quality", "Large-scale importation of foreign industrial technology"], "correct": 1, "explanation": "Stalin preferred showcase megaprojects — massive dams, canals, steel plants — as symbols of Soviet power, regardless of whether they were the most rational engineering solution." },
+    { "q": "What is the 'ghost' in Graham's title The Ghost of the Executed Engineer?", "options": ["A Soviet spy who posed as an engineer", "The haunting of Soviet engineering by Palchinsky's suppressed principles — which contributed to the USSR's eventual technological failure", "A metaphor for Stalin's paranoia about saboteurs", "The literal ghost of Palchinsky seen at Soviet industrial sites"], "correct": 1, "explanation": "The ghost is Palchinsky's suppressed engineering philosophy — by executing him and silencing his principles, the USSR built a defective engineering culture whose failures contributed to its 1991 collapse." }
+  ]
+}

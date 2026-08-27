@@ -1,0 +1,83 @@
+{
+  "id": "eng-history-w12",
+  "course": "Engineering in History",
+  "courseColor": "blue",
+  "moduleNumber": 12,
+  "title": "Neglecting Safety 1: The Corvair and Ford Pinto",
+  "subtitle": "Ralph Nader — Unsafe at Any Speed (1965) · Mark Dowie — Pinto Madness (1977)",
+  "storagePrefix": "eih-w12",
+  "totalCards": 16,
+
+  "overview": {
+    "stats": [
+      { "value": "1965", "label": "Nader's Unsafe at Any Speed published" },
+      { "value": "$11", "label": "Estimated Ford cost to fix Pinto fuel tank" },
+      { "value": "500+", "label": "Pinto fire deaths estimated (Dowie)" },
+      { "value": "Nov 10–12", "label": "Class dates" }
+    ],
+    "people": [
+      { "name": "Ralph Nader", "desc": "Consumer safety lawyer and activist; Unsafe at Any Speed (1965) exposed designed-in dangers in American automobiles, especially the Chevrolet Corvair's rear suspension." },
+      { "name": "Mark Dowie", "desc": "Investigative journalist; 'Pinto Madness' (Mother Jones, 1977) revealed Ford's internal cost-benefit memo calculating that paying death claims was cheaper than fixing the Pinto's fatal fuel tank." }
+    ],
+    "dates": [
+      { "year": "1960", "event": "Chevrolet Corvair introduced — rear-engine, air-cooled design with controversial rear suspension" },
+      { "year": "1965", "event": "Ralph Nader publishes Unsafe at Any Speed; Congress holds hearings; GM hires private detectives to intimidate Nader" },
+      { "year": "1966", "event": "National Traffic and Motor Vehicle Safety Act — first federal auto safety regulation" },
+      { "year": "1970", "event": "Ford Pinto introduced — compact car with fuel tank between rear bumper and rear axle" },
+      { "year": "1977", "event": "Dowie publishes 'Pinto Madness' in Mother Jones — reveals Ford's cost-benefit memo" },
+      { "year": "1978", "event": "Ford recalls 1.5 million Pintos; first time a U.S. automaker faced criminal homicide charges" }
+    ],
+    "terms": [
+      { "term": "Unsafe at Any Speed", "def": "Nader's 1965 book arguing that the American auto industry designed dangerous vehicles and suppressed safety information — pivotal in creating federal auto safety regulation" },
+      { "term": "Pinto memo", "def": "Ford's internal cost-benefit analysis: estimated cost of fixing fuel tank ($11/car × 12.5M vehicles) vs. estimated cost of deaths and injuries if not fixed — concluded fixing was more expensive" },
+      { "term": "Cost-benefit analysis in safety", "def": "Calculating the financial cost of preventing deaths vs. the financial cost of death/injury lawsuits — ethically contested when human lives are assigned dollar values" },
+      { "term": "Designed-in danger", "def": "Nader's concept: safety hazards that are built into a product's design from the beginning, often known to the manufacturer, and not disclosed to consumers" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — Nader and the Corvair: Designed-In Danger",
+      "body": "<p><mark>Ralph Nader</mark>'s <em>Unsafe at Any Speed</em> (1965) opened with a devastating chapter on the <mark>Chevrolet Corvair</mark>. The Corvair had a rear-engine, air-cooled design with a rear suspension that Nader argued was inherently unstable — prone to sudden oversteer and rollover in emergency maneuvers. GM's engineers knew about these handling problems, Nader argued, but chose styling and cost over safety.</p><p>GM's response to the book was revealing: instead of addressing the safety arguments, GM hired private detectives to dig up dirt on Nader personally. When this was exposed in a Senate hearing, it was a PR catastrophe — and Congress passed the <mark>National Traffic and Motor Vehicle Safety Act (1966)</mark>, creating federal auto safety regulation for the first time.</p>"
+    },
+    {
+      "title": "2 — The Ford Pinto: The Memo",
+      "body": "<p>The <mark>Ford Pinto</mark> (introduced 1970) was a compact car with a fatally flawed fuel tank: it was located between the rear bumper and the rear axle, making it rupture and catch fire in rear-end collisions. Ford engineers knew about this design flaw. The fix cost an estimated <mark>$11 per car</mark>.</p><p>Ford chose not to fix it. Mark Dowie's 1977 investigative piece in <em>Mother Jones</em> revealed an internal Ford <mark>cost-benefit memo</mark>: the estimated cost of fixing the fuel tank ($11 × 12.5 million vehicles = $137.5 million) exceeded the estimated financial liability from deaths, injuries, and burned vehicles ($49.5 million). Ford calculated it was cheaper to pay the lawsuits than to fix the car.</p>"
+    },
+    {
+      "title": "3 — Cost-Benefit Analysis and the Ethics of Monetizing Lives",
+      "body": "<p>The Pinto memo is a stark example of a common practice: <mark>cost-benefit analysis applied to safety decisions</mark>. In principle, this can be a rational tool — resources for safety are not infinite, and trade-offs must be made. The problem is when corporations use it to justify <mark>knowingly selling dangerous products</mark> because paying lawsuits is cheaper than fixing them.</p><p>The ethical issue is not only the calculation but the <mark>asymmetry of information</mark>: Ford knew the risk; Pinto buyers did not. This violates basic principles of consumer autonomy and informed consent. Dowie's article sparked public outrage, a Ford recall, and ultimately criminal homicide charges — the first time a U.S. automaker faced such charges.</p>"
+    },
+    {
+      "title": "4 — Lessons for Engineering Ethics",
+      "body": "<p>Both the Corvair and Pinto cases demonstrate what happens when the <mark>business model of engineering ethics</mark> (Week 11) dominates over the public welfare model. In both cases, engineers and managers prioritized <mark>cost and profit</mark> over safety — and people died preventably.</p><p>These cases also illustrate the role of <mark>journalists and public advocacy</mark> in engineering accountability: Nader and Dowie exposed information that corporations suppressed, triggering regulatory action. In the absence of external scrutiny, internal corporate pressure silenced engineers who knew about the dangers. The lesson: <mark>transparency and public accountability</mark> are essential complements to professional ethics codes.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What was Nader's central argument in Unsafe at Any Speed?", "a": "The American auto industry designed dangerous vehicles (especially the Corvair) and suppressed safety information — knowingly selling cars with designed-in hazards to consumers who couldn't evaluate the risk." },
+    { "q": "What was the Corvair's specific safety problem according to Nader?", "a": "The rear-engine, air-cooled Corvair had a rear suspension prone to sudden oversteer and rollover in emergency maneuvers — a handling instability GM engineers knew about but chose not to fix." },
+    { "q": "How did GM respond to Nader's book, and what were the consequences?", "a": "GM hired private detectives to dig up personal dirt on Nader. When exposed at a Senate hearing, it was a PR disaster — leading directly to the National Traffic and Motor Vehicle Safety Act (1966)." },
+    { "key": true,  "q": "What was the Ford Pinto's fatal design flaw?", "a": "The fuel tank was located between the rear bumper and rear axle, causing it to rupture and catch fire in rear-end collisions. Ford knew about this and estimated the fix at $11 per car." },
+    { "key": true,  "q": "What did the Pinto cost-benefit memo calculate, and what was Ford's decision?", "a": "Fixing the fuel tank: ~$137.5M total. Estimated death/injury lawsuits if not fixed: ~$49.5M. Ford decided paying lawsuits was cheaper and chose not to fix the car." },
+    { "q": "Who was Mark Dowie and what did his 'Pinto Madness' article reveal?", "a": "An investigative journalist who published in Mother Jones (1977) the revelation that Ford had an internal memo concluding it was cheaper to pay death lawsuit settlements than to fix the Pinto fuel tank." },
+    { "q": "What is 'designed-in danger' as Nader uses the term?", "a": "Safety hazards built into a product's design from the start, known to the manufacturer, and not disclosed to consumers — the condition Nader documented in American cars." },
+    { "key": true,  "q": "What is the ethical problem with Ford's cost-benefit analysis on the Pinto?", "a": "Not just the calculation itself, but the asymmetry of information — Ford knew the risk; buyers did not. Knowingly selling a dangerous product without disclosure violates consumer autonomy." },
+    { "q": "What law resulted from Nader's advocacy and the Corvair controversy?", "a": "The National Traffic and Motor Vehicle Safety Act (1966) — creating the first federal automobile safety regulations and the agency that became NHTSA." },
+    { "q": "What legal first occurred in connection with the Ford Pinto?", "a": "In 1978, Ford was indicted on criminal homicide charges — the first time a U.S. automaker faced criminal prosecution for a defective product (ultimately acquitted)." },
+    { "q": "How do the Corvair and Pinto cases illustrate the business model vs. public welfare model tension (Week 11)?", "a": "Both cases show the business model winning: cost and profit prioritized over safety. Engineers who knew about hazards were overruled by managers making financial calculations." },
+    { "q": "What role did journalists play in both the Corvair and Pinto cases?", "a": "Nader (Corvair) and Dowie (Pinto) exposed information corporations suppressed — triggering regulatory action that internal ethics codes and engineering judgment had failed to produce." },
+    { "q": "How does the Pinto case connect to the copper-cooled engine case (Week 4)?", "a": "Both show organizational decisions overriding engineering judgment — but the Pinto case has fatal consequences, illustrating what is at stake when corporate politics override safety concerns." },
+    { "q": "Why is Ralph Nader historically significant beyond the Corvair?", "a": "His advocacy created the consumer safety movement and helped establish federal auto, food, and product safety regulation — fundamentally changing the relationship between corporations, engineers, and the public." },
+    { "q": "What does the Pinto case suggest about the limits of professional ethics codes?", "a": "Internal codes are insufficient when corporate incentives reward profit over safety — external regulation, journalism, and public accountability are essential complements." },
+    { "q": "What is the estimated number of Pinto fire deaths cited by Dowie?", "a": "Dowie estimated 500+ deaths from Pinto fires — a figure disputed by Ford but powerful as a public indictment of the cost-benefit approach." }
+  ],
+
+  "quiz": [
+    { "q": "What was Ralph Nader's central argument in Unsafe at Any Speed?", "options": ["American cars cost too much", "The auto industry designed dangerous vehicles and suppressed safety information — knowingly selling cars with designed-in hazards", "Cars needed higher speed limits to be safe", "American engineering was inferior to European engineering"], "correct": 1, "explanation": "Nader documented 'designed-in danger' — safety problems the industry knew about but chose not to fix because they were costly." },
+    { "q": "What did the internal Ford 'Pinto memo' calculate?", "options": ["The cost of increasing the Pinto's fuel efficiency", "The cost of fixing the fuel tank ($137.5M) vs. estimated death/injury lawsuit costs ($49.5M) — concluding lawsuits were cheaper", "The expected profit margin on the Pinto vs. competitor models", "The environmental impact of the Pinto's fuel system"], "correct": 1, "explanation": "Ford's memo calculated that fixing the fuel tank would cost more than paying the lawsuits from deaths and burns — and chose not to fix it." },
+    { "q": "What was the specific safety problem with the Ford Pinto's design?", "options": ["The engine overheated in warm weather", "The steering system was unreliable at highway speeds", "The fuel tank was placed between the rear bumper and rear axle, causing fire in rear-end collisions", "The brakes were undersized for the vehicle's weight"], "correct": 2, "explanation": "The fuel tank's location made it vulnerable to rupture in rear-end collisions — a known flaw Ford chose not to fix at an estimated cost of $11 per car." },
+    { "q": "What law did Nader's advocacy help create in 1966?", "options": ["The Consumer Product Safety Act", "The National Traffic and Motor Vehicle Safety Act — the first federal auto safety regulation", "The Occupational Safety and Health Act (OSHA)", "The Environmental Protection Act"], "correct": 1, "explanation": "The 1966 National Traffic and Motor Vehicle Safety Act created federal auto safety standards for the first time — a direct result of Nader's exposé and the resulting public outcry." },
+    { "q": "What ethical principle is violated by Ford's decision to withhold the fuel tank risk from consumers?", "options": ["The principle of cost minimization", "The principle of informed consent and consumer autonomy — buyers couldn't evaluate a risk Ford knew about but concealed", "The principle that safety costs must always be minimized", "The principle of engineering efficiency"], "correct": 1, "explanation": "Ford knew the risk; Pinto buyers did not. This asymmetry of information violates informed consent — a basic principle of both consumer ethics and engineering professional codes." }
+  ]
+}

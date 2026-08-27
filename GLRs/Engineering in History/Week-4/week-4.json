@@ -1,0 +1,80 @@
+{
+  "id": "eng-history-w4",
+  "course": "Engineering in History",
+  "courseColor": "blue",
+  "moduleNumber": 4,
+  "title": "Engineering Practice 2: Corporate Politics & Product Design",
+  "subtitle": "Stuart Leslie — Kettering and the Copper-Cooled Engine (1979)",
+  "storagePrefix": "eih-w4",
+  "totalCards": 15,
+
+  "overview": {
+    "stats": [
+      { "value": "1923", "label": "Year the Copper-Cooled project collapsed" },
+      { "value": "GM", "label": "General Motors — site of the case study" },
+      { "value": "1979", "label": "Leslie's Technology & Culture article" },
+      { "value": "Sep 15–17", "label": "Class dates" }
+    ],
+    "people": [
+      { "name": "Charles F. Kettering", "desc": "'Boss Ket' — legendary inventor (electric starter, Freon, leaded gasoline); headed GM Research and championed the copper-cooled engine against fierce organizational resistance." },
+      { "name": "Alfred P. Sloan", "desc": "GM's organizational architect; reorganized GM into semi-autonomous divisions; ultimately allowed divisional politics to kill Kettering's copper-cooled engine." },
+      { "name": "Stuart W. Leslie", "desc": "Historian of technology; 1979 article examines why a technically promising engine failed due to corporate politics rather than technical shortcomings." }
+    ],
+    "dates": [
+      { "year": "1921", "event": "Kettering begins development of the copper-cooled (air-cooled) engine at GM Research" },
+      { "year": "1923", "event": "Chevrolet introduces copper-cooled cars; disasters in the field force recall; project abandoned" },
+      { "year": "1979", "event": "Leslie publishes 'Charles F. Kettering and the Copper-Cooled Engine' in Technology and Culture" }
+    ],
+    "terms": [
+      { "term": "Copper-cooled engine", "def": "Air-cooled engine Kettering designed for Chevrolet; used copper fins to dissipate heat without a water radiator. Promising in theory, it failed in production due to organizational and testing problems." },
+      { "term": "Organizational politics", "def": "Leslie's theme: the engine's failure was driven less by technical problems than by inter-divisional conflict, short-term thinking, and failure to communicate between R&D and manufacturing" },
+      { "term": "R&D vs. production", "def": "The core tension: GM Research (Kettering) developed the engine in isolation; Chevrolet production engineers were skeptical and poorly integrated into testing" },
+      { "term": "Technology and Culture", "def": "The flagship journal of the Society for the History of Technology (SHOT); the primary outlet for academic history of technology" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — The Copper-Cooled Engine: Promise and Failure",
+      "body": "<p><mark>Charles Kettering</mark>, head of GM Research, was one of the most celebrated inventors of the early 20th century. In the early 1920s he developed a <mark>copper-cooled (air-cooled) engine</mark> that he believed would revolutionize automobile design — eliminating the heavy, complex water-cooling system. The engine used <mark>copper fins</mark> to dissipate heat directly to air.</p><p>The project promised a lighter, simpler, cheaper car. But by <mark>1923</mark>, after a disastrous limited market introduction — cars breaking down in the field, recalls, customer complaints — GM quietly abandoned the project. A technically promising innovation had failed spectacularly in production.</p>"
+    },
+    {
+      "title": "2 — Why Did It Fail? The Leslie Thesis",
+      "body": "<p>Historian <mark>Stuart W. Leslie</mark> argues the copper-cooled engine's failure was not primarily a <mark>technical</mark> failure. The core problems were <mark>organizational and political</mark>: GM's research division (under Kettering) developed the engine in relative isolation from Chevrolet's production engineers, who were skeptical from the start and poorly integrated into testing.</p><p>When problems emerged, there was no effective mechanism for R&D and manufacturing to collaborate on solutions. Divisional managers prioritized short-term production quotas over the long-term investment needed to work out the kinks. <mark>Corporate politics</mark> killed what might have been a viable engine given more integrated development.</p>"
+    },
+    {
+      "title": "3 — GM's Organizational Structure and Alfred Sloan",
+      "body": "<p><mark>Alfred P. Sloan</mark> reorganized GM into semi-autonomous divisions — Chevrolet, Buick, Cadillac, etc. — each with its own engineering and manufacturing. This structure was brilliant for management and profitability but created <mark>internal competition and information silos</mark> that worked against collaborative innovation.</p><p>Sloan ultimately sided with the divisional managers over Kettering. The lesson Leslie draws: the <mark>organizational structure</mark> of a company shapes what innovations succeed or fail, independently of their technical merits. This is a recurring theme in engineering history.</p>"
+    },
+    {
+      "title": "4 — Broader Lessons: Organizations Shape Technology",
+      "body": "<p>The copper-cooled engine case illustrates a principle that runs throughout the course: <mark>technical merit alone does not determine whether an innovation succeeds</mark>. Corporate politics, organizational structure, incentive systems, and communication failures all shape which technologies get developed and which get abandoned.</p><p>This connects to later weeks: the Ford Pinto's dangerous fuel tank survived because of a cost-benefit calculation; the Boeing 737 Max's flawed MCAS system was approved partly because of organizational and financial pressures. The lesson is consistent — <mark>engineering decisions are never purely technical</mark>.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What was the copper-cooled engine and who developed it?", "a": "An air-cooled engine using copper fins to dissipate heat, developed by Charles Kettering at GM Research in the early 1920s, intended to replace water-cooled engines." },
+    { "key": true,  "q": "What is Stuart Leslie's thesis about why the copper-cooled engine failed?", "a": "The failure was primarily organizational and political — not technical. GM's R&D and production divisions were poorly integrated; corporate politics killed the project." },
+    { "q": "Who was Charles Kettering and what was his role at GM?", "a": "Head of GM Research ('Boss Ket'); one of the era's most celebrated inventors (electric starter, leaded gasoline, Freon); champion of the copper-cooled engine." },
+    { "q": "Who was Alfred P. Sloan and what was his role in the copper-cooled failure?", "a": "GM's organizational architect who structured GM into semi-autonomous divisions; ultimately sided with divisional managers over Kettering, letting corporate politics win." },
+    { "key": true,  "q": "What organizational tension does the copper-cooled engine case illustrate?", "a": "R&D vs. production: Kettering's research division developed the engine in isolation from Chevrolet's skeptical production engineers, preventing effective problem-solving." },
+    { "q": "What happened when GM introduced the copper-cooled engine to the market?", "a": "1923: cars broke down in the field, requiring recalls; the project was quietly abandoned despite Kettering's continued belief in the technology." },
+    { "key": true,  "q": "What broader principle does the copper-cooled engine case demonstrate for engineering history?", "a": "Technical merit alone does not determine whether an innovation succeeds — corporate politics, organizational structure, and incentive systems all shape engineering outcomes." },
+    { "q": "How did GM's divisional structure contribute to the engine's failure?", "a": "Semi-autonomous divisions created internal competition and information silos; no effective mechanism existed for R&D and manufacturing to collaborate on fixing problems." },
+    { "q": "What is Technology and Culture and why is it significant?", "a": "The flagship journal of the Society for the History of Technology (SHOT) — the primary outlet for academic history of technology; Leslie's article appeared there." },
+    { "q": "How does the copper-cooled engine case connect to later course weeks?", "a": "Same pattern: Ford Pinto (cost-benefit over safety), Boeing 737 Max (financial/org pressure). Engineering decisions are never purely technical." },
+    { "q": "What were the advantages Kettering claimed for the copper-cooled engine?", "a": "Lighter, simpler, and cheaper than water-cooled engines — no heavy radiator or cooling system needed." },
+    { "q": "What role did short-term thinking play in the engine's failure?", "a": "Divisional managers prioritized short-term production quotas over the long-term investment needed to develop and debug the new engine." },
+    { "q": "Why is the copper-cooled engine failure a useful case study for engineers?", "a": "It shows that R&D and production must be integrated early, that organizational communication failures can kill good ideas, and that political dynamics shape technical outcomes." },
+    { "q": "What was GM Research's main failure in the copper-cooled project?", "a": "Developing the engine in relative isolation — not adequately involving production engineers in testing and development, so problems that emerged were hard to address." },
+    { "q": "What does Leslie's analysis imply about the relationship between engineers and management?", "a": "Engineers operate within organizational constraints that can override technical judgment; understanding corporate politics is part of engineering practice." }
+  ],
+
+  "quiz": [
+    { "q": "What is Stuart Leslie's main thesis about the copper-cooled engine's failure?", "options": ["The copper alloys available in the 1920s were not good enough", "The failure was primarily organizational and political, not technical", "Kettering was a poor engineer who overestimated the design", "The American public rejected air-cooled engines on principle"], "correct": 1, "explanation": "Leslie argues the core problem was poor integration between GM Research and Chevrolet's production engineers — corporate politics, not technical shortcomings." },
+    { "q": "Who was Charles Kettering?", "options": ["GM's CEO who authorized the copper-cooled project", "Head of GM Research; the engine's inventor and champion", "A Chevrolet production engineer who opposed the project", "A historian who wrote about the project in 1979"], "correct": 1, "explanation": "Kettering ('Boss Ket') headed GM Research and was one of the most celebrated American inventors of the early 20th century." },
+    { "q": "How did Alfred Sloan's reorganization of GM contribute to the engine's failure?", "options": ["It gave too much power to engineers at the expense of managers", "It created semi-autonomous divisions with information silos that blocked R&D/production collaboration", "It eliminated the R&D division entirely after 1921", "It forced all divisions to use water-cooled engines"], "correct": 1, "explanation": "Sloan's divisional structure created internal competition and communication barriers — divisional managers and GM Research couldn't effectively collaborate to fix the engine's problems." },
+    { "q": "What broad lesson about technology does the copper-cooled case illustrate?", "options": ["Air cooling is always inferior to water cooling", "Technical merit alone determines whether innovations succeed", "Corporate politics and organizational structure shape which technologies succeed independently of technical merit", "Research departments should always control production decisions"], "correct": 2, "explanation": "This case is a classic example: the engine may have been viable, but organizational failures prevented the integration needed to work out its problems." },
+    { "q": "What year did GM's copper-cooled engine project collapse?", "options": ["1919", "1921", "1923", "1927"], "correct": 2, "explanation": "After a disastrous limited market introduction in 1923, recalls and customer complaints forced GM to abandon the project." }
+  ]
+}

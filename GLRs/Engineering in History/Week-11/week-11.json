@@ -1,0 +1,80 @@
+{
+  "id": "eng-history-w11",
+  "course": "Engineering in History",
+  "courseColor": "blue",
+  "moduleNumber": 11,
+  "title": "Engineering Ethics — A Short History",
+  "subtitle": "Michael Davis — Professional Codes of Ethics (2020)",
+  "storagePrefix": "eih-w11",
+  "totalCards": 15,
+
+  "overview": {
+    "stats": [
+      { "value": "1912", "label": "ASCE first formal ethics code" },
+      { "value": "1914", "event": "AIChE founded with ethics provisions" },
+      { "value": "Nov 3–5", "label": "Class dates" },
+      { "value": "2020", "label": "Davis Routledge Handbook chapter" }
+    ],
+    "people": [
+      { "name": "Michael Davis", "desc": "Philosopher of engineering ethics (Illinois Institute of Technology); 2020 chapter in Routledge Handbook traces professional codes of ethics from business to science models." }
+    ],
+    "dates": [
+      { "year": "1852", "event": "ASCE founded — earliest major U.S. engineering professional society" },
+      { "year": "1912", "event": "ASCE adopts first formal code of engineering ethics" },
+      { "year": "1940s–60s", "event": "Engineering ethics codes become more explicit about obligation to public welfare vs. employer" },
+      { "year": "1974", "event": "BART engineers case: three engineers fired for blowing the whistle on safety concerns — landmark engineering ethics case" },
+      { "year": "2020", "event": "Davis publishes 'Professional Codes of Ethics' in the Routledge Handbook of the Philosophy of Engineering" }
+    ],
+    "terms": [
+      { "term": "Business model of engineering ethics", "def": "Engineers serve their employer — client comes first. Ethics = competence and honesty with client/employer. Dominant in early codes." },
+      { "term": "Science model of engineering ethics", "def": "Engineers serve truth/knowledge — like scientists, they have obligations to accuracy and integrity that supersede employer interests" },
+      { "term": "Public welfare model", "def": "The modern consensus: engineers' primary obligation is to public health, safety, and welfare — employer and client interests are secondary when they conflict with public safety" },
+      { "term": "Whistleblowing", "def": "Disclosing a dangerous or unethical practice by an employer to authorities or the public — legally risky for engineers; ethically required in extreme cases" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — From Business Ethics to Public Welfare",
+      "body": "<p><mark>Michael Davis</mark>'s chapter traces the evolution of engineering ethics codes from their 19th-century origins to the present. Early codes were essentially <mark>business ethics</mark> — engineers should be competent, honest with clients, and not undercut competitors' prices. The client/employer was the primary obligation.</p><p>Over time, especially after high-profile engineering disasters and the 20th century's experience with corporate malfeasance, codes shifted toward a <mark>public welfare model</mark>: engineers' primary obligation is to <mark>public health, safety, and welfare</mark>. Employer and client interests are legitimate but must not override this.</p>"
+    },
+    {
+      "title": "2 — The Science Model vs. Business Model",
+      "body": "<p>Davis identifies two competing models in engineering ethics history. The <mark>business model</mark> treats engineering as a service to clients — ethics means competence and honesty with the client/employer. The <mark>science model</mark> treats engineering as pursuit of truth — like scientists, engineers have obligations to accuracy and integrity that supersede employer interests.</p><p>Modern engineering ethics codes blend these. The current consensus: engineers are neither mere hired hands (pure business model) nor independent truth-seekers (pure science model). They are professionals with specialized knowledge and obligations to multiple stakeholders — including the public.</p>"
+    },
+    {
+      "title": "3 — Key Ethics Provisions and Their History",
+      "body": "<p>Davis traces how specific provisions evolved. The requirement to <mark>hold public safety paramount</mark> became standard in U.S. engineering codes after World War II — shaped by experience with the devastation that technically competent engineering in service of wrong ends (Nazi Germany) could cause.</p><p>The ethics of <mark>whistleblowing</mark> remains contested. The <mark>BART engineers case (1974)</mark> — in which three Bay Area Rapid Transit engineers were fired after blowing the whistle on safety concerns — became a landmark: engineers sometimes have a professional obligation to disclose dangers even at personal cost. Most current codes now endorse this.</p>"
+    },
+    {
+      "title": "4 — Engineering Ethics and Corporate Pressure",
+      "body": "<p>Davis's historical account sets up Section 3's case studies (weeks 12–14). Each case — the Corvair, the Ford Pinto, the Quebec Bridge, the Boeing 737 Max — involves engineers under corporate pressure who either failed to raise safety concerns or were overruled when they did.</p><p>Understanding the historical development of ethics codes provides a framework for analyzing these failures. The question in each case is not just \"what went wrong technically?\" but <mark>\"what ethical failures occurred and what in the institutional context enabled them?\"</mark></p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What is Davis's argument in 'Professional Codes of Ethics' about how engineering ethics evolved?", "a": "Engineering ethics codes evolved from a business model (serve the client) toward a public welfare model (protect public health, safety, and welfare as the primary obligation)." },
+    { "q": "What is the 'business model' of engineering ethics?", "a": "Engineers serve their employer/client — ethics means competence and honesty with the client. Dominant in early 19th-century codes." },
+    { "q": "What is the 'science model' of engineering ethics?", "a": "Engineers have obligations to truth and accuracy that supersede employer interests — like scientists, they serve knowledge integrity." },
+    { "key": true,  "q": "What is the modern 'public welfare model' of engineering ethics?", "a": "Engineers' primary obligation is to public health, safety, and welfare. Employer and client interests are legitimate but secondary when they conflict with public safety." },
+    { "q": "When did ASCE adopt its first formal code of engineering ethics?", "a": "1912 — though ASCE was founded in 1852, formal ethical codification came decades later." },
+    { "q": "What was the BART engineers case (1974)?", "a": "Three Bay Area Rapid Transit engineers were fired for whistleblowing on safety concerns — became a landmark case establishing that engineers sometimes have a professional obligation to disclose dangers even at personal cost." },
+    { "key": true,  "q": "What is whistleblowing and when is it ethically required for engineers?", "a": "Disclosing dangerous or unethical practices by an employer to authorities or the public. Legally risky; most current ethics codes say it is required when public safety is at serious risk." },
+    { "q": "What event shaped the post-WWII shift in engineering ethics toward public welfare?", "a": "Experience with Nazi Germany: technically competent engineering in service of wrong ends caused catastrophic harm, demonstrating that technical skill without ethical obligation is dangerous." },
+    { "q": "How does Davis's historical analysis differ from treating engineering ethics as timeless principles?", "a": "Davis shows ethical codes evolved in response to specific historical events and social pressures — they are human constructions, not eternal truths." },
+    { "q": "What does the 'hold public safety paramount' provision mean in practice?", "a": "If an employer's decision creates serious risk to public health or safety, the engineer's professional obligation is to refuse, raise concerns, and if necessary disclose — even at personal cost." },
+    { "q": "How does Week 11 prepare students for Section 3 (weeks 12–15)?", "a": "It establishes the ethical framework (public welfare model, professional obligation, whistleblowing) that will be applied to analyze the Corvair, Pinto, Quebec Bridge, and Boeing 737 Max cases." },
+    { "q": "Who is Michael Davis and what institution is he associated with?", "a": "Philosopher of engineering ethics at Illinois Institute of Technology; wrote both Week 2's historical preface article and this 2020 Routledge Handbook chapter." },
+    { "q": "Why is the history of engineering ethics codes important for practicing engineers?", "a": "The codes' historical development reveals they are responses to specific failures and pressures — understanding this history helps engineers navigate the live tensions in their own practice." },
+    { "q": "What is the Routledge Handbook of the Philosophy of Engineering?", "a": "A comprehensive 2020 academic reference work covering philosophical aspects of engineering practice — Davis's chapter on professional codes of ethics appears in it." },
+    { "q": "What do all three Section 3 case studies (Corvair/Pinto, Quebec Bridge, Boeing 737 Max) have in common?", "a": "In each case, engineers were under corporate pressure, either failed to raise safety concerns or were overruled — resulting in preventable deaths. They are case studies in what happens when the public welfare model fails." }
+  ],
+
+  "quiz": [
+    { "q": "How did engineering ethics codes evolve from the 19th century to the present?", "options": ["From public welfare to serving employers", "From serving the client/employer (business model) toward protecting public health, safety, and welfare (public welfare model)", "Ethics codes have stayed essentially the same since 1852", "From the science model to the business model"], "correct": 1, "explanation": "Davis traces the evolution from early business-ethics codes (competence and client service) to the modern consensus that public safety is the primary professional obligation." },
+    { "q": "What is whistleblowing in the context of engineering ethics?", "options": ["A referee signal used in engineering project management", "Disclosing dangerous or unethical employer practices — legally risky but ethically required when public safety is at stake", "An early warning system built into engineering designs", "The practice of publicly critiquing competitors' engineering work"], "correct": 1, "explanation": "Whistleblowing — disclosing employer wrongdoing to authorities or the public — is risky but recognized in current codes as sometimes professionally required." },
+    { "q": "What was significant about the BART engineers case (1974)?", "options": ["It established that engineers can never be fired for raising safety concerns", "Three engineers were fired for whistleblowing — becoming a landmark case that shaped ethics codes' treatment of disclosure obligations", "It showed that safety concerns should always be raised privately within companies", "It resulted in the first federal engineering ethics law"], "correct": 1, "explanation": "The BART engineers were fired after raising safety concerns about Bay Area Rapid Transit — the case became a touchstone for engineering ethics discussions about professional obligation vs. employer loyalty." },
+    { "q": "What is the 'business model' of engineering ethics?", "options": ["Engineers should run their own businesses", "Engineers serve their employer/client — ethics means competence and honesty with clients", "Engineering ethics should be determined by market forces", "Business values are incompatible with engineering ethics"], "correct": 1, "explanation": "The business model dominated early engineering codes: be competent, be honest with your client, don't undercut competitors. The public's interest was secondary or absent." },
+    { "q": "How does Week 11 connect to the Section 3 case studies (weeks 12–14)?", "options": ["It provides the historical framework to analyze what ethical failures occurred in each case", "It argues that all engineering failures are the result of ethics code violations", "It explains why engineering ethics codes are ineffective", "It introduces new case studies not covered elsewhere in the course"], "correct": 0, "explanation": "Davis's historical account establishes the public welfare model and whistleblowing obligations that provide the analytical framework for the Corvair, Pinto, Quebec Bridge, and 737 Max cases." }
+  ]
+}

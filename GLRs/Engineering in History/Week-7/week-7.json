@@ -1,0 +1,80 @@
+{
+  "id": "eng-history-w7",
+  "course": "Engineering in History",
+  "courseColor": "blue",
+  "moduleNumber": 7,
+  "title": "Post-WWII Engineering Education",
+  "subtitle": "Bruce Seely — The Other Re-Engineering of Engineering Education (1999)",
+  "storagePrefix": "eih-w7",
+  "totalCards": 14,
+
+  "overview": {
+    "stats": [
+      { "value": "1957", "label": "Sputnik launched — Cold War pressure intensifies" },
+      { "value": "1945–65", "label": "Period of engineering education transformation" },
+      { "value": "Oct 8", "label": "Single class day (Fall Break Oct 6)" },
+      { "value": "1999", "label": "Seely article published" }
+    ],
+    "people": [
+      { "name": "Bruce E. Seely", "desc": "Historian of engineering education; 1999 article argues the Cold War–era turn toward science-heavy engineering education had lasting negative consequences for engineering practice." },
+      { "name": "Vannevar Bush", "desc": "MIT engineer and wartime science administrator; his 1945 report 'Science: The Endless Frontier' shaped post-WWII federal investment in science and engineering." }
+    ],
+    "dates": [
+      { "year": "1945", "event": "WWII ends; Vannevar Bush's 'Science: The Endless Frontier' calls for federal investment in basic research" },
+      { "year": "1950", "event": "National Science Foundation (NSF) established — federal funding for science and engineering research and education" },
+      { "year": "Oct 4, 1957", "event": "Sputnik launch — Soviet satellite shocks U.S. into accelerating science/engineering education reform" },
+      { "year": "1958", "event": "National Defense Education Act (NDEA) — massive federal investment in math, science, and engineering education" },
+      { "year": "1960s", "event": "Engineering curricula become more mathematically rigorous and science-heavy at the expense of practical design skills" }
+    ],
+    "terms": [
+      { "term": "Sputnik effect", "def": "The shock of the 1957 Soviet satellite launch that accelerated U.S. investment in science-heavy engineering education — seen as evidence the U.S. was falling behind" },
+      { "term": "Science-heavy engineering education", "def": "Post-WWII trend: engineering curricula emphasized mathematics and scientific theory at the expense of shop skills, design practice, and practical knowledge" },
+      { "term": "National Defense Education Act (NDEA)", "def": "1958 federal legislation that poured money into science, math, and engineering education in response to Sputnik" },
+      { "term": "Seely's critique", "def": "Post-WWII engineering education's science turn produced graduates who could calculate but not design or build — it overcorrected the shop culture vs. school culture balance" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — The Seely Thesis: The 'Other' Re-Engineering",
+      "body": "<p><mark>Bruce Seely</mark>'s 1999 article argues that American engineering education was fundamentally reshaped between roughly <mark>1945 and 1965</mark> — not primarily by educators' own choices, but by <mark>Cold War politics and federal funding</mark>. This is the \"other\" re-engineering: the transformation of engineering into a more science-heavy discipline to meet Cold War competition with the Soviet Union.</p><p>Seely's critique: this transformation produced graduates who excelled at mathematics and scientific theory but lacked the <mark>practical design skills</mark> and <mark>contextual knowledge</mark> that make engineers useful in the real world. Engineering education overcorrected toward science at the expense of craft.</p>"
+    },
+    {
+      "title": "2 — The Cold War Context: Sputnik and NSF",
+      "body": "<p>The launch of <mark>Sputnik</mark> on <mark>October 4, 1957</mark> shocked the American public and government. If the Soviets could put a satellite in orbit, surely they were winning the technological competition. The response was a massive federal investment in science and engineering — including the <mark>National Defense Education Act (NDEA, 1958)</mark>.</p><p>The <mark>National Science Foundation (NSF)</mark>, established in 1950, became a major force shaping engineering education by funding research at universities and pressuring engineering schools to become more scientifically rigorous. Federal money came with strings: to get it, you had to make your curriculum look more like physics and math.</p>"
+    },
+    {
+      "title": "3 — What Was Lost: Design and Practice",
+      "body": "<p>As engineering curricula became more science-heavy, they lost something important: <mark>design knowledge</mark>, <mark>practical skills</mark>, and the ability to build things. Seely argues that the best engineers have always combined scientific knowledge with hands-on design experience — and this balance was disrupted by the post-WWII shift.</p><p>Engineering professors increasingly had <mark>PhDs and research careers</mark> rather than industry experience. They taught students to solve theoretical problems rather than design real systems. This contributed to a growing gap between what engineering graduates could do and what industry needed.</p>"
+    },
+    {
+      "title": "4 — Long-Term Consequences and Ongoing Debates",
+      "body": "<p>Seely's critique is still relevant. Engineering education has undergone multiple reforms since the 1990s — including the ABET criteria emphasizing <mark>design competency</mark> and <mark>professional skills</mark> — partly in response to the imbalances he documents. The debate between theory and practice, between <mark>school culture and shop culture</mark>, never fully resolves.</p><p>This week connects to Week 6's history of 19th-century engineering education debates. The same tension — how much science vs. how much practice? — recurs at every era. The answer is always shaped by the <mark>political and economic context</mark>, not purely by educational theory.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What is Seely's main argument in 'The Other Re-Engineering of Engineering Education'?", "a": "Cold War politics and federal funding (1945–1965) transformed engineering education into a science-heavy discipline at the expense of practical design skills — producing graduates who could calculate but not build." },
+    { "key": true,  "q": "What event accelerated the post-WWII turn toward science-heavy engineering education?", "a": "Sputnik (October 4, 1957) — the Soviet satellite launch shocked the U.S. into massive investment in science and engineering education to compete in the Cold War." },
+    { "q": "What was the National Defense Education Act (NDEA, 1958)?", "a": "Federal legislation pouring money into science, math, and engineering education in response to Sputnik — one of the largest federal investments in education in U.S. history." },
+    { "q": "What role did the National Science Foundation (NSF) play in engineering education reform?", "a": "NSF funded university research and pressured engineering schools to become more scientifically rigorous — federal money came with a strings: look more like physics and math." },
+    { "key": true,  "q": "What did Seely say was lost when engineering curricula became more science-heavy?", "a": "Design knowledge, practical skills, and the ability to build things. Engineering professors increasingly had PhDs but not industry experience — teaching theory over practice." },
+    { "q": "Who was Vannevar Bush and what was his significance for post-WWII science policy?", "a": "MIT engineer and wartime science administrator; his 1945 report 'Science: The Endless Frontier' shaped federal investment in basic research and influenced NSF's creation." },
+    { "q": "What is the 'Sputnik effect'?", "a": "The shock of the 1957 Soviet satellite launch that accelerated U.S. science/engineering education reform — seen as proof the U.S. was falling behind in the Cold War." },
+    { "q": "Why does Week 7 have only one class day?", "a": "Fall Break is October 6; Week 7 has a single class on October 8." },
+    { "q": "How did the post-WWII engineering education shift affect the type of professors hired?", "a": "Engineering departments increasingly hired PhDs with research careers rather than practicing engineers — prioritizing research output over teaching practical design." },
+    { "q": "What reforms in the 1990s tried to correct the post-WWII imbalance Seely identified?", "a": "ABET criteria emphasizing design competency and professional skills were introduced to restore the balance between theory and practice." },
+    { "q": "How does Seely's article connect to the Week 6 school culture vs. shop culture debate?", "a": "The post-WWII shift was essentially a massive victory for 'school culture' over 'shop culture' — but Seely argues it went too far, abandoning the practical dimension entirely." },
+    { "q": "What does Seely mean by calling this the 'other' re-engineering?", "a": "The title refers to a mostly unacknowledged transformation — not a deliberate curriculum reform, but a consequence of Cold War funding politics reshaping engineering education from the outside." },
+    { "q": "What was the gap between what post-WWII engineering graduates could do and what industry needed?", "a": "Graduates excelled at mathematics and scientific theory but lacked practical design skills, industry context, and ability to build real systems." },
+    { "q": "What is the overarching lesson Seely's article offers for understanding engineering education?", "a": "The curriculum is always shaped by external political and economic forces — what counts as engineering knowledge is a political question, not just an educational one." }
+  ],
+
+  "quiz": [
+    { "q": "What is Seely's central argument about post-WWII engineering education (1945–1965)?", "options": ["Engineering schools improved by becoming more rigorous", "Cold War politics and federal funding pushed engineering toward science-heavy curricula at the expense of practical design skills", "Sputnik had little effect on American engineering education", "The shop culture tradition was successfully preserved through this period"], "correct": 1, "explanation": "Seely argues that Cold War competition and federal funding (NSF, NDEA) transformed engineering curricula in ways that damaged practical design competency." },
+    { "q": "What event triggered the most intense phase of engineering education reform?", "options": ["The atomic bombing of Hiroshima (1945)", "The Korean War (1950)", "The launch of Sputnik (1957)", "The moon landing (1969)"], "correct": 2, "explanation": "Sputnik's launch in October 1957 shocked the U.S. into the National Defense Education Act and an accelerated push to make engineering education more scientifically rigorous." },
+    { "q": "According to Seely, what was LOST when engineering curricula became more science-heavy?", "options": ["Mathematical sophistication", "Government funding", "Practical design skills and the ability to build real systems", "International competitiveness"], "correct": 2, "explanation": "The science-heavy shift produced graduates who could calculate but not design — the practical knowledge needed to actually build things was squeezed out." },
+    { "q": "How does Seely's article connect to the Week 6 'school culture vs. shop culture' debate?", "options": ["Post-WWII reform restored shop culture's dominance", "The post-WWII shift was essentially a massive, politically driven victory for school culture that went too far", "The two debates are unrelated — school culture was a 19th-century issue only", "Shop culture was dominant until Sputnik"], "correct": 1, "explanation": "Seely traces a continuous tension: the post-WWII Cold War shift was essentially school culture winning definitively — but Seely argues it overcorrected, abandoning practical engineering knowledge." },
+    { "q": "What organization was established in 1950 and became a major force shaping science-heavy engineering education?", "options": ["ABET (Accreditation Board for Engineering)", "The National Science Foundation (NSF)", "The American Society of Engineering Education (ASEE)", "The Department of Defense Advanced Research Projects Agency (DARPA)"], "correct": 1, "explanation": "NSF funded university research and shaped engineering curricula by favoring institutions that emphasized scientific rigor — federal funding came with implicit curriculum requirements." }
+  ]
+}

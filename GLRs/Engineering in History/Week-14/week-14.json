@@ -1,0 +1,84 @@
+{
+  "id": "eng-history-w14",
+  "course": "Engineering in History",
+  "courseColor": "blue",
+  "moduleNumber": 14,
+  "title": "Neglecting Safety 3: The Boeing 737 Max",
+  "subtitle": "Maureen Tkacik — Crash Course (New Republic, 2019) · Netflix: Downfall",
+  "storagePrefix": "eih-w14",
+  "totalCards": 16,
+
+  "overview": {
+    "stats": [
+      { "value": "346", "label": "People killed in two 737 Max crashes" },
+      { "value": "2019", "label": "737 Max grounded worldwide" },
+      { "value": "2018–19", "label": "Lion Air and Ethiopian Airlines crashes" },
+      { "value": "Nov 24–Dec 3", "label": "Class dates (Thanksgiving week included)" }
+    ],
+    "people": [
+      { "name": "Maureen Tkacik", "desc": "Investigative journalist; 'Crash Course' (New Republic, 2019) argues Boeing's managerial revolution — prioritizing shareholders over engineers — created the conditions for the 737 Max disaster." },
+      { "name": "Dennis Muilenburg", "desc": "Boeing CEO during the Max crashes; prioritized financial performance and stock buybacks; resigned under pressure in December 2019." },
+      { "name": "Harry Stonecipher", "desc": "GE executive brought to Boeing post-merger with McDonnell Douglas; championed transforming Boeing from an 'engineering culture' company to a 'business culture' company." }
+    ],
+    "dates": [
+      { "year": "1997", "event": "Boeing merges with McDonnell Douglas — begins cultural shift from engineering-led to finance-led management" },
+      { "year": "2011", "event": "Boeing launches 737 Max program to compete with Airbus A320neo — chooses modification over new design to save certification costs" },
+      { "year": "Oct 29, 2018", "event": "Lion Air Flight 610 crashes; 189 killed — MCAS malfunction suspected" },
+      { "year": "Mar 10, 2019", "event": "Ethiopian Airlines Flight 302 crashes; 157 killed — same MCAS failure pattern" },
+      { "year": "Mar 13, 2019", "event": "737 Max grounded worldwide by FAA and all regulators" },
+      { "year": "Nov 2019", "event": "Tkacik's 'Crash Course' published in New Republic" }
+    ],
+    "terms": [
+      { "term": "MCAS (Maneuvering Characteristics Augmentation System)", "def": "Software system Boeing developed to compensate for the Max's altered aerodynamics; faulty sensor input caused MCAS to repeatedly push the nose down, overwhelming pilots" },
+      { "term": "Managerial revolution", "def": "Tkacik's term for Boeing's transformation from an engineering-led to a finance-led culture after the McDonnell Douglas merger — prioritizing quarterly earnings over long-term safety" },
+      { "term": "Self-certification", "def": "FAA practice of allowing Boeing to certify its own aircraft as safe — regulatory capture that gave Boeing excessive control over its own oversight" },
+      { "term": "Regulatory capture", "def": "When the agency responsible for regulating an industry becomes too closely aligned with industry interests — undermining independent safety oversight" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — What Happened: MCAS and Two Crashes",
+      "body": "<p>The <mark>Boeing 737 Max</mark> was a modernized version of the 737, updated with larger, more fuel-efficient engines mounted further forward and higher on the wing. This changed the plane's aerodynamics, making it nose-heavy in certain situations. Rather than redesigning the plane or requiring new pilot training, Boeing developed <mark>MCAS</mark> (Maneuvering Characteristics Augmentation System) — a software patch to automatically push the nose down when sensors detected a high angle of attack.</p><p>MCAS relied on a <mark>single sensor</mark>. When that sensor malfunctioned, MCAS repeatedly pushed the nose down, and pilots who did not know MCAS existed could not override it effectively. <mark>Lion Air Flight 610</mark> (Oct 2018, 189 killed) and <mark>Ethiopian Airlines Flight 302</mark> (Mar 2019, 157 killed) were the result — <mark>346 people</mark> killed in total.</p>"
+    },
+    {
+      "title": "2 — Tkacik: The Managerial Revolution",
+      "body": "<p><mark>Maureen Tkacik</mark>'s 2019 article argues the crashes were not primarily a technical failure but the product of Boeing's <mark>managerial revolution</mark> — a decades-long cultural transformation from an engineering-led company to a finance-led one. The turning point was Boeing's <mark>1997 merger with McDonnell Douglas</mark>, after which Boeing's leadership increasingly prioritized <mark>stock buybacks, quarterly earnings, and shareholder value</mark> over engineering and safety investment.</p><p>Executives from GE and McDonnell Douglas brought a philosophy that treated safety investment as a cost to be minimized. Engineers who raised concerns were sidelined. Manufacturing was moved to cheaper suppliers. The engineers who had made Boeing great were systematically <mark>disempowered</mark>.</p>"
+    },
+    {
+      "title": "3 — Regulatory Capture and Self-Certification",
+      "body": "<p>The FAA's <mark>self-certification</mark> system allowed Boeing to certify its own aircraft as safe — with Boeing employees essentially acting as FAA representatives. This was justified as efficient; in practice, it meant the regulator became too closely aligned with the regulated industry (<mark>regulatory capture</mark>).</p><p>Boeing exploited this to minimize the Max's certification burden. MCAS was downplayed to regulators; its operational limits were not accurately described. Pilot training requirements were minimized because retraining would have cost airlines money and threatened the Max's competitive position against the Airbus A320neo. The result: <mark>pilots who had never heard of MCAS</mark> were flying planes that could be seized by it.</p>"
+    },
+    {
+      "title": "4 — When Engineers Yield to Accountants",
+      "body": "<p>Tkacik's subtitle — \"When Engineers Yield to Accountants\" — captures the course's culminating lesson. The 737 Max disaster resulted from engineers being systematically subordinated to financial managers throughout the development process. Engineers raised concerns; they were told to fix them quietly or move on. The <mark>incentive structure</mark> rewarded speed to market and cost minimization, not safety.</p><p>This connects every thread of the course: Riley's critique of uncritical problem-solving; the copper-cooled engine's organizational failures; the Pinto's cost-benefit calculation; the Quebec Bridge's organizational culture failures. The 737 Max is the 21st-century version of the same pattern: <mark>when corporate and financial pressure dominates, engineers lose their ability to protect the public</mark>.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What was MCAS and why did it cause the 737 Max crashes?", "a": "Maneuvering Characteristics Augmentation System — software that automatically pushed the nose down based on a single sensor input. When that sensor malfunctioned, MCAS repeatedly pushed the nose down. Pilots who didn't know MCAS existed couldn't override it." },
+    { "key": true,  "q": "What is Tkacik's 'managerial revolution' argument?", "a": "Boeing's 1997 merger with McDonnell Douglas began a cultural transformation from engineering-led to finance-led management — prioritizing stock buybacks and quarterly earnings over safety investment, systematically disempowering engineers." },
+    { "q": "How many people were killed in the two 737 Max crashes?", "a": "346 — 189 in Lion Air Flight 610 (October 2018) and 157 in Ethiopian Airlines Flight 302 (March 2019)." },
+    { "key": true,  "q": "What is regulatory capture and how did it contribute to the 737 Max disaster?", "a": "Regulatory capture: the FAA became too closely aligned with Boeing's interests through self-certification. Boeing employees acted as FAA representatives, MCAS was downplayed to regulators, and pilot training was minimized to protect Boeing's competitive position." },
+    { "q": "What was the engineering problem the 737 Max's larger engines created?", "a": "Engines mounted further forward and higher changed the aerodynamics, making the plane nose-heavy in certain conditions. Boeing used MCAS software instead of redesigning the airframe or requiring new pilot training." },
+    { "q": "Why did Boeing choose to modify the 737 rather than design a new aircraft?", "a": "A new design would have required new pilot type ratings (expensive for airlines) and a longer, more expensive certification process. Modification was faster and cheaper — a financial decision." },
+    { "q": "Who was Harry Stonecipher and what did he represent in Tkacik's narrative?", "a": "A GE/McDonnell Douglas executive who championed transforming Boeing from 'engineering culture' to 'business culture' — prioritizing financial performance over engineering judgment." },
+    { "key": true,  "q": "What does Tkacik mean by 'when engineers yield to accountants'?", "a": "The 737 Max disaster resulted from engineers being systematically subordinated to financial managers. Safety concerns were suppressed in favor of speed-to-market and cost minimization." },
+    { "q": "What is 'self-certification' and why was it problematic for Boeing?", "a": "FAA practice of allowing Boeing employees to act as FAA safety representatives — efficient in theory, but it allowed Boeing to control its own oversight, downplay MCAS risks, and minimize training requirements." },
+    { "q": "What did Boeing tell pilots about MCAS before the crashes?", "a": "Almost nothing — MCAS was not in the 737 Max's flight manual. Pilots were not trained on it. Many did not know the system existed, making it impossible to respond correctly when it malfunctioned." },
+    { "q": "How does the 737 Max case connect to the Ford Pinto case (Week 12)?", "a": "Both involve organizations prioritizing cost and competitive position over safety, with executives overriding engineers' concerns. The 737 Max is the contemporary version of the same pattern." },
+    { "q": "What is the Netflix documentary Downfall: The Case Against Boeing about?", "a": "A 2022 documentary directed by Rory Kennedy examining Boeing's cultural transformation and the 737 Max crashes — a supplement to the Tkacik reading for Week 14." },
+    { "q": "What happened to Boeing's engineering culture after the McDonnell Douglas merger?", "a": "Engineers who raised concerns were sidelined; manufacturing was moved to cheaper suppliers; financial metrics replaced engineering standards as the measure of success." },
+    { "q": "How does the 737 Max case connect to the Soviet engineering case (Week 10)?", "a": "Both show engineering cultures distorted by non-engineering pressures — political in the Soviet case, financial in Boeing's case — with catastrophic safety consequences." },
+    { "q": "What structural change would have prevented the 737 Max crashes according to Tkacik?", "a": "Multiple things: MCAS should have used two sensors; pilots should have been trained on MCAS; Boeing should have been more transparent with regulators; engineers' safety concerns should have been heard — all of these were sacrificed to financial priorities." },
+    { "q": "What does Tkacik's article argue about the relationship between corporate structure and safety?", "a": "When corporations prioritize shareholder value and cost minimization over engineering judgment, safety systematically degrades — not as individual failure but as predictable systemic outcome." }
+  ],
+
+  "quiz": [
+    { "q": "What was the primary cause of the 737 Max crashes according to Tkacik's analysis?", "options": ["Pilot error in both crashes", "A fundamental aerodynamic design flaw that could not be corrected", "Boeing's managerial revolution that subordinated engineering judgment to financial priorities, producing a flawed MCAS system and inadequate pilot training", "FAA regulatory incompetence unrelated to Boeing's decisions"], "correct": 2, "explanation": "Tkacik argues the crashes were the predictable product of Boeing's decades-long cultural transformation from engineering-led to finance-led management." },
+    { "q": "What was MCAS and what went wrong with it?", "options": ["A new engine type that caused fuel system failures", "Software that automatically adjusted the nose based on a single sensor; when the sensor malfunctioned it repeatedly pushed the nose down — pilots didn't know it existed and couldn't override it", "A hydraulic system that failed in cold weather", "A navigation system that gave incorrect altitude readings"], "correct": 1, "explanation": "MCAS was Boeing's software solution to aerodynamic changes caused by the new, larger engines. Its single-sensor dependency and pilot unawareness were catastrophic failure points." },
+    { "q": "What is 'regulatory capture' and how did it contribute to the disaster?", "options": ["The FAA was captured by foreign regulators who weakened U.S. safety standards", "Boeing's self-certification system aligned FAA oversight too closely with Boeing's interests, allowing MCAS risks to be downplayed", "Airlines captured FAA attention away from aircraft manufacturers", "The FAA was focused on drug regulations instead of aviation safety"], "correct": 1, "explanation": "Regulatory capture: Boeing employees acting as FAA representatives allowed Boeing to control its own safety certification, minimize MCAS disclosures, and reduce pilot training requirements." },
+    { "q": "What cultural shift does Tkacik date to Boeing's 1997 merger with McDonnell Douglas?", "options": ["Boeing became more safety-focused after learning from McDonnell Douglas failures", "Boeing transformed from an engineering-led to a finance-led company, prioritizing stock buybacks over safety investment", "Boeing began outsourcing all manufacturing to international suppliers", "Boeing adopted military aircraft design standards for commercial planes"], "correct": 1, "explanation": "Tkacik argues the merger introduced a finance-first philosophy from GE/McDonnell Douglas executives that systematically disempowered Boeing's engineering culture." },
+    { "q": "How does the 737 Max case connect to the Ford Pinto case (Week 12)?", "options": ["Both involved faulty software systems", "Both were investigated by the same federal agency", "Both show organizations prioritizing cost and competitive position over safety, with executives overriding engineers' concerns", "Both occurred in the same decade"], "correct": 2, "explanation": "The pattern is identical: known safety risk, financial calculation prioritized over fixing it, executives overriding engineering concerns, people dying preventably. The 737 Max is the 21st-century Ford Pinto." }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "eng-history-w9",
+  "course": "Engineering in History",
+  "courseColor": "blue",
+  "moduleNumber": 9,
+  "title": "Engineers vs. Workers: Scientific Management & Fordism",
+  "subtitle": "Hughes (1989) · Ford (1922) — Taylor, Ford, and the Labor Problem",
+  "storagePrefix": "eih-w9",
+  "totalCards": 16,
+
+  "overview": {
+    "stats": [
+      { "value": "1913", "label": "Ford's River Rouge moving assembly line launched" },
+      { "value": "$5/day", "label": "Ford's famous 1914 wage" },
+      { "value": "1911", "label": "Taylor publishes The Principles of Scientific Management" },
+      { "value": "Oct 20–22", "label": "Class dates" }
+    ],
+    "people": [
+      { "name": "Frederick Winslow Taylor", "desc": "Mechanical engineer and management theorist; invented 'scientific management' (Taylorism) — the systematic study and optimization of worker motions to maximize productivity." },
+      { "name": "Henry Ford", "desc": "Founder of Ford Motor Company; developed the moving assembly line (1913); introduced the $5/day wage (1914); wrote My Life and Work (1922)." },
+      { "name": "Thomas P. Hughes", "desc": "Leading historian of technology; American Genesis (1989) traces American technological enthusiasm 1870–1970, with a chapter on Taylor and Ford." }
+    ],
+    "dates": [
+      { "year": "1880s–1900s", "event": "Frederick Taylor develops scientific management methods at Midvale Steel and Bethlehem Steel" },
+      { "year": "1911", "event": "Taylor publishes The Principles of Scientific Management" },
+      { "year": "1913", "event": "Ford installs moving assembly line at Highland Park — transforms automobile production" },
+      { "year": "Jan 1914", "event": "Ford announces $5/day wage — doubling prevailing rates to reduce turnover" },
+      { "year": "1922", "event": "Henry Ford publishes My Life and Work (with Samuel Crowther)" }
+    ],
+    "terms": [
+      { "term": "Scientific management (Taylorism)", "def": "Taylor's method: systematically study and time each worker motion, then enforce the 'one best way' to do each task — separating thinking (management) from doing (workers)" },
+      { "term": "Moving assembly line", "def": "Ford's innovation: instead of workers moving to parts, parts move past stationary workers, each doing one repetitive task — dramatically reducing production time" },
+      { "term": "The 'labor problem'", "def": "Hughes's term for the central challenge of industrial capitalism: how to control, discipline, and motivate a workforce that would otherwise resist the demands of industrial production" },
+      { "term": "Fordism", "def": "The combination of mass production (assembly line), high wages, and mass consumption — the economic and social system Ford helped create" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — Taylor and Scientific Management",
+      "body": "<p><mark>Frederick Winslow Taylor</mark> was a mechanical engineer who believed that industrial inefficiency could be cured by treating the factory as a scientific problem. His method: time and study every worker motion with a stopwatch, identify the <mark>\"one best way\"</mark> to perform each task, then enforce that method on workers.</p><p>Scientific management radically separated <mark>thinking from doing</mark>. Workers would no longer decide how to do their jobs — that was management's responsibility. Workers would simply execute the prescribed motions. Taylor argued this was good for everyone (higher wages from higher productivity) but it stripped workers of <mark>craft knowledge and autonomy</mark>.</p>"
+    },
+    {
+      "title": "2 — Ford and the Moving Assembly Line",
+      "body": "<p><mark>Henry Ford</mark> took Taylor's ideas further. In <mark>1913</mark>, Ford installed the <mark>moving assembly line</mark> at Highland Park, Michigan — the most radical reorganization of production in industrial history. Instead of workers carrying parts to a chassis, the chassis moved past stationary workers, each performing one or two repetitive motions endlessly.</p><p>The result was dramatic: the time to build a Model T dropped from <mark>12.5 hours to 93 minutes</mark>. Prices fell, sales skyrocketed. But the human cost was enormous: the work was physically numbing, required no skill, and the <mark>turnover rate</mark> was extreme — Ford had to hire 963 workers for every 100 he wanted to keep.</p>"
+    },
+    {
+      "title": "3 — The $5 Day and Social Control",
+      "body": "<p>Ford's response to turnover was the famous <mark>$5/day wage</mark> in <mark>January 1914</mark> — roughly double the prevailing rate. This looked like generosity; in reality, it was social engineering. Workers who received the $5 rate had to pass inspection by Ford's <mark>Sociological Department</mark>: they had to live \"correctly\" — no drinking, debt, or \"improper\" domestic arrangements.</p><p>Ford's reading of the relationship between employers and workers was explicitly <mark>paternalistic and anti-union</mark>. His chapter \"The Terror of the Machine\" argues that machines are not threatening — it is <mark>mismanagement and greed</mark> that create labor conflict. This is a deeply ideological document that students should read critically.</p>"
+    },
+    {
+      "title": "4 — Hughes: Engineers and the 'Labor Problem'",
+      "body": "<p><mark>Thomas P. Hughes</mark> situates Taylor and Ford within the broader history of American technological enthusiasm. Hughes's concept of the <mark>\"labor problem\"</mark> — how to control and motivate an industrial workforce — explains why scientific management and Fordism were so appealing to engineers and industrialists.</p><p>For Hughes, Taylorism and Fordism were not just technical innovations — they were <mark>systems of power</mark> that embedded management control into the physical structure of the workplace. The assembly line, by its design, prevented workers from having any discretion or craft knowledge. The engineered workplace became a mechanism of social control.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What is scientific management (Taylorism)?", "a": "Taylor's method: systematically time and study every worker motion, identify the 'one best way,' and enforce it — separating thinking (management) from doing (workers)." },
+    { "key": true,  "q": "What was Ford's key innovation with the moving assembly line (1913)?", "a": "Instead of workers moving to parts, parts moved past stationary workers on a moving line — reducing Model T production from 12.5 hours to 93 minutes." },
+    { "q": "Who was Frederick Winslow Taylor?", "a": "Mechanical engineer and management theorist; father of 'scientific management'; developed time-and-motion studies to optimize factory productivity." },
+    { "key": true,  "q": "What was Ford's $5/day wage and what was its real purpose?", "a": "Announced January 1914, it doubled prevailing wages. Real purpose: reduce extreme turnover caused by the numbing assembly line work. Workers also had to pass the Ford Sociological Department's inspection of their private lives." },
+    { "q": "What is the 'labor problem' as Hughes uses the term?", "a": "The central challenge of industrial capitalism: how to control, discipline, and motivate workers who would otherwise resist the demands of repetitive, deskilled industrial production." },
+    { "q": "What did scientific management strip from workers?", "a": "Craft knowledge and autonomy — workers no longer decided how to do their jobs; that became management's exclusive domain." },
+    { "q": "Who was Thomas P. Hughes and what is American Genesis about?", "a": "Leading historian of technology; American Genesis (1989) traces American technological enthusiasm 1870–1970, including the rise of Taylorism and Fordism." },
+    { "key": true,  "q": "What is 'Fordism' as a system?", "a": "The combination of mass production (assembly line), high wages, and mass consumption — Ford's insight that workers must be paid enough to buy the products they make." },
+    { "q": "What was the Ford Sociological Department?", "a": "Ford's inspection program that determined who received the $5/day wage — workers had to demonstrate proper private life: no drinking, no debt, \"correct\" domestic arrangements." },
+    { "q": "How does Ford's 'The Terror of the Machine' chapter argue about labor conflict?", "a": "Machines themselves are not the problem — mismanagement and greed cause labor conflict. Ford presents a self-serving, paternalistic view of worker-employer relations that students should read critically." },
+    { "q": "Why was turnover so extreme at Ford's Highland Park plant?", "a": "The assembly line work was physically numbing and required no skill or craft — workers found the conditions intolerable; Ford had to hire 963 workers for every 100 retained." },
+    { "q": "How did Taylorism and Fordism function as systems of power, per Hughes?", "a": "They embedded management control into the physical structure of the workplace — the assembly line design prevented worker discretion, making social control a technological feature." },
+    { "q": "What is the significance of separating 'thinking' from 'doing' in Taylor's system?", "a": "It transferred all knowledge and decision-making to management, deskilling workers and making them easier to control and replace — a fundamental shift in the balance of power." },
+    { "q": "How did Ford's assembly line change car prices?", "a": "Dramatically reduced production costs allowed Ford to cut Model T prices repeatedly — making the automobile accessible to the middle class for the first time." },
+    { "q": "What critique would Donna Riley (Week 1) make of Taylor's and Ford's approach to engineering?", "a": "Taylor and Ford are prime examples of engineers who solved assigned problems (efficiency, productivity) without asking who benefits and who is harmed — classic uncritical problem-solving." },
+    { "q": "Why is Ford's chapter 'The Terror of the Machine' called ideological?", "a": "Ford presents a one-sided account that blames labor conflict on greed and mismanagement rather than on the dehumanizing conditions his own system created — it should be read critically as a primary source." }
+  ],
+
+  "quiz": [
+    { "q": "What is scientific management (Taylorism)?", "options": ["Using computers to schedule factory production", "Applying science to optimize product design", "Systematically studying worker motions to enforce the 'one best way' — separating thinking (management) from doing (workers)", "A union strategy for fair wages"], "correct": 2, "explanation": "Taylor's system used time-and-motion studies to identify optimal work methods, then forced workers to follow them — stripping craft knowledge from workers and giving management total control." },
+    { "q": "What was Ford's key innovation with the assembly line (1913)?", "options": ["Robots performing all assembly tasks", "Workers moving to different stations throughout the day", "Parts moving past stationary workers, each doing one repetitive task", "A slower, more careful production method"], "correct": 2, "explanation": "The moving assembly line had parts flow past stationary workers — reducing Model T production time from 12.5 hours to 93 minutes." },
+    { "q": "What was the REAL purpose of Ford's $5/day wage?", "options": ["Pure generosity toward the working class", "Compliance with new federal labor laws", "Reducing extreme turnover caused by the numbing, deskilled assembly line work", "To outcompete other automakers' wages"], "correct": 2, "explanation": "Ford had to hire ~963 workers for every 100 he wanted to keep — the $5 wage (with surveillance strings attached) was an engineering solution to the human cost of the assembly line." },
+    { "q": "What does Thomas Hughes mean by the 'labor problem'?", "options": ["The technical challenge of designing ergonomic workplaces", "How to control, discipline, and motivate workers who resist industrial production", "The shortage of skilled workers in early 20th-century America", "Legal disputes between engineers and their employers"], "correct": 1, "explanation": "Hughes frames Taylorism and Fordism as solutions to the central challenge of industrial capitalism: engineering systems that controlled workers structurally, not just through supervision." },
+    { "q": "What did Taylorism strip from workers?", "options": ["Their wages", "Craft knowledge and job autonomy — decisions about how to work became management's exclusive domain", "Physical access to the factory floor", "The ability to form unions"], "correct": 1, "explanation": "By defining 'the one best way' and enforcing it, Taylor's system deskilled workers and transferred all knowledge and decision-making to management." }
+  ]
+}

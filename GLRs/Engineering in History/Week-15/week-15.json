@@ -1,0 +1,77 @@
+{
+  "id": "eng-history-w15",
+  "course": "Engineering in History",
+  "courseColor": "blue",
+  "moduleNumber": 15,
+  "title": "History and the Ethical Engineer",
+  "subtitle": "Course Wrap-Up — Can History Help Create a More Just Engineering?",
+  "storagePrefix": "eih-w15",
+  "totalCards": 15,
+
+  "overview": {
+    "stats": [
+      { "value": "Dec 8", "label": "Last class day" },
+      { "value": "Dec 15", "label": "Blue-book final exam" },
+      { "value": "2:40–5:30", "label": "Final exam time" },
+      { "value": "Wks 11–15", "label": "Final covers weeks 11–15" }
+    ],
+    "people": [
+      { "name": "Eric Schatzberg", "desc": "Course instructor; historian of technology at Georgia Tech; the final week is his synthesis — asking whether historical understanding can help engineers make more just and humane choices." }
+    ],
+    "dates": [
+      { "year": "Dec 8, 2026", "event": "Last class day — course wrap-up, no new reading" },
+      { "year": "Dec 15, 2026", "event": "Blue-book in-class final exam, 2:40–5:30 PM, covering weeks 11–15" }
+    ],
+    "terms": [
+      { "term": "Historical consciousness", "def": "Awareness that present institutions, technologies, and norms are historically contingent — they were made by humans and can be changed by humans" },
+      { "term": "The engineer as historian", "def": "Week 15's key idea: engineers who understand the history of their profession can recognize recurring patterns of failure and resist the pressures that produce them" },
+      { "term": "Social justice engineering", "def": "Riley's (Week 1) vision revisited: engineering that considers social context, worker welfare, and distributional effects — the course argues history supports and enriches this vision" },
+      { "term": "Recurring pattern of failure", "def": "The course's master narrative: corporate/political pressure, organizational culture failures, and uncritical problem-solving recur across eras — from GM's copper-cooled engine to Boeing's 737 Max" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — What Has the Course Argued?",
+      "body": "<p>The course's central argument: <mark>engineering is not a purely technical practice</mark>. It is embedded in social, political, economic, and organizational contexts that shape what gets built, who benefits, who is harmed, and whether safety is maintained. This has been demonstrated in three sections: what engineers do (weeks 1–5), engineering's historical development (weeks 6–10), and ethics case studies (weeks 11–14).</p><p>A <mark>recurring pattern</mark> runs through nearly every case: corporate or political pressure pushes engineers to prioritize cost, speed, and compliance over safety and social welfare. Engineers who resist are sidelined, fired, or — in the Soviet case — killed. The pattern is not new; it did not begin with the 737 Max and will not end there.</p>"
+    },
+    {
+      "title": "2 — What History Teaches Engineers",
+      "body": "<p>Understanding this history gives engineers three tools. First, <mark>pattern recognition</mark>: the organizational dynamics in the Pinto case look a lot like the Boeing 737 Max case, which look a lot like the Quebec Bridge case. Recognizing the pattern early — before a disaster — is the goal. Second, <mark>moral vocabulary</mark>: history provides the ethical concepts (public welfare model, whistleblowing, organizational culture, regulatory capture) needed to articulate what is wrong and why. Third, <mark>historical consciousness</mark>: current norms are not inevitable — they were made by humans and can be changed.</p>"
+    },
+    {
+      "title": "3 — Can History Help Create a More Just Engineering?",
+      "body": "<p>Schatzberg's final question is: can studying history actually help? The pessimistic answer: the pattern keeps repeating despite accumulated knowledge. The Pinto memo happened after Nader; Boeing happened after countless engineering ethics cases were added to curricula. History apparently did not prevent these failures.</p><p>The optimistic answer: <mark>change is possible and history documents it</mark>. The 1966 auto safety law was a real change. Canadian engineering's iron ring is a real cultural intervention. The growth of engineering ethics education, however imperfect, reflects hard-won learning. The answer is not guaranteed progress but: <mark>without historical understanding, there is no chance of progress</mark>.</p>"
+    },
+    {
+      "title": "4 — Final Exam Preparation",
+      "body": "<p>The blue-book final covers <mark>weeks 11–15</mark> — Section 3: Ethics of Engineering. Key themes to review: Davis's evolution of engineering ethics codes (Week 11); the Corvair/Pinto cases and cost-benefit analysis vs. consumer safety (Week 12); the Quebec Bridge and organizational culture (Week 13); the 737 Max and managerial revolution / regulatory capture (Week 14); and Week 15's synthesis.</p><p>The exam tests your ability to <mark>analyze cases using the course's conceptual tools</mark> — not just recall facts. Be prepared to identify the ethical failures in a case, explain what institutional factors enabled them, and connect them to broader course themes. Practice writing <mark>clear, argued essays</mark> in the blue book — handwriting counts.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What is the course's central argument about engineering?", "a": "Engineering is not purely technical — it is embedded in social, political, economic, and organizational contexts that shape what gets built, who benefits, who is harmed, and whether safety is maintained." },
+    { "key": true,  "q": "What 'recurring pattern' does the course identify across engineering history?", "a": "Corporate or political pressure pushes engineers to prioritize cost, speed, and compliance over safety and social welfare — from the copper-cooled engine to the Pinto to the 737 Max." },
+    { "q": "What three tools does historical understanding give engineers?", "a": "Pattern recognition (recognize the organizational dynamics before disaster); moral vocabulary (ethical concepts to articulate failures); historical consciousness (current norms were made by humans and can change)." },
+    { "key": true,  "q": "What is 'historical consciousness' and why does it matter for engineers?", "a": "Awareness that present institutions, technologies, and norms are historically contingent — they were made by humans and can be changed by humans. Essential for imagining and advocating for change." },
+    { "q": "What is the pessimistic answer to whether history can help create better engineering?", "a": "The pattern keeps repeating despite accumulated knowledge — the Pinto memo happened after Nader; Boeing happened after countless ethics cases were added to curricula. History apparently doesn't prevent failures." },
+    { "q": "What is the optimistic answer to whether history can help create better engineering?", "a": "Change is possible and history documents it — the 1966 auto safety law was real change; the iron ring is a real cultural intervention. Without historical understanding there is no chance of progress." },
+    { "q": "How does Riley's Week 1 argument connect to the course's final lesson?", "a": "The course's entire arc demonstrates Riley's argument empirically — engineering cultures that suppress social and ethical awareness produce disasters; awareness of this history supports her call for social justice engineering." },
+    { "q": "What weeks does the final blue-book exam cover?", "a": "Weeks 11–15 (Section 3: Ethics of Engineering)." },
+    { "q": "When and where is the final exam?", "a": "Tuesday, December 15, 2026, 2:40–5:30 PM — blue-book format in the scheduled exam room." },
+    { "q": "What does 'pattern recognition' give engineers who study history?", "a": "The ability to recognize organizational dynamics that precede engineering disasters — seeing the copper-cooled, Pinto, and 737 Max pattern early enough to intervene, before people die." },
+    { "q": "What is the 'recurring pattern of failure' the course has traced?", "a": "Corporate/political pressure + organizational culture that silences concerns + uncritical problem-solving = preventable engineering disasters. This pattern recurs from the 1920s copper-cooled engine to the 2018 737 Max." },
+    { "q": "How should students approach the blue-book final exam?", "a": "Analyze cases using the course's conceptual tools (ethics models, organizational culture, regulatory capture, etc.) — not just recall facts. Write clear, argued essays. Handwriting counts." },
+    { "q": "What is 'moral vocabulary' as the course develops it?", "a": "The ethical concepts — public welfare model, whistleblowing, organizational culture, regulatory capture — that let engineers articulate precisely what is wrong in a failure case and why." },
+    { "q": "What does the iron ring (Canada) represent as a course conclusion?", "a": "That engineering cultures can consciously embed historical awareness of failure into professional identity — turning a disaster into a permanent, physical reminder of professional responsibility." },
+    { "q": "What would Palchinsky (Week 10) say about the 737 Max?", "a": "He would recognize the pattern: engineering knowledge suppressed by organizational pressure, warnings ignored, human costs treated as acceptable losses. His principles — consider human costs, design for learning — were violated throughout." }
+  ],
+
+  "quiz": [
+    { "q": "What is the course's central recurring pattern across all engineering failure cases?", "options": ["Engineers lack sufficient technical training", "Corporate or political pressure consistently pushes engineers to prioritize cost and speed over safety — from the copper-cooled engine to the 737 Max", "Regulators are always at fault when engineering fails", "Engineering disasters only happen when engineers are dishonest"], "correct": 1, "explanation": "The pattern recurs across cases and eras: organizational pressure silences engineering judgment, safety is subordinated to financial or political priorities, and people die preventably." },
+    { "q": "What does 'historical consciousness' give engineers that purely technical training does not?", "options": ["Better calculation skills", "Awareness that current norms were made by humans and can be changed — essential for recognizing and resisting recurring failure patterns", "Knowledge of historical bridge designs", "The ability to predict future disasters with certainty"], "correct": 1, "explanation": "Historical consciousness — understanding that present conditions are contingent, not inevitable — allows engineers to imagine and advocate for different professional cultures and institutional arrangements." },
+    { "q": "What is the pessimistic reading of whether history education prevents engineering disasters?", "options": ["History education is too expensive", "The pattern keeps repeating despite accumulated knowledge — Pinto happened after Nader; Boeing happened after decades of ethics education", "Students don't take history courses", "Historical cases are too old to be relevant"], "correct": 1, "explanation": "The pessimist notes that knowing about the Pinto case didn't stop Boeing — suggesting that history education alone is insufficient without structural change." },
+    { "q": "The final blue-book exam covers which section of the course?", "options": ["Weeks 1–5 (What Engineers Do)", "Weeks 6–10 (Engineering in the 19th and 20th Centuries)", "Weeks 11–15 (Ethics of Engineering)", "The entire course"], "correct": 2, "explanation": "The final exam covers weeks 11–15 — Section 3: Ethics of Engineering, including Davis's codes, the Corvair/Pinto, Quebec Bridge, Boeing 737 Max, and the wrap-up." },
+    { "q": "What connecting thread links Riley's Week 1 argument to the Week 15 course conclusion?", "options": ["Both focus exclusively on the 737 Max", "The entire course demonstrates Riley's argument empirically — engineering cultures that suppress ethical awareness produce disasters; history supports her call for social justice engineering", "Riley and Schatzberg disagree on the main causes of engineering failure", "Week 15 abandons Riley's argument as too idealistic"], "correct": 1, "explanation": "Riley's opening argument — that the problem-solving mindset without ethical awareness is dangerous — is proven empirically by every case in the course. The conclusion circles back to her challenge." }
+  ]
+}

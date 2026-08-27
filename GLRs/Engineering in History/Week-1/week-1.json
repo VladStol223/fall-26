@@ -1,0 +1,82 @@
+{
+  "id": "eng-history-w1",
+  "course": "Engineering in History",
+  "courseColor": "blue",
+  "moduleNumber": 1,
+  "title": "What is Engineering?",
+  "subtitle": "Riley's Mindsets — Engineering Culture & Social Justice",
+  "storagePrefix": "eih-w1",
+  "totalCards": 16,
+
+  "overview": {
+    "stats": [
+      { "value": "2008", "label": "Year Riley's book published" },
+      { "value": "11 pp.", "label": "Length of assigned reading" },
+      { "value": "8/27", "label": "In-class writing due" },
+      { "value": "3", "label": "Course sections" }
+    ],
+    "people": [
+      { "name": "Donna Riley", "desc": "Engineering professor at Smith College; author of Engineering and Social Justice (2008); argues engineers must confront structural inequities, not just solve technical problems." }
+    ],
+    "dates": [
+      { "year": "Aug 25–27", "event": "Week 1 class dates — Introduction: What is Engineering?" },
+      { "year": "Aug 27", "event": "In-class writing assignment on the Riley reading (hardcopy supplied)" }
+    ],
+    "terms": [
+      { "term": "Engineering mindset", "def": "The set of attitudes and assumptions engineers hold about their work — problem-solving focus, pragmatism, and (Riley argues) uncritical acceptance of authority" },
+      { "term": "Social justice", "def": "Riley's goal for engineering: orienting practice toward equity and challenging structures that cause harm, not just solving assigned problems" },
+      { "term": "Can-do attitude", "def": "The positive pragmatic trait Riley identifies: engineers' results-oriented drive to make things work despite obstacles" },
+      { "term": "Uncritical problem-solving", "def": "Riley's primary criticism: engineers solve problems as given without asking who benefits, who is harmed, or whether the problem should be solved" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — Who is Donna Riley and What is Her Argument?",
+      "body": "<p><mark>Donna Riley</mark> is an engineering professor whose 2008 book <mark>Engineering and Social Justice</mark> argues engineers should reorient their profession toward social justice rather than merely maintaining the status quo. The assigned chapter, <mark>\"Mindsets in Engineering\"</mark>, examines the attitudes engineers hold about themselves — and that society holds about engineers.</p><p>Riley's core claim: mainstream engineering culture is dominated by a <mark>problem-solving mindset</mark> that focuses narrowly on technical solutions without asking whether solving the problem will actually <mark>improve the human condition</mark> — the phrase in <mark>Georgia Tech's own mission statement</mark>. She finds more negative than positive features in contemporary engineering culture.</p>"
+    },
+    {
+      "title": "2 — Positive Aspects of the Engineering Mindset",
+      "body": "<p>Riley does acknowledge positives. Engineers tend to be <mark>pragmatic</mark> and results-oriented — they care about making things work rather than debating endlessly. This <mark>\"can-do\" attitude</mark> enables large projects to get built and problems to get solved. Engineers also bring <mark>quantitative rigor</mark> and systematic thinking to complex challenges.</p><p>The emphasis on <mark>hands-on, applied knowledge</mark> means engineers understand real-world constraints that purely theoretical thinkers overlook. Riley sees value in these traits even as she critiques how they are deployed in practice.</p>"
+    },
+    {
+      "title": "3 — Negative Aspects: Conformity & the Status Quo",
+      "body": "<p>Riley's central critique is <mark>uncritical problem-solving</mark>: engineers are trained to solve the problem they are given, not to question whether the problem is worth solving or who benefits. This makes engineers <mark>\"unlikely to question authority\"</mark> — they execute decisions from managers, corporations, or governments without ethical scrutiny.</p><p>Engineering culture also tends toward <mark>political conservatism</mark> and resistance to social change. Perhaps most importantly, the profession's narrow technical focus means engineers rarely ask: <mark>who benefits and who is harmed?</mark> This ethical blindspot has contributed to disasters and injustices throughout engineering history.</p>"
+    },
+    {
+      "title": "4 — Engineering Jokes as Cultural Evidence",
+      "body": "<p>Riley uses <mark>engineering jokes</mark> as cultural data — a way to surface unconscious assumptions the profession holds. The jokes typically portray engineers as <mark>socially awkward</mark>, hyper-rational, and oblivious to human emotion. They also tend to be <mark>exclusionary</mark>, implicitly casting engineers as white and male.</p><p>The jokes reveal the <mark>self-image of the profession</mark>. If engineers laugh at portrayals of themselves as divorced from human concerns, those traits are being normalized rather than critiqued. Riley invites students to ask: do these jokes reflect your experience? Are they harmless fun or do they reinforce harmful stereotypes?</p>"
+    },
+    {
+      "title": "5 — Social Justice and the Engineer's Role",
+      "body": "<p>Riley's broader project is to reconnect engineering with <mark>social justice</mark> — the idea that engineers have a responsibility to consider the social, political, and environmental impacts of their work. GT's mission calls for improving the <mark>human condition</mark>, yet Riley argues this aspiration is systematically neglected.</p><p>A more just engineering practice would involve <mark>community participation</mark> in defining problems, awareness of whose interests technical choices serve, and willingness to challenge institutional power. This sets the stage for the course's broader examination of engineering as a <mark>historically and socially embedded</mark> practice.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What is Riley's central argument in Engineering and Social Justice?", "a": "Engineers should orient their profession toward social justice rather than maintaining the status quo. The narrow problem-solving mindset neglects who benefits and who is harmed." },
+    { "key": true,  "q": "What does Riley mean by the 'problem-solving mindset'?", "a": "Engineers are trained to solve assigned problems efficiently without questioning whether the problem is worth solving or who benefits — a narrow technical focus that excludes ethical reflection." },
+    { "q": "What positive traits does Riley identify in the engineering mindset?", "a": "Pragmatism, a 'can-do' attitude, results-orientation, quantitative rigor, and hands-on applied knowledge." },
+    { "key": true,  "q": "What is Riley's main criticism of engineering culture regarding authority?", "a": "Engineers are 'unlikely to question authority' — they execute decisions made by managers and institutions without ethical scrutiny." },
+    { "q": "How does Riley use engineering jokes as evidence?", "a": "As cultural data revealing the profession's self-image — normalizing social awkwardness, hyper-rationality, and exclusion of women and minorities." },
+    { "q": "What phrase from Georgia Tech's mission statement does Riley invoke?", "a": "'Improve the human condition' — Riley argues this aspiration is routinely ignored by mainstream engineering culture." },
+    { "q": "What does Riley propose as a more just engineering practice?", "a": "Community participation in defining problems, awareness of whose interests are served, and willingness to challenge institutional power." },
+    { "q": "Why does Riley find more negative than positive aspects in engineering culture?", "a": "The profession's emphasis on technical problem-solving suppresses ethical and political reflection, reinforcing existing social hierarchies." },
+    { "q": "What connection does Riley draw between engineering and social conservatism?", "a": "Engineering culture tends toward political conservatism and resistance to social change, making it less likely to challenge unjust structures." },
+    { "q": "What is the Week 1 in-class assignment and when is it due?", "a": "A short in-class reflection piece on the Riley reading, due Thursday August 27." },
+    { "q": "What are the three sections of HTS 1081?", "a": "Section 1: What Engineers Do; Section 2: Engineering in the 19th and 20th Centuries; Section 3: Ethics of Engineering." },
+    { "q": "What are the three major exam events in HTS 1081?", "a": "Two in-class essay exams (end of weeks 5 and 10) and a blue-book final exam (December 15, covering weeks 11–15)." },
+    { "q": "What percentage of the HTS 1081 grade comes from weekly assignments and quizzes?", "a": "50% of the grade." },
+    { "q": "What is uncritical problem-solving?", "a": "Solving the problem as given without asking whether it should be solved, who benefits, or who is harmed — Riley's primary critique of the engineering mindset." },
+    { "q": "What makes engineering jokes culturally significant to Riley?", "a": "They reveal the profession's normalized self-image: if engineers laugh at being socially oblivious, those traits are accepted rather than questioned." },
+    { "q": "What is the 'can-do attitude' and why does Riley consider it both positive and problematic?", "a": "Positive: it gets things built and problems solved. Problematic: it can mean charging ahead without asking whether the problem should be solved at all." }
+  ],
+
+  "quiz": [
+    { "q": "What is Donna Riley's central argument in Engineering and Social Justice?", "options": ["Engineers need better math training", "Engineers should focus on social justice rather than the status quo", "Engineering is fundamentally apolitical", "Technical expertise should override social concerns"], "correct": 1, "explanation": "Riley argues that engineers must move beyond narrow technical problem-solving and take responsibility for social justice." },
+    { "q": "What does Riley identify as a KEY NEGATIVE aspect of the engineering mindset?", "options": ["Too much focus on social problems", "Excessive creativity", "Uncritical acceptance of authority and failure to ask who benefits", "Overemphasis on theory over practice"], "correct": 2, "explanation": "Riley criticizes engineers for being 'unlikely to question authority' — executing decisions without ethical reflection." },
+    { "q": "How does Riley use engineering jokes in her chapter?", "options": ["As entertainment examples", "As cultural data revealing the profession's self-image and exclusions", "As proof that engineers lack humor", "As a historical timeline of the profession"], "correct": 1, "explanation": "The jokes function as evidence of the values engineering culture normalizes — social awkwardness, hyper-rationality, and demographic exclusion." },
+    { "q": "What phrase from Georgia Tech's mission does Riley invoke to critique engineering culture?", "options": ["Advance the frontiers of knowledge", "Improve the human condition", "Serve the state of Georgia", "Foster technological innovation"], "correct": 1, "explanation": "Riley argues that GT's own mission calls for improving the human condition, yet engineering culture systematically neglects this aspiration." },
+    { "q": "What percentage of the HTS 1081 grade depends on in-class quizzes, discussions, and assignments?", "options": ["20%", "30%", "40%", "50%"], "correct": 3, "explanation": "Weekly quizzes, discussions, and other in-class work account for 50% of the grade, making attendance and participation critical." }
+  ]
+}

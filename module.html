@@ -308,6 +308,9 @@
 
   // ── Module registry — add new modules here ────────────────────────────────
   var MODULES = [
+    { id: 'us-history-m1', courseId: 'us-history', course: 'US History', num: 1, label: 'Foundations of America',        file: 'GLRs/US History/Module 1/module-1.json', gistFile: 'us-history.json' },
+    { id: 'us-history-m2', courseId: 'us-history', course: 'US History', num: 2, label: 'Expansion, Democracy & Reform', file: 'GLRs/US History/Module 2/module-2.json', gistFile: 'us-history.json' },
+
     { id: 'ga-history-m1', courseId: 'ga-history', course: 'GA History', num: 1, label: 'Colonial Georgia',                      file: 'GLRs/GA History/Module 1/module-1.json', gistFile: 'ga-history.json' },
     { id: 'ga-history-m2', courseId: 'ga-history', course: 'GA History', num: 2, label: 'Gold Rush & Cherokee Removal',            file: 'GLRs/GA History/Module 2/module-2.json', gistFile: 'ga-history.json' },
     { id: 'ga-history-m3', courseId: 'ga-history', course: 'GA History', num: 3, label: 'Civil War & Reconstruction',              file: 'GLRs/GA History/Module 3/module-3.json', gistFile: 'ga-history.json' },
@@ -315,7 +318,22 @@
     { id: 'ga-history-m5', courseId: 'ga-history', course: 'GA History', num: 5, label: 'The Great Depression and World War II',   file: 'GLRs/GA History/Module 5/module-5.json', gistFile: 'ga-history.json' },
     { id: 'ga-history-m6', courseId: 'ga-history', course: 'GA History', num: 6, label: 'Civil Rights Era',                       file: 'GLRs/GA History/Module 6/module-6.json', gistFile: 'ga-history.json' },
     { id: 'ga-history-m7', courseId: 'ga-history', course: 'GA History', num: 7, label: 'Sunbelt Era',                file: 'GLRs/GA History/Module 7/module-7.json', gistFile: 'ga-history.json' },
-    { id: 'ga-history-m8', courseId: 'ga-history', course: 'GA History', num: 8, label: 'Modern Georgia',             file: 'GLRs/GA History/Module 8/module-8.json', gistFile: 'ga-history.json' }
+    { id: 'ga-history-m8', courseId: 'ga-history', course: 'GA History', num: 8, label: 'Modern Georgia',             file: 'GLRs/GA History/Module 8/module-8.json', gistFile: 'ga-history.json' },
+    { id: 'eng-history-w1',  courseId: 'engineering-in-history', course: 'Engineering in History', num: 1,  label: 'What is Engineering?',                         file: 'GLRs/Engineering in History/Week-1/week-1.json',   gistFile: 'eng-history.json' },
+    { id: 'eng-history-w2',  courseId: 'engineering-in-history', course: 'Engineering in History', num: 2,  label: 'Engineering, Technology & Science',             file: 'GLRs/Engineering in History/Week-2/week-2.json',   gistFile: 'eng-history.json' },
+    { id: 'eng-history-w3',  courseId: 'engineering-in-history', course: 'Engineering in History', num: 3,  label: 'Engineering Practice 1: Soul of a New Machine', file: 'GLRs/Engineering in History/Week-3/week-3.json',   gistFile: 'eng-history.json' },
+    { id: 'eng-history-w4',  courseId: 'engineering-in-history', course: 'Engineering in History', num: 4,  label: 'Engineering Practice 2: Corporate Politics',    file: 'GLRs/Engineering in History/Week-4/week-4.json',   gistFile: 'eng-history.json' },
+    { id: 'eng-history-w5',  courseId: 'engineering-in-history', course: 'Engineering in History', num: 5,  label: 'Engineering Practice 3: Great Bridges',         file: 'GLRs/Engineering in History/Week-5/week-5.json',   gistFile: 'eng-history.json' },
+    { id: 'eng-history-w6',  courseId: 'engineering-in-history', course: 'Engineering in History', num: 6,  label: 'Engineering as a Profession (19th c.)',          file: 'GLRs/Engineering in History/Week-6/week-6.json',   gistFile: 'eng-history.json' },
+    { id: 'eng-history-w7',  courseId: 'engineering-in-history', course: 'Engineering in History', num: 7,  label: 'Post-WWII Engineering Education',               file: 'GLRs/Engineering in History/Week-7/week-7.json',   gistFile: 'eng-history.json' },
+    { id: 'eng-history-w8',  courseId: 'engineering-in-history', course: 'Engineering in History', num: 8,  label: 'Women in Engineering: Why So Few?',             file: 'GLRs/Engineering in History/Week-8/week-8.json',   gistFile: 'eng-history.json' },
+    { id: 'eng-history-w9',  courseId: 'engineering-in-history', course: 'Engineering in History', num: 9,  label: 'Scientific Management & Fordism',               file: 'GLRs/Engineering in History/Week-9/week-9.json',   gistFile: 'eng-history.json' },
+    { id: 'eng-history-w10', courseId: 'engineering-in-history', course: 'Engineering in History', num: 10, label: 'Engineering and Totalitarianism',               file: 'GLRs/Engineering in History/Week-10/week-10.json', gistFile: 'eng-history.json' },
+    { id: 'eng-history-w11', courseId: 'engineering-in-history', course: 'Engineering in History', num: 11, label: 'Engineering Ethics — A Short History',          file: 'GLRs/Engineering in History/Week-11/week-11.json', gistFile: 'eng-history.json' },
+    { id: 'eng-history-w12', courseId: 'engineering-in-history', course: 'Engineering in History', num: 12, label: 'Neglecting Safety 1: Corvair & Pinto',          file: 'GLRs/Engineering in History/Week-12/week-12.json', gistFile: 'eng-history.json' },
+    { id: 'eng-history-w13', courseId: 'engineering-in-history', course: 'Engineering in History', num: 13, label: 'Neglecting Safety 2: Quebec Bridge',            file: 'GLRs/Engineering in History/Week-13/week-13.json', gistFile: 'eng-history.json' },
+    { id: 'eng-history-w14', courseId: 'engineering-in-history', course: 'Engineering in History', num: 14, label: 'Neglecting Safety 3: Boeing 737 Max',           file: 'GLRs/Engineering in History/Week-14/week-14.json', gistFile: 'eng-history.json' },
+    { id: 'eng-history-w15', courseId: 'engineering-in-history', course: 'Engineering in History', num: 15, label: 'History and the Ethical Engineer',              file: 'GLRs/Engineering in History/Week-15/week-15.json', gistFile: 'eng-history.json' }
   ];
 
   // ── Resolve which module to load ──────────────────────────────────────────

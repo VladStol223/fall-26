@@ -1,0 +1,116 @@
+{
+  "id": "us-history-m1",
+  "course": "US History",
+  "courseColor": "blue",
+  "moduleNumber": 1,
+  "title": "Foundations of America",
+  "subtitle": "Native Americans · Colonial Virginia · Revolution · Declaration · Articles of Confederation",
+  "storagePrefix": "ush-m1",
+  "totalCards": 25,
+
+  "overview": {
+    "stats": [
+      { "value": "30,000", "label": "Years ago Paleo-Indians arrived" },
+      { "value": "2,000+", "label": "Languages spoken in Americas (1492)" },
+      { "value": "1776",   "label": "Year Declaration of Independence signed" },
+      { "value": "7,200",  "label": "Americans died in battle in Revolution" }
+    ],
+    "people": [
+      { "name": "John Rolfe",         "desc": "English colonist who successfully cultivated marketable tobacco in Jamestown, making the colony economically viable and driving demand for bound labor." },
+      { "name": "Richard Henry Lee",  "desc": "Virginia delegate who introduced the independence resolution to the Continental Congress on June 7, 1776." },
+      { "name": "Thomas Jefferson",   "desc": "Primary author of the Declaration of Independence; drew on Locke's natural rights philosophy and George Mason's Virginia Declaration of Rights." },
+      { "name": "George Washington",  "desc": "Commander-in-Chief of the Continental Army; his leadership was critical to sustaining the Revolution until French intervention turned the tide." },
+      { "name": "Patrick Henry",      "desc": "Virginia orator who articulated the 'no taxation without representation' argument in the Virginia Resolves against the Stamp Act." }
+    ],
+    "dates": [
+      { "year": "~30,000 BCE",   "event": "Paleo-Indians cross Beringia from Siberia into Alaska" },
+      { "year": "8,000 BCE",     "event": "Indigenous peoples spread across North and South America" },
+      { "year": "1607",          "event": "Jamestown colony founded; labor shortages drive indentured servitude" },
+      { "year": "1620",          "event": "Pilgrims arrive on the Mayflower; Mayflower Compact signed at Plymouth" },
+      { "year": "1765",          "event": "Stamp Act passed; Stamp Act Congress meets in New York, Oct. 7–19" },
+      { "year": "1770s",         "event": "African slavery overtakes indentured servitude in Virginia labor force" },
+      { "year": "July 4, 1776",  "event": "Declaration of Independence adopted by Continental Congress" },
+      { "year": "1777",          "event": "Articles of Confederation adopted by Continental Congress" },
+      { "year": "1781",          "event": "Articles of Confederation ratified; Battle of Yorktown ends major fighting" },
+      { "year": "1787",          "event": "Constitutional Convention addresses weaknesses of the Articles" }
+    ],
+    "terms": [
+      { "term": "Beringia",             "def": "Land bridge connecting Siberia and Alaska across which Paleo-Indians migrated into the Americas approximately 30,000 years ago" },
+      { "term": "Indentured servitude", "def": "Contract labor system: immigrant agreed to work for a master (usually 4 years) in exchange for passage, food, clothing, and freedom dues" },
+      { "term": "Mayflower Compact",    "def": "America's first document of democratic self-governance, signed aboard the Mayflower in 1620; established rules for Plymouth Colony" },
+      { "term": "Stamp Act (1765)",     "def": "British tax requiring colonists to pay taxes on every printed page; sparked 'no taxation without representation' resistance" },
+      { "term": "Declaratory Act",      "def": "Parliament's 1766 assertion that it retained the right to tax and legislate for the colonies, passed after repealing the Stamp Act" },
+      { "term": "Articles of Confederation", "def": "First U.S. governing document (ratified 1781); created a weak 'league of friendship' with no power to tax, no executive, and unanimous amendment requirement" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1. The First Americans: Origins & Cultures",
+      "body": "<p>Approximately <mark>30,000 years ago</mark>, the <mark>Paleo-Indians</mark>—ancestors of all Native Americans—followed herds of animals from <mark>Siberia</mark> across <mark>Beringia</mark>, a land bridge connecting Asia and North America, into Alaska. By <mark>8,000 BCE</mark>, these peoples had spread across North and South America.</p><p>Far from a \"primitive\" or sparsely populated land, pre-Columbian North America was home to millions. In <mark>1492</mark>, at least <mark>2,000 distinct languages</mark> were spoken across the Americas. Societies ranged from small hunter-gatherer bands to sophisticated urban civilizations, including the <mark>Mayas and Aztecs</mark> in Mesoamerica, the <mark>Incas</mark> in Peru, and the <mark>Moundbuilders and Mississippians</mark> in the Ohio and Mississippi River Valleys.</p><p>Native Americans cultivated plants for food, dyes, medicines, and textiles; built cities; developed <mark>communal land ownership</mark>; and constructed intricate systems of religious beliefs and political organization. After European contact, <mark>devastating epidemics</mark>—smallpox, typhus, measles, influenza—drastically reduced Native populations, greatly aiding European conquest.</p>"
+    },
+    {
+      "title": "2. Colonial Virginia: Labor, Servants & Slaves",
+      "body": "<p>From the earliest days of <mark>Jamestown (1607)</mark>, labor was a major problem. After <mark>John Rolfe</mark>'s successful cultivation of tobacco, the colony boomed—but demanded labor. The solution was <mark>indentured servitude</mark>: poor immigrants agreed to bind themselves for a set term (usually <mark>four years</mark>) in exchange for passage, food, clothing, and \"freedom dues.\"</p><p>Large numbers of white indentured servants arrived until the <mark>1680s</mark>. From the <mark>1670s</mark>, the importation of <mark>African slaves</mark> swelled Virginia's labor force. Law increasingly distinguished between time-limited white servants and life-bound Black slaves. By the early <mark>18th century</mark>, the largest landowners relied on enslaved labor, consolidating economic and political power.</p>"
+    },
+    {
+      "title": "3. Plymouth & Early Colonial Governance",
+      "body": "<p>In <mark>1620</mark>, English Separatists (Pilgrims) arrived on the <mark>Mayflower</mark> at <mark>Plymouth, Massachusetts</mark>. While still aboard ship, they signed the <mark>Mayflower Compact</mark>—America's first document of democratic self-governance. The compact established rules for governing the new colony under <mark>Puritan</mark> religious values.</p><p>Plymouth grew as a center of <mark>Puritanism</mark> within the Massachusetts Bay Colony, though its political significance would eventually be eclipsed by <mark>Boston</mark>. Today it remains a major historical tourism destination, home to <mark>Plymouth Rock</mark>, the <mark>Mayflower II</mark>, and <mark>Plimoth Plantation</mark>.</p>"
+    },
+    {
+      "title": "4. Road to Revolution: Taxation & Resistance",
+      "body": "<p>Tensions between Britain and the colonies sharpened after <mark>1763</mark>. The <mark>Stamp Act of 1765</mark> required colonists to pay taxes on every page of printed paper to fund British troops. The colonial outcry centered on <mark>\"no taxation without representation.\"</mark> Virginia's <mark>Patrick Henry</mark> articulated this in the <mark>Virginia Resolves</mark>, and nine colonies sent delegates to the <mark>Stamp Act Congress</mark>, which issued the <mark>Declaration of Rights and Grievances</mark>.</p><p>Boycotts forced repeal of the Stamp Act, but Parliament passed the <mark>Declaratory Act</mark>, asserting its right to tax the colonies as it saw fit. Key events escalating tensions included the <mark>Boston Massacre</mark>, the <mark>Boston Tea Party</mark>, and the <mark>Coercive Acts</mark>.</p>"
+    },
+    {
+      "title": "5. The American Revolution",
+      "body": "<p>The Revolution was the first modern revolution fought for <mark>rule of law</mark>, <mark>constitutional rights</mark>, and <mark>popular sovereignty</mark>. <mark>George Washington</mark>'s leadership, French intervention (after the American victory at <mark>Saratoga, 1777</mark>), and British strategic errors turned the tide. In <mark>1781</mark>, an American–French force defeated the British at the <mark>Battle of Yorktown</mark>. About <mark>7,200 Americans</mark> died in battle; another 10,000 from disease and ~8,500 in British prisons.</p><p>Consequences were profound: Northern states began outlawing slavery or adopting <mark>gradual emancipation</mark> plans; new state constitutions guaranteed <mark>religious freedom</mark> and reformed tax and inheritance laws.</p>"
+    },
+    {
+      "title": "6. The Declaration of Independence",
+      "body": "<p>On <mark>June 7, 1776</mark>, <mark>Richard Henry Lee</mark> introduced the independence resolution. The <mark>Committee of Five</mark>—Adams, Franklin, Sherman, Livingston, and <mark>Thomas Jefferson</mark>—drafted the declaration. The Declaration had three parts: a <mark>natural rights theory</mark> statement; a <mark>list of grievances</mark> against King George III; and the formal <mark>declaration of independence</mark>. Jefferson drew on <mark>John Locke</mark>'s natural rights philosophy and <mark>George Mason</mark>'s Virginia Declaration of Rights.</p><p>Congress voted for independence on <mark>July 2, 1776</mark> and adopted the Declaration on <mark>July 4, 1776</mark>. Notable changes during editing included removing Jefferson's condemnation of the slave trade.</p>"
+    },
+    {
+      "title": "7. The Articles of Confederation",
+      "body": "<p>Adopted by the Continental Congress on <mark>November 15, 1777</mark>, and ratified in <mark>1781</mark>, the Articles of Confederation created a deliberately <mark>weak central government</mark>—a \"league of friendship\"—that preserved state power. There was no separate executive or judicial branch; Congress voted by state, with each state receiving <mark>one vote</mark> regardless of population.</p><p>Critical weaknesses: no power to <mark>tax</mark>, no power to regulate <mark>interstate commerce</mark>, and any amendment required <mark>unanimous approval</mark>—none were ever ratified. These flaws ultimately led to the <mark>Constitutional Convention of 1787</mark>.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "Where did Paleo-Indians originate, and how did they reach the Americas?", "a": "They came from Siberia across Beringia (a land bridge connecting Asia and North America), arriving in Alaska approximately 30,000 years ago." },
+    { "q": "By when had Paleo-Indians spread across all of North and South America?", "a": "By 8,000 BCE." },
+    { "q": "How many distinct languages were spoken in the Americas in 1492?", "a": "At least 2,000 distinct languages." },
+    { "q": "What was the basic principle of Native American land ownership?", "a": "Land was held communally and worked collectively—private land ownership was a foreign concept." },
+    { "q": "Name three major complex civilizations that developed in the pre-Columbian Americas.", "a": "Mayas and Aztecs (Mesoamerica), Incas (Peru), Moundbuilders / Mississippians (Ohio and Mississippi River Valleys)." },
+    { "q": "Why were Native Americans so vulnerable to European diseases?", "a": "They had no prior exposure to—and therefore no immunity against—diseases like smallpox, typhus, measles, and influenza that Europeans brought." },
+    { "key": true,  "q": "What crop made Jamestown economically viable, and who successfully cultivated it?", "a": "Tobacco, successfully cultivated by John Rolfe." },
+    { "key": true,  "q": "What was indentured servitude, and what were the typical terms?", "a": "A contract where a poor immigrant agreed to work for a master for a set term (usually 4 years) in exchange for passage, food, clothing, and freedom dues." },
+    { "q": "Why did African slavery gradually replace white indentured servitude in Virginia from the 1670s onward?", "a": "Enslaved Africans represented a lifetime of labor (long-term investment), legislation increasingly protected white servants while stripping rights from Black laborers, and elite planters could monopolize power through enslaved workforce ownership." },
+    { "key": true,  "q": "What was the Mayflower Compact and why is it significant?", "a": "Signed aboard the Mayflower in 1620, it was America's first document of democratic self-governance, establishing rules for Plymouth Colony." },
+    { "key": true,  "q": "What was the core colonial argument against the Stamp Act?", "a": "\"No taxation without representation\" — colonists argued only their own legislatures could tax them since they had no representatives in the British Parliament." },
+    { "q": "What did the Stamp Act Congress produce in October 1765?", "a": "The Declaration of Rights and Grievances, asserting that only colonial legislatures had the right to tax colonists." },
+    { "q": "What was the Declaratory Act (1766)?", "a": "Parliament's assertion, after repealing the Stamp Act, that it retained the right to legislate and tax the colonies in any manner it saw fit." },
+    { "q": "What role did the Battle of Saratoga (1777) play in the Revolution?", "a": "The American victory halted a British advance from Canada and persuaded France to intervene militarily on behalf of the colonies." },
+    { "q": "What was the final major military engagement of the American Revolution?", "a": "The Battle of Yorktown (1781), where an American–French force defeated the British." },
+    { "key": true,  "q": "Who wrote the Declaration of Independence, and who were the other members of the Committee of Five?", "a": "Thomas Jefferson wrote it. The Committee of Five also included John Adams, Benjamin Franklin, Roger Sherman, and Robert R. Livingston." },
+    { "key": true,  "q": "What are the three structural parts of the Declaration of Independence?", "a": "1) A statement of natural rights theory; 2) A list of grievances against King George III; 3) The formal declaration of independence from Britain." },
+    { "q": "On what date was the Declaration of Independence officially adopted?", "a": "July 4, 1776." },
+    { "q": "What philosophical works influenced Jefferson's writing of the Declaration?", "a": "John Locke's Two Treatises of Government and George Mason's Virginia Declaration of Rights." },
+    { "key": true,  "q": "What were the key weaknesses of the Articles of Confederation?", "a": "No power to tax; no power to regulate interstate commerce; no executive or judicial branch; each state had one vote; amendments required unanimous approval—none were ever ratified." },
+    { "q": "When were the Articles of Confederation adopted and ratified?", "a": "Adopted November 15, 1777; ratified by all states in 1781." },
+    { "q": "What did the Articles of Confederation call the relationship between states?", "a": "A \"firm league of friendship\" — it was a loose alliance that largely preserved state sovereignty." },
+    { "q": "Approximately how many Americans died in the Revolutionary War, total across all causes?", "a": "About 7,200 in battle, 10,000 from disease or exposure, and 8,500 in British prisons—roughly 25,000+ total." },
+    { "q": "What was the impact of the Revolution on slavery in the North?", "a": "Northern states began outlawing slavery outright or adopting gradual emancipation plans after the Revolution." },
+    { "q": "What did Virginia Gazette runaway advertisements reveal about bound laborers?", "a": "They showed that servants and slaves were highly skilled—carpenters, watermen, shoemakers, ironworkers—active in every phase of Virginia's economy, not just fieldwork." }
+  ],
+
+  "quiz": [
+    { "q": "Paleo-Indians arrived in North America by crossing which land bridge?", "options": ["The Bering Strait ice sheet", "Beringia", "The Alaskan Peninsula", "The North Sea crossing"], "correct": 1, "explanation": "Paleo-Indians crossed Beringia, a land bridge connecting Siberia and Alaska, approximately 30,000 years ago." },
+    { "q": "What crop became the economic foundation of colonial Virginia?", "options": ["Cotton", "Corn", "Tobacco", "Indigo"], "correct": 2, "explanation": "John Rolfe's successful cultivation of a marketable tobacco strain made the colony profitable and fueled demand for bound labor." },
+    { "q": "What was the primary colonial argument against the Stamp Act?", "options": ["The tax was too high", "No taxation without representation", "Parliament was corrupt", "Trade was being blocked"], "correct": 1, "explanation": "Colonists argued that since they had no representatives in Parliament, Parliament had no right to tax them." },
+    { "q": "What American victory convinced France to enter the Revolutionary War?", "options": ["Battle of Bunker Hill", "Battle of Trenton", "Battle of Saratoga", "Battle of Yorktown"], "correct": 2, "explanation": "The American victory at Saratoga in 1777 halted the British advance from Canada and led France to intervene on the colonists' side." },
+    { "q": "Who was the primary author of the Declaration of Independence?", "options": ["John Adams", "Benjamin Franklin", "George Washington", "Thomas Jefferson"], "correct": 3, "explanation": "The Committee of Five assigned the drafting task to Thomas Jefferson, whose writing was shaped by Locke and Mason." },
+    { "q": "Which of the following was NOT a weakness of the Articles of Confederation?", "options": ["No power to tax", "No executive branch", "No interstate commerce regulation", "States had unequal voting power"], "correct": 3, "explanation": "Each state had ONE vote (equal voting power). The real weaknesses were the inability to tax, no executive, and no commerce regulation." },
+    { "q": "The Mayflower Compact (1620) is historically significant because it was:", "options": ["The first document granting religious freedom", "America's first document of democratic self-governance", "The first colonial constitution", "A peace treaty with Native Americans"], "correct": 1, "explanation": "The Mayflower Compact established rules for governing Plymouth Colony and is considered America's first document of democratic governance in the New World." },
+    { "q": "When did African slavery begin significantly replacing indentured servitude in Virginia?", "options": ["1640s", "1650s", "1670s", "1720s"], "correct": 2, "explanation": "From the 1670s, importation of African slaves swelled Virginia's labor force, and by the early 18th century enslaved labor dominated the largest plantations." }
+  ]
+}

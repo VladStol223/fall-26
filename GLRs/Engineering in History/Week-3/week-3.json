@@ -1,0 +1,83 @@
+{
+  "id": "eng-history-w3",
+  "course": "Engineering in History",
+  "courseColor": "blue",
+  "moduleNumber": 3,
+  "title": "Engineering Practice 1: The Soul of a New Machine",
+  "subtitle": "Tracy Kidder — Flying Upside Down (The Atlantic, 1981)",
+  "storagePrefix": "eih-w3",
+  "totalCards": 15,
+
+  "overview": {
+    "stats": [
+      { "value": "1981", "label": "Kidder's Atlantic article" },
+      { "value": "DGC", "label": "Data General Corporation" },
+      { "value": "32-bit", "label": "Architecture of the Eagle" },
+      { "value": "Sep 8–10", "label": "Class dates" }
+    ],
+    "people": [
+      { "name": "Tracy Kidder", "desc": "Pulitzer Prize–winning journalist who embedded with Data General's engineering team; wrote The Soul of a New Machine (1981), one of the most celebrated accounts of engineering practice." },
+      { "name": "Tom West", "desc": "Data General engineer who led the Eagle project; charismatic, driven, practiced 'mushroom management' — keeping team members in the dark about the full picture." }
+    ],
+    "dates": [
+      { "year": "Late 1970s", "event": "Data General races to build a 32-bit minicomputer (Eagle) to compete with DEC's VAX" },
+      { "year": "July 1, 1981", "event": "Kidder's 'Flying Upside Down' published in The Atlantic" },
+      { "year": "1981", "event": "The Soul of a New Machine published; wins Pulitzer Prize and National Book Award" }
+    ],
+    "terms": [
+      { "term": "Eagle", "def": "Data General's 32-bit minicomputer; the project at the center of Kidder's account" },
+      { "term": "Skunkworks project", "def": "An unofficial, semi-autonomous team working outside normal corporate channels; the Eagle project was bootstrapped by Tom West within DGC" },
+      { "term": "Mushroom management", "def": "Tom West's tactic: keep team members in the dark about the full picture so they focus only on their piece of the work" },
+      { "term": "Flow / intrinsic motivation", "def": "The state of deep cognitive absorption experienced by the Eagle engineers — motivated by intellectual challenge and craft pride more than money" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — Kidder and The Soul of a New Machine",
+      "body": "<p><mark>Tracy Kidder</mark> is a Pulitzer Prize–winning journalist who embedded himself with an engineering team at <mark>Data General Corporation (DGC)</mark> in the late 1970s. The assigned reading, \"Flying Upside Down,\" is a chapter from the resulting book <mark>The Soul of a New Machine</mark> (1981), also published in The Atlantic.</p><p>The book documents the frantic effort to build a new <mark>32-bit minicomputer</mark> codenamed the <mark>Eagle</mark>. It became one of the most celebrated accounts of engineering practice ever written — praised for making the internal emotional and intellectual world of engineers accessible to general readers.</p>"
+    },
+    {
+      "title": "2 — The Eagle Project: Context and Stakes",
+      "body": "<p>In the late 1970s, <mark>Data General</mark> was under fierce competitive pressure from <mark>Digital Equipment Corporation (DEC)</mark> and its powerful <mark>VAX minicomputer</mark>. DGC's survival depended on producing a competitive 32-bit machine quickly. The <mark>Eagle</mark> project was run by engineer <mark>Tom West</mark>, who recruited a small, intense team operating under constant deadline pressure.</p><p>The project was unofficial at first — West bootstrapped it within the company, working around bureaucratic obstacles. This <mark>\"skunkworks\"</mark> approach — operating semi-autonomously under the corporate radar — is a recurring theme Kidder uses to illuminate how real engineering innovation actually happens.</p>"
+    },
+    {
+      "title": "3 — 'Flying Upside Down': Intrinsic Motivation",
+      "body": "<p>\"Flying upside down\" captures the engineers' experience — working under extreme stress, uncertain of success, pushing limits of what they know. Kidder portrays engineers in a state of <mark>deep cognitive absorption</mark> (similar to what psychologists call <mark>\"flow\"</mark>) when working on hard technical problems.</p><p>The engineers are motivated not primarily by money but by the <mark>intrinsic challenge</mark> — the desire to build something excellent that has never existed before. This reveals an important truth: at its best, engineering is driven by <mark>craft pride</mark>, <mark>intellectual curiosity</mark>, and the satisfaction of making something work.</p>"
+    },
+    {
+      "title": "4 — Tom West and Engineering Leadership",
+      "body": "<p><mark>Tom West</mark> is driven, charismatic, and willing to take risks — but he also manipulates his young engineers, exploiting their idealism. West practices <mark>\"mushroom management\"</mark>: keeping team members in the dark about the full picture so they focus purely on their own piece.</p><p>This raises ethical questions: Is it acceptable to withhold information from engineers to keep them motivated? Does the end (a great machine) justify the means (psychological manipulation)? These questions connect to broader themes about <mark>corporate pressure on engineers</mark> that recur in later weeks (Corvair, Pinto, Boeing 737 Max).</p>"
+    },
+    {
+      "title": "5 — Lessons for Engineering Practice",
+      "body": "<p>Kidder's account shows that engineering is never purely technical. It is shaped by <mark>corporate strategy</mark>, <mark>interpersonal dynamics</mark>, <mark>time pressure</mark>, and <mark>competitive markets</mark>. The engineers on Eagle had to make constant trade-offs — speed vs. elegance, safety margins vs. cost, personal well-being vs. project completion.</p><p>The Eagle project also illustrates the tension between individual creativity and <mark>organizational constraints</mark>. Brilliant engineers cannot simply design what they think is best — they must navigate bureaucratic structures, resource limits, and management goals. This is engineering in the real world.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "Who wrote The Soul of a New Machine and what form is the Week 3 reading?", "a": "Tracy Kidder, a Pulitzer Prize–winning journalist. The reading is 'Flying Upside Down,' published in The Atlantic, July 1, 1981." },
+    { "key": true,  "q": "What company and product are at the center of Kidder's account?", "a": "Data General Corporation (DGC) and the Eagle — a 32-bit minicomputer developed in the late 1970s to compete with DEC's VAX." },
+    { "q": "What competitive threat drove the Eagle project?", "a": "Digital Equipment Corporation (DEC) and its powerful VAX minicomputer were threatening DGC's market position." },
+    { "key": true,  "q": "What does 'flying upside down' mean as a metaphor?", "a": "Working under extreme stress and uncertainty, pushing beyond familiar limits — precarious, exhilarating territory without a clear safety net." },
+    { "q": "Who led the Eagle project at Data General?", "a": "Tom West, an engineer and project manager who built an unofficial 'skunkworks' team." },
+    { "q": "What is a 'skunkworks' project, and why was Eagle one?", "a": "An unofficial, semi-autonomous team working outside normal corporate channels. Eagle started without formal authorization, bootstrapped by Tom West within DGC." },
+    { "key": true,  "q": "What primarily motivated the Eagle engineers, according to Kidder?", "a": "Intrinsic motivation — intellectual challenge, craft pride, and the desire to build something excellent — more than money or career advancement." },
+    { "key": true,  "q": "What is 'mushroom management' as practiced by Tom West?", "a": "Keeping team members in the dark about the full project picture so they focus only on their own tasks — exploiting their idealism without full transparency." },
+    { "q": "What ethical questions does Tom West's management style raise?", "a": "Is psychological manipulation of engineers acceptable? Does getting a great result justify deceptive management tactics?" },
+    { "q": "What does Kidder's account reveal about real engineering practice?", "a": "Engineering is shaped by corporate strategy, interpersonal dynamics, time pressure, and competitive markets — not just technical problem-solving." },
+    { "q": "What tension between creativity and organization does Eagle illustrate?", "a": "Individual engineers may have superior technical ideas but must navigate bureaucratic constraints, resource limits, and management goals." },
+    { "q": "What was the significance of the Eagle being a 32-bit machine?", "a": "32-bit architecture was the next generation of computing power; building it faster than competitors was essential for DGC's survival." },
+    { "q": "How does Week 3 connect to the course's broader ethics themes?", "a": "The Eagle project previews how corporate interests (speed, competition) shape engineering decisions — recurring in weeks on the Corvair, Pinto, and Boeing 737 Max." },
+    { "q": "What is the 'flow' state experienced by Kidder's engineers?", "a": "Deep cognitive absorption and total focus on a challenging task — intrinsically rewarding and highly productive." },
+    { "q": "Why is The Soul of a New Machine considered important for understanding engineering culture?", "a": "It gives non-engineers an inside view of how engineers think, feel, and work — revealing engineering as a deeply human and often intense creative endeavor." }
+  ],
+
+  "quiz": [
+    { "q": "What company and product is the focus of The Soul of a New Machine?", "options": ["IBM and the PC", "Data General and the Eagle", "DEC and the VAX", "Apple and the Apple II"], "correct": 1, "explanation": "The book follows Data General Corporation's team building the Eagle, a 32-bit minicomputer." },
+    { "q": "What does 'mushroom management' mean in Kidder's account?", "options": ["Organic team growth", "Keeping team members in the dark about the full project picture", "Encouraging bottom-up innovation", "Using natural light in the office"], "correct": 1, "explanation": "Tom West kept engineers focused on their piece by withholding the full picture — exploiting their drive without full transparency." },
+    { "q": "What primarily motivated the Eagle engineers, according to Kidder?", "options": ["High salaries", "Stock options", "The intrinsic challenge of building something excellent", "Fear of being fired"], "correct": 2, "explanation": "Kidder emphasizes intrinsic motivation — craft pride, intellectual challenge, and the desire to build something that has never existed." },
+    { "q": "What competitive machine was the Eagle designed to rival?", "options": ["The IBM 360", "The Apple II", "The DEC VAX", "The Cray supercomputer"], "correct": 2, "explanation": "The Eagle was rushed to market to compete with Digital Equipment Corporation's VAX minicomputer." },
+    { "q": "What broader theme does the Eagle project introduce for the rest of the course?", "options": ["The importance of patents", "How corporate pressure shapes engineering decisions and culture", "Why minicomputers replaced mainframes", "The history of Data General"], "correct": 1, "explanation": "The Eagle project shows how competitive and organizational pressures influence engineering choices — recurring in later weeks on the Corvair, Pinto, and Boeing 737 Max." }
+  ]
+}

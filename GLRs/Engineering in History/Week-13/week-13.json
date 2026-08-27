@@ -1,0 +1,82 @@
+{
+  "id": "eng-history-w13",
+  "course": "Engineering in History",
+  "courseColor": "blue",
+  "moduleNumber": 13,
+  "title": "Neglecting Safety 2: Engineering Structural Disasters",
+  "subtitle": "Eda Kranakis — The Quebec Bridge Collapse (2004)",
+  "storagePrefix": "eih-w13",
+  "totalCards": 15,
+
+  "overview": {
+    "stats": [
+      { "value": "1907", "label": "Quebec Bridge collapse — 75 workers killed" },
+      { "value": "1916", "label": "Second Quebec Bridge collapse during reconstruction" },
+      { "value": "2004", "label": "Kranakis article published in T&C" },
+      { "value": "Nov 17–19", "label": "Class dates" }
+    ],
+    "people": [
+      { "name": "Eda Kranakis", "desc": "Historian of technology; 2004 Technology and Culture article examines how organizational culture enabled the Quebec Bridge collapse — blame was fixed on individuals while systemic failures were obscured." },
+      { "name": "Theodore Cooper", "desc": "Chief consulting engineer for the Quebec Bridge; overconfident, worked from a distance, approved a heavier design without ordering a complete structural recalculation — a key failure point." },
+      { "name": "Norman McLure", "desc": "On-site inspector who observed dangerous deflection in the bridge's lower chord and sent warning telegrams to Cooper; Cooper told him to proceed — collapse came days later." }
+    ],
+    "dates": [
+      { "year": "1900", "event": "Construction begins on Quebec Bridge over the St. Lawrence River — intended as world's longest cantilever bridge" },
+      { "year": "Aug 29, 1907", "event": "Southern span of Quebec Bridge collapses during construction — 75 workers killed (56 of them Indigenous Kahnawake Mohawk ironworkers)" },
+      { "year": "1908", "event": "Royal Commission issues report blaming Cooper and Phoenix Bridge Company — finds systemic errors but focuses blame narrowly" },
+      { "year": "1916", "event": "The center span of the rebuilt Quebec Bridge falls into the St. Lawrence during lifting — 13 more workers killed" },
+      { "year": "1919", "event": "Quebec Bridge finally completed — took 19 years total from start" }
+    ],
+    "terms": [
+      { "term": "Cantilever bridge", "def": "Bridge that extends horizontally using horizontal beams supported only on one end — allows long spans without underwater supports; the Quebec Bridge was a cantilever design" },
+      { "term": "Fixing the blame", "def": "Kranakis's concept: official investigations focused blame on individual engineers (Cooper) while obscuring the organizational culture and systemic failures that made the disaster possible" },
+      { "term": "Organizational culture", "def": "The shared norms, practices, and incentive structures within a firm that shape how decisions get made — Kranakis's key variable explaining why obvious warning signs were ignored" },
+      { "term": "Engineering iron ring (Canada)", "def": "The 'Ritual of the Calling of an Engineer' in Canada: graduating engineers receive an iron ring (made from steel of the collapsed Quebec Bridge) to remind them of professional responsibility" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — The Quebec Bridge Collapse (1907)",
+      "body": "<p>On <mark>August 29, 1907</mark>, the southern span of the <mark>Quebec Bridge</mark> collapsed during construction, killing <mark>75 workers</mark> — <mark>56 of them Indigenous Kahnawake Mohawk ironworkers</mark> who were among the most skilled high-steel workers in North America. It was one of the worst engineering disasters in North American history.</p><p>The bridge had been redesigned during construction to be heavier — adding weight that pushed the design beyond the limits the original specifications could support. Warning signs had appeared in the weeks before the collapse: a lower chord member was showing dangerous deflection. On-site inspector <mark>Norman McLure</mark> sent urgent warnings to consulting engineer <mark>Theodore Cooper</mark>. Cooper told him to proceed. The bridge fell days later.</p>"
+    },
+    {
+      "title": "2 — Kranakis: Fixing the Blame",
+      "body": "<p><mark>Eda Kranakis</mark>'s 2004 article argues that the Royal Commission's investigation <mark>\"fixed the blame\"</mark> — concentrated responsibility on individuals (Cooper, the Phoenix Bridge Company) while obscuring the <mark>organizational culture</mark> and <mark>systemic failures</mark> that made the disaster possible.</p><p>The real failures were structural: Cooper was overconfident and worked from a distance in New York, never visiting the site; the organization had no effective mechanism for on-site engineers to escalate safety concerns; the contractor was under financial and schedule pressure; and no one insisted on a complete structural recalculation when the design was changed to accommodate more weight.</p>"
+    },
+    {
+      "title": "3 — The Kahnawake Mohawk and the Human Cost",
+      "body": "<p>The <mark>Kahnawake Mohawk</mark> community near Montreal supplied a large proportion of Quebec Bridge's ironworkers — and bore a disproportionate share of the casualties. Fifty-six Mohawk workers died on August 29, 1907. The community was devastated but continued working high steel; Kahnawake ironworkers went on to build dozens of major bridges and skyscrapers across North America.</p><p>The collapse raises questions about <mark>whose safety counted</mark>. Indigenous and immigrant workers bore the greatest physical risk in major construction projects, while engineers and managers worked at safe distances. Kranakis's attention to the human dimension of the disaster connects to the course's broader theme: engineering decisions about risk and safety are never socially neutral.</p>"
+    },
+    {
+      "title": "4 — Legacy: The Iron Ring",
+      "body": "<p>The Quebec Bridge collapse had a lasting legacy in Canadian engineering culture. The <mark>\"Ritual of the Calling of an Engineer\"</mark> — written by Rudyard Kipling — involves graduating engineers receiving an <mark>iron ring</mark> traditionally made from steel salvaged from the collapsed Quebec Bridge. The ring is worn on the working hand as a constant reminder of professional responsibility.</p><p>The ritual encapsulates the course's central argument: engineering is not just technical. It carries <mark>ethical responsibility</mark> for public safety, for worker welfare, and for the lives of people who depend on engineered systems. The collapsed bridge becomes a permanent reminder of what professional failure costs.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What happened in the Quebec Bridge collapse of August 29, 1907?", "a": "The southern span collapsed during construction, killing 75 workers — 56 of them Indigenous Kahnawake Mohawk ironworkers. One of the worst engineering disasters in North American history." },
+    { "key": true,  "q": "What is Kranakis's argument about 'fixing the blame'?", "a": "Official investigations concentrated blame on individuals (Cooper, Phoenix Bridge Co.) while obscuring the organizational culture and systemic failures that made the disaster possible." },
+    { "q": "Who was Theodore Cooper and what were his failures?", "a": "Chief consulting engineer; overconfident, worked from New York without visiting the site, approved a heavier design without ordering a complete structural recalculation, and told on-site inspector McLure to proceed despite warning signs." },
+    { "q": "Who was Norman McLure and what did he do?", "a": "On-site inspector who observed dangerous deflection in the bridge's lower chord and sent urgent warning telegrams to Cooper. Cooper told him to proceed — the bridge collapsed days later." },
+    { "key": true,  "q": "What were the real systemic failures behind the Quebec Bridge collapse?", "a": "Cooper's overconfidence and distance from the site; no effective mechanism to escalate on-site safety concerns; contractor financial/schedule pressure; failure to recalculate the structure when the design was changed to add weight." },
+    { "q": "Who were the Kahnawake Mohawk and what was their role in the collapse?", "a": "A Kahnawake Mohawk community near Montreal supplied many of the bridge's most skilled ironworkers; 56 of the 75 killed were Kahnawake. They continued working high steel and built many subsequent North American structures." },
+    { "q": "What is the Canadian engineering 'iron ring' and what is its origin?", "a": "A ring worn by Canadian engineering graduates on their working hand as a symbol of professional responsibility — traditionally made from steel of the collapsed Quebec Bridge; associated with Rudyard Kipling's 'Ritual of the Calling of an Engineer.'" },
+    { "key": true,  "q": "What does the Quebec Bridge case illustrate about organizational culture and safety?", "a": "Safety failures arise from organizational norms that prioritize schedule and cost, lack mechanisms for escalating concerns, and assign responsibility ambiguously — individual blame-fixing obscures these systemic issues." },
+    { "q": "What additional disaster occurred during the Quebec Bridge's reconstruction in 1916?", "a": "The center span fell into the St. Lawrence River during lifting, killing 13 more workers — a second catastrophic failure on the same bridge." },
+    { "q": "How long did it take to complete the Quebec Bridge after construction began?", "a": "19 years — from 1900 to 1919, including two collapses and complete reconstruction." },
+    { "q": "What is a cantilever bridge and what was the Quebec Bridge's design?", "a": "A bridge extending horizontally supported only at one end — allowing long spans without underwater supports. The Quebec Bridge was designed as a cantilever to span the St. Lawrence River." },
+    { "q": "How does the Quebec Bridge case connect to the Week 4 copper-cooled engine case?", "a": "Both show organizational failures overriding technical judgment — but the Quebec Bridge case has fatal consequences, demonstrating what is at stake in safety-critical engineering." },
+    { "q": "What question does the Kahnawake case raise about engineering's distribution of risk?", "a": "Who bears the physical risk in major engineering projects? Indigenous and immigrant workers faced the greatest danger, while engineers and managers worked at safe distances — risk is not socially neutral." },
+    { "q": "Why does Kranakis focus on 'organizational culture' rather than individual failures?", "a": "Individual blame-fixing is satisfying but incomplete — the systemic pressures, communication gaps, and organizational incentives that allowed warning signs to be ignored must be understood to prevent future disasters." },
+    { "q": "What is the significance of the iron ring being (traditionally) made from the Quebec Bridge steel?", "a": "It turns engineering failure into a direct, physical reminder of professional responsibility — every time a graduate uses their working hand, they feel the ring made from the steel of people who died from an engineering failure." }
+  ],
+
+  "quiz": [
+    { "q": "What is Kranakis's key argument about the Quebec Bridge investigation?", "options": ["Cooper was solely responsible and deserved full blame", "The collapse was unforeseeable given 1907 engineering knowledge", "Official investigations 'fixed the blame' on individuals while obscuring the organizational culture and systemic failures", "The Mohawk workers were at fault for ignoring safety protocols"], "correct": 2, "explanation": "Kranakis argues that concentrating blame on Cooper and Phoenix Bridge Co. made the disaster seem like individual failure rather than the product of systemic organizational problems." },
+    { "q": "What warning sign appeared in the weeks before the Quebec Bridge collapse?", "options": ["Cracks in the stone abutments", "Dangerous deflection in the lower chord member observed by on-site inspector McLure", "Unusual sounds from the steel connections", "Weather damage to the suspension cables"], "correct": 1, "explanation": "McLure observed and telegraphed Cooper about dangerous deflection in the lower chord. Cooper said to proceed. Days later, the bridge collapsed." },
+    { "q": "What is the Canadian engineering iron ring?", "options": ["A professional certification seal used on engineering drawings", "A ring worn by engineering graduates on their working hand — made from Quebec Bridge steel — as a symbol of professional responsibility", "An award given to engineers for safety innovations", "A ring of fire used in the engineering school initiation ceremony"], "correct": 1, "explanation": "The iron ring (from Kipling's 'Ritual of the Calling of an Engineer') is given to Canadian engineering graduates as a constant physical reminder that engineering failures kill people." },
+    { "q": "Who bore the heaviest casualties in the 1907 Quebec Bridge collapse?", "options": ["American engineers from the Phoenix Bridge Company", "European immigrant laborers on temporary contracts", "Kahnawake Mohawk ironworkers — 56 of the 75 killed", "Quebec City municipal workers hired for the construction"], "correct": 2, "explanation": "56 of the 75 killed were Kahnawake Mohawk ironworkers — Indigenous workers who bore a disproportionate share of the risk in major construction projects while engineers and managers worked safely at a distance." },
+    { "q": "What does 'organizational culture' explain in Kranakis's analysis?", "options": ["The specific technical errors Cooper made in his calculations", "The shared norms and incentive structures that allowed warning signs to be ignored — no one had the authority or mechanism to stop construction when McLure raised concerns", "The ethnic composition of the bridge's workforce", "The contractor's financial situation"], "correct": 1, "explanation": "Organizational culture explains why obvious warning signs were ignored — Cooper's authority was unquestioned, McLure had no power to stop work, and the contractor was under schedule pressure. Individual blame misses this systemic dimension." }
+  ]
+}

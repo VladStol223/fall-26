@@ -1,0 +1,82 @@
+{
+  "id": "eng-history-w6",
+  "course": "Engineering in History",
+  "courseColor": "blue",
+  "moduleNumber": 6,
+  "title": "Engineering as a Profession in 19th-Century America",
+  "subtitle": "Brittain & McMath — Georgia Tech and the New South Creed (1977)",
+  "storagePrefix": "eih-w6",
+  "totalCards": 15,
+
+  "overview": {
+    "stats": [
+      { "value": "1885", "label": "Georgia Tech founded" },
+      { "value": "1861", "event": "MIT founded" },
+      { "value": "1977", "label": "Brittain & McMath article published" },
+      { "value": "Sep 29–Oct 1", "label": "Class dates" }
+    ],
+    "people": [
+      { "name": "James E. Brittain", "desc": "Historian of electrical engineering; co-author with McMath of the Georgia Tech founding history article in Technology and Culture." },
+      { "name": "Robert C. McMath", "desc": "Georgia Tech historian; co-authored the 1977 article tracing the formation and early development of Georgia Tech within the New South ideology." },
+      { "name": "Henry W. Grady", "desc": "Atlanta journalist and spokesman for the 'New South Creed' — the vision of an industrializing, economically self-sufficient post-Civil War South." }
+    ],
+    "dates": [
+      { "year": "1861", "event": "MIT founded in Cambridge, MA — the first U.S. institution of technology to follow the European polytechnic model" },
+      { "year": "1862", "event": "Morrill Land-Grant Act — federal land grants fund agricultural and mechanical colleges across the U.S." },
+      { "year": "1885", "event": "Georgia School of Technology (Georgia Tech) founded in Atlanta" },
+      { "year": "1893", "event": "First graduating class from Georgia Tech" },
+      { "year": "1977", "event": "Brittain and McMath publish 'Engineers and the New South Creed' in Technology and Culture" }
+    ],
+    "terms": [
+      { "term": "New South Creed", "def": "Post-Civil War ideology championed by Henry Grady — the South would rebuild by industrializing, accepting Northern investment, and training technical workers" },
+      { "term": "School culture vs. shop culture", "def": "Key debate in 19th-century engineering education: 'school culture' (MIT-style, science-based, classroom) vs. 'shop culture' (apprenticeship, hands-on, practical)" },
+      { "term": "Land-grant college", "def": "Colleges funded by federal land grants under the 1862 Morrill Act; required to offer programs in agriculture and the mechanical arts (engineering)" },
+      { "term": "Polytechnic model", "def": "European approach (especially French École Polytechnique) emphasizing scientific theory; MIT adopted this; influenced 'school culture' advocates" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — The New South Creed and Engineering Education",
+      "body": "<p>After the Civil War, Southern leaders faced the challenge of rebuilding a shattered economy. The <mark>New South Creed</mark>, articulated by Atlanta journalist <mark>Henry W. Grady</mark>, argued the South should industrialize rather than remain dependent on agriculture. This required a new kind of worker: the <mark>trained technical engineer</mark>.</p><p><mark>Georgia Tech</mark> was founded in <mark>1885</mark> explicitly as an instrument of this vision — to train engineers who would attract Northern capital and build Southern industry. Brittain and McMath trace how this ideological context shaped what Georgia Tech taught and who it admitted.</p>"
+    },
+    {
+      "title": "2 — School Culture vs. Shop Culture",
+      "body": "<p>A central debate in 19th-century engineering education was between two competing philosophies. <mark>\"Shop culture\"</mark> emphasized hands-on apprenticeship and practical skills — learning by doing in a workshop. <mark>\"School culture\"</mark> emphasized scientific theory and classroom instruction — the approach adopted by <mark>MIT</mark> (founded 1861).</p><p>Georgia Tech initially tried to balance both but gradually moved toward the school culture model as engineering became more scientific. This tension between theory and practice never fully resolved and still structures debates about engineering education today.</p>"
+    },
+    {
+      "title": "3 — MIT and the Polytechnic Model",
+      "body": "<p><mark>MIT</mark> was founded in <mark>1861</mark> and modeled on the European <mark>polytechnic tradition</mark> — especially the French <mark>École Polytechnique</mark> — emphasizing scientific foundations for engineering. MIT's success established the \"school culture\" model as the prestige standard for American engineering education.</p><p>The <mark>Morrill Land-Grant Act (1862)</mark> created federal funding for colleges of agriculture and the mechanical arts across the country, dramatically expanding engineering education access. Georgia Tech was founded as a land-grant institution, though it also operated within the specific political economy of the post-Reconstruction South.</p>"
+    },
+    {
+      "title": "4 — Engineering, Race, and the New South",
+      "body": "<p>Brittain and McMath note a crucial exclusion: the New South Creed's vision of technical training was for <mark>white men only</mark>. Georgia Tech admitted only white students; Black Georgians were confined to historically Black institutions with far fewer resources. The ideology of industrial modernization coexisted with the maintenance of <mark>racial hierarchy</mark>.</p><p>This exclusion shaped the engineering profession itself — engineering remained overwhelmingly white and male well into the 20th century. Week 8 (Women in Engineering) will address this more directly, but the roots lie in the founding moment of institutions like Georgia Tech.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What was the 'New South Creed' and who championed it?", "a": "A post-Civil War ideology — the South would rebuild by industrializing. Championed by Atlanta journalist Henry W. Grady, it drove the founding of technical schools like Georgia Tech." },
+    { "key": true,  "q": "When was Georgia Tech founded and for what purpose?", "a": "1885 — to train engineers who would help industrialize the post-Civil War South, attract Northern capital, and fulfill the New South Creed." },
+    { "q": "What is the 'school culture vs. shop culture' debate in engineering education?", "a": "Shop culture: hands-on apprenticeship and practical skills. School culture: scientific theory and classroom instruction (MIT model). A central 19th-century tension in engineering education." },
+    { "key": true,  "q": "What model did MIT follow and when was it founded?", "a": "MIT (1861) followed the European polytechnic model — especially the French École Polytechnique — emphasizing scientific foundations for engineering." },
+    { "q": "What was the Morrill Land-Grant Act (1862)?", "a": "Federal legislation granting land to fund colleges of agriculture and the mechanical arts; dramatically expanded engineering education access across the U.S." },
+    { "q": "Who were Brittain and McMath and what did they write?", "a": "Historians who published 'Engineers and the New South Creed' in Technology and Culture (1977) — tracing how New South ideology shaped Georgia Tech's founding and early development." },
+    { "q": "Who was Henry W. Grady?", "a": "Atlanta journalist and spokesman for the New South Creed; argued the South could rebuild through industrialization and technical education rather than dependence on agriculture." },
+    { "key": true,  "q": "What crucial exclusion did Brittain and McMath note about the New South vision?", "a": "It was for white men only. Georgia Tech admitted only white students; Black Georgians were confined to under-resourced historically Black institutions." },
+    { "q": "How did the New South Creed shape what Georgia Tech taught?", "a": "It oriented the curriculum toward practical industrial engineering skills needed to attract investment and build Southern industry — initially more shop culture than pure science." },
+    { "q": "What does Georgia Tech's founding tell us about the relationship between education and ideology?", "a": "Educational institutions are not neutral — they are shaped by the political, economic, and racial ideologies of their founding context." },
+    { "q": "How did MIT's success shape 19th-century American engineering education?", "a": "MIT established 'school culture' (science-based, classroom instruction) as the prestige standard; other institutions including Georgia Tech gradually moved toward this model." },
+    { "q": "What Fall Break detail affects Week 6/7 scheduling?", "a": "Fall Break on October 6 — no class. Week 7 (Post-WWII Engineering Education) has only one class day: October 8." },
+    { "q": "What was the polytechnic model and where did it originate?", "a": "A European educational approach emphasizing scientific theory for engineering, originating with the French École Polytechnique (1794); adapted for U.S. engineering education by MIT." },
+    { "q": "Why does the history of Georgia Tech's founding matter for understanding the engineering profession?", "a": "It shows that the engineering profession was shaped by specific regional politics, racial exclusions, and economic ideologies — not just neutral technical development." },
+    { "q": "How does Week 6 connect to the course's broader argument about engineering and society?", "a": "Engineering education reflects the social and political context of its time — who gets trained, in what, and for whose benefit are always social and political questions." }
+  ],
+
+  "quiz": [
+    { "q": "What ideology drove the founding of Georgia Tech in 1885?", "options": ["Federal Reconstruction policy", "The New South Creed — industrializing the post-Civil War South", "Progressive Era urban reform", "Agricultural modernization following the Civil War"], "correct": 1, "explanation": "Georgia Tech was founded to train engineers who would attract investment and industrialize the South — the vision articulated by Henry Grady's New South Creed." },
+    { "q": "What is 'school culture' in 19th-century engineering education?", "options": ["Apprenticeship and hands-on workshop training", "Science-based classroom instruction (MIT model)", "Learning engineering through military service", "Correspondence courses for working engineers"], "correct": 1, "explanation": "School culture emphasized scientific theory and classroom learning — the approach adopted by MIT and eventually dominant in American engineering education." },
+    { "q": "What did the Morrill Land-Grant Act (1862) do for engineering education?", "options": ["Created MIT", "Required all engineers to have federal licenses", "Granted land to fund colleges of agriculture and the mechanical arts, expanding access to engineering education", "Banned shop culture in engineering schools"], "correct": 2, "explanation": "The Morrill Act dramatically expanded engineering education by providing federal land grants for colleges across the country, including historically Black colleges." },
+    { "q": "What crucial exclusion did Brittain and McMath document about Georgia Tech's founding?", "options": ["Only wealthy students could attend", "Women were explicitly banned until 1952", "The New South vision was for white men only — Black Georgians were excluded", "Only Georgia residents could enroll in the first decade"], "correct": 2, "explanation": "The New South Creed's vision of technical training was racially exclusive — Georgia Tech admitted only white students, while Black Georgians were confined to under-resourced institutions." },
+    { "q": "What European institution most influenced the 'school culture' model adopted by MIT?", "options": ["Oxford University", "The German University of Berlin", "The French École Polytechnique", "The Royal Institution of London"], "correct": 2, "explanation": "The French École Polytechnique (founded 1794) was the model for science-based technical education that MIT adapted for the American context." }
+  ]
+}

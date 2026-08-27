@@ -925,22 +925,49 @@
 
       <!-- US History -->
       <div class="course-card animate-in delay-3">
-        <div class="course-card-banner us"></div>
+        <a class="course-card-banner us" href="course.html?id=us-history" style="display:block;text-decoration:none;"></a>
         <div class="course-card-body">
           <span class="course-tag us">🇺🇸 US History</span>
-          <h3 class="course-name">United States History</h3>
-          <p class="course-desc">American history from Reconstruction to the present — key movements, conflicts, and turning points in US society.</p>
+          <a href="course.html?id=us-history" style="text-decoration:none;color:inherit;">
+            <h3 class="course-name" style="transition:color .18s;">United States History</h3>
+          </a>
+          <p class="course-desc">American history from the colonial era through the Civil War era — expansion, democracy, reform, and the growing sectional conflict over slavery.</p>
 
-          <div class="module-list">
-          </div>
+          <div class="module-list" id="ush-module-list"></div>
+
+          <a href="course.html?id=us-history" class="course-see-all" id="ush-see-all">See all 2 modules →</a>
         </div>
 
         <div class="course-card-footer">
           <span class="footer-progress-label">Progress</span>
           <div class="footer-progress-bar-wrap">
-            <div class="footer-progress-fill us" style="width: 0%"></div>
+            <div class="footer-progress-fill us" id="ush-footer-bar" style="width: 0%"></div>
           </div>
-          <span class="footer-count">0 modules ready</span>
+          <span class="footer-count" id="ush-footer-count">—</span>
+        </div>
+      </div>
+
+      <!-- Engineering in History -->
+      <div class="course-card animate-in delay-4">
+        <a class="course-card-banner" href="course.html?id=engineering-in-history" style="display:block;text-decoration:none;background:linear-gradient(135deg,#7c3aed 0%,#4f46e5 100%);"></a>
+        <div class="course-card-body">
+          <span class="course-tag" style="background:#ede9fe;color:#4c1d95;">📜 HTS 1081</span>
+          <a href="course.html?id=engineering-in-history" style="text-decoration:none;color:inherit;">
+            <h3 class="course-name" style="transition:color .18s;">Engineering in History</h3>
+          </a>
+          <p class="course-desc">History of technology and engineering — social, political, and ethical dimensions, from the Industrial Revolution to the Boeing 737 Max.</p>
+
+          <div class="module-list" id="eih-module-list"></div>
+
+          <a href="course.html?id=engineering-in-history" class="course-see-all" id="eih-see-all">See all 15 weeks →</a>
+        </div>
+
+        <div class="course-card-footer">
+          <span class="footer-progress-label">Progress</span>
+          <div class="footer-progress-bar-wrap">
+            <div class="footer-progress-fill" id="eih-footer-bar" style="width:0%;background:#7c3aed;"></div>
+          </div>
+          <span class="footer-count" id="eih-footer-count">—</span>
         </div>
       </div>
 
@@ -954,6 +981,10 @@
 
   // Ordered module definitions per course — drives the home-page card preview
   var COURSE_MODULES = {
+    'us-history': [
+      { id: 'us-history-m1', num: 1, prefix: 'ush-m1', total: 25, gistFile: 'us-history.json', label: 'Foundations of America',        subtitle: 'Native Americans · Revolution · Declaration · Articles of Confederation' },
+      { id: 'us-history-m2', num: 2, prefix: 'ush-m2', total: 25, gistFile: 'us-history.json', label: 'Expansion, Democracy & Reform', subtitle: 'Louisiana Purchase · Jackson · Seneca Falls · Fugitive Slave Act' }
+    ],
     'ga-history': [
       { id: 'ga-history-m1', num: 1, prefix: 'm1', total: 30, gistFile: 'ga-history.json', label: 'Colonial Georgia',                      subtitle: 'Oglethorpe, Trustees & early settlement' },
       { id: 'ga-history-m2', num: 2, prefix: 'm2', total: 32, gistFile: 'ga-history.json', label: 'Gold Rush & Cherokee Removal',            subtitle: 'Dahlonega Mint, Trail of Tears & the Great Intrusion' },
@@ -963,6 +994,23 @@
       { id: 'ga-history-m6', num: 6, prefix: 'm6', total: 27, gistFile: 'ga-history.json', label: 'Civil Rights Era',                       subtitle: 'Albany Movement, Pickrick Restaurant & the Fight for Equality' },
       { id: 'ga-history-m7', num: 7, prefix: 'm7', total: 33, gistFile: 'ga-history.json', label: 'Sunbelt Era',                            subtitle: 'Hartsfield-Jackson Airport & 1996 Olympics' },
       { id: 'ga-history-m8', num: 8, prefix: 'm8', total: 32, gistFile: 'ga-history.json', label: 'Modern Georgia',                         subtitle: 'State Flag, Ted Turner & the Film Industry' }
+    ],
+    'engineering-in-history': [
+      { id: 'eng-history-w1',  num: 1,  prefix: 'eih-w1',  total: 16, gistFile: 'eng-history.json', label: 'What is Engineering?',                         subtitle: 'Riley — Engineering mindsets and social justice' },
+      { id: 'eng-history-w2',  num: 2,  prefix: 'eih-w2',  total: 15, gistFile: 'eng-history.json', label: 'Engineering, Technology & Science',             subtitle: 'Davis · Petroski — Defining the profession' },
+      { id: 'eng-history-w3',  num: 3,  prefix: 'eih-w3',  total: 15, gistFile: 'eng-history.json', label: 'Engineering Practice 1: Soul of a New Machine', subtitle: 'Kidder — Flying Upside Down (1981)' },
+      { id: 'eng-history-w4',  num: 4,  prefix: 'eih-w4',  total: 15, gistFile: 'eng-history.json', label: 'Engineering Practice 2: Corporate Politics',    subtitle: 'Leslie — Kettering and the Copper-Cooled Engine' },
+      { id: 'eng-history-w5',  num: 5,  prefix: 'eih-w5',  total: 15, gistFile: 'eng-history.json', label: 'Engineering Practice 3: Great Bridges',         subtitle: 'Petroski — Bridges and Politics · Exam 1' },
+      { id: 'eng-history-w6',  num: 6,  prefix: 'eih-w6',  total: 15, gistFile: 'eng-history.json', label: 'Engineering as a Profession (19th c.)',          subtitle: 'Brittain & McMath — Georgia Tech and the New South Creed' },
+      { id: 'eng-history-w7',  num: 7,  prefix: 'eih-w7',  total: 14, gistFile: 'eng-history.json', label: 'Post-WWII Engineering Education',               subtitle: 'Seely — Cold War and the science-heavy curriculum' },
+      { id: 'eng-history-w8',  num: 8,  prefix: 'eih-w8',  total: 16, gistFile: 'eng-history.json', label: 'Women in Engineering: Why So Few?',             subtitle: 'Bix · Frize — Engineering as a male domain' },
+      { id: 'eng-history-w9',  num: 9,  prefix: 'eih-w9',  total: 16, gistFile: 'eng-history.json', label: 'Scientific Management & Fordism',               subtitle: 'Hughes · Ford — Taylor, Ford, and the labor problem' },
+      { id: 'eng-history-w10', num: 10, prefix: 'eih-w10', total: 16, gistFile: 'eng-history.json', label: 'Engineering and Totalitarianism',               subtitle: 'Graham — Ghost of the Executed Engineer · Exam 2' },
+      { id: 'eng-history-w11', num: 11, prefix: 'eih-w11', total: 15, gistFile: 'eng-history.json', label: 'Engineering Ethics — A Short History',          subtitle: 'Davis — Professional Codes of Ethics (2020)' },
+      { id: 'eng-history-w12', num: 12, prefix: 'eih-w12', total: 16, gistFile: 'eng-history.json', label: 'Neglecting Safety 1: Corvair & Pinto',          subtitle: 'Nader · Dowie — Designed-in danger' },
+      { id: 'eng-history-w13', num: 13, prefix: 'eih-w13', total: 15, gistFile: 'eng-history.json', label: 'Neglecting Safety 2: Quebec Bridge',            subtitle: 'Kranakis — Fixing the Blame (2004)' },
+      { id: 'eng-history-w14', num: 14, prefix: 'eih-w14', total: 16, gistFile: 'eng-history.json', label: 'Neglecting Safety 3: Boeing 737 Max',           subtitle: 'Tkacik — When engineers yield to accountants' },
+      { id: 'eng-history-w15', num: 15, prefix: 'eih-w15', total: 15, gistFile: 'eng-history.json', label: 'History and the Ethical Engineer',              subtitle: 'Course wrap-up · Final exam prep' }
     ]
   };
 
@@ -1138,9 +1186,29 @@
       { id: 'ga-history-m7', num: 7, label: 'Sunbelt Era' },
       { id: 'ga-history-m8', num: 8, label: 'Modern Georgia' }
     ]},
+    { id: 'us-history', label: 'US History', modules: [
+      { id: 'us-history-m1', num: 1, label: 'Foundations of America' },
+      { id: 'us-history-m2', num: 2, label: 'Expansion, Democracy & Reform' }
+    ]},
     { id: 'capstone-design',        label: 'Capstone Design',                   modules: [] },
     { id: 'engineering-economy',    label: 'Engineering Economy',                modules: [] },
-    { id: 'engineering-in-history', label: 'Engineering in History',             modules: [] },
+    { id: 'engineering-in-history', label: 'Engineering in History', modules: [
+      { id: 'eng-history-w1',  num: 1,  label: 'What is Engineering?' },
+      { id: 'eng-history-w2',  num: 2,  label: 'Engineering, Technology & Science' },
+      { id: 'eng-history-w3',  num: 3,  label: 'Soul of a New Machine' },
+      { id: 'eng-history-w4',  num: 4,  label: 'Corporate Politics & Product Design' },
+      { id: 'eng-history-w5',  num: 5,  label: 'Power, the Public & Great Bridges' },
+      { id: 'eng-history-w6',  num: 6,  label: 'Engineering as a Profession (19th c.)' },
+      { id: 'eng-history-w7',  num: 7,  label: 'Post-WWII Engineering Education' },
+      { id: 'eng-history-w8',  num: 8,  label: 'Women in Engineering: Why So Few?' },
+      { id: 'eng-history-w9',  num: 9,  label: 'Scientific Management & Fordism' },
+      { id: 'eng-history-w10', num: 10, label: 'Engineering and Totalitarianism' },
+      { id: 'eng-history-w11', num: 11, label: 'Engineering Ethics — A Short History' },
+      { id: 'eng-history-w12', num: 12, label: 'Neglecting Safety 1: Corvair & Pinto' },
+      { id: 'eng-history-w13', num: 13, label: 'Neglecting Safety 2: Quebec Bridge' },
+      { id: 'eng-history-w14', num: 14, label: 'Neglecting Safety 3: Boeing 737 Max' },
+      { id: 'eng-history-w15', num: 15, label: 'History and the Ethical Engineer' }
+    ]},
     { id: 'government-us',          label: 'Government of the U.S.',             modules: [] },
     { id: 'me-systems-lab',         label: 'ME Systems Laboratory',              modules: [] },
     { id: 'refrigeration-ac',       label: 'Refrigeration and Air Conditioning', modules: [] }

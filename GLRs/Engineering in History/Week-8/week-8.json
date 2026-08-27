@@ -1,0 +1,82 @@
+{
+  "id": "eng-history-w8",
+  "course": "Engineering in History",
+  "courseColor": "blue",
+  "moduleNumber": 8,
+  "title": "Women in Engineering: Why So Few?",
+  "subtitle": "Bix (2004) · Frize (2010) — Engineering as a Male Domain",
+  "storagePrefix": "eih-w8",
+  "totalCards": 16,
+
+  "overview": {
+    "stats": [
+      { "value": "~14%", "label": "Women in U.S. engineering workforce (recent)" },
+      { "value": "1885", "label": "Georgia Tech founded — men only until 1952" },
+      { "value": "Oct 13–15", "label": "Class dates" },
+      { "value": "2", "label": "Readings assigned" }
+    ],
+    "people": [
+      { "name": "Amy Sue Bix", "desc": "Historian at Iowa State; 2004 NWSA Journal article traces women's U.S. engineering education history from 'Engineeresses' (1800s) through 'Girl Engineers' (mid-20th c.) to today." },
+      { "name": "Monique Frize", "desc": "Canadian engineer and historian; The Bold and the Brave (2010) identifies structural and cultural obstacles that prevent women from entering science and engineering." }
+    ],
+    "dates": [
+      { "year": "1870s", "event": "First women enrolled in engineering-related courses in the U.S., largely at land-grant colleges" },
+      { "year": "1942–45", "event": "WWII brings women into engineering roles in large numbers — 'Rosie the Riveter' era" },
+      { "year": "1952", "event": "Georgia Tech admits first female students" },
+      { "year": "1970s", "event": "Women's movement and affirmative action policies begin increasing female engineering enrollment" },
+      { "year": "1980s", "event": "Female engineering enrollment peaks at ~20%; then plateaus or declines despite continued advocacy" }
+    ],
+    "terms": [
+      { "term": "Engineeresses", "def": "Bix's term for the earliest women in engineering-adjacent roles (19th c.); often in decorative arts, textiles, and home economics rather than 'core' engineering fields" },
+      { "term": "Chilly climate", "def": "Term for the hostile or unwelcoming environment women and minorities face in engineering workplaces and classrooms — informal exclusion even when formal barriers are removed" },
+      { "term": "Pipeline problem", "def": "The argument that few women become engineers because they don't enter (or don't stay in) the educational pipeline — a structural rather than individual explanation" },
+      { "term": "Stereotype threat", "def": "Psychological phenomenon where awareness of a negative stereotype about one's group impairs performance — a documented barrier for women in math/engineering" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — Bix: From 'Engineeresses' to 'Good Engineers'",
+      "body": "<p><mark>Amy Sue Bix</mark>'s 2004 article traces the long history of women in U.S. engineering education. In the 19th century, a handful of women worked in engineering-adjacent roles — <mark>\"Engineeresses\"</mark> — often in textiles, home economics, and decorative arts. Land-grant colleges (funded by the 1862 Morrill Act) were among the first to admit women to technical fields.</p><p>WWII was a watershed: labor shortages brought women into engineering roles in large numbers. But the post-war period reversed this — men returned, women were pushed out, and the <mark>GI Bill</mark> funded returning veterans' engineering education, crowding out women who had briefly entered the profession.</p>"
+    },
+    {
+      "title": "2 — The Mid-20th Century: 'Girl Engineers'",
+      "body": "<p>From the 1950s through the 1970s, the small number of women in engineering were often labeled <mark>\"Girl Engineers\"</mark> — a phrase that simultaneously acknowledged their presence and trivialized it. Engineering culture remained deeply masculine: the profession's identity was built around <mark>male camaraderie</mark>, physical toughness, and an implicit assumption that engineering was men's work.</p><p>The <mark>women's movement</mark> and <mark>affirmative action</mark> policies in the 1970s began increasing female enrollment — but progress was slow and uneven. By the 1980s, women comprised roughly <mark>20%</mark> of engineering undergraduates. Then the numbers <mark>plateaued or declined</mark>, despite continued advocacy.</p>"
+    },
+    {
+      "title": "3 — Frize: Structural Obstacles to Entry",
+      "body": "<p><mark>Monique Frize</mark>'s chapter identifies specific structural and cultural obstacles that prevent women from entering science and engineering. These include: <mark>early socialization</mark> that steers girls away from math and science; <mark>lack of role models</mark>; the <mark>chilly climate</mark> of engineering classrooms and workplaces; and the challenge of balancing career with family responsibilities in a profession that demands long hours.</p><p>Frize emphasizes that these are not individual failures but <mark>systemic barriers</mark>. Even when formal admissions barriers are removed, informal exclusion through culture, mentorship gaps, and hostile environments continues to operate.</p>"
+    },
+    {
+      "title": "4 — Why Do Numbers Matter?",
+      "body": "<p>Both Bix and Frize argue that the underrepresentation of women in engineering is not just a justice issue — it affects the <mark>quality of engineering itself</mark>. When design teams are homogeneous, they have systematic blind spots. Products designed without women's input often fail to serve women users; safety systems developed by all-male teams overlook women's physiological differences.</p><p>This connects to Donna Riley's Week 1 argument: if engineering culture excludes social justice considerations, the resulting technologies serve only the interests of those who built them. Diversity is not just an ethical good — it improves engineering outcomes.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What does Amy Sue Bix's 2004 article trace?", "a": "The history of women in U.S. engineering education from 'Engineeresses' (19th c.) through 'Girl Engineers' (mid-20th c.) to the present — showing persistent barriers and slow progress." },
+    { "key": true,  "q": "What was the impact of WWII on women in engineering, and what happened after?", "a": "WWII labor shortages brought women into engineering in large numbers. Post-war, men returned via the GI Bill, women were pushed out, and the brief gains were largely reversed." },
+    { "q": "What were 'Engineeresses' in the 19th century?", "a": "Bix's term for the earliest women in engineering-adjacent roles — often in textiles, home economics, and decorative arts; largely excluded from 'core' engineering fields." },
+    { "q": "What happened to female engineering enrollment in the 1980s despite continued advocacy?", "a": "It plateaued at about 20% and then declined — demonstrating that even after formal barriers are removed, cultural and structural obstacles persist." },
+    { "key": true,  "q": "What does Monique Frize identify as the main obstacles to women entering engineering?", "a": "Early socialization steering girls away from math/science; lack of role models; the 'chilly climate' of engineering culture; and work-life balance challenges in a high-hours profession." },
+    { "q": "What is the 'chilly climate' in engineering?", "a": "A hostile or unwelcoming environment women face in engineering classrooms and workplaces — informal exclusion that operates even when formal admissions barriers are removed." },
+    { "q": "What is the 'pipeline problem' in engineering diversity?", "a": "The argument that few women become engineers because they don't enter or stay in the educational pipeline — pointing to structural rather than individual explanations." },
+    { "q": "What is stereotype threat and how does it affect women in engineering?", "a": "Awareness of a negative stereotype about one's group impairs performance — documented to reduce math/science performance in women when gender is made salient." },
+    { "key": true,  "q": "Why do Bix and Frize argue that diversity in engineering matters beyond justice?", "a": "Homogeneous design teams have systematic blind spots — products designed without women's input often fail to serve women; diversity improves engineering outcomes, not just fairness." },
+    { "q": "How does Week 8 connect to Donna Riley's Week 1 argument?", "a": "Both argue engineering culture's exclusions produce worse engineering — Riley's critique of the problem-solving mindset and Bix/Frize's critique of gender exclusion both point to how culture shapes outcomes." },
+    { "q": "When did Georgia Tech first admit women?", "a": "1952 — 67 years after the school was founded in 1885." },
+    { "q": "What role did the GI Bill play in the post-WWII marginalization of women in engineering?", "a": "It funded returning male veterans' engineering education in large numbers, crowding out women who had entered the profession during the war." },
+    { "q": "What was the significance of the 1970s for women in engineering?", "a": "The women's movement and affirmative action policies began increasing female engineering enrollment — but progress was slow and the 20% ceiling proved difficult to break." },
+    { "q": "What are some examples of products designed without adequate consideration of women users?", "a": "Crash test dummies designed for male bodies (underestimating injury risk to women); voice recognition trained on male voices; medical devices calibrated for male physiology." },
+    { "q": "What does Frize mean by structural rather than individual barriers?", "a": "The obstacles women face in engineering are systemic — built into institutions, cultures, and social norms — not the result of individual women's choices or capabilities." },
+    { "q": "How does the history of women in engineering relate to the broader course argument?", "a": "It reinforces that engineering is always a social practice shaped by power, culture, and exclusion — and that who gets to engineer shapes what gets engineered." }
+  ],
+
+  "quiz": [
+    { "q": "What was the impact of WWII on women in engineering?", "options": ["It had no effect — engineering remained all-male throughout", "Labor shortages brought women in; the GI Bill crowded them out post-war", "Women entered permanently and never left", "WWII caused women's enrollment to decline for the first time"], "correct": 1, "explanation": "WWII briefly opened engineering to women through labor shortages; the GI Bill then flooded engineering schools with male veterans, reversing those gains." },
+    { "q": "What does Amy Sue Bix call the earliest women in engineering-adjacent roles in the 19th century?", "options": ["Women Engineers", "Engineeresses", "Lady Mechanics", "Technical Assistants"], "correct": 1, "explanation": "Bix uses 'Engineeresses' to describe women in engineering-adjacent roles (textiles, home economics, decorative arts) — largely excluded from 'core' engineering fields." },
+    { "q": "What is the 'chilly climate' as described by Frize?", "options": ["Physical discomfort in engineering labs", "Hostile or unwelcoming environment that functions as informal exclusion even after formal barriers are removed", "Cold weather that discourages women from outdoor engineering work", "A term for engineering's overcrowded job market"], "correct": 1, "explanation": "The chilly climate refers to informal cultural exclusion — hostile norms, lack of mentorship, and unwelcoming environments that persist even after formal admissions barriers are removed." },
+    { "q": "Why do Bix and Frize argue diversity in engineering matters beyond fairness?", "options": ["More diverse teams are always faster", "Homogeneous teams have systematic blind spots that produce worse engineering for underrepresented users", "Diversity is required by law in most countries", "More diversity means more funding opportunities"], "correct": 1, "explanation": "Products and systems designed by homogeneous teams often fail to serve diverse users — crash test dummies, medical devices, and voice recognition trained only on male data are classic examples." },
+    { "q": "What happened to female engineering enrollment around 1980?", "options": ["It reached 50% for the first time", "It plateaued at about 20% and then declined despite continued advocacy", "It collapsed to under 5%", "It grew rapidly to 35% by 1990"], "correct": 1, "explanation": "After reaching roughly 20%, female engineering enrollment plateaued and in some areas declined — demonstrating that removing formal barriers is not sufficient to change deeply embedded cultural norms." }
+  ]
+}

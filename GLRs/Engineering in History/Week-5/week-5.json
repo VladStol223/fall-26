@@ -1,0 +1,81 @@
+{
+  "id": "eng-history-w5",
+  "course": "Engineering in History",
+  "courseColor": "blue",
+  "moduleNumber": 5,
+  "title": "Engineering Practice 3: Power, the Public & Great Bridges",
+  "subtitle": "Henry Petroski — Bridges and Politics (2002) · Exam 1 Week",
+  "storagePrefix": "eih-w5",
+  "totalCards": 15,
+
+  "overview": {
+    "stats": [
+      { "value": "1883", "label": "Brooklyn Bridge opened" },
+      { "value": "1940", "label": "Tacoma Narrows Bridge collapse" },
+      { "value": "Sep 24", "label": "First in-class essay exam" },
+      { "value": "Wks 1–5", "label": "Exam covers weeks 1–5" }
+    ],
+    "people": [
+      { "name": "Henry Petroski", "desc": "Civil engineer and author; Invention by Design (1996) examines how engineers move from thought to thing; argues bridge design is always embedded in political and social context." },
+      { "name": "John Roebling", "desc": "Designer of the Brooklyn Bridge; died before completion (1869); son Washington Roebling finished the project." },
+      { "name": "Robert Moses", "desc": "New York City's powerful 'master builder' (1930s–1960s); his bridge and highway decisions embedded racial and class politics into New York's physical infrastructure." }
+    ],
+    "dates": [
+      { "year": "1869", "event": "John Roebling dies from tetanus after foot injury during Brooklyn Bridge survey" },
+      { "year": "1883", "event": "Brooklyn Bridge opens — at the time the world's longest suspension bridge" },
+      { "year": "Nov 7, 1940", "event": "Tacoma Narrows Bridge collapses due to aeroelastic flutter — filmed on 16mm, iconic engineering failure footage" },
+      { "year": "Sep 24, 2026", "event": "First in-class essay exam covering weeks 1–5" }
+    ],
+    "terms": [
+      { "term": "Aeroelastic flutter", "def": "The resonance phenomenon that caused the Tacoma Narrows Bridge to oscillate and collapse in 1940; bridges must be designed to resist wind-induced vibration" },
+      { "term": "Suspension bridge", "def": "Bridge supported by cables suspended from towers; allows long spans; Brooklyn Bridge (1883) was a pioneering example" },
+      { "term": "Political engineering", "def": "Petroski's concept: engineering decisions about where to build bridges, who benefits from them, and what they look like are always political — not purely technical" },
+      { "term": "Robert Moses effect", "def": "When infrastructure is designed to exclude certain groups — e.g., Moses allegedly built low overpasses to keep buses (and therefore poor Black residents) off parkways leading to public beaches" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — Bridges Are Political",
+      "body": "<p><mark>Henry Petroski</mark>'s chapter \"Bridges and Politics\" argues that bridge design and construction are never purely technical. Decisions about <mark>where to build</mark>, <mark>how to fund</mark>, <mark>what they look like</mark>, and <mark>who benefits</mark> are deeply political — contested by governments, interest groups, communities, and engineers themselves.</p><p>Petroski shows this through historical examples: the <mark>Brooklyn Bridge</mark> required years of political lobbying to get funded; the <mark>Golden Gate Bridge</mark> was opposed by ferry interests and required a bond measure voters had to approve. Engineering competence alone cannot build a bridge — it requires political navigation.</p>"
+    },
+    {
+      "title": "2 — The Brooklyn Bridge: Politics, Power, and Engineering",
+      "body": "<p>The <mark>Brooklyn Bridge</mark> (1883) is the book's central example. <mark>John Roebling</mark> lobbied for the project for years before getting approval; he died from tetanus before construction began. His son <mark>Washington Roebling</mark> finished the bridge while suffering from caisson disease (the bends) — he supervised the final years from his window through binoculars.</p><p>The bridge required navigating <mark>Tammany Hall corruption</mark>, competing contractor interests, and public skepticism. The engineering achievement was inseparable from the political and social struggle to make it happen.</p>"
+    },
+    {
+      "title": "3 — Robert Moses: Infrastructure as Social Policy",
+      "body": "<p>Petroski invokes <mark>Robert Moses</mark>, New York's mid-20th century 'master builder,' as a cautionary example of political power shaping engineering. Moses allegedly built <mark>parkway overpasses too low</mark> for buses — deliberately preventing poor and Black residents who relied on public transit from reaching Jones Beach and other public spaces.</p><p>Whether fully accurate or not, the Moses example illustrates how <mark>infrastructure embeds values</mark>. Engineering decisions about clearances, routes, and access points are social decisions that shape who can participate in public life for generations.</p>"
+    },
+    {
+      "title": "4 — Bridge Failures and Engineering Learning",
+      "body": "<p>Petroski is famous for arguing that <mark>failure is the engineer's best teacher</mark>. The <mark>Tacoma Narrows Bridge</mark> (\"Galloping Gertie\"), which collapsed in <mark>1940</mark> due to <mark>aeroelastic flutter</mark>, is a case study in how an innovative but insufficiently tested design can fail spectacularly.</p><p>The collapse, famously captured on film, transformed bridge engineering — all subsequent suspension bridges had to account for wind-induced resonance. Engineering knowledge advances through failure as much as success. This sets the stage for Section 3's deeper examination of engineering disasters.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What is Petroski's central argument in 'Bridges and Politics'?", "a": "Bridge design and construction are never purely technical — decisions about where to build, how to fund, and who benefits are always embedded in political and social context." },
+    { "q": "Who designed the Brooklyn Bridge and what happened to him?", "a": "John Roebling designed it but died from tetanus after a foot injury during a survey. His son Washington Roebling completed the project." },
+    { "q": "When did the Brooklyn Bridge open and why was it significant?", "a": "1883 — it was the world's longest suspension bridge at the time and a major symbol of American industrial capability." },
+    { "key": true,  "q": "What is the Robert Moses 'low overpass' example and what does it illustrate?", "a": "Moses allegedly built parkway overpasses too low for buses, preventing poor and Black residents from reaching public beaches. It illustrates how infrastructure embeds social values and exclusion." },
+    { "q": "What caused the Tacoma Narrows Bridge collapse in 1940?", "a": "Aeroelastic flutter — the bridge resonated with wind-induced oscillations until it collapsed. It was filmed on 16mm and became iconic engineering failure footage." },
+    { "key": true,  "q": "What does Petroski mean by 'failure is the engineer's best teacher'?", "a": "Engineering knowledge advances through understanding failures — the Tacoma Narrows collapse transformed suspension bridge design by revealing the need to account for wind-induced resonance." },
+    { "q": "What political obstacles had to be overcome to build the Brooklyn Bridge?", "a": "Years of lobbying for approval, navigating Tammany Hall corruption, competing contractor interests, and public skepticism — all before construction could begin." },
+    { "q": "What political forces opposed the Golden Gate Bridge?", "a": "Ferry interests (who would lose business to the bridge) and initially skeptical voters who had to approve a bond measure to fund it." },
+    { "q": "What is aeroelastic flutter?", "a": "The resonance phenomenon where wind causes a bridge to oscillate increasingly until structural failure — the mechanism that destroyed the Tacoma Narrows Bridge." },
+    { "q": "What is Robert Moses known for in American urban history?", "a": "New York City's 'master builder' (1930s–1960s) who shaped parks, highways, bridges, and public housing — often at the expense of poor, minority, and lower-class communities." },
+    { "q": "What does the Tacoma Narrows collapse teach about engineering knowledge?", "a": "Knowledge advances through failure — the collapse forced engineers to understand and design for wind-induced resonance in all subsequent long-span bridges." },
+    { "q": "Who is Henry Petroski and what is Invention by Design about?", "a": "Civil engineer and author who examines how engineers move from thought to finished product; Invention by Design (1996) uses case studies including bridges to show engineering's social and political dimensions." },
+    { "q": "How does Week 5 connect to the broader course argument?", "a": "Bridges illustrate that engineering is always political — where, how, and for whom infrastructure is built are social decisions, not just technical ones. This theme runs throughout the course." },
+    { "q": "What exam occurs on September 24, and what does it cover?", "a": "The first in-class essay exam, covering weeks 1–5 of the course." },
+    { "q": "What does the Brooklyn Bridge case illustrate about the relationship between engineering and politics?", "a": "Engineering competence alone cannot build major infrastructure — it requires political navigation, funding battles, and social consensus." }
+  ],
+
+  "quiz": [
+    { "q": "What is Petroski's central argument about bridges?", "options": ["Bridge engineering is purely technical", "Bridge construction always requires political navigation and embeds social values", "Bridges only fail because of poor engineering", "Politics only matters for modern bridges, not historical ones"], "correct": 1, "explanation": "Petroski argues that bridge decisions — where to build, who benefits, how to fund — are always political, not just technical." },
+    { "q": "What caused the Tacoma Narrows Bridge ('Galloping Gertie') to collapse in 1940?", "options": ["Poor concrete quality", "Earthquake damage", "Aeroelastic flutter — wind-induced resonance oscillations", "A ship collision"], "correct": 2, "explanation": "The bridge resonated with wind at its natural frequency until it oscillated apart — aeroelastic flutter, now a key consideration in all long-span bridge design." },
+    { "q": "What does the Robert Moses 'low overpass' story illustrate?", "options": ["Bridges can be built cheaply by lowering clearances", "Infrastructure design embeds social values and can enforce exclusion", "Robert Moses was a poor engineer who made technical mistakes", "New York had different vehicle size standards than other states"], "correct": 1, "explanation": "Whether fully accurate or not, the example illustrates how engineering decisions about clearances and routes can function as social policy — excluding certain populations." },
+    { "q": "What happened to John Roebling before the Brooklyn Bridge was completed?", "options": ["He resigned due to funding disputes", "He died from tetanus after a foot injury during the survey", "He was fired by Tammany Hall", "He emigrated back to Germany"], "correct": 1, "explanation": "Roebling died from tetanus shortly after a site accident; his son Washington completed the bridge." },
+    { "q": "The first in-class essay exam covers which weeks?", "options": ["Weeks 1–3", "Weeks 1–4", "Weeks 1–5", "Weeks 3–7"], "correct": 2, "explanation": "The first in-class essay exam is held on September 24 and covers weeks 1–5 of the course." }
+  ]
+}

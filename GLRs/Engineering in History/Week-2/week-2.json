@@ -1,0 +1,79 @@
+{
+  "id": "eng-history-w2",
+  "course": "Engineering in History",
+  "courseColor": "blue",
+  "moduleNumber": 2,
+  "title": "Engineering, Technology & Science",
+  "subtitle": "Davis (1995) · Petroski (2011) — Defining the Profession",
+  "storagePrefix": "eih-w2",
+  "totalCards": 15,
+
+  "overview": {
+    "stats": [
+      { "value": "1995", "label": "Davis article published" },
+      { "value": "1852", "label": "ASCE founded" },
+      { "value": "2", "label": "Readings assigned" },
+      { "value": "Sep 1–3", "label": "Class dates" }
+    ],
+    "people": [
+      { "name": "Michael Davis", "desc": "Philosopher of engineering ethics; argues engineering became a profession through the development of shared ethical codes, not just technical expertise." },
+      { "name": "Henry Petroski", "desc": "Civil engineer and prolific author (To Engineer Is Human; An Engineer's Alphabet); writes about engineering for general audiences; known for analysis of design and failure." }
+    ],
+    "dates": [
+      { "year": "1852", "event": "American Society of Civil Engineers (ASCE) founded — one of the first professional engineering societies" },
+      { "year": "1880s–1900s", "event": "Major engineering professional societies form codes of ethics, formalizing engineering as a profession" },
+      { "year": "1995", "event": "Davis publishes 'An Historical Preface to Engineering Ethics' in Science and Engineering Ethics" }
+    ],
+    "terms": [
+      { "term": "Profession", "def": "An occupation with a shared code of ethical conduct that members are expected to follow — Davis's criterion distinguishing professions from mere technical trades" },
+      { "term": "Engineering vs. science", "def": "Science seeks to understand nature (why?); engineering seeks to change the world by applying knowledge to build things (how do we make this work?)" },
+      { "term": "Technology", "def": "The broader category — all human-made tools, techniques, and knowledge systems. Engineering is a formalized, science-based subset of technology." },
+      { "term": "Conflict of interest", "def": "When an engineer's obligations to employer, client, and public come into tension — the central ethical challenge Davis traces historically" }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — Davis: Engineering as a Profession",
+      "body": "<p><mark>Michael Davis</mark>'s 1995 article traces how engineering became a recognized profession in the 19th century. Davis argues that a profession is distinguished not just by technical expertise but by a <mark>code of conduct</mark> — shared ethical standards members are expected to follow.</p><p>Before the mid-19th century, builders and mechanics did much of what we now call engineering without formal credentials or organized professional bodies. The emergence of <mark>professional engineering societies</mark> (like the ASCE, founded <mark>1852</mark>) and later <mark>engineering ethics codes</mark> transformed engineering into a profession in the modern sense.</p>"
+    },
+    {
+      "title": "2 — Engineering vs. Science",
+      "body": "<p>A central theme in both readings is the distinction between <mark>engineering</mark> and <mark>science</mark>. Science seeks to <mark>understand</mark> how nature works; engineering seeks to <mark>change</mark> the world by applying knowledge to build things. Scientists ask \"why?\"; engineers ask \"how do we make this work?\"</p><p><mark>Henry Petroski</mark>'s short essay \"Scientists vs. Engineers\" captures this tension. He notes that scientists and engineers are trained differently, value different things, and often misunderstand each other. Scientists prize <mark>publication and peer recognition</mark>; engineers value <mark>things that work</mark>.</p>"
+    },
+    {
+      "title": "3 — Engineering vs. Technology",
+      "body": "<p><mark>Technology</mark> is a broader term than engineering — it includes all the tools, machines, techniques, and knowledge systems humans have developed. <mark>Engineering</mark> is a particular, formalized practice within technology: applying <mark>scientific principles</mark> using <mark>mathematical analysis</mark> within <mark>economic and social constraints</mark>.</p><p>Not all technology is engineered — traditional crafts, vernacular architecture, and folk medicine are all technology without formal engineering. Conversely, modern engineering always involves technology but is characterized by its reliance on <mark>systematic knowledge</mark> and <mark>professional standards</mark>.</p>"
+    },
+    {
+      "title": "4 — Engineering as Professional Practice",
+      "body": "<p>Davis emphasizes that engineering is not just technical skill but a <mark>social practice</mark> embedded in institutions, norms, and ethical commitments. The professional engineer operates within a web of obligations: to employers, to clients, to the public, and to the profession itself.</p><p>This multiplicity of obligations creates potential <mark>conflicts of interest</mark> — for example, when an employer wants something that raises public safety risks. Understanding engineering <mark>historically</mark> helps clarify how these obligations arose and how engineers have navigated (or failed to navigate) them — groundwork for the ethics cases in Section 3.</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true,  "q": "What is Michael Davis's main argument in 'An Historical Preface to Engineering Ethics'?", "a": "Engineering became a profession in the 19th century through the development of shared ethical standards and codes of conduct — not just technical expertise." },
+    { "key": true,  "q": "What distinguishes a 'profession' from other kinds of work, according to Davis?", "a": "A profession has a shared code of conduct (ethical standards) that members are expected to follow, beyond mere technical competence." },
+    { "q": "When was the ASCE founded and why is it significant?", "a": "1852 — one of the first professional engineering societies, helping formalize engineering as a recognized profession." },
+    { "key": true,  "q": "What is the key difference between science and engineering?", "a": "Science seeks to understand nature (why?); engineering seeks to change the world by applying knowledge to make things work (how?)." },
+    { "q": "How does Petroski characterize the scientist/engineer difference?", "a": "Scientists prize publication and peer recognition; engineers value things that work. They are trained differently and often misunderstand each other." },
+    { "q": "Which is the broader term: engineering or technology?", "a": "Technology — it encompasses all human-made tools and techniques. Engineering is a formalized subset that applies scientific principles with mathematical analysis under economic constraints." },
+    { "q": "Give an example of technology that is NOT engineering.", "a": "Traditional crafts, vernacular (folk) architecture, or folk medicine — technology developed without formal engineering methods." },
+    { "q": "What multiple obligations does the professional engineer face?", "a": "Obligations to employers, clients, the public, and the engineering profession itself — these can create ethical conflicts." },
+    { "q": "Why does Davis think studying the history of engineering ethics is important?", "a": "It shows how ethical obligations arose and how engineers have navigated (or failed to navigate) conflicts between competing duties." },
+    { "q": "Who is Henry Petroski and what is he known for?", "a": "A civil engineer and prolific author (To Engineer Is Human) who writes about engineering for general audiences; famous for analyzing design and failure." },
+    { "q": "What does 'engineering as professional practice' mean?", "a": "Engineering is a social practice embedded in institutions and ethical norms — not just a technical skill set. Ethics is intrinsic, not added on." },
+    { "q": "Why are engineering's boundaries difficult to define?", "a": "Because engineering overlaps with science (uses scientific knowledge), technology (a subset of it), and crafts (shares hands-on making)." },
+    { "q": "What is a 'conflict of interest' for an engineer?", "a": "When the engineer's obligations to employer, client, and public tension — e.g., employer wants a cheaper design that raises public safety risks." },
+    { "q": "What does Petroski's 'Scientists vs. Engineers' essay argue?", "a": "That scientists and engineers have fundamentally different values and goals, often misunderstood by both groups and the public." },
+    { "q": "By Week 2, what conceptual framework does the course want students to understand?", "a": "That engineering is a distinct profession (not just technology or science), with its own history, ethics, social context, and boundaries — a framework applied throughout the course." }
+  ],
+
+  "quiz": [
+    { "q": "According to Davis, what is the defining feature that makes engineering a 'profession'?", "options": ["Advanced technical skills", "Government licensing", "A shared ethical code of conduct", "A university degree requirement"], "correct": 2, "explanation": "Davis argues that a code of shared ethical standards — not just technical expertise — is what distinguishes a profession." },
+    { "q": "When scientists and engineers interact, what key value difference does Petroski highlight?", "options": ["Engineers value theory; scientists value practice", "Scientists value publication; engineers value things that work", "Engineers value money; scientists value truth", "Scientists prefer teamwork; engineers prefer solo work"], "correct": 1, "explanation": "Petroski notes scientists prize peer recognition and publication while engineers prize functional outcomes." },
+    { "q": "Which of the following is the BROADEST term?", "options": ["Engineering", "Professional engineering", "Technology", "Applied science"], "correct": 2, "explanation": "Technology is the broadest category — it encompasses all human-made tools and techniques; engineering is a formal subset of it." },
+    { "q": "What year was the ASCE founded?", "options": ["1776", "1820", "1852", "1901"], "correct": 2, "explanation": "The ASCE was founded in 1852, making it one of the earliest formal professional engineering organizations in the U.S." },
+    { "q": "Which scenario represents a classic professional conflict of interest for an engineer?", "options": ["Choosing which programming language to use", "Employer wants a cheaper design that raises public safety risks", "Deciding between two equally safe materials", "Writing documentation for a project"], "correct": 1, "explanation": "Conflicts arise when employer interests (cost, speed) clash with the engineer's obligation to protect public safety." }
+  ]
+}
