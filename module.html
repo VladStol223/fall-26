@@ -22,7 +22,95 @@
       background: white;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      overflow: hidden;
+      overflow: visible;
+      transition: max-width .3s ease;
+    }
+    /* when reading panel is open, widen the whole container */
+    body.reading-open .container { max-width: 1400px; }
+
+    /* ── Learn split layout ── */
+    .learn-split {
+      display: flex; gap: 0; align-items: flex-start;
+    }
+    .learn-main {
+      flex: 1 1 0; min-width: 0;
+    }
+    /* reading panel — hidden by default, slides in from right */
+    .reading-panel {
+      flex: 0 0 0; width: 0; overflow: hidden;
+      border-left: 0px solid #e5e7eb;
+      transition: flex-basis .3s ease, width .3s ease, border-width .1s ease .2s;
+      position: relative;
+    }
+    body.reading-open .reading-panel {
+      flex: 0 0 480px; width: 480px;
+      border-left-width: 1px;
+      border-left-color: #e5e7eb;
+      transition: flex-basis .3s ease, width .3s ease, border-width 0s;
+    }
+    .reading-panel-inner {
+      width: 480px; padding: 0 24px 24px;
+      overflow-y: auto;
+      max-height: calc(100vh - 130px);
+      position: sticky; top: 72px;
+    }
+    .reading-panel-header {
+      position: sticky; top: 0; z-index: 2;
+      background: white; padding: 16px 0 12px;
+      border-bottom: 1px solid #e5e7eb; margin-bottom: 16px;
+    }
+    .reading-panel-title {
+      font-size: 13px; font-weight: 700; color: #0a3c78;
+      text-transform: uppercase; letter-spacing: .5px;
+    }
+    .reading-panel-source {
+      font-size: 11px; color: #57606a; margin-top: 3px;
+    }
+
+    /* reading paragraphs */
+    .reading-para {
+      font-size: 13.5px; line-height: 1.75; color: #1f2328;
+      margin-bottom: 14px; padding: 8px 10px; border-radius: 5px;
+      border-left: 3px solid transparent;
+      transition: background .2s, border-color .2s, opacity .2s;
+    }
+    /* when any section is active, dim non-matching paragraphs */
+    .reading-panel.has-active .reading-para { opacity: .3; }
+    .reading-panel.has-active .reading-para.reading-para-active {
+      opacity: 1;
+      background: #eff6ff;
+      border-left-color: #3b82d4;
+    }
+    /* first active para gets a scroll target marker */
+    .reading-para-active-first { scroll-margin-top: 80px; }
+
+    /* toggle button in the banner */
+    #reading-toggle-btn {
+      flex-shrink: 0; padding: 6px 12px;
+      background: white; border: 1px solid #d1d5db; border-radius: 5px;
+      font-size: 13px; font-weight: 500; color: #57606a; cursor: pointer;
+      transition: background .15s, border-color .15s, color .15s;
+      white-space: nowrap;
+    }
+    #reading-toggle-btn:hover { background: #eff6ff; border-color: #3b82d4; color: #0a3c78; }
+    #reading-toggle-btn.active { background: #eff6ff; border-color: #3b82d4; color: #0a3c78; }
+
+    /* mobile: reading panel becomes a fixed bottom drawer */
+    @media (max-width: 900px) {
+      body.reading-open .container { max-width: 760px; }
+      .learn-split { flex-direction: column; }
+      .reading-panel {
+        flex: none !important; width: 100% !important;
+        border-left: none !important;
+        border-top: 1px solid #e5e7eb;
+        max-height: 0; overflow: hidden;
+        transition: max-height .35s ease;
+      }
+      body.reading-open .reading-panel { max-height: 60vh; }
+      .reading-panel-inner {
+        width: 100%; max-height: 60vh; padding: 0 16px 16px;
+        position: static;
+      }
     }
 
     .header {
@@ -45,7 +133,9 @@
     .nav-tabs button.active  { color: #0a3c78; border-bottom-color: #0a3c78; background: white; }
     .nav-tabs button:hover   { background: white; color: #0a3c78; }
 
-    .content { padding: 30px; }
+    .content { padding: 30px; overflow: hidden; border-radius: 0 0 8px 8px; }
+    /* When reading is open, don't clip the right side so the panel can stretch */
+    body.reading-open .content { overflow: visible; }
     .tab-pane { display: none; }
     .tab-pane.active { display: block; animation: fadeIn .3s ease; }
     @keyframes fadeIn { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
@@ -91,7 +181,15 @@
       padding: 2px 7px; font-size: 13px; cursor: pointer; color: #57606a;
       transition: background .15s, border-color .15s;
     }
-    .tts-btn:hover, .tts-btn.tts-active { background: #dbeafe; border-color: #3b82d4; }
+    .tts-btn:hover, .tts-btn.tts-active  { background: #dbeafe; border-color: #3b82d4; }
+    .tts-btn.tts-paused { background: #fef9c3; border-color: #d97706; }
+
+    /* narrator position cursor */
+    .tts-cursor {
+      background: #bfdbfe; border-radius: 2px; padding: 0 1px;
+      outline: 2px solid #3b82d4; outline-offset: 1px;
+      transition: background .1s;
+    }
 
     .learn-section-body {
       display: none; padding: 16px 16px 20px; font-size: 14px; line-height: 1.75; color: #1f2328;
@@ -122,6 +220,7 @@
     }
 
     .anki-card-content {
+      position: relative; overflow: hidden;
       padding: 20px; border-radius: 6px; background: white; border: 2px solid #e5e7eb;
       min-height: 250px; display: flex; align-items: center; justify-content: center;
       text-align: center; font-size: 20px; margin: 20px 0; cursor: pointer;
@@ -130,6 +229,29 @@
       will-change: transform, opacity;
     }
     .anki-card-content:hover { box-shadow: 0 4px 12px rgba(59,130,212,.15); border-color: #3b82d4; }
+
+    /* left/right zone hints shown on the back of the card */
+    .anki-card-content.anki-back::before,
+    .anki-card-content.anki-back::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 50%;
+      opacity: 0; transition: opacity .15s;
+      pointer-events: none;
+    }
+    .anki-card-content.anki-back::before { left: 0;   background: linear-gradient(to right, rgba(220,38,38,.06), transparent); border-right: 1px dashed rgba(220,38,38,.15); }
+    .anki-card-content.anki-back::after  { right: 0;  background: linear-gradient(to left, rgba(22,163,74,.06), transparent); }
+    .anki-card-content.anki-back:hover::before,
+    .anki-card-content.anki-back:hover::after { opacity: 1; }
+
+    /* zone label overlays */
+    .anki-zone-again, .anki-zone-good {
+      position: absolute; top: 8px; font-size: 11px; font-weight: 600;
+      letter-spacing: .4px; text-transform: uppercase; opacity: 0;
+      transition: opacity .15s; pointer-events: none;
+    }
+    .anki-zone-again { left: 10px;  color: rgba(220,38,38,.45); }
+    .anki-zone-good  { right: 10px; color: rgba(22,163,74,.45); }
+    .anki-card-content.anki-back:hover .anki-zone-again,
+    .anki-card-content.anki-back:hover .anki-zone-good { opacity: 1; }
 
     /* swipe feedback flashes */
     .anki-card-content.flash-good  { border-color: #16a34a !important; background: #f0fdf4 !important; }
@@ -335,7 +457,7 @@
     { id: 'eng-history-w14', courseId: 'engineering-in-history', course: 'Engineering in History', num: 14, label: 'Neglecting Safety 3: Boeing 737 Max',           file: 'courses/engineering-in-history/Week-14/week-14.json', gistFile: 'eng-history.json' },
     { id: 'eng-history-w15', courseId: 'engineering-in-history', course: 'Engineering in History', num: 15, label: 'History and the Ethical Engineer',              file: 'courses/engineering-in-history/Week-15/week-15.json', gistFile: 'eng-history.json' },
 
-    { id: 'rac-thermo', courseId: 'refrigeration-ac', course: 'Refrigeration and AC', num: 1, label: 'Thermodynamics Review', file: 'GLRs/refrigeration-ac/refrigeration-ac-thermo.json', gistFile: 'refrigeration-ac.json' }
+    { id: 'rac-thermo', courseId: 'refrigeration-ac', course: 'Refrigeration and AC', num: 1, label: 'Thermodynamics Review', file: 'courses/refrigeration-ac/refrigeration-ac-thermo.json', gistFile: 'refrigeration-ac.json' }
   ];
 
   // ── Resolve which module to load ──────────────────────────────────────────
@@ -500,29 +622,37 @@
     return frag;
   }
 
-  function renderLearn(sections) {
+  function renderLearn(sections, reading) {
     var frag = document.createDocumentFragment();
 
     // TTS controls banner
-    var banner = h('div',null,
-      '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">' +
-        '<span>Read through each section before Anki. Key terms are <mark>highlighted</mark>. Click <strong>🔊</strong> to listen.</span>' +
+    var bannerTop = '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">' +
+      '<span>Read through each section before Anki. Key terms are <mark>highlighted</mark>. Click <strong>🔊</strong> to listen.</span>' +
+      '<span style="display:flex;gap:8px;align-items:center;">' +
+        (reading ? '<button id="reading-toggle-btn" title="Open source reading panel">📖 Reading</button>' : '') +
         '<button id="tts-stop-btn" style="display:none;flex-shrink:0;padding:6px 12px;background:#dc2626;color:white;border:none;border-radius:5px;font-size:13px;font-weight:500;cursor:pointer;">⏹ Stop</button>' +
-      '</div>' +
-      '<div style="margin-top:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">' +
-        '<label for="tts-voice-select" style="font-size:13px;color:#57606a;white-space:nowrap;">Voice:</label>' +
-        '<select id="tts-voice-select" style="font-size:13px;padding:4px 8px;border:1px solid #d1d5db;border-radius:5px;background:white;color:#1f2328;cursor:pointer;max-width:300px;"></select>' +
-        '<label for="tts-rate-select" style="font-size:13px;color:#57606a;white-space:nowrap;">Speed:</label>' +
-        '<select id="tts-rate-select" style="font-size:13px;padding:4px 8px;border:1px solid #d1d5db;border-radius:5px;background:white;color:#1f2328;cursor:pointer;">' +
-          '<option value="0.75">Slow</option><option value="0.95" selected>Normal</option><option value="1.2">Fast</option><option value="1.5">Very Fast</option>' +
-        '</select>' +
-      '</div>'
-    );
+        '<button id="tts-pause-btn" style="display:none;flex-shrink:0;padding:6px 12px;background:#d97706;color:white;border:none;border-radius:5px;font-size:13px;font-weight:500;cursor:pointer;">⏸ Pause</button>' +
+      '</span>' +
+    '</div>' +
+    '<div style="margin-top:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">' +
+      '<label for="tts-voice-select" style="font-size:13px;color:#57606a;white-space:nowrap;">Voice:</label>' +
+      '<select id="tts-voice-select" style="font-size:13px;padding:4px 8px;border:1px solid #d1d5db;border-radius:5px;background:white;color:#1f2328;cursor:pointer;max-width:300px;"></select>' +
+      '<label for="tts-rate-select" style="font-size:13px;color:#57606a;white-space:nowrap;">Speed:</label>' +
+      '<select id="tts-rate-select" style="font-size:13px;padding:4px 8px;border:1px solid #d1d5db;border-radius:5px;background:white;color:#1f2328;cursor:pointer;">' +
+        '<option value="0.75">Slow</option><option value="0.95" selected>Normal</option><option value="1.2">Fast</option><option value="1.5">Very Fast</option>' +
+      '</select>' +
+    '</div>';
+    var banner = h('div', null, bannerTop);
     banner.style.cssText = 'background:#f0f4ff;border-left:4px solid #0a3c78;padding:14px 16px;border-radius:4px;margin-bottom:24px;font-size:14px;';
     frag.appendChild(banner);
 
+    // Split wrapper: learn sections left, reading panel right
+    var split = h('div','learn-split');
+    var main  = h('div','learn-main');
+
     sections.forEach(function(sec, idx) {
       var wrap = h('div','learn-section');
+      wrap.dataset.learnIdx = idx;
       var hdr = h('div','learn-section-header');
       hdr.innerHTML =
         '<span>' + sec.title + '</span>' +
@@ -534,7 +664,10 @@
 
       hdr.addEventListener('click', function(e) {
         if (e.target.classList.contains('tts-btn')) { toggleSectionSpeech(e.target); return; }
+        var wasOpen = body.classList.contains('open');
         toggleLearnSection(hdr, body);
+        if (!wasOpen) setActiveReadingSection(idx);
+        else setActiveReadingSection(null);
       });
       hdr.querySelector('.tts-btn').addEventListener('click', function(e) {
         e.stopPropagation();
@@ -543,7 +676,7 @@
 
       wrap.appendChild(hdr);
       wrap.appendChild(body);
-      frag.appendChild(wrap);
+      main.appendChild(wrap);
     });
 
     var cta = h('div',null,
@@ -551,8 +684,39 @@
       '<button class="anki-btn anki-btn-primary" style="padding:12px 32px;font-size:15px;" id="go-anki-btn">→ Start Anki Mode</button>'
     );
     cta.style.cssText = 'text-align:center;margin-top:28px;padding-top:20px;border-top:1px solid #e5e7eb;';
-    frag.appendChild(cta);
+    main.appendChild(cta);
+    split.appendChild(main);
+
+    // Reading panel (only rendered if data exists)
+    if (reading) {
+      var panel = renderReading(reading);
+      split.appendChild(panel);
+    }
+
+    frag.appendChild(split);
     return frag;
+  }
+
+  function renderReading(reading) {
+    var panel = h('div','reading-panel');
+    panel.id = 'reading-panel';
+    var inner = h('div','reading-panel-inner');
+
+    var panelHdr = h('div','reading-panel-header');
+    panelHdr.innerHTML =
+      '<div class="reading-panel-title">' + reading.title + '</div>' +
+      (reading.source ? '<div class="reading-panel-source">' + reading.source + '</div>' : '');
+    inner.appendChild(panelHdr);
+
+    reading.paragraphs.forEach(function(p) {
+      var para = h('div','reading-para');
+      para.dataset.learnRef = p.learnRef;
+      para.textContent = p.text;
+      inner.appendChild(para);
+    });
+
+    panel.appendChild(inner);
+    return panel;
   }
 
   function renderAnki() {
@@ -561,10 +725,11 @@
 
     wrap.innerHTML =
       '<div class="anki-instructions">' +
-        '<strong>Single-Click Study:</strong>' +
+        '<strong>How to use:</strong>' +
         '<div class="anki-instructions-action">' +
-          '<div class="action-left"><span class="action-label">CLICK</span> Front: Reveal answer | Back: Mark as "Again"</div>' +
-          '<div class="action-right"><span class="action-label">RIGHT CLICK</span> Back only: Mark as "Good"</div>' +
+          '<div class="action-left"><span class="action-label">CLICK</span> Front: Reveal answer</div>' +
+          '<div class="action-left"><span class="action-label">LEFT HALF</span> Back: Mark as Again ✗</div>' +
+          '<div class="action-right"><span class="action-label">RIGHT HALF</span> Back: Mark as Good ✓</div>' +
         '</div>' +
       '</div>' +
       '<div class="anki-swipe-hint">' +
@@ -572,7 +737,11 @@
         '<span>← Swipe left = Again</span>' +
         '<span>Swipe right = Good →</span>' +
       '</div>' +
-      '<div class="anki-card-content" id="anki-front"><span id="anki-front-text">Loading…</span></div>' +
+      '<div class="anki-card-content" id="anki-front">' +
+        '<span class="anki-zone-again">Again ✗</span>' +
+        '<span id="anki-front-text">Loading…</span>' +
+        '<span class="anki-zone-good">Good ✓</span>' +
+      '</div>' +
       '<div id="anki-session">' +
         // Concentric rings SVG
         '<div class="anki-rings-wrap">' +
@@ -657,7 +826,7 @@
     content.appendChild(ovPane);
 
     var learnPane = h('div','tab-pane'); learnPane.id = 'learn';
-    learnPane.appendChild(renderLearn(mod.learn));
+    learnPane.appendChild(renderLearn(mod.learn, mod.reading || null));
     content.appendChild(learnPane);
 
     var ankiPane = h('div','tab-pane'); ankiPane.id = 'anki';
@@ -668,7 +837,29 @@
     app.appendChild(h('div','footer','Made with IBM Bob'));
 
     // Wire up post-render event listeners
-    document.getElementById('anki-front').addEventListener('contextmenu', function(e){ e.preventDefault(); });
+    document.getElementById('tts-stop-btn').addEventListener('click', stopSpeech);
+    document.getElementById('tts-pause-btn').addEventListener('click', function() {
+      if (ttsActiveBtn) toggleSectionSpeech(ttsActiveBtn);
+    });
+    var readingToggleBtn = document.getElementById('reading-toggle-btn');
+    if (readingToggleBtn) {
+      readingToggleBtn.addEventListener('click', function() {
+        var open = document.body.classList.toggle('reading-open');
+        this.classList.toggle('active', open);
+        // If a section is already active when panel opens, scroll to it
+        if (open) {
+          var activeSec = document.querySelector('.learn-section-body.open');
+          if (activeSec) {
+            var wrap = activeSec.parentElement;
+            var idx = wrap ? parseInt(wrap.dataset.learnIdx) : NaN;
+            if (!isNaN(idx)) {
+              // give the CSS transition a moment to open the panel first
+              setTimeout(function(){ setActiveReadingSection(idx); }, 320);
+            }
+          }
+        }
+      });
+    }
     document.getElementById('anki-front').addEventListener('mousedown', handleAnkiClick);
     addSwipeHandlers(document.getElementById('anki-front'));
     document.getElementById('analytics-btn').addEventListener('click', showAnalytics);
@@ -737,6 +928,7 @@
       ankiFrontShowing ? currentAnkiCard.question : currentAnkiCard.answer;
     // Amber tint for key cards
     var card = document.getElementById('anki-front');
+    if (ankiFrontShowing) card.classList.remove('anki-back');
     if (currentAnkiCard.key) {
       card.style.borderColor = '#f59e0b';
       card.style.background  = '#fffbeb';
@@ -758,13 +950,24 @@
     card.classList.add('anim-flip');
     card.addEventListener('animationend', function h(){ card.classList.remove('anim-flip'); card.removeEventListener('animationend', h); });
     ankiFrontShowing = false;
+    card.classList.add('anki-back');
     displayAnkiCard();
   }
   function handleAnkiClick(e) {
     e.preventDefault();
     if (!ankiFrontShowing) {
-      if (e.button === 0) markAnkiAgain();
-      else if (e.button === 2) markAnkiGood();
+      if (e.button === 0) {
+        var card = document.getElementById('anki-front');
+        var rect = card.getBoundingClientRect();
+        var midX = rect.left + rect.width / 2;
+        if (e.clientX < midX) {
+          flashCard(card, 'flash-again');
+          markAnkiAgain();
+        } else {
+          flashCard(card, 'flash-good');
+          markAnkiGood();
+        }
+      }
     } else {
       if (e.button === 0) ankiFlipReveal();
     }
@@ -988,7 +1191,64 @@
   }
 
   // ── TTS ───────────────────────────────────────────────────────────────────
-  var ttsActiveBtn = null, ttsVoices = [];
+  var ttsActiveBtn = null, ttsVoices = [], ttsPaused = false, ttsCurrentUtt = null;
+  var ttsCursorNode = null; // live <span class="tts-cursor"> in the DOM
+
+  function ttsShowControls(show) {
+    var s = document.getElementById('tts-stop-btn');
+    var p = document.getElementById('tts-pause-btn');
+    if (s) s.style.display = show ? 'inline-block' : 'none';
+    if (p) p.style.display = show ? 'inline-block' : 'none';
+  }
+
+  function ttsRemoveCursor() {
+    if (ttsCursorNode && ttsCursorNode.parentNode) {
+      // replace the <span.tts-cursor> with its text content in place
+      ttsCursorNode.parentNode.replaceChild(
+        document.createTextNode(ttsCursorNode.textContent),
+        ttsCursorNode
+      );
+    }
+    ttsCursorNode = null;
+  }
+
+  // Build a flat list of all text nodes inside el, and a char-offset map
+  // so we can place the cursor span at a given charIndex within el.innerText
+  function ttsPlaceCursor(el, charIndex) {
+    ttsRemoveCursor();
+    var offset = 0;
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+    var node;
+    while ((node = walker.nextNode())) {
+      var len = node.nodeValue.length;
+      if (offset + len > charIndex) {
+        // cursor lands inside this text node
+        var localIdx = charIndex - offset;
+        // find end of word
+        var wordEnd = localIdx;
+        while (wordEnd < len && !/\s/.test(node.nodeValue[wordEnd])) wordEnd++;
+        if (wordEnd === localIdx) { offset += len; continue; } // whitespace, skip
+        var before = node.nodeValue.slice(0, localIdx);
+        var word   = node.nodeValue.slice(localIdx, wordEnd);
+        var after  = node.nodeValue.slice(wordEnd);
+        var span   = document.createElement('span');
+        span.className = 'tts-cursor';
+        span.textContent = word;
+        var parent = node.parentNode;
+        var next   = node.nextSibling;
+        parent.removeChild(node);
+        if (before) parent.insertBefore(document.createTextNode(before), next);
+        parent.insertBefore(span, next || null);
+        if (after) parent.insertBefore(document.createTextNode(after), span.nextSibling);
+        ttsCursorNode = span;
+        // scroll into view softly
+        span.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        return;
+      }
+      offset += len;
+    }
+  }
+
   function populateVoices() {
     ttsVoices = window.speechSynthesis.getVoices();
     var select = document.getElementById('tts-voice-select');
@@ -1037,40 +1297,131 @@
     return [intro, bodyText, 'Moving on.'].filter(Boolean).join('  ');
   }
   function toggleSectionSpeech(btn) {
-    if (ttsActiveBtn === btn) { stopSpeech(); return; }
+    // ── Pause / resume of the same section ───────────────────────────────────
+    if (ttsActiveBtn === btn) {
+      if (ttsPaused) {
+        window.speechSynthesis.resume();
+        ttsPaused = false;
+        btn.textContent = '⏸';
+        btn.classList.remove('tts-paused');
+        btn.classList.add('tts-active');
+        var pb = document.getElementById('tts-pause-btn');
+        if (pb) pb.textContent = '⏸ Pause';
+      } else {
+        window.speechSynthesis.pause();
+        ttsPaused = true;
+        btn.textContent = '▶';
+        btn.classList.remove('tts-active');
+        btn.classList.add('tts-paused');
+        var pb = document.getElementById('tts-pause-btn');
+        if (pb) pb.textContent = '▶ Resume';
+      }
+      return;
+    }
+    // ── Start a new section ──────────────────────────────────────────────────
     stopSpeech();
     var text = getSectionText(btn);
     if (!text || !window.speechSynthesis) return;
     var hdr  = btn.closest('.learn-section-header');
     var body = hdr.nextElementSibling;
     if (!body.classList.contains('open')) { body.classList.add('open'); hdr.classList.add('open'); }
+
+    // Sync reading panel to this section
+    var section  = btn.closest('.learn-section');
+    var learnIdx = section.dataset.learnIdx !== undefined ? parseInt(section.dataset.learnIdx) : null;
+    if (learnIdx !== null) setActiveReadingSection(learnIdx);
+
+    // Compute intro length so boundary charIndex is offset into body text
+    var titleSpan = hdr.querySelector('span:first-child');
+    var rawTitle  = titleSpan ? titleSpan.textContent.trim() : '';
+    var match     = rawTitle.match(/^(\d+)\s*[—\-]\s*(.+)$/);
+    var sectionNum  = match ? match[1] : '';
+    var sectionName = match ? match[2].replace(/&amp;/g,'and').replace(/&/g,'and') : rawTitle;
+    var intro = sectionNum ? 'Section '+sectionNum+'. '+sectionName+'.' : (sectionName ? sectionName+'.' : '');
+    var introLen = intro ? intro.length + 2 : 0; // +2 for the two spaces separator
+
     var utt = new SpeechSynthesisUtterance(text);
     utt.rate = getSelectedRate(); utt.pitch = 1;
     var voice = getSelectedVoice();
     if (voice) utt.voice = voice;
-    utt.onstart = function(){ ttsActiveBtn=btn; btn.textContent='⏸'; btn.classList.add('tts-active'); document.getElementById('tts-stop-btn').style.display='inline-block'; };
-    utt.onend   = function(){
+    ttsCurrentUtt = utt;
+    ttsPaused = false;
+
+    utt.onstart = function() {
+      ttsActiveBtn = btn;
+      btn.textContent = '⏸';
+      btn.classList.add('tts-active');
+      ttsShowControls(true);
+    };
+    utt.onboundary = function(e) {
+      if (e.name !== 'word') return;
+      var bodyCharIdx = e.charIndex - introLen;
+      if (bodyCharIdx >= 0) ttsPlaceCursor(body, bodyCharIdx);
+    };
+    utt.onend = function() {
+      ttsRemoveCursor();
       resetTtsBtn(btn);
       var nextSection = btn.closest('.learn-section').nextElementSibling;
-      if (nextSection&&nextSection.classList.contains('learn-section')) {
+      if (nextSection && nextSection.classList.contains('learn-section')) {
         var nextBtn = nextSection.querySelector('.tts-btn');
         if (nextBtn) toggleSectionSpeech(nextBtn);
       }
     };
-    utt.onerror = function(){ resetTtsBtn(btn); };
+    utt.onerror = function() { ttsRemoveCursor(); resetTtsBtn(btn); };
     window.speechSynthesis.speak(utt);
   }
   function stopSpeech() {
+    ttsRemoveCursor();
     window.speechSynthesis.cancel();
+    ttsPaused = false;
+    ttsCurrentUtt = null;
     if (ttsActiveBtn) resetTtsBtn(ttsActiveBtn);
-    var stopBtn = document.getElementById('tts-stop-btn');
-    if (stopBtn) stopBtn.style.display = 'none';
+    ttsShowControls(false);
   }
-  function resetTtsBtn(btn) { btn.textContent='🔊'; btn.classList.remove('tts-active'); ttsActiveBtn=null; }
+  function resetTtsBtn(btn) {
+    btn.textContent = '🔊';
+    btn.classList.remove('tts-active', 'tts-paused');
+    ttsActiveBtn = null;
+    ttsPaused = false;
+  }
   function toggleLearnSection(hdr, body) {
     var isOpen = body.classList.contains('open');
     body.classList.toggle('open', !isOpen);
     hdr.classList.toggle('open', !isOpen);
+  }
+
+  // ── Reading panel sync ────────────────────────────────────────────────────
+  function setActiveReadingSection(learnIdx) {
+    var panel = document.getElementById('reading-panel');
+    if (!panel) return;
+    var paras = panel.querySelectorAll('.reading-para');
+    if (learnIdx === null || learnIdx === undefined) {
+      // clear all highlights
+      panel.classList.remove('has-active');
+      paras.forEach(function(p) { p.classList.remove('reading-para-active', 'reading-para-active-first'); });
+      return;
+    }
+    panel.classList.add('has-active');
+    var firstActive = null;
+    paras.forEach(function(p) {
+      p.classList.remove('reading-para-active', 'reading-para-active-first');
+      if (parseInt(p.dataset.learnRef) === learnIdx) {
+        p.classList.add('reading-para-active');
+        if (!firstActive) firstActive = p;
+      }
+    });
+    if (firstActive) {
+      firstActive.classList.add('reading-para-active-first');
+      // Scroll the panel's inner scroller to the first active paragraph
+      if (document.body.classList.contains('reading-open')) {
+        var inner = firstActive.closest('.reading-panel-inner');
+        if (inner) {
+          // offset relative to inner's scroll container
+          var paraTop = firstActive.offsetTop - (inner.querySelector('.reading-panel-header').offsetHeight || 0) - 12;
+          inner.scrollTo({ top: paraTop, behavior: 'smooth' });
+        }
+      }
+    }
   }
 
   // ── Boot: fetch JSON and mount ─────────────────────────────────────────────
