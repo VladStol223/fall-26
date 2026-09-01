@@ -1,0 +1,165 @@
+{
+  "id": "gov-us-w2",
+  "course": "Government of the U.S.",
+  "courseColor": "blue",
+  "moduleNumber": 2,
+  "title": "Who Wrote the Constitution?",
+  "subtitle": "Constitutional Convention · Framers · Bill of Rights",
+  "storagePrefix": "gov-w2",
+  "totalCards": 25,
+
+  "overview": {
+    "stats": [
+      { "value": "55",       "label": "Delegates at the Convention" },
+      { "value": "1787",     "label": "Year Constitution was drafted" },
+      { "value": "Sept 17",  "label": "Constitution signed" },
+      { "value": "10",       "label": "Bill of Rights amendments ratified" }
+    ],
+    "people": [
+      { "name": "James Madison", "desc": "Virginia delegate and 'Father of the Constitution'; drafted the Virginia Plan, shaped the finished document, and later authored the Bill of Rights." },
+      { "name": "Gouverneur Morris", "desc": "Pennsylvania delegate credited with writing most of the Constitution's final text, including the famous Preamble ('We the People...')." },
+      { "name": "George Washington", "desc": "Presided over the Constitutional Convention; his presence gave the gathering legitimacy and his support helped ratify the final document." },
+      { "name": "Benjamin Franklin", "desc": "Pennsylvania delegate and elder statesman; one of 55 delegates who attended and lent moral authority to the Convention." },
+      { "name": "Alexander Hamilton", "desc": "New York delegate and later co-author of The Federalist Papers; championed strong central government at the Convention." },
+      { "name": "Roger Sherman & Oliver Ellsworth", "desc": "Connecticut delegates who brokered the Great Compromise: equal state representation in the Senate, proportional in the House." },
+      { "name": "John Locke", "desc": "English philosopher (1632–1704) whose Two Treatises on Government influenced the framers — governments derive legitimacy from the people, not divine right." },
+      { "name": "Baron de Montesquieu", "desc": "French Enlightenment thinker (1689–1755) whose Spirit of the Laws argued for separation of powers across three branches of government." }
+    ],
+    "dates": [
+      { "year": "May 27, 1787",    "event": "Constitutional Convention opens in Philadelphia" },
+      { "year": "Sept 17, 1787",   "event": "Convention adjourns; Constitution signed by delegates" },
+      { "year": "June 21, 1788",   "event": "New Hampshire becomes 9th state to ratify — Constitution takes effect" },
+      { "year": "June 8, 1789",    "event": "Madison introduces a list of amendments to Congress" },
+      { "year": "Dec 15, 1791",    "event": "Bill of Rights ratified by three-fourths of the states" },
+      { "year": "1804",            "event": "12th Amendment — electors vote separately for president and vice president" },
+      { "year": "1913",            "event": "17th Amendment — direct popular election of U.S. senators" }
+    ],
+    "terms": [
+      { "term": "Articles of Confederation", "def": "The first governing document of the United States (1781); gave states near-sovereign power and created a weak central government incapable of taxing, raising armies, or regulating commerce." },
+      { "term": "Great Compromise", "def": "Roger Sherman's 1787 deal balancing small-state and large-state interests: equal representation in the Senate, population-based representation in the House." },
+      { "term": "Three-Fifths Clause", "def": "Constitutional provision counting each enslaved person as three-fifths of a free person for apportioning House seats and direct taxes." },
+      { "term": "Bill of Rights", "def": "The first ten amendments to the Constitution, ratified December 15, 1791; protects individual liberties such as freedom of speech, religion, and the right to bear arms." },
+      { "term": "Separation of Powers", "def": "Montesquieu's principle, adopted by the framers, that legislative, executive, and judicial authority must reside in separate branches to prevent tyranny." },
+      { "term": "Living Document", "def": "A characterization of the Constitution stressing its capacity to be amended and reinterpreted to meet changing national circumstances." }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — Why the Constitution Was Written",
+      "body": "<p>The U.S. Constitution was made necessary by the utter failure of the <mark>Articles of Confederation</mark> as a governing document. Drafted during the Revolution when colonists feared a powerful central government, the Articles made individual states <mark>de facto sovereign nations</mark> — each received one vote in Congress regardless of population, and the national government could not impose taxes, raise a standing army, regulate interstate commerce, conduct foreign policy, or adjudicate disputes between states.</p><p>By <mark>1787</mark> it was clear the system had to change. Delegates from <mark>12 of 13 states</mark> gathered in Philadelphia that May — <mark>Rhode Island</mark> boycotted, which infuriated George Washington. Though the Convention was technically called only to <em>revise</em> the Articles, the delegates ended up drafting an entirely new form of government.</p>"
+    },
+    {
+      "title": "2 — The Framers and Key Figures",
+      "body": "<p>In total, <mark>55 delegates</mark> attended the Constitutional Convention, which ran from <mark>May 27 to September 17, 1787</mark>. <mark>James Madison</mark> is widely credited as the chief architect of the document — he arrived with the <mark>Virginia Plan</mark>, a detailed blueprint for a strong national government, and kept meticulous notes throughout. <mark>George Washington</mark> presided over the gathering, lending it legitimacy.</p><p>However, the man who actually <em>handwrote</em> the final parchment was not a delegate at all: it was <mark>Jacob Shallus</mark>, an assistant clerk hired for his excellent penmanship. And much of the document's polished final language — including the famous Preamble — was crafted by <mark>Gouverneur Morris</mark> of Pennsylvania. <mark>Alexander Hamilton</mark> and <mark>Benjamin Franklin</mark> were also prominent figures at the Convention.</p>"
+    },
+    {
+      "title": "3 — Enlightenment Influences on the Constitution",
+      "body": "<p>Madison and the other framers were educated men deeply shaped by <mark>Enlightenment philosophy</mark>. Two thinkers were especially influential. <mark>John Locke</mark> (1632–1704) argued in <em>Two Treatises on Government</em> that governments derive their legitimacy not from divine right but from <mark>the consent of the governed</mark>. He held that the chief function of government was to secure the rights of <mark>life, liberty, and property</mark>, and that representatives who failed this duty could be replaced.</p><p><mark>Baron de Montesquieu</mark> (1689–1755) argued in <em>The Spirit of the Laws</em> that the legislative, executive, and judicial functions of government should not reside in the same person or body. <mark>Separation of powers</mark> across distinct branches was the best safeguard against tyranny — a principle the framers embedded directly in the Constitution's three-branch structure.</p>"
+    },
+    {
+      "title": "4 — Debates and the Great Compromise",
+      "body": "<p>The Convention quickly became contentious. The most divisive issue was <mark>representation in Congress</mark>. Delegates from <mark>small states</mark> wanted equal representation (one state, one vote, as under the Articles). Delegates from <mark>large states</mark> demanded proportional representation based on population.</p><p>The deadlock was broken by the <mark>Great Compromise</mark> (also called the Connecticut Compromise), proposed by <mark>Roger Sherman</mark> and <mark>Oliver Ellsworth</mark>: equal representation in the <mark>Senate</mark> (upper chamber) and population-based representation in the <mark>House of Representatives</mark> (lower chamber). The framers also controversially agreed to count <mark>enslaved people as three-fifths</mark> of a person for apportioning House seats — a concession to Southern slaveholding states that embedded slavery into the constitutional structure.</p>"
+    },
+    {
+      "title": "5 — Ratification and the Bill of Rights",
+      "body": "<p>The Constitution was sent to the states for ratification in <mark>September 1787</mark>. Crucially, only <mark>nine of thirteen states</mark> needed to ratify (not all thirteen, as the Articles had required) — a lower threshold that made approval more feasible. As the document circulated, a fierce debate arose over its lack of explicit individual protections.</p><p>Despite initially opposing a Bill of Rights, <mark>James Madison</mark> changed his mind when Massachusetts threatened not to ratify. The Constitution was adopted on <mark>June 21, 1788</mark> when New Hampshire became the ninth state to ratify. Madison then introduced <mark>12 proposed amendments</mark> to Congress on June 8, 1789; the Senate narrowed these to 12, and <mark>10 were ratified</mark> by three-fourths of the states on <mark>December 15, 1791</mark> — the <mark>Bill of Rights</mark>.</p>"
+    },
+    {
+      "title": "6 — How the Constitution Has Changed Since 1787",
+      "body": "<p>The Constitution is often called a <mark>\"living document\"</mark> because it can be amended, though that bar is high: since the Bill of Rights in 1791 only <mark>17 additional amendments</mark> have been ratified. Major changes include the <mark>12th Amendment (1804)</mark> — requiring separate electoral votes for president and vice president after the Jefferson-Burr crisis — and the <mark>17th Amendment (1913)</mark>, which transferred election of senators from state legislatures to direct popular vote.</p><p>Constitutional change also happens through <mark>judicial interpretation</mark>. Chief Justice <mark>John Marshall</mark> established the power of <mark>judicial review</mark> in <em>Marbury v. Madison</em> (1803), asserting the Court's right to strike down acts of Congress. The <mark>Reconstruction Amendments</mark> (13th, 14th, 15th) abolished slavery, extended citizenship to African Americans, and protected Black men's voting rights. The <mark>19th Amendment (1920)</mark> extended the vote to all American women. Over time the <mark>federal government's power</mark> expanded relative to the states, especially after the Civil War and through early-20th-century legislation.</p>"
+    }
+  ],
+
+  "reading": {
+    "title": "Who Wrote The Constitution? — The Surprisingly Messy Constitutional Convention",
+    "source": "Fraga, K. (2024, August 5). Who Wrote The Constitution? AllThatsInteresting.com. + Pruitt, S. (2025, January 21). How the US Constitution Has Changed and Expanded Since 1787. History.com.",
+    "paragraphs": [
+      { "learnRef": 0, "text": "The Constitution was made necessary by the utter ineffectiveness of the Articles of Confederation as a governing document. The Articles had been drafted during the American Revolution, when rebelling colonists declared their independence from what they felt was a tyrannical English government. It was no surprise that the Articles called for a particularly weak central government — one that was subordinated to the individual states." },
+      { "learnRef": 0, "text": "In the six years prior to the Convention, the Articles had provided a laughably weak central government unable to perform the most basic of functions, such as imposing taxes, raising an army, adjudicating disputes between states, conducting foreign policy, and regulating commerce between states. And by 1787, it was clear that something had to be done. Thus, delegates from 12 former colonies gathered in Philadelphia that May. Rhode Island was the only one to boycott the event." },
+      { "learnRef": 1, "text": "Though James Madison wrote the Constitution, he certainly wasn't alone in hammering out the specific details of the document. For instance, Pennsylvania delegate Gouverneur Morris has been credited with writing most of the document's final text, including the famous preamble. In total, 55 delegates attended the Constitutional Convention, including Alexander Hamilton and Benjamin Franklin. George Washington also presided over the gathering, which lasted from May 27 to September 17, 1787." },
+      { "learnRef": 1, "text": "As for the man who literally handwrote the Constitution, he wasn't a delegate at all — just an assistant clerk named Jacob Shallus who happened to have beautiful penmanship." },
+      { "learnRef": 2, "text": "Madison and most other delegates were educated and well-read individuals — and their ideas on government had been informed by other writers and philosophers, especially those from the Enlightenment era. John Locke (1632–1704) of England and Baron de Montesquieu (1689–1755) of France had a particularly great influence on the men who wrote the Constitution." },
+      { "learnRef": 2, "text": "Delegates were also influenced by the ideas of Montesquieu, a prominent Enlightenment thinker who stressed the importance of the separation of powers. In The Spirit of the Laws, he noted that the legislative, executive, and judicial functions of government should not reside in the same person or body. Instead, he argued that they should be dispersed over multiple branches of government to prevent one from becoming too powerful." },
+      { "learnRef": 3, "text": "Delegates from smaller states wanted to keep the principle of equal representation in Congress: one state, one vote. But delegates from larger states wanted proportional representation in the national legislature. The delegates eventually reached a compromise sketched out by Roger Sherman and Oliver Ellsworth of Connecticut. The principle of equal representation of the states would remain in the Senate (the upper chamber), while representation in the House of Representatives (the lower chamber) would be apportioned in accordance with states' populations." },
+      { "learnRef": 3, "text": "Controversially, the framers also agreed that the official count of the states' populations would include enslaved people who lived there. But the framers did not count any of these men, women, or children as full people. Instead, they decided that each slave would count as three-fifths of a person." },
+      { "learnRef": 4, "text": "Though James Madison, who wrote the Constitution, didn't think that the document needed a Bill of Rights, he changed his mind when Massachusetts threatened not to ratify. He agreed to add amendments to satisfy those who were hesitant — and the Constitution was soon adopted on June 21, 1788, when New Hampshire became the ninth state to ratify the document." },
+      { "learnRef": 4, "text": "Madison worked to draw up a Bill of Rights. He introduced a list of amendments to the Constitution on June 8, 1789, and 'hounded his colleagues relentlessly' to make sure that all of them got approved. The House passed a resolution with 17 amendments based on Madison's suggestions. The Senate narrowed the list down to 12. Ten of these — including freedom of speech and the right to bear arms — were eventually ratified by three-fourths of the states on December 15, 1791." },
+      { "learnRef": 5, "text": "The U.S. Constitution, written in 1787 and ratified by nine of the original 13 states a year later, is the world's longest-surviving written constitution. Since the Bill of Rights was adopted in 1791, Congress has passed just 23 additional amendments to the Constitution, and the states have ratified only 17 of them. Beyond that, many changes in the American political and legal system have come through judicial interpretation of existing laws, rather than the addition of new ones by the legislative branch." },
+      { "learnRef": 5, "text": "It was John Marshall, the nation's fourth chief justice, who established the power of the Court by asserting its right to declare acts of Congress unconstitutional. 'It is emphatically the duty of the Judicial Department to say what the law is,' Marshall wrote in the landmark case Marbury v. Madison (1803). In the Civil War's aftermath, three 'Reconstruction Amendments' sought to more fully realize the founders' ideal of all men being created equal. In 1920, after ratification of the 19th Amendment gave voting rights to all American women for the first time, suffrage leader Carrie Chapman Catt memorably declared that 'To get the word male in effect out of the Constitution cost the women of the country fifty-two years of pauseless campaign.'" }
+    ]
+  },
+
+  "anki": [
+    { "key": true,  "q": "Why were the Articles of Confederation replaced?", "a": "They created a weak central government that could not tax, raise an army, regulate commerce, or conduct foreign policy — effectively making each state a sovereign nation." },
+    { "key": true,  "q": "Who is called the 'Father of the Constitution' and why?", "a": "James Madison — he arrived with the Virginia Plan blueprint, shaped every major debate, and later authored the Bill of Rights." },
+    { "key": true,  "q": "What is the Great Compromise and who proposed it?", "a": "Roger Sherman and Oliver Ellsworth of Connecticut brokered equal state representation in the Senate and population-based representation in the House, breaking the small-state/large-state deadlock." },
+    { "key": true,  "q": "What did Locke and Montesquieu contribute to the Constitution's ideas?", "a": "Locke: governments derive legitimacy from consent of the governed; Montesquieu: power must be separated into three branches to prevent tyranny." },
+    { "key": true,  "q": "When was the Bill of Rights ratified, and what triggered Madison to support it?", "a": "December 15, 1791. Massachusetts threatened not to ratify the Constitution without explicit individual-rights protections, so Madison agreed to add amendments." },
+    { "q": "When did the Constitutional Convention open and close?", "a": "May 27 to September 17, 1787, in Philadelphia." },
+    { "q": "How many delegates attended the Constitutional Convention?", "a": "55 delegates from 12 states (Rhode Island boycotted)." },
+    { "q": "Who physically handwrote the Constitution, and what was his role?", "a": "Jacob Shallus — an assistant clerk hired for his penmanship, not a delegate." },
+    { "q": "Who wrote the Preamble and most of the Constitution's final text?", "a": "Gouverneur Morris of Pennsylvania." },
+    { "q": "Why did Rhode Island refuse to attend the Convention?", "a": "The state boycotted, fearing a strong central government would threaten its interests. Washington called its conduct 'impolitic, unjust, and scandalous.'" },
+    { "q": "What is the Three-Fifths Clause?", "a": "The constitutional provision counting each enslaved person as three-fifths of a free person for apportioning House seats and direct taxes." },
+    { "q": "Under the original Constitution, how were senators chosen?", "a": "By individual state legislatures — this changed with the 17th Amendment (1913), which established direct popular election of senators." },
+    { "key": true,  "q": "What is judicial review, and which case established it?", "a": "The Supreme Court's power to declare laws unconstitutional, established by Chief Justice John Marshall in Marbury v. Madison (1803)." },
+    { "q": "What did the 12th Amendment change, and why was it needed?", "a": "It required electors to cast separate votes for president and vice president. It was needed after the 1800 Jefferson-Burr tie nearly caused a constitutional crisis." },
+    { "q": "What did the 13th, 14th, and 15th Amendments collectively accomplish?", "a": "The Reconstruction Amendments abolished slavery, granted citizenship to African Americans (overturning Dred Scott), and protected Black men's voting rights." },
+    { "q": "What did the 19th Amendment (1920) accomplish?", "a": "It granted all American women the right to vote." },
+    { "q": "How many amendments has Congress ratified since the Bill of Rights?", "a": "17 additional amendments (23 proposed, only 17 ratified by the states)." },
+    { "key": true,  "q": "How many states needed to ratify the Constitution for it to take effect, and which state completed ratification?", "a": "Nine of thirteen states. New Hampshire became the ninth on June 21, 1788." },
+    { "q": "What specific liberties does the Bill of Rights protect?", "a": "Freedom of religion, speech, and press; right to bear arms; right to trial by jury; freedom from unreasonable searches and seizures, among others." },
+    { "q": "What power did McCulloch v. Maryland (1819) affirm?", "a": "The federal government's right to take actions 'necessary and proper' to meet national needs — cementing federal supremacy over the states." },
+    { "q": "Why is the Constitution called a 'living document'?", "a": "Because it can be amended and reinterpreted by courts to address changing national circumstances, though amendments are rare — only 27 total in over 230 years." },
+    { "q": "What key function of government did John Locke identify?", "a": "To secure the natural rights of life, liberty, and property; and to remain accountable to the people through elected representatives who can be replaced." },
+    { "q": "What is separation of powers according to Montesquieu?", "a": "Legislative, executive, and judicial functions must be distributed across separate branches of government so no single branch accumulates too much power." },
+    { "q": "What did the original Articles of Confederation say about congressional representation?", "a": "Each state had one vote in Congress regardless of population — meaning Virginia and Delaware were equal despite Virginia having 12 times the population." },
+    { "q": "What role did the delegates intend for the Supreme Court when they wrote the Constitution?", "a": "Relatively little — the Constitution was vague on the judiciary; it was Chief Justice John Marshall who later expanded the Court's role through judicial review." }
+  ],
+
+  "quiz": [
+    {
+      "q": "What was the PRIMARY reason the Articles of Confederation were replaced?",
+      "options": ["They allowed too much federal taxation", "The central government was too weak to tax, raise armies, or regulate commerce", "They gave the president too much power", "States refused to cooperate with each other on trade"],
+      "correct": 1,
+      "explanation": "The Articles created a central government so weak it could not perform basic functions — the core flaw the Constitution was written to fix."
+    },
+    {
+      "q": "Who is credited with writing most of the Constitution's final text, including the Preamble?",
+      "options": ["James Madison", "Alexander Hamilton", "Gouverneur Morris", "Jacob Shallus"],
+      "correct": 2,
+      "explanation": "Gouverneur Morris of Pennsylvania polished the language and is credited with 'We the People...' and most of the final draft's wording."
+    },
+    {
+      "q": "What did the Great Compromise resolve?",
+      "options": ["Whether to include a Bill of Rights", "How to count enslaved people for taxation", "The dispute over congressional representation between large and small states", "Whether to allow Rhode Island back into the Convention"],
+      "correct": 2,
+      "explanation": "Roger Sherman and Oliver Ellsworth proposed equal Senate representation and proportional House representation, breaking the Convention's biggest deadlock."
+    },
+    {
+      "q": "Which Enlightenment thinker most directly inspired the Constitution's separation of powers?",
+      "options": ["John Locke", "Baron de Montesquieu", "Jean-Jacques Rousseau", "Thomas Hobbes"],
+      "correct": 1,
+      "explanation": "Montesquieu argued in The Spirit of the Laws that legislative, executive, and judicial power must be held by separate branches — a principle the framers adopted directly."
+    },
+    {
+      "q": "How many states had to ratify the Constitution for it to take effect?",
+      "options": ["All 13", "10 of 13", "9 of 13", "7 of 13"],
+      "correct": 2,
+      "explanation": "Nine of thirteen states were required — a lower bar than the Articles' unanimous-consent requirement. New Hampshire was the ninth, on June 21, 1788."
+    },
+    {
+      "q": "What established the Supreme Court's power of judicial review?",
+      "options": ["The Constitution itself in Article III", "The Bill of Rights", "Marbury v. Madison (1803)", "McCulloch v. Maryland (1819)"],
+      "correct": 2,
+      "explanation": "Chief Justice John Marshall asserted in Marbury v. Madison that it is the Court's duty to say what the law is, including striking down unconstitutional acts of Congress."
+    },
+    {
+      "q": "What change did the 17th Amendment (1913) make?",
+      "options": ["Limited presidents to two terms", "Gave women the right to vote", "Required electors to vote separately for president and VP", "Transferred Senate elections from state legislatures to direct popular vote"],
+      "correct": 3,
+      "explanation": "Before 1913, state legislatures chose senators. The 17th Amendment gave that power directly to the voters of each state."
+    }
+  ]
+}

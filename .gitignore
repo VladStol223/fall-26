@@ -8,3 +8,21 @@ GLRs/GA History/Module 8.md
 gist-proxy/node_modules/
 
 school-gist-proxy/node_modules/
+
+# ME Systems Lab — ignore raw lab files (MATLAB, data, PDFs, figures, LaTeX artifacts, archives)
+# .md and .json files in this course are still tracked
+courses/me-systems-lab/**/*.m
+courses/me-systems-lab/**/*.mat
+courses/me-systems-lab/**/*.xlsx
+courses/me-systems-lab/**/*.pdf
+courses/me-systems-lab/**/*.tex
+courses/me-systems-lab/**/*.aux
+courses/me-systems-lab/**/*.log
+courses/me-systems-lab/**/*.out
+courses/me-systems-lab/**/*.fls
+courses/me-systems-lab/**/*.fdb_latexmk
+courses/me-systems-lab/**/*.synctex.gz
+courses/me-systems-lab/**/*.png
+courses/me-systems-lab/**/*.zip
+courses/me-systems-lab/**/*.py
+courses/me-systems-lab/**/*.docx

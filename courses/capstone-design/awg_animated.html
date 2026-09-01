@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWG — Animated Process Workflow</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+  background: #0b0e18;
+  color: #e2e8f0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 36px 20px 60px;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #f1f5f9;
+  margin-bottom: 4px;
+  text-align: center;
+}
+.sub {
+  font-size: 0.72rem;
+  color: #475569;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+/* ── Step stepper ─────────────────────────────── */
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 28px;
+}
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: opacity 200ms;
+}
+.step-item:hover .step-circle { border-color: #38bdf8; }
+
+.step-circle {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 2px solid #2d3a50;
+  background: #151b2c;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #475569;
+  transition: background 300ms, border-color 300ms, color 300ms, box-shadow 300ms;
+}
+.step-circle.done {
+  background: #0a1e35;
+  border-color: #38bdf860;
+  color: #38bdf8;
+}
+.step-circle.active-blue {
+  background: #0a1e35;
+  border-color: #38bdf8;
+  color: #38bdf8;
+  box-shadow: 0 0 0 3px #38bdf820;
+}
+.step-circle.active-orange {
+  background: #271200;
+  border-color: #f97316;
+  color: #f97316;
+  box-shadow: 0 0 0 3px #f9731620;
+}
+
+.step-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #475569;
+  letter-spacing: 0.04em;
+  text-align: center;
+  max-width: 90px;
+  line-height: 1.3;
+  transition: color 300ms;
+}
+.step-label.active-blue { color: #38bdf8; }
+.step-label.active-orange { color: #fb923c; }
+.step-label.done { color: #7dd3fc60; }
+
+.step-connector {
+  width: 52px; height: 2px;
+  background: #1e2538;
+  margin-bottom: 22px;
+  flex-shrink: 0;
+  transition: background 400ms;
+}
+.step-connector.done { background: #38bdf830; }
+
+/* ── Nav buttons ─────────────────────────────── */
+.nav-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  align-items: center;
+}
+.nav-btn {
+  padding: 8px 22px;
+  border-radius: 999px;
+  border: 1.5px solid #2d3a50;
+  background: #151b2c;
+  color: #94a3b8;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 200ms, border-color 200ms, color 200ms;
+}
+.nav-btn:hover { background: #1e2538; color: #e2e8f0; }
+.nav-btn:disabled { opacity: 0.28; cursor: default; }
+.nav-btn.primary {
+  background: #0f2540;
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+.nav-btn.primary:hover { background: #0a1e35; }
+
+.step-desc {
+  font-size: 0.72rem;
+  color: #475569;
+  text-align: center;
+  min-height: 18px;
+  transition: color 300ms;
+  letter-spacing: 0.02em;
+}
+.step-desc.blue   { color: #7dd3fc; }
+.step-desc.orange { color: #fdba74; }
+
+/* ── SVG canvas ──────────────────────────────── */
+#canvas {
+  width: min(960px, 100%);
+  overflow: visible;
+}
+
+.node-box {
+  rx: 10; ry: 10;
+  fill: #161d2e;
+  stroke: #2d3a50;
+  stroke-width: 1.5;
+  transition: stroke 350ms, fill 350ms;
+}
+.node-box.lit-blue   { fill: #0a1e35; stroke: #38bdf8; }
+.node-box.lit-orange { fill: #271200; stroke: #f97316; }
+
+.node-title {
+  font-size: 11px; font-weight: 700;
+  fill: #64748b;
+  transition: fill 350ms;
+  dominant-baseline: middle; text-anchor: middle;
+}
+.node-title.lit-blue   { fill: #38bdf8; }
+.node-title.lit-orange { fill: #fb923c; }
+
+.node-detail {
+  font-size: 8.5px;
+  fill: #374151;
+  transition: fill 350ms;
+  dominant-baseline: middle; text-anchor: middle;
+}
+.node-detail.lit-blue   { fill: #7dd3fc60; }
+.node-detail.lit-orange { fill: #fdba7460; }
+
+.mod-bg {
+  rx: 14; ry: 14;
+  fill: none;
+  stroke: #1e2538;
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+  transition: stroke 350ms;
+}
+.mod-bg.lit-blue   { stroke: #38bdf830; }
+.mod-bg.lit-orange { stroke: #f9731630; }
+
+.mod-label {
+  font-size: 9px; font-weight: 700;
+  fill: #2d3a50;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: fill 350ms;
+}
+.mod-label.lit-blue   { fill: #38bdf840; }
+.mod-label.lit-orange { fill: #f9731640; }
+
+.pipe {
+  fill: none;
+  stroke: #1e2538;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  transition: stroke 350ms, stroke-dashoffset 500ms cubic-bezier(0.4,0,0.2,1);
+}
+.pipe.lit-blue   { stroke: #38bdf8; }
+.pipe.lit-orange { stroke: #f97316; }
+
+/* particles — hidden by default, never at 0,0 */
+.particle {
+  fill: #38bdf8;
+  filter: url(#glow-blue);
+  visibility: hidden;
+}
+.particle.orange {
+  fill: #f97316;
+  filter: url(#glow-orange);
+}
+/* vapor scatter dots are smaller — r set via SVG attribute */
+.particle.vapor-scatter { r: 1.8; }
+
+/* Mechanical damper symbol */
+.damper-body {
+  fill: none;
+  stroke: #2d3a50;
+  stroke-width: 2;
+  stroke-linecap: square;
+  transition: stroke 350ms;
+}
+.damper-plate {
+  fill: none;
+  stroke: #2d3a50;
+  stroke-width: 2.5;
+  stroke-linecap: square;
+  transition: stroke 350ms, transform 500ms cubic-bezier(0.4,0,0.2,1);
+}
+.damper-group.open  .damper-body  { stroke: #38bdf8; }
+.damper-group.open  .damper-plate { stroke: #38bdf8; }
+.damper-group.closed .damper-body  { stroke: #f97316; }
+.damper-group.closed .damper-plate { stroke: #f97316; transform: translateX(10px); }
+/* outlet plate slides left (toward open face) when closed */
+#damper-outlet.closed .damper-plate { transform: translateX(-10px); }
+
+.fan-blade {
+  fill: none;
+  stroke: #2d3a50;
+  stroke-width: 1.2;
+  transition: stroke 350ms;
+}
+.fan-blade.lit { fill: none; stroke: #38bdf8; }
+
+@keyframes spin-fan {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.fan-group { transform-box: fill-box; transform-origin: center center; }
+.fan-group.spinning { animation: spin-fan 1.2s linear infinite; }
+
+@keyframes uv-pulse {
+  0%, 100% { opacity: 0.3; r: 14; }
+  50%       { opacity: 0.9; r: 22; }
+}
+.uv-glow { fill: #a855f7; opacity: 0; }
+.uv-glow.active { animation: uv-pulse 1.6s ease-in-out infinite; }
+
+@keyframes shimmer {
+  0%   { transform: translateY(0px)  scaleX(1);    opacity: 0.6; }
+  50%  { transform: translateY(-6px) scaleX(1.15); opacity: 0.9; }
+  100% { transform: translateY(0px)  scaleX(1);    opacity: 0.6; }
+}
+.heat-wave {
+  fill: none;
+  stroke: #f97316;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  opacity: 0;
+}
+.heat-wave.active                    { animation: shimmer 1s ease-in-out infinite; }
+.heat-wave:nth-child(2).active       { animation-delay: 0.2s; }
+.heat-wave:nth-child(3).active       { animation-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fan-group.spinning { animation: none; }
+  .uv-glow.active     { animation: none; opacity: 0.6; }
+  .heat-wave.active   { animation: none; opacity: 0.5; }
+  .particle           { visibility: hidden !important; }
+}
+</style>
+</head>
+<body>
+
+<h1>Atmospheric Water Generator</h1>
+<p class="sub">Animated 2D Process Workflow — Step Through Each Stage</p>
+
+<!-- ── Stepper ──────────────────────────────────── -->
+<div class="stepper">
+  <div class="step-item" onclick="goTo(0)">
+    <div class="step-circle" id="sc-0">1</div>
+    <div class="step-label"  id="sl-0">Pre-Filter<br>&amp; Intake Fan</div>
+  </div>
+  <div class="step-connector" id="conn-0"></div>
+  <div class="step-item" onclick="goTo(1)">
+    <div class="step-circle" id="sc-1">2</div>
+    <div class="step-label"  id="sl-1">Adsorption<br>(Moisture Capture)</div>
+  </div>
+  <div class="step-connector" id="conn-1"></div>
+  <div class="step-item" onclick="goTo(2)">
+    <div class="step-circle" id="sc-2">3</div>
+    <div class="step-label"  id="sl-2">Desorption<br>&amp; Condensation</div>
+  </div>
+  <div class="step-connector" id="conn-2"></div>
+  <div class="step-item" onclick="goTo(3)">
+    <div class="step-circle" id="sc-3">4</div>
+    <div class="step-label"  id="sl-3">Purification<br>&amp; Storage</div>
+  </div>
+</div>
+
+<p class="step-desc" id="step-desc">Click a step or use the buttons below</p>
+
+<div class="nav-row" style="margin-top:14px">
+  <button class="nav-btn" id="btn-prev" onclick="nav(-1)">← Prev</button>
+  <button class="nav-btn primary" id="btn-next" onclick="nav(1)">Next →</button>
+  <button class="nav-btn" onclick="reset()" style="margin-left:8px">↺ Reset</button>
+</div>
+
+<!-- ── SVG ─────────────────────────────────────── -->
+<svg id="canvas" viewBox="0 0 960 520" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glow-blue" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-orange" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- hidden guide paths for particles -->
+    <path id="path-capture-s0" d="M 30,200 L 91,200 L 134,200 L 182,200 L 228,200 L 270,200" fill="none"/>
+    <path id="path-capture-s1" d="M 30,200 L 270,200 L 316,200 L 392,200 L 512,200 L 576,200 L 586,200 L 610,200 L 610,82" fill="none"/>
+    <path id="path-condensate" d="M 512,335 L 670,335 L 750,335 L 750,330 L 780,330 L 820,330 L 820,220 L 780,220 L 730,220 L 709,220 L 709,245" fill="none"/>
+    <path id="path-vapor-pipe" d="M 452,252 L 452,305" fill="none"/>
+    <marker id="arr-blue" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#38bdf8"/>
+    </marker>
+    <marker id="arr-orange" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#f97316"/>
+    </marker>
+    <marker id="arr-dim" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L6,3 z" fill="#1e2538"/>
+    </marker>
+  </defs>
+
+  <!-- ══ MODULE 1 — Intake & Filtration ══ -->
+  <rect class="mod-bg"   id="mod1-bg"  x="38"  y="155" width="242" height="118"/>
+  <text class="mod-label" id="mod1-lbl" x="42"  y="149">Module 1 — Intake &amp; Filtration</text>
+
+  <!-- Ambient air arrow -->
+  <path class="pipe" id="pipe-ambient" d="M 0,200 L 48,200" marker-end="url(#arr-dim)"/>
+
+  <!-- Pre-Filter node -->
+  <rect class="node-box" id="n-prefilter" x="48"  y="168" width="86" height="64"/>
+  <text class="node-title"  id="nt-prefilter"  x="91" y="191">Pre-Filter</text>
+  <text class="node-detail" id="nd-prefilter"  x="91" y="204">Coarse particle</text>
+  <text class="node-detail" id="nd-prefilter2" x="91" y="215">removal</text>
+  <line x1="60" y1="185" x2="60" y2="224" stroke="#1e2538" stroke-width="1"   id="fl1"/>
+  <line x1="66" y1="182" x2="66" y2="226" stroke="#1e2538" stroke-width="1.5" id="fl2"/>
+  <line x1="72" y1="184" x2="72" y2="224" stroke="#1e2538" stroke-width="1"   id="fl3"/>
+
+  <!-- pipe pre-filter → fan -->
+  <path class="pipe" id="pipe-p2f" d="M 134,200 L 162,200"/>
+
+  <!-- Intake Fan -->
+  <g transform="translate(182,200)">
+    <circle r="20" fill="#0d1420" stroke="#2d3a50" stroke-width="1.5" id="fan-housing"/>
+    <g class="fan-group" id="fan-spin">
+      <ellipse cx="0" cy="0" rx="5" ry="14" class="fan-blade" id="fb1"/>
+      <ellipse cx="0" cy="0" rx="5" ry="14" class="fan-blade" id="fb2" transform="rotate(120,0,0)"/>
+      <ellipse cx="0" cy="0" rx="5" ry="14" class="fan-blade" id="fb3" transform="rotate(240,0,0)"/>
+      <circle r="3" fill="#38bdf8" opacity="0.6" id="fan-hub"/>
+    </g>
+  </g>
+  <text style="font-size:9px;font-weight:700;fill:#64748b;text-anchor:middle" x="182" y="234" id="fan-label">Intake Fan</text>
+
+  <!-- pipe fan → fine filter -->
+  <path class="pipe" id="pipe-f2ff" d="M 202,200 L 228,200"/>
+
+  <!-- Fine Filter node -->
+  <rect class="node-box" id="n-finef" x="228" y="168" width="42" height="64"/>
+  <line x1="234" y1="175" x2="234" y2="226" stroke="#1e2538" stroke-width="1"   id="ff1"/>
+  <line x1="240" y1="172" x2="240" y2="228" stroke="#1e2538" stroke-width="1.5" id="ff2"/>
+  <line x1="246" y1="175" x2="246" y2="226" stroke="#1e2538" stroke-width="1"   id="ff3"/>
+  <line x1="252" y1="172" x2="252" y2="228" stroke="#1e2538" stroke-width="1.5" id="ff4"/>
+  <line x1="258" y1="175" x2="258" y2="226" stroke="#1e2538" stroke-width="1"   id="ff5"/>
+  <line x1="264" y1="172" x2="264" y2="228" stroke="#1e2538" stroke-width="1.5" id="ff6"/>
+  <text class="node-title" id="nt-finef"  x="249" y="243" style="font-size:9px">Fine</text>
+  <text class="node-title" id="nt-finef2" x="249" y="254" style="font-size:9px">Filter</text>
+
+  <!-- ══ MODULE 2 — Sorbent HX ══ -->
+  <rect class="mod-bg"   id="mod2-bg"  x="306" y="118" width="334" height="258"/>
+  <text class="mod-label" id="mod2-lbl" x="310" y="112">Module 2 — Sorbent Heat Exchanger</text>
+
+  <!-- Inlet Damper — mechanical symbol: U-body open to right, sliding plate inside -->
+  <!-- pipe into damper -->
+  <path class="pipe" id="pipe-in2d" d="M 270,200 L 316,200"/>
+  <text style="font-size:8px;fill:#1e2538;text-anchor:middle" id="lbl-filtered" x="293" y="193">Filtered Air</text>
+  <g id="damper-inlet" class="damper-group">
+    <!-- U-shape: left wall + top + bottom, open on right -->
+    <path class="damper-body" d="M 316,182 L 316,218 M 316,182 L 344,182 M 316,218 L 344,218"/>
+    <!-- sliding plate -->
+    <line class="damper-plate" x1="328" y1="185" x2="328" y2="215"/>
+    <!-- no stub — pipe-d2hx extends through open face to the wall -->
+  </g>
+  <text style="font-size:7.5px;fill:#475569;text-anchor:middle" x="335" y="232">Inlet</text>
+  <text style="font-size:7.5px;fill:#475569;text-anchor:middle" x="335" y="241">Damper</text>
+
+  <!-- pipe damper → HX: drawn right-to-left; default reaches plate (x=328), closed retracts to open face (x=344) -->
+  <!-- full length 64 (x=392→328); closed offset=16 leaves 48px visible (x=392→344) -->
+  <path class="pipe" id="pipe-d2hx"
+        d="M 392,200 L 328,200"
+        stroke-dasharray="64 64"
+        stroke-dashoffset="0"/>
+
+  <!-- HX block -->
+  <rect class="node-box" id="n-hx" x="392" y="148" width="120" height="104"/>
+  <line x1="406" y1="155" x2="406" y2="244" stroke="#1e2538" stroke-width="1.2" id="hxl1"/>
+  <line x1="416" y1="152" x2="416" y2="246" stroke="#1e2538" stroke-width="1.8" id="hxl2"/>
+  <line x1="426" y1="155" x2="426" y2="244" stroke="#1e2538" stroke-width="1.2" id="hxl3"/>
+  <line x1="436" y1="152" x2="436" y2="246" stroke="#1e2538" stroke-width="1.8" id="hxl4"/>
+  <line x1="446" y1="155" x2="446" y2="244" stroke="#1e2538" stroke-width="1.2" id="hxl5"/>
+  <line x1="456" y1="152" x2="456" y2="246" stroke="#1e2538" stroke-width="1.8" id="hxl6"/>
+  <line x1="466" y1="155" x2="466" y2="244" stroke="#1e2538" stroke-width="1.2" id="hxl7"/>
+  <line x1="476" y1="152" x2="476" y2="246" stroke="#1e2538" stroke-width="1.8" id="hxl8"/>
+  <line x1="486" y1="155" x2="486" y2="244" stroke="#1e2538" stroke-width="1.2" id="hxl9"/>
+  <line x1="496" y1="152" x2="496" y2="246" stroke="#1e2538" stroke-width="1.8" id="hxl10"/>
+  <text class="node-title"  id="nt-hx"  x="452" y="138">Sorbent HX</text>
+
+  <!-- Heat waves (desorption) -->
+  <g id="heat-waves" transform="translate(452,200)">
+    <path class="heat-wave" id="hw1" d="M -30,0 Q -15,-12 0,0 Q 15,12 30,0"/>
+    <path class="heat-wave" id="hw2" d="M -30,-16 Q -15,-28 0,-16 Q 15,-4 30,-16"/>
+    <path class="heat-wave" id="hw3" d="M -30,16 Q -15,4 0,16 Q 15,28 30,16"/>
+  </g>
+
+  <!-- pipe HX → outlet damper: drawn left-to-right; default reaches plate (x=564), closed retracts to open face (x=548) -->
+  <!-- full length 52 (x=512→564); closed offset=16 leaves 36px visible (x=512→548) -->
+  <path class="pipe" id="pipe-hx2od"
+        d="M 512,200 L 564,200"
+        stroke-dasharray="52 52"
+        stroke-dashoffset="0"/>
+
+  <!-- Outlet Damper — mirrored ⊐: open face left, wall right -->
+  <g id="damper-outlet" class="damper-group">
+    <path class="damper-body" d="M 576,182 L 576,218 M 548,182 L 576,182 M 548,218 L 576,218"/>
+    <line class="damper-plate" x1="564" y1="185" x2="564" y2="215"/>
+  </g>
+  <!-- stub outside group so it doesn't inherit closed/orange colour -->
+  <line id="od-stub" x1="576" y1="200" x2="586" y2="200" stroke="#2d3a50" stroke-width="2" stroke-linecap="square"/>
+  <text style="font-size:7.5px;fill:#475569;text-anchor:middle" x="562" y="232">Outlet</text>
+  <text style="font-size:7.5px;fill:#475569;text-anchor:middle" x="562" y="241">Damper</text>
+
+  <!-- Dry air exhaust — exits straight upward from fan -->
+  <path class="pipe" id="pipe-od2exhf" d="M 586,200 L 610,200"/>
+  <path class="pipe" id="pipe-exhaust" d="M 610,186 L 610,82" marker-end="url(#arr-dim)"/>
+  <!-- Exhaust fan — to the right of outlet damper -->
+  <g transform="translate(610,200)">
+    <circle r="14" fill="#0d1420" stroke="#2d3a50" stroke-width="1.2" id="exh-fan-housing"/>
+    <g class="fan-group" id="exh-fan-spin">
+      <ellipse cx="0" cy="0" rx="4" ry="9" class="fan-blade" id="efb1"/>
+      <ellipse cx="0" cy="0" rx="4" ry="9" class="fan-blade" id="efb2" transform="rotate(120,0,0)"/>
+      <ellipse cx="0" cy="0" rx="4" ry="9" class="fan-blade" id="efb3" transform="rotate(240,0,0)"/>
+    </g>
+  </g>
+  <text style="font-size:9px;font-weight:700;fill:#64748b;text-anchor:middle" x="610" y="228" id="exh-fan-label">Exhaust Fan</text>
+
+  <!-- Condenser coils -->
+  <rect class="node-box" id="n-cond" x="392" y="305" width="120" height="60"/>
+  <text class="node-title"  id="nt-cond" x="452" y="326">Condenser Coils</text>
+  <text class="node-detail" id="nd-cond" x="452" y="340">Vapor → Liquid</text>
+  <path d="M 404,350 Q 420,340 436,350 Q 452,360 468,350 Q 484,340 500,350" fill="none" stroke="#1e2538" stroke-width="1.5" id="coil1"/>
+
+  <!-- vapor drop pipe HX → condenser -->
+  <path class="pipe" id="pipe-vapor" d="M 452,252 L 452,305"/>
+
+  <!-- drainage pipe M2 → M3 -->
+  <path class="pipe" id="pipe-drain" d="M 512,335 L 670,335"/>
+  <text style="font-size:8px;fill:#1e2538;text-anchor:middle" id="lbl-drain" x="580" y="328">Condensate</text>
+
+  <!-- ══ MODULE 3 — Purification & Storage ══ -->
+  <rect class="mod-bg"   id="mod3-bg"  x="652" y="143" width="226" height="228"/>
+  <text class="mod-label" id="mod3-lbl" x="656" y="137">Module 3 — Purification &amp; Storage</text>
+
+  <!-- Sediment filter -->
+  <rect class="node-box" id="n-sed" x="670" y="300" width="80" height="60"/>
+  <text class="node-title" id="nt-sed"  x="710" y="323">Sediment</text>
+  <text class="node-title" id="nt-sed2" x="710" y="335">Filter</text>
+  <line x1="682" y1="308" x2="682" y2="352" stroke="#1e2538" stroke-width="1"   id="sl1"/>
+  <line x1="690" y1="305" x2="690" y2="355" stroke="#1e2538" stroke-width="1.5" id="sl2"/>
+  <line x1="698" y1="308" x2="698" y2="352" stroke="#1e2538" stroke-width="1"   id="sl3"/>
+
+  <!-- sed → carbon -->
+  <path class="pipe" id="pipe-s2c" d="M 750,330 L 780,330"/>
+
+  <!-- Carbon block -->
+  <rect class="node-box" id="n-carbon" x="780" y="300" width="80" height="60"/>
+  <text class="node-title" id="nt-carbon"  x="820" y="326">Carbon</text>
+  <text class="node-title" id="nt-carbon2" x="820" y="338">Block</text>
+  <circle cx="796" cy="344" r="2"   fill="#1e2538" id="cd1"/>
+  <circle cx="804" cy="340" r="2.5" fill="#1e2538" id="cd2"/>
+  <circle cx="812" cy="345" r="2"   fill="#1e2538" id="cd3"/>
+  <circle cx="820" cy="342" r="2.5" fill="#1e2538" id="cd4"/>
+  <circle cx="828" cy="344" r="2"   fill="#1e2538" id="cd5"/>
+  <circle cx="836" cy="341" r="2.5" fill="#1e2538" id="cd6"/>
+  <circle cx="844" cy="345" r="2"   fill="#1e2538" id="cd7"/>
+
+  <!-- carbon → UV-C -->
+  <path class="pipe" id="pipe-c2uv" d="M 820,300 L 820,250"/>
+
+  <!-- UV-C node -->
+  <rect class="node-box" id="n-uvc" x="780" y="190" width="80" height="60"/>
+  <circle class="uv-glow" id="uv-glow" cx="820" cy="220" r="14"/>
+  <text class="node-title"  id="nt-uvc"  x="820" y="216">UV-C</text>
+  <text class="node-title"  id="nt-uvc2" x="820" y="228">Sterilize</text>
+  <text class="node-detail" id="nd-uvc"  x="820" y="241">254 nm</text>
+
+  <!-- UV-C → storage -->
+  <path class="pipe" id="pipe-uv2tank" d="M 780,220 L 730,220"/>
+
+  <!-- Storage tank -->
+  <rect class="node-box" id="n-tank" x="668" y="155" width="82" height="90"/>
+  <rect id="tank-water" x="672" y="241" width="74" height="0" rx="4" fill="#38bdf818" stroke="none"/>
+  <text class="node-title"  id="nt-tank"  x="709" y="178">Storage</text>
+  <text class="node-title"  id="nt-tank2" x="709" y="190">Tank</text>
+  <text class="node-detail" id="nd-tank"  x="709" y="232">40–80 L/day</text>
+
+  <!-- ══ Particles — always initialised off-screen via visibility:hidden ══ -->
+  <!-- Blue air particles (capture) — parked outside the viewBox -->
+  <circle class="particle"        id="p1" cx="-50" cy="-50" r="4"/>
+  <circle class="particle"        id="p2" cx="-50" cy="-50" r="4"/>
+  <circle class="particle"        id="p3" cx="-50" cy="-50" r="4"/>
+  <!-- Orange condensate particles — parked outside the viewBox -->
+  <circle class="particle orange" id="p4" cx="-50" cy="-50" r="4"/>
+  <circle class="particle orange" id="p5" cx="-50" cy="-50" r="4"/>
+  <!-- Vapor scatter particles (small, scatter across HX then merge into pipe) -->
+  <circle class="particle orange vapor-scatter" id="vs1"  cx="-50" cy="-50"/>
+  <circle class="particle orange vapor-scatter" id="vs2"  cx="-50" cy="-50"/>
+  <circle class="particle orange vapor-scatter" id="vs3"  cx="-50" cy="-50"/>
+  <circle class="particle orange vapor-scatter" id="vs4"  cx="-50" cy="-50"/>
+  <circle class="particle orange vapor-scatter" id="vs5"  cx="-50" cy="-50"/>
+  <circle class="particle orange vapor-scatter" id="vs6"  cx="-50" cy="-50"/>
+  <circle class="particle orange vapor-scatter" id="vs7"  cx="-50" cy="-50"/>
+  <circle class="particle orange vapor-scatter" id="vs8"  cx="-50" cy="-50"/>
+  <circle class="particle orange vapor-scatter" id="vs9"  cx="-50" cy="-50"/>
+  <circle class="particle orange vapor-scatter" id="vs10" cx="-50" cy="-50"/>
+  <circle class="particle orange vapor-scatter" id="vs11" cx="-50" cy="-50"/>
+  <circle class="particle orange vapor-scatter" id="vs12" cx="-50" cy="-50"/>
+  <!-- Vapor pipe particle (larger, travels down pipe-vapor) -->
+  <circle class="particle orange" id="vp1" cx="-50" cy="-50" r="4"/>
+</svg>
+
+<script>
+// ─── Step definitions ──────────────────────────────────────────────────
+// step 0 = Pre-filter & Intake Fan (Module 1)
+// step 1 = Adsorption — moisture capture (Module 2, open loop)
+// step 2 = Desorption & Condensation (Module 2, closed loop)
+// step 3 = Purification & Storage (Module 3)
+
+const STEP_META = [
+  { label: 'Ambient air passes through pre-filter and intake fans; variable-speed fan adjusts to RH & temperature.', color: 'blue'   },
+  { label: 'Adsorption — filtered air flows through the sorbent-coated HX; moisture chemically binds to the sorbent. Dry air exhausted.', color: 'blue' },
+  { label: 'Desorption — dampers seal the air path; glycol loop heats the HX, driving water vapor off the sorbent. Vapor condenses into liquid on the condenser coils.', color: 'orange' },
+  { label: 'Condensate flows via SS tray → PE tubing into Module 3: sediment filter → carbon block → UV-C sterilization → storage tank.', color: 'orange' },
+];
+
+let currentStep = -1; // -1 = pristine / reset state
+
+// ─── Helper: add/remove classes cleanly ───────────────────────────────
+function cls(id, add, remove) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (remove) remove.split(' ').forEach(c => c && el.classList.remove(c));
+  if (add)    add.split(' ').forEach(c => c && el.classList.add(c));
+}
+
+function setClass(id, cls_str) {
+  // replace all state classes with cls_str
+  const el = document.getElementById(id);
+  if (!el) return;
+  ['lit-blue','lit-orange','active','open','closed','spinning','done','active-blue','active-orange'].forEach(c => el.classList.remove(c));
+  if (cls_str) cls_str.split(' ').forEach(c => c && el.classList.add(c));
+}
+
+// ─── Animate damper pipe reach ────────────────────────────────────────
+// pipe-d2hx: total=64 (x=392→328); open offset=0 (tip at plate x=328), closed offset=16 (tip at open face x=344)
+// pipe-hx2od: total=52 (x=512→564); open offset=0 (tip at plate x=564), closed offset=16 (tip at open face x=548)
+function setPipeReach(state) {
+  const d2hx  = document.getElementById('pipe-d2hx');
+  const hx2od = document.getElementById('pipe-hx2od');
+  if (state === 'open') {
+    d2hx.style.strokeDashoffset  = '0';
+    hx2od.style.strokeDashoffset = '0';
+  } else if (state === 'closed') {
+    d2hx.style.strokeDashoffset  = '12';
+    hx2od.style.strokeDashoffset = '12';
+  } else {
+    // reset — same as open (pipes always visible)
+    d2hx.style.strokeDashoffset  = '0';
+    hx2od.style.strokeDashoffset = '0';
+  }
+}
+
+// ─── Reset everything to dim state ────────────────────────────────────
+function dimAll() {
+  const allNodes = ['n-prefilter','n-finef','n-hx','n-cond','n-sed','n-carbon','n-uvc','n-tank'];
+  const allPipes = ['pipe-ambient','pipe-p2f','pipe-f2ff','pipe-in2d','pipe-d2hx','pipe-hx2od',
+                    'pipe-od2exhf','pipe-exhaust','pipe-vapor','pipe-drain','pipe-s2c','pipe-c2uv','pipe-uv2tank'];
+  const allMods  = ['mod1-bg','mod2-bg','mod3-bg'];
+  const allModL  = ['mod1-lbl','mod2-lbl','mod3-lbl'];
+  const allTitles = ['nt-prefilter','nd-prefilter','nd-prefilter2','nt-finef','nt-finef2',
+                     'nt-hx','nt-cond','nd-cond',
+                     'nt-sed','nt-sed2','nt-carbon','nt-carbon2',
+                     'nt-uvc','nt-uvc2','nd-uvc','nt-tank','nt-tank2','nd-tank'];
+
+  allNodes.forEach(id  => setClass(id, ''));
+  allPipes.forEach(id  => setClass(id, ''));
+  allMods.forEach(id   => setClass(id, ''));
+  allModL.forEach(id   => setClass(id, ''));
+  allTitles.forEach(id => setClass(id, ''));
+
+  // heat waves, UV off
+  ['hw1','hw2','hw3'].forEach(id => document.getElementById(id).classList.remove('active'));
+  document.getElementById('uv-glow').classList.remove('active');
+
+  // fans off
+  document.getElementById('fan-spin').classList.remove('spinning');
+  document.getElementById('exh-fan-spin').classList.remove('spinning');
+  ['fb1','fb2','fb3','efb1','efb2','efb3'].forEach(id => document.getElementById(id).classList.remove('lit'));
+
+  // both dampers — no colour
+  setDamper('damper-inlet',  false);
+  setDamper('damper-outlet', false);
+
+  // labels dim — null-safe
+  ['lbl-filtered','lbl-drain'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.fill = '#1e2538';
+  });
+  const c1 = document.getElementById('coil1');
+  if (c1) c1.style.stroke = '#1e2538';
+
+  // arrowheads dim
+  document.getElementById('pipe-ambient').setAttribute('marker-end', 'url(#arr-dim)');
+  document.getElementById('pipe-exhaust').setAttribute('marker-end', 'url(#arr-dim)');
+
+  // pipe reach reset; stub dim
+  setPipeReach('hidden');
+  document.getElementById('od-stub').style.stroke = '#2d3a50';
+
+  // particles off
+  stopAllParticles();
+}
+
+// ─── Damper helper — set mechanical damper open/closed + colour ───────
+// closed=true → plate slides right + orange; closed=false → plate at left + optional blue
+function setDamper(id, closed, blue) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.classList.remove('open','closed');
+  el.classList.add(closed ? 'closed' : 'open');
+  // colour the body/plate strokes via CSS classes on the group
+  // (handled by .damper-group.open / .damper-group.closed CSS)
+  // if neither blue nor closed, remove colour classes so it's grey
+  if (!closed && !blue) {
+    el.classList.remove('open');  // remove open so no colour applied
+  }
+}
+
+// ─── Apply a step — each step is independent (not cumulative after step 2) ───
+function applyUpTo(step) {
+  dimAll();
+
+  // Step 0 — M1 only: pre-filter & intake fan
+  if (step === 0) {
+    setClass('mod1-bg',  'lit-blue');
+    setClass('mod1-lbl', 'lit-blue');
+    setClass('n-prefilter', 'lit-blue');
+    setClass('n-finef',     'lit-blue');
+    ['nt-prefilter','nd-prefilter','nd-prefilter2','nt-finef','nt-finef2'].forEach(id => setClass(id,'lit-blue'));
+    setClass('pipe-ambient', 'lit-blue');
+    setClass('pipe-p2f',    'lit-blue');
+    setClass('pipe-f2ff',   'lit-blue');
+    setClass('pipe-in2d',   'lit-blue');
+    document.getElementById('pipe-ambient').setAttribute('marker-end', 'url(#arr-blue)');
+    document.getElementById('lbl-filtered').style.fill = '#38bdf8';
+    document.getElementById('fan-spin').classList.add('spinning');
+    ['fb1','fb2','fb3'].forEach(id => document.getElementById(id).classList.add('lit'));
+    startCaptureParticles('path-capture-s0');
+  }
+
+  // Step 1 — M1 + M2 adsorption: open loop, air through HX, exhaust fan on
+  if (step === 1) {
+    // M1 lit
+    setClass('mod1-bg',  'lit-blue');
+    setClass('mod1-lbl', 'lit-blue');
+    setClass('n-prefilter', 'lit-blue');
+    setClass('n-finef',     'lit-blue');
+    ['nt-prefilter','nd-prefilter','nd-prefilter2','nt-finef','nt-finef2'].forEach(id => setClass(id,'lit-blue'));
+    setClass('pipe-ambient', 'lit-blue');
+    setClass('pipe-p2f',    'lit-blue');
+    setClass('pipe-f2ff',   'lit-blue');
+    document.getElementById('pipe-ambient').setAttribute('marker-end', 'url(#arr-blue)');
+    document.getElementById('fan-spin').classList.add('spinning');
+    ['fb1','fb2','fb3'].forEach(id => document.getElementById(id).classList.add('lit'));
+    startCaptureParticles('path-capture-s1');
+    // M2 lit
+    setClass('mod2-bg',  'lit-blue');
+    setClass('mod2-lbl', 'lit-blue');
+    setClass('n-hx',     'lit-blue');
+    setClass('nt-hx',    'lit-blue');
+    setClass('pipe-in2d',      'lit-blue');
+    setClass('pipe-d2hx',      'lit-blue');
+    setClass('pipe-hx2od',     'lit-blue');
+    setClass('pipe-od2exhf',   'lit-blue');
+    setClass('pipe-exhaust',   'lit-blue');
+    document.getElementById('pipe-exhaust').setAttribute('marker-end', 'url(#arr-blue)');
+    document.getElementById('lbl-filtered').style.fill = '#38bdf8';
+    document.getElementById('exh-fan-spin').classList.add('spinning');
+    ['efb1','efb2','efb3'].forEach(id => document.getElementById(id).classList.add('lit'));
+    // dampers open + blue during adsorption; pipes extend to walls
+    setDamper('damper-inlet',  false, true);
+    setDamper('damper-outlet', false, true);
+    setPipeReach('open');
+    document.getElementById('od-stub').style.stroke = '#38bdf8';
+  }
+
+  // Step 2 — M2 desorption: closed dampers, heat, vapor, condensation (stays lit on step 3)
+  if (step >= 2) {
+    setClass('mod2-bg',  'lit-orange');
+    setClass('mod2-lbl', 'lit-orange');
+    // dampers close + orange; pipes retract to plates; stub off
+    setDamper('damper-inlet',  true);
+    setDamper('damper-outlet', true);
+    setPipeReach('closed');
+    document.getElementById('od-stub').style.stroke = '#1e2538';
+    // heat waves + HX orange
+    startVaporParticles();
+    ['hw1','hw2','hw3'].forEach(id => document.getElementById(id).classList.add('active'));
+    setClass('n-hx',   'lit-orange');
+    setClass('nt-hx','lit-orange');
+    // pipes to/from HX lit orange
+    setClass('pipe-d2hx',  'lit-orange');
+    setClass('pipe-hx2od', 'lit-orange');
+    setClass('pipe-vapor', 'lit-orange');
+    setClass('n-cond',  'lit-orange');
+    ['nt-cond','nd-cond'].forEach(id => setClass(id,'lit-orange'));
+    document.getElementById('coil1').style.stroke       = '#f9731660';
+  }
+
+  // Step 3 — M3 purification & storage (M2 desorption stays lit above)
+  if (step >= 3) {
+    setClass('mod3-bg',  'lit-orange');
+    setClass('mod3-lbl', 'lit-orange');
+    setClass('pipe-drain', 'lit-orange');
+    document.getElementById('lbl-drain').style.fill = '#f9731880';
+    setClass('n-sed',     'lit-orange');
+    setClass('n-carbon',  'lit-orange');
+    setClass('n-uvc',     'lit-orange');
+    setClass('n-tank',    'lit-orange');
+    ['nt-sed','nt-sed2','nt-carbon','nt-carbon2','nt-uvc','nt-uvc2','nd-uvc','nt-tank','nt-tank2','nd-tank']
+      .forEach(id => setClass(id,'lit-orange'));
+    setClass('pipe-s2c',      'lit-orange');
+    setClass('pipe-c2uv',     'lit-orange');
+    setClass('pipe-uv2tank',  'lit-orange');
+    document.getElementById('uv-glow').classList.add('active');
+    animateTankFill();
+    startCondensateParticles();
+  }
+}
+
+// ─── Stepper UI update ─────────────────────────────────────────────────
+function updateStepperUI(step) {
+  for (let i = 0; i < 4; i++) {
+    const circle = document.getElementById('sc-' + i);
+    const label  = document.getElementById('sl-' + i);
+    const conn   = document.getElementById('conn-' + i); // conn-2 exists now
+
+    circle.classList.remove('done','active-blue','active-orange');
+    label.classList.remove('done','active-blue','active-orange');
+
+    if (i < step) {
+      circle.classList.add('done');
+      label.classList.add('done');
+    } else if (i === step) {
+      const colorCls = (i >= 2) ? 'active-orange' : 'active-blue';
+      circle.classList.add(colorCls);
+      label.classList.add(colorCls);
+    }
+
+    if (conn) {
+      conn.classList.toggle('done', i < step);
+    }
+  }
+
+  // description
+  const desc = document.getElementById('step-desc');
+  if (step < 0) {
+    desc.textContent = 'Click a step or use the buttons below';
+    desc.className   = 'step-desc';
+  } else {
+    desc.textContent = STEP_META[step].label;
+    desc.className   = 'step-desc ' + STEP_META[step].color;
+  }
+
+  // nav buttons
+  document.getElementById('btn-prev').disabled = step <= 0;
+  document.getElementById('btn-next').disabled = step >= 3;
+}
+
+// ─── Public nav ───────────────────────────────────────────────────────
+function goTo(step) {
+  currentStep = step;
+  applyUpTo(step);
+  updateStepperUI(step);
+}
+
+function nav(dir) {
+  const next = Math.max(0, Math.min(3, currentStep + dir));
+  goTo(next);
+}
+
+function reset() {
+  currentStep = -1;
+  dimAll();
+  updateStepperUI(-1);
+  // reset tank
+  const tw = document.getElementById('tank-water');
+  tw.setAttribute('y', '241');
+  tw.setAttribute('height', '0');
+}
+
+// ─── Particle system ──────────────────────────────────────────────────
+let capActive = false;
+let capPathId = 'path-capture-s0';
+let conActive = false;
+let vaporActive = false;
+let captureRAF = null;
+let condensateRAF = null;
+let vaporRAF = null;
+let capT = [0, 0.33, 0.66];
+let conT = [0, 0.5];
+
+function getPathPoint(pathId, t) {
+  const path = document.getElementById(pathId);
+  const len = path.getTotalLength();
+  return path.getPointAtLength(len * t);
+}
+
+// ── Capture (blue air) ────────────────────────────────────────────────
+function startCaptureParticles(pathId) {
+  capPathId = pathId || 'path-capture-s0';
+  if (capActive) { capActive = false; } // restart on path change
+  capActive = true;
+  ['p1','p2','p3'].forEach(id => {
+    document.getElementById(id).style.visibility = 'visible';
+  });
+  animateCapture();
+}
+function stopCaptureParticles() {
+  capActive = false;
+  if (captureRAF) { cancelAnimationFrame(captureRAF); captureRAF = null; }
+  ['p1','p2','p3'].forEach(id => {
+    const el = document.getElementById(id);
+    el.style.visibility = 'hidden';
+    el.setAttribute('cx', '-50');
+    el.setAttribute('cy', '-50');
+  });
+}
+function animateCapture() {
+  if (!capActive) return;
+  capT = capT.map(t => (t + 0.004) % 1);
+  ['p1','p2','p3'].forEach((id, i) => {
+    const pt = getPathPoint(capPathId, capT[i]);
+    const el = document.getElementById(id);
+    el.setAttribute('cx', pt.x);
+    el.setAttribute('cy', pt.y);
+  });
+  captureRAF = requestAnimationFrame(animateCapture);
+}
+
+// ── Condensate (orange M3 path) ───────────────────────────────────────
+function startCondensateParticles() {
+  if (conActive) return;
+  conActive = true;
+  ['p4','p5'].forEach(id => {
+    document.getElementById(id).style.visibility = 'visible';
+  });
+  animateCondensate();
+}
+function stopCondensateParticles() {
+  conActive = false;
+  if (condensateRAF) { cancelAnimationFrame(condensateRAF); condensateRAF = null; }
+  ['p4','p5'].forEach(id => {
+    const el = document.getElementById(id);
+    el.style.visibility = 'hidden';
+    el.setAttribute('cx', '-50');
+    el.setAttribute('cy', '-50');
+  });
+}
+function animateCondensate() {
+  if (!conActive) return;
+  conT = conT.map(t => (t + 0.003) % 1);
+  ['p4','p5'].forEach((id, i) => {
+    const pt = getPathPoint('path-condensate', conT[i]);
+    const el = document.getElementById(id);
+    el.setAttribute('cx', pt.x);
+    el.setAttribute('cy', pt.y);
+  });
+  condensateRAF = requestAnimationFrame(animateCondensate);
+}
+
+// ── Vapor: scatter dots across HX converge to pipe, then travel down ──
+// HX bounds: x=392–512, y=148–248. Convergence point: (452,252).
+const VAPOR_IDS = ['vs1','vs2','vs3','vs4','vs5','vs6','vs7','vs8','vs9','vs10','vs11','vs12'];
+const VAPOR_CX = 452, VAPOR_CY = 252;
+
+function randHXStart() {
+  return { sx: 396 + Math.random() * 112, sy: 152 + Math.random() * 96 };
+}
+
+// Each slot: current start + progress t (0→1, one-way)
+let vaporSlots = VAPOR_IDS.map((_, i) => ({ ...randHXStart(), t: i / VAPOR_IDS.length }));
+let vaporPipeT = 0;
+
+function startVaporParticles() {
+  if (vaporActive) return;
+  vaporActive = true;
+  // fresh random starts
+  vaporSlots = VAPOR_IDS.map((_, i) => ({ ...randHXStart(), t: i / VAPOR_IDS.length }));
+  [...VAPOR_IDS, 'vp1'].forEach(id => {
+    document.getElementById(id).style.visibility = 'visible';
+  });
+  animateVapor();
+}
+function stopVaporParticles() {
+  vaporActive = false;
+  if (vaporRAF) { cancelAnimationFrame(vaporRAF); vaporRAF = null; }
+  [...VAPOR_IDS, 'vp1'].forEach(id => {
+    const el = document.getElementById(id);
+    el.style.visibility = 'hidden';
+    el.setAttribute('cx', '-50');
+    el.setAttribute('cy', '-50');
+  });
+}
+function animateVapor() {
+  if (!vaporActive) return;
+  vaporSlots.forEach((slot, i) => {
+    slot.t += 0.006;
+    if (slot.t >= 1) {
+      // reached convergence — pick a new random start and reset
+      slot.t = 0;
+      const ns = randHXStart();
+      slot.sx = ns.sx;
+      slot.sy = ns.sy;
+    }
+    // linear interpolation, one direction only
+    const el = document.getElementById(VAPOR_IDS[i]);
+    el.setAttribute('cx', slot.sx + (VAPOR_CX - slot.sx) * slot.t);
+    el.setAttribute('cy', slot.sy + (VAPOR_CY - slot.sy) * slot.t);
+  });
+  // Pipe particle travels (452,252)→(452,305) continuously
+  vaporPipeT = (vaporPipeT + 0.008) % 1;
+  const pt = getPathPoint('path-vapor-pipe', vaporPipeT);
+  document.getElementById('vp1').setAttribute('cx', pt.x);
+  document.getElementById('vp1').setAttribute('cy', pt.y);
+
+  vaporRAF = requestAnimationFrame(animateVapor);
+}
+
+function stopAllParticles() {
+  stopCaptureParticles();
+  stopCondensateParticles();
+  stopVaporParticles();
+}
+
+function animateTankFill() {
+  const tw = document.getElementById('tank-water');
+  tw.setAttribute('y', '241');
+  tw.setAttribute('height', '0');
+  let h = 0;
+  const target = 41;
+  const step = () => {
+    h = Math.min(h + 0.5, target);
+    tw.setAttribute('y', String(241 - h + (target - target)));
+    tw.setAttribute('y', String(200 + (target - h)));
+    tw.setAttribute('height', String(h));
+    if (h < target) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// ─── Boot ──────────────────────────────────────────────────────────────
+reset();
+</script>
+</body>
+</html>

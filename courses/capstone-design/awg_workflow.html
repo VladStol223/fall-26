@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AWG Process — Air & Water Workflow</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    background: #0f1117;
+    color: #e2e8f0;
+    min-height: 100vh;
+    padding: 40px 20px 60px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #f1f5f9;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 0.78rem;
+    color: #64748b;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+
+  /* Phase toggle */
+  .phase-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 44px;
+  }
+
+  .phase-btn {
+    padding: 8px 22px;
+    border-radius: 999px;
+    border: 1.5px solid transparent;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+    background: #1e2130;
+    color: #94a3b8;
+    border-color: #2d3348;
+  }
+
+  .phase-btn.active-capture {
+    background: #0c2a4a;
+    border-color: #38bdf8;
+    color: #38bdf8;
+  }
+
+  .phase-btn.active-recovery {
+    background: #2a1a0c;
+    border-color: #f97316;
+    color: #f97316;
+  }
+
+  /* Main diagram */
+  .diagram {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  /* Module containers */
+  .modules {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .module {
+    border-radius: 14px;
+    border: 1.5px solid #2d3348;
+    background: #161b27;
+    overflow: hidden;
+    transition: border-color 300ms ease, box-shadow 300ms ease;
+  }
+
+  .module.highlight-capture {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 1px #38bdf820, 0 4px 24px #38bdf812;
+  }
+
+  .module.highlight-recovery {
+    border-color: #f97316;
+    box-shadow: 0 0 0 1px #f9731620, 0 4px 24px #f9731612;
+  }
+
+  .module-header {
+    padding: 14px 18px 10px;
+    border-bottom: 1px solid #2d3348;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .module-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    background: #1e2130;
+    color: #94a3b8;
+    border: 1.5px solid #2d3348;
+  }
+
+  .module-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    letter-spacing: 0.03em;
+  }
+
+  .module-body {
+    padding: 14px 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Step nodes */
+  .step {
+    border-radius: 9px;
+    padding: 10px 13px;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    border: 1px solid transparent;
+    background: #1a2030;
+    color: #94a3b8;
+    transition: background 250ms ease, border-color 250ms ease, color 250ms ease, opacity 250ms ease;
+    position: relative;
+  }
+
+  .step .step-label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+    font-size: 0.73rem;
+    letter-spacing: 0.02em;
+  }
+
+  .step .step-detail {
+    color: #64748b;
+    font-size: 0.68rem;
+    transition: color 250ms ease;
+  }
+
+  /* Active step states */
+  .step.active-capture {
+    background: #0a1f35;
+    border-color: #38bdf840;
+    color: #bae6fd;
+  }
+  .step.active-capture .step-label { color: #38bdf8; }
+  .step.active-capture .step-detail { color: #7dd3fc80; }
+
+  .step.active-recovery {
+    background: #2a1500;
+    border-color: #f9731640;
+    color: #fed7aa;
+  }
+  .step.active-recovery .step-label { color: #fb923c; }
+  .step.active-recovery .step-detail { color: #fdba7480; }
+
+  .step.inactive {
+    opacity: 0.35;
+  }
+
+  /* Connectors between steps */
+  .connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 14px;
+    color: #2d3348;
+    font-size: 0.65rem;
+    transition: color 250ms ease;
+  }
+  .connector.active-capture { color: #38bdf850; }
+  .connector.active-recovery { color: #f9731650; }
+
+  /* Inter-module arrow row */
+  .flow-arrows {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin: 10px 0;
+    align-items: center;
+  }
+
+  .arrow-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .arrow-line {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.66rem;
+    color: #2d3348;
+    transition: color 250ms ease;
+    white-space: nowrap;
+  }
+
+  .arrow-line.active-capture { color: #38bdf8; }
+  .arrow-line.active-recovery { color: #f97316; }
+
+  .arrow-line svg {
+    flex-shrink: 0;
+    transition: stroke 250ms ease;
+  }
+
+  /* Phase label */
+  .phase-label {
+    text-align: center;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 7px 20px;
+    border-radius: 999px;
+    display: inline-block;
+    margin: 0 auto 28px;
+    display: block;
+    width: fit-content;
+  }
+  .phase-label.capture {
+    background: #0c2a4a;
+    color: #38bdf8;
+    border: 1px solid #38bdf840;
+  }
+  .phase-label.recovery {
+    background: #2a1a0c;
+    color: #f97316;
+    border: 1px solid #f9731640;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 36px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.7rem;
+    color: #64748b;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .legend-dot.blue { background: #38bdf8; }
+  .legend-dot.orange { background: #f97316; }
+  .legend-dot.grey { background: #2d3348; }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .step, .module, .connector, .arrow-line { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Atmospheric Water Generator</h1>
+<p class="subtitle">Air &amp; Water Process Workflow — Three-Module Architecture</p>
+
+<div class="phase-toggle">
+  <button class="phase-btn active-capture" id="btn-capture" onclick="setPhase('capture')">Phase 1 — Moisture Capture</button>
+  <button class="phase-btn" id="btn-recovery" onclick="setPhase('recovery')">Phase 2 — Water Recovery</button>
+  <button class="phase-btn" id="btn-both" onclick="setPhase('both')">Show Both</button>
+</div>
+
+<div id="phase-label-wrap">
+  <div class="phase-label capture" id="phase-label">Open Loop — Ambient Air Intake &amp; Adsorption</div>
+</div>
+
+<div class="diagram">
+  <!-- Inter-module flow arrows -->
+  <div class="flow-arrows">
+    <div class="arrow-cell">
+      <!-- no left arrow for M1 -->
+    </div>
+    <div class="arrow-cell">
+      <div class="arrow-line active-capture" id="arrow-m1-m2">
+        <svg width="40" height="10" viewBox="0 0 40 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="5" x2="34" y2="5" stroke="currentColor" stroke-width="1.5"/>
+          <polyline points="28,1 36,5 28,9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <span>Filtered Air</span>
+      </div>
+    </div>
+    <div class="arrow-cell">
+      <div class="arrow-line" id="arrow-m2-m3">
+        <svg width="40" height="10" viewBox="0 0 40 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="5" x2="34" y2="5" stroke="currentColor" stroke-width="1.5"/>
+          <polyline points="28,1 36,5 28,9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <span>Liquid Condensate</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="modules">
+
+    <!-- MODULE 1 -->
+    <div class="module highlight-capture" id="mod1">
+      <div class="module-header">
+        <div class="module-num">M1</div>
+        <div class="module-title">Intake &amp; Filtration</div>
+      </div>
+      <div class="module-body">
+
+        <div class="step active-capture" id="m1-s1" data-capture="1" data-recovery="0">
+          <span class="step-label">Ambient Air Intake</span>
+          <span class="step-detail">Outdoor air drawn in through weatherproof louvers</span>
+        </div>
+
+        <div class="connector active-capture" id="m1-c1" data-capture="1" data-recovery="0">↓</div>
+
+        <div class="step active-capture" id="m1-s2" data-capture="1" data-recovery="0">
+          <span class="step-label">Pre-Filter Stage</span>
+          <span class="step-detail">Coarse particulate removal; protects downstream surfaces</span>
+        </div>
+
+        <div class="connector active-capture" id="m1-c2" data-capture="1" data-recovery="0">↓</div>
+
+        <div class="step active-capture" id="m1-s3" data-capture="1" data-recovery="0">
+          <span class="step-label">Intake Fans</span>
+          <span class="step-detail">Variable-speed fans; speed modulated by ambient RH &amp; temp</span>
+        </div>
+
+        <div class="connector active-capture" id="m1-c3" data-capture="1" data-recovery="0">↓</div>
+
+        <div class="step active-capture" id="m1-s4" data-capture="1" data-recovery="0">
+          <span class="step-label">Fine Particulate Filter</span>
+          <span class="step-detail">Replaceable element; pressure-drop sensor for service indicator</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MODULE 2 -->
+    <div class="module highlight-capture" id="mod2">
+      <div class="module-header">
+        <div class="module-num">M2</div>
+        <div class="module-title">Sorbent Heat Exchanger</div>
+      </div>
+      <div class="module-body">
+
+        <!-- Capture phase steps -->
+        <div class="step active-capture" id="m2-s1" data-capture="1" data-recovery="0">
+          <span class="step-label">Inlet Damper — Open</span>
+          <span class="step-detail">Automatic door exposes HX face to filtered airstream</span>
+        </div>
+
+        <div class="connector active-capture" id="m2-c1" data-capture="1" data-recovery="0">↓</div>
+
+        <div class="step active-capture" id="m2-s2" data-capture="1" data-recovery="0">
+          <span class="step-label">Sorbent Adsorption</span>
+          <span class="step-detail">~1 m × 1 m × 40 mm HX; moisture chemically binds to sorbent coating</span>
+        </div>
+
+        <div class="connector active-capture" id="m2-c2" data-capture="1" data-recovery="0">↓</div>
+
+        <div class="step active-capture" id="m2-s3" data-capture="1" data-recovery="0">
+          <span class="step-label">Dry Air Exhaust</span>
+          <span class="step-detail">Depleted air exits; humidity sensors log Δ RH across HX</span>
+        </div>
+
+        <!-- Recovery phase steps -->
+        <div class="step inactive" id="m2-r1" data-capture="0" data-recovery="1">
+          <span class="step-label">Dampers — Sealed</span>
+          <span class="step-detail">Inlet &amp; outlet doors close; air path isolated from ambient</span>
+        </div>
+
+        <div class="connector inactive" id="m2-rc1" data-capture="0" data-recovery="1">↓</div>
+
+        <div class="step inactive" id="m2-r2" data-capture="0" data-recovery="1">
+          <span class="step-label">Desorption / Regeneration</span>
+          <span class="step-detail">Glycol loop heats HX; vapor driven off sorbent surface</span>
+        </div>
+
+        <div class="connector inactive" id="m2-rc2" data-capture="0" data-recovery="1">↓</div>
+
+        <div class="step inactive" id="m2-r3" data-capture="0" data-recovery="1">
+          <span class="step-label">Vapor Transport</span>
+          <span class="step-detail">Released water vapor flows toward condenser coils in sealed chamber</span>
+        </div>
+
+        <div class="connector inactive" id="m2-rc3" data-capture="0" data-recovery="1">↓</div>
+
+        <div class="step inactive" id="m2-r4" data-capture="0" data-recovery="1">
+          <span class="step-label">Condenser Coils</span>
+          <span class="step-detail">Vapor condenses into liquid droplets; latent heat rejected</span>
+        </div>
+
+        <div class="connector inactive" id="m2-rc4" data-capture="0" data-recovery="1">↓</div>
+
+        <div class="step inactive" id="m2-r5" data-capture="0" data-recovery="1">
+          <span class="step-label">Drainage — SS Trays &amp; PE Tubing</span>
+          <span class="step-detail">Stainless steel collection trays drain via polyethylene tubing to M3</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MODULE 3 -->
+    <div class="module" id="mod3">
+      <div class="module-header">
+        <div class="module-num">M3</div>
+        <div class="module-title">Purification &amp; Storage</div>
+      </div>
+      <div class="module-body">
+
+        <div class="step inactive" id="m3-s1" data-capture="0" data-recovery="1">
+          <span class="step-label">Sediment Pre-Filter</span>
+          <span class="step-detail">Removes particulates and debris from condensate</span>
+        </div>
+
+        <div class="connector inactive" id="m3-c1" data-capture="0" data-recovery="1">↓</div>
+
+        <div class="step inactive" id="m3-s2" data-capture="0" data-recovery="1">
+          <span class="step-label">Carbon Block Filter</span>
+          <span class="step-detail">Adsorbs VOCs, chlorine, and taste/odor compounds</span>
+        </div>
+
+        <div class="connector inactive" id="m3-c2" data-capture="0" data-recovery="1">↓</div>
+
+        <div class="step inactive" id="m3-s3" data-capture="0" data-recovery="1">
+          <span class="step-label">UV-C Sterilization</span>
+          <span class="step-detail">254 nm irradiation; inactivates bacteria and pathogens</span>
+        </div>
+
+        <div class="connector inactive" id="m3-c3" data-capture="0" data-recovery="1">↓</div>
+
+        <div class="step inactive" id="m3-s4" data-capture="0" data-recovery="1">
+          <span class="step-label">Collection Tank</span>
+          <span class="step-detail">Food-grade storage; level sensor triggers refill cycle</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- .modules -->
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot blue"></div> Phase 1 — Moisture Capture (open loop)</div>
+    <div class="legend-item"><div class="legend-dot orange"></div> Phase 2 — Water Recovery (closed loop)</div>
+    <div class="legend-item"><div class="legend-dot grey"></div> Inactive in selected phase</div>
+  </div>
+
+</div><!-- .diagram -->
+
+<script>
+  function setPhase(phase) {
+    // Update buttons
+    document.getElementById('btn-capture').className = 'phase-btn' + (phase === 'capture' ? ' active-capture' : '');
+    document.getElementById('btn-recovery').className = 'phase-btn' + (phase === 'recovery' ? ' active-recovery' : '');
+    document.getElementById('btn-both').className = 'phase-btn' + (phase === 'both' ? ' active-capture' : '');
+
+    // Update phase label
+    var lbl = document.getElementById('phase-label');
+    if (phase === 'capture') {
+      lbl.className = 'phase-label capture';
+      lbl.textContent = 'Phase 1 — Open Loop · Ambient Air Intake & Adsorption';
+    } else if (phase === 'recovery') {
+      lbl.className = 'phase-label recovery';
+      lbl.textContent = 'Phase 2 — Closed Loop · Desorption, Condensation & Purification';
+    } else {
+      lbl.className = 'phase-label capture';
+      lbl.textContent = 'Full 24-Hour Cycle — Both Phases';
+    }
+
+    // Update module highlights
+    var mod1 = document.getElementById('mod1');
+    var mod2 = document.getElementById('mod2');
+    var mod3 = document.getElementById('mod3');
+
+    mod1.className = 'module' + (phase === 'capture' || phase === 'both' ? ' highlight-capture' : '');
+    mod2.className = 'module' + (phase === 'capture' || phase === 'both' ? ' highlight-capture' : '') + (phase === 'recovery' ? ' highlight-recovery' : '');
+    if (phase === 'both') mod2.className = 'module highlight-capture';
+    mod3.className = 'module' + (phase === 'recovery' || phase === 'both' ? ' highlight-recovery' : '');
+
+    // Update inter-module arrows
+    var a12 = document.getElementById('arrow-m1-m2');
+    var a23 = document.getElementById('arrow-m2-m3');
+    a12.className = 'arrow-line' + (phase === 'capture' || phase === 'both' ? ' active-capture' : '');
+    a23.className = 'arrow-line' + (phase === 'recovery' || phase === 'both' ? ' active-recovery' : '');
+
+    // Update all steps and connectors
+    var steps = document.querySelectorAll('.step, .connector');
+    steps.forEach(function(el) {
+      var isCapture = el.dataset.capture === '1';
+      var isRecovery = el.dataset.recovery === '1';
+
+      if (phase === 'both') {
+        if (isCapture) {
+          el.className = el.className.replace(/\binactive\b|\bactive-capture\b|\bactive-recovery\b/g, '').trim() + ' active-capture';
+        } else if (isRecovery) {
+          el.className = el.className.replace(/\binactive\b|\bactive-capture\b|\bactive-recovery\b/g, '').trim() + ' active-recovery';
+        }
+      } else if (phase === 'capture') {
+        if (isCapture) {
+          el.className = el.className.replace(/\binactive\b|\bactive-capture\b|\bactive-recovery\b/g, '').trim() + ' active-capture';
+        } else {
+          el.className = el.className.replace(/\bactive-capture\b|\bactive-recovery\b/g, '').trim() + ' inactive';
+        }
+      } else if (phase === 'recovery') {
+        if (isRecovery) {
+          el.className = el.className.replace(/\binactive\b|\bactive-capture\b|\bactive-recovery\b/g, '').trim() + ' active-recovery';
+        } else {
+          el.className = el.className.replace(/\bactive-capture\b|\bactive-recovery\b/g, '').trim() + ' inactive';
+        }
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
