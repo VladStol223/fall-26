@@ -633,6 +633,21 @@
       frag.appendChild(sec2);
     }
 
+    // Questions (e.g. reading overview questions with answers)
+    if (ov.questions && ov.questions.length) {
+      var secQ = h('div','cheat-section');
+      secQ.appendChild(h('h3',null,'Reading Overview & Discussion Questions'));
+      var ql = h('div','cheat-terms');
+      ov.questions.forEach(function(q) {
+        var row = h('div','cheat-term-row');
+        row.appendChild(h('span','cheat-term-name',q.q));
+        row.appendChild(h('span','cheat-term-def',q.a));
+        ql.appendChild(row);
+      });
+      secQ.appendChild(ql);
+      frag.appendChild(secQ);
+    }
+
     // Terms
     if (ov.terms && ov.terms.length) {
       var sec3 = h('div','cheat-section');

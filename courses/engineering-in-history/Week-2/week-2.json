@@ -6,74 +6,331 @@
   "title": "Engineering, Technology & Science",
   "subtitle": "Davis (1995) · Petroski (2011) — Defining the Profession",
   "storagePrefix": "eih-w2",
-  "totalCards": 15,
+  "totalCards": 24,
 
   "overview": {
     "stats": [
       { "value": "1995", "label": "Davis article published" },
-      { "value": "1852", "label": "ASCE founded" },
-      { "value": "2", "label": "Readings assigned" },
-      { "value": "Sep 1–3", "label": "Class dates" }
+      { "value": "~300 yrs", "label": "Age of engineering profession (Davis)" },
+      { "value": "2:1", "label": "Ratio of engineers to all other technologists" },
+      { "value": "Quiz", "label": "Thursday closed-book short-answer quiz" }
+    ],
+    "questions": [
+      {
+        "q": "Why, according to Davis, does 'science' usually come first in the phrases 'science and technology' and 'science and engineering'?",
+        "a": "Because the order indicates relative social status. Science has higher status than technology in Western culture, deriving from an ancient Greek prejudice that elevated mental contemplation (sophia) for free men above manual art/labor (techne) associated with slaves. The priority is neither historical (technology is tens of thousands of years older), alphabetical, nor utilitarian (technology bakes our bread; science only explains how)."
+      },
+      {
+        "q": "People who do science are called 'scientists.' Is there a comparable term for people who do technology? Is this term (or terms) adequate?",
+        "a": "There is no adequate single term. 'Technician' refers merely to a routine assistant under supervision; 'technologist' never caught on in common speech; and 'applied scientist' is inaccurate and fading. While the majority of practitioners are called 'engineers' (outnumbering all other technologists 2:1), calling all makers of technology 'engineers' is inadequate because architects, chemists, physicians, and biologists have distinct professional identities, traditions, and ethical commitments."
+      },
+      {
+        "q": "How old is the profession of engineering, according to Davis?",
+        "a": "The profession of engineering is barely 300 years old, originating in late 17th- and 18th-century France. Davis rejects ancient pedigrees (Stone Age tools or the Pyramids) as confusing engineering with general technology or architecture/building. Modern engineering began with military 'engines of war,' formalized with the Corps du Génie (1676), Corps des Ponts et Chaussées (1716), and École Polytechnique (1794)."
+      },
+      {
+        "q": "What is the difference between science and engineering, according to Davis and Petroski? Do they agree or disagree on this question?",
+        "a": "Davis and Petroski agree completely on the core distinction: Science seeks knowledge and understanding of nature ('what is' / 'why?'), whereas engineering seeks to create practical inventions and make things work to improve human life ('what has not yet been' / 'how?'). As Theodore von Kármán famously summarized: 'Scientists seek to understand what is; engineers seek to create what has not yet been.' Engineering is not merely applied science — engineers frequently operate beyond or without scientific theory, prioritizing utility, design, and human welfare."
+      }
     ],
     "people": [
-      { "name": "Michael Davis", "desc": "Philosopher of engineering ethics; argues engineering became a profession through the development of shared ethical codes, not just technical expertise." },
-      { "name": "Henry Petroski", "desc": "Civil engineer and prolific author (To Engineer Is Human; An Engineer's Alphabet); writes about engineering for general audiences; known for analysis of design and failure." }
+      { "name": "Michael Davis", "desc": "Philosopher of engineering ethics at Illinois Institute of Technology; author of 'An Historical Preface to Engineering Ethics' (1995); uses history to clarify boundaries between science, technology, and engineering." },
+      { "name": "Henry Petroski", "desc": "Late Professor of Civil Engineering at Duke University and prolific author (An Engineer's Alphabet, To Engineer Is Human); examined the softer, cultural side and sharp contrast between scientists and engineers." },
+      { "name": "Theodore von Kármán", "desc": "Aeronautical engineer and mathematician; famously quoted: 'Scientists seek to understand what is; engineers seek to create what has not yet been.'" },
+      { "name": "Louis XIV & Vauban", "desc": "French King who organized the standing army and the Corps du Génie (1676) and Corps des Ponts et Chaussées (1716), establishing modern institutional engineering." }
     ],
     "dates": [
-      { "year": "1852", "event": "American Society of Civil Engineers (ASCE) founded — one of the first professional engineering societies" },
-      { "year": "1880s–1900s", "event": "Major engineering professional societies form codes of ethics, formalizing engineering as a profession" },
-      { "year": "1995", "event": "Davis publishes 'An Historical Preface to Engineering Ethics' in Science and Engineering Ethics" }
+      { "year": "1676", "event": "Corps du Génie established in France — military engineers organized into a permanent corporate body" },
+      { "year": "1716", "event": "Corps des Ponts et Chaussées founded in France for civil infrastructure (roads, bridges, canals)" },
+      { "year": "1794", "event": "École Polytechnique founded in Paris — established the 4-year curriculum from theory to design that West Point (1817) and modern engineering schools adopted" },
+      { "year": "1852", "event": "American Society of Civil Engineers (ASCE) founded — formalizing engineering as an organized civilian profession in the US" },
+      { "year": "1995 & 2011", "event": "Publication of Davis's 'An Historical Preface to Engineering Ethics' and Petroski's 'Scientists vs. Engineers'" }
     ],
     "terms": [
-      { "term": "Profession", "def": "An occupation with a shared code of ethical conduct that members are expected to follow — Davis's criterion distinguishing professions from mere technical trades" },
-      { "term": "Engineering vs. science", "def": "Science seeks to understand nature (why?); engineering seeks to change the world by applying knowledge to build things (how do we make this work?)" },
-      { "term": "Technology", "def": "The broader category — all human-made tools, techniques, and knowledge systems. Engineering is a formalized, science-based subset of technology." },
-      { "term": "Conflict of interest", "def": "When an engineer's obligations to employer, client, and public come into tension — the central ethical challenge Davis traces historically" }
+      { "term": "Techne vs. Sophia", "def": "Ancient Greek distinction: Techne (manual craft/art, associated with slaves/manual labor) vs. Sophia (wisdom/theoretical knowledge, reserved for free men); origin of Western prejudice elevating science over technology" },
+      { "term": "Status hierarchy", "def": "Why 'science' precedes 'technology' and 'engineering' in common parlance — reflects social status and prejudice favoring mental over manual labor, not historical chronology" },
+      { "term": "Technologist / Applied Scientist", "def": "Inadequate terms for practitioners of technology. Davis shows engineers outnumber all other technologists combined 2-to-1, yet calling all technologists 'engineers' obscures distinct professional commitments" },
+      { "term": "Engineering profession", "def": "Barely 300 years old (originating in 17th/18th-century France). Distinguished by systematic mathematics/physics training, testing/reliability, institutional discipline, and a shared code of conduct dedicated to human welfare" },
+      { "term": "Science vs. Engineering", "def": "Science seeks to discover and understand what is (why nature works, aiming at knowledge); engineering seeks to design and make what never has been (how to build functional, reliable, cost-effective solutions for human welfare)" },
+      { "term": "Credit vs. Blame dichotomy", "def": "Petroski's observation: news media and public discourse habitually credit successes (Moon landing, Mars Pathfinder) to 'science/scientists' while blaming failures and disasters on 'engineering/engineers'" }
     ]
   },
 
   "learn": [
     {
-      "title": "1 — Davis: Engineering as a Profession",
-      "body": "<p><mark>Michael Davis</mark>'s 1995 article traces how engineering became a recognized profession in the 19th century. Davis argues that a profession is distinguished not just by technical expertise but by a <mark>code of conduct</mark> — shared ethical standards members are expected to follow.</p><p>Before the mid-19th century, builders and mechanics did much of what we now call engineering without formal credentials or organized professional bodies. The emergence of <mark>professional engineering societies</mark> (like the ASCE, founded <mark>1852</mark>) and later <mark>engineering ethics codes</mark> transformed engineering into a profession in the modern sense.</p>"
+      "title": "1 — Techne, Sophia, and the Hierarchy of Words",
+      "body": "<p>In <mark>“An Historical Preface to Engineering Ethics”</mark> (1995), philosopher <mark>Michael Davis</mark> explores why the word <mark>“science”</mark> almost universally precedes <mark>“technology”</mark> or <mark>“engineering”</mark> in everyday speech (e.g., <em>“science and technology,”</em> <em>“science and engineering”</em>). Davis notes: <em>“Technology bakes our bread; science only helps us to understand how.”</em> Chronologically, technology (tool-making) is tens of thousands of years older than science. Therefore, the invariable priority of science is neither chronological, alphabetical, nor utilitarian — as Davis concludes, <mark>“the order indicates relative status. Science has higher status than technology; hence, it gets first mention.”</mark></p><p>This cultural hierarchy traces directly back to <mark>ancient Greece</mark>, a slave-owning society that sharply contrasted <mark>techne</mark> (manual art/craft) with <mark>sophia</mark> (wisdom, contemplation, and philosophy). Because Greek citizens associated physical labor with slaves, free men avoided manual toil. As Davis writes, <mark>“we are, in this respect at least, all more or less descendants of the ancient Greeks... We are prejudiced against blue collars.”</mark> The modern divide between <mark>“white-collar”</mark> and <mark>“blue-collar”</mark> work reflects this same legacy: white collars confer status by guaranteeing distance from sweaty labor. Furthermore, technology is wrongly treated as subordinate: <mark>“technology is not merely applied science. Many inventions (and much systematic knowledge of practical matters) preceded the scientific discoveries that explained them.”</mark></p>"
     },
     {
-      "title": "2 — Engineering vs. Science",
-      "body": "<p>A central theme in both readings is the distinction between <mark>engineering</mark> and <mark>science</mark>. Science seeks to <mark>understand</mark> how nature works; engineering seeks to <mark>change</mark> the world by applying knowledge to build things. Scientists ask \"why?\"; engineers ask \"how do we make this work?\"</p><p><mark>Henry Petroski</mark>'s short essay \"Scientists vs. Engineers\" captures this tension. He notes that scientists and engineers are trained differently, value different things, and often misunderstand each other. Scientists prize <mark>publication and peer recognition</mark>; engineers value <mark>things that work</mark>.</p>"
+      "title": "2 — Technologists vs. Engineers: The Problem of Naming",
+      "body": "<p>Davis examines what to call communities who create technology, contrasting them with communities of science: <em>“Science consists of certain communities engaged in trying to understand how nature works. Since ‘technology’ refers only to our practical inventions, or to the study of how to make more, we lack a term comparable to this new sense of ‘science.’”</em> Existing candidate terms prove completely inadequate: <mark>“technician”</mark> designates an assistant doing routine work under direction; <mark>“technologist”</mark> has never caught on; and <mark>“applied scientist”</mark> is inaccurate and fading.</p><p>Why is there no general term? Davis explains: <mark>“the great majority of people who would have to be called ‘technologist’ or ‘applied scientist’ already have a satisfactory name, ‘engineer.’”</mark> In the United States, with over 2 million engineers, <mark>engineers outnumber all other technologists combined by at least two to one</mark> (architects ~135k, natural scientists ~388k, computer scientists ~450k, physicians ~600k). Yet Davis warns that calling all technologists “engineers” would be a grave mistake: <mark>“Chemists, architects, physicians, and biologists are not engineers. Understanding why they are not will help us to understand both the values inherent in most technology... and the place of ethics in any technology.”</mark></p>"
     },
     {
-      "title": "3 — Engineering vs. Technology",
-      "body": "<p><mark>Technology</mark> is a broader term than engineering — it includes all the tools, machines, techniques, and knowledge systems humans have developed. <mark>Engineering</mark> is a particular, formalized practice within technology: applying <mark>scientific principles</mark> using <mark>mathematical analysis</mark> within <mark>economic and social constraints</mark>.</p><p>Not all technology is engineered — traditional crafts, vernacular architecture, and folk medicine are all technology without formal engineering. Conversely, modern engineering always involves technology but is characterized by its reliance on <mark>systematic knowledge</mark> and <mark>professional standards</mark>.</p>"
+      "title": "3 — How Old Is Engineering? French Origins and Military Roots",
+      "body": "<p>Davis forcefully dispels the myth that engineering began in ancient times: <em>“Professions, aping aristocracy, like to trace their origins back to ancient times... Some histories of engineering begin with the Stone Age, with the first tools. They confuse engineering with technology. Other histories begin... with Stonehenge, the Pyramids, or some other wonder... [which] makes architects (or ‘master builders’) the first engineers.”</em> In contrast, Davis demonstrates that <mark>“engineering turns out to be a relatively recent enterprise, barely three hundred years old,”</mark> rooted in <mark>17th-century France</mark>.</p><p>The evolution of modern engineering centers on specific French institutional innovations:</p><ul><li><mark>1676 — Corps du Génie</mark>: Under Louis XIV, military engineers (who operated <em>“engines of war”</em>) were organized into a permanent corporate body. Davis notes: <em>“A permanent corps can keep much better records than isolated individuals, can accumulate knowledge, skills, and routines more efficiently, and can pass these on more effectively.”</em></li><li><mark>1716 — Corps des Ponts et Chaussées</mark>: Established to build civil infrastructure (bridges, roads, canals), founding the world's first enduring engineering school.</li><li><mark>1794 — École Polytechnique</mark>: Established a revolutionary three-year common core (geometry, physics, chemistry, drawing, recitations) followed by specialized application schools. This became the template for <mark>West Point (1817)</mark> and all modern engineering curricula.</li></ul><p>Early engineers surpassed traditional architects through three distinct advantages: <mark>formal mathematical/scientific training</mark>, systematic <mark>advance materials testing and focus on reliability</mark>, and <mark>military organizational discipline</mark> for executing massive projects.</p>"
     },
     {
-      "title": "4 — Engineering as Professional Practice",
-      "body": "<p>Davis emphasizes that engineering is not just technical skill but a <mark>social practice</mark> embedded in institutions, norms, and ethical commitments. The professional engineer operates within a web of obligations: to employers, to clients, to the public, and to the profession itself.</p><p>This multiplicity of obligations creates potential <mark>conflicts of interest</mark> — for example, when an employer wants something that raises public safety risks. Understanding engineering <mark>historically</mark> helps clarify how these obligations arose and how engineers have navigated (or failed to navigate) them — groundwork for the ethics cases in Section 3.</p>"
+      "title": "4 — Davis vs. Petroski: Science vs. Engineering",
+      "body": "<p>Both Davis and Petroski examine the fundamental distinction between science and engineering, agreeing on their distinct core missions while offering complementary analyses:</p><ul><li><mark>Davis (Motivational & Philosophical)</mark>: Recounts asking industrial and academic researchers whether they would prefer discovering new knowledge or inventing something useful: <em>“About half the chemists voted for ‘something useful’ and about half for ‘new knowledge’. The engineers, on the other hand, all voted for usefulness. For them, new knowledge was just a means to improving human life... Unlike the chemists, the engineers had no commitment to science as such. They used science... as non-scientists, as participants in a voyage of invention rather than discovery.”</em> Davis concludes: <mark>“The primary commitment of engineers is not to knowledge, theoretical or applied... but to human welfare.”</mark></li><li><mark>Petroski (Aphoristic & Cultural)</mark>: Highlights the celebrated distinction by aeronautical pioneer <mark>Theodore von Kármán</mark>: <mark>“‘Scientists seek to understand what is; engineers seek to create what has not yet been.’”</mark> Petroski details matching aphorisms: <em>“Science makes things known; engineering makes things work”</em>; <em>“Scientists seek to know; engineers to do.”</em> He adds the behavioral distinction: <mark>“An engineer is a person who will learn an obscure physical law in order to build a complicated piece of technological apparatus. A scientist is a person who will learn how to build a complicated piece of technological apparatus in order to learn an obscure physical law.”</mark></li></ul><p>Both authors emphasize that engineering is not a passive slave to science. As Gordon S. Brown (former MIT engineering dean) observed, even in research labs, an engineer's <em>“knack of seeing the useful rather than searching for the unknown characterizes them as engineers.”</em></p>"
+    },
+    {
+      "title": "5 — Petroski on Public Perception: Credit vs. Blame",
+      "body": "<p><mark>Henry Petroski</mark> identifies a pervasive cultural and journalistic double standard in modern society: <mark>“successful technological endeavors and achievements are attributed to science and scientists, whereas technological problems and failures are blamed on engineering and engineers.”</mark></p><p>Petroski documents several striking examples:</p><ul><li><mark>Space Exploration (Apollo & Mars Pathfinder 1997)</mark>: Landing on the Moon was celebrated worldwide as a <em>“scientific achievement.”</em> When the Mars Pathfinder landed successfully in 1997, television commentators praised <em>“space scientists”</em> (though the room was almost entirely engineers); but when communications problems erupted, viewers were told that <mark>“the engineers were working on them.”</mark></li><li><mark>Deepwater Horizon Oil Spill (2010)</mark>: News media repeatedly mislabeled consulting engineers recommended by the National Academy of Engineering as <em>“scientists.”</em> A Nobel Prize-winning physicist was sent by the White House to direct operations, but as Petroski notes, <mark>“in the end, it was not scientific knowledge and achievement that ended the gushing but engineering experience and technological savvy.”</mark></li><li><mark>Roman Waterworks (Frontinus, 1st Century A.D.)</mark>: In Saldae (Algeria), two excavation teams digging a mountain aqueduct tunnel from opposite sides failed to meet because the contractor deviated from plans. Frontinus recorded: <mark>“As always happens in these cases, the fault was attributed to the engineer, as though he had not taken all precautions to insure the success of the work.”</mark></li></ul>"
     }
   ],
 
+  "reading": {
+    "title": "Science and Engineering Ethics & An Engineer's Alphabet",
+    "source": "Davis, M. (1995). 'An Historical Preface to Engineering Ethics,' Science and Engineering Ethics 1(1): 33–48; Petroski, H. (2011). 'Scientists vs. Engineers,' in An Engineer's Alphabet (Cambridge University Press), pp. 280–283.",
+    "paragraphs": [
+      {
+        "learnRef": 0,
+        "text": "The words 'science', 'technology', and 'values', like 'engineering' and 'ethics', have been used in enough different ways to be dangerous. In this article, I will distinguish the most important uses of these five words, set them in context, and explain how they are (or are not) related. This conceptual house-cleaning is, I believe, a necessary prolegomena to productive work in engineering ethics."
+      },
+      {
+        "learnRef": 0,
+        "text": "I begin with etymology. 'Technology' is a compound of two words from ancient Greek, 'techne' and 'logos'. 'Techne' means manual art. So, for example, a 'tekton' was a carpenter or builder; an 'architect', a master builder. The suffix form of 'logos', '-ology', means a putting into words, an explanation or study. When our word 'technology' still meant what Greek tells us it means, technology was the explanation or study of manual art... Ancient Greece was a slave-owning society and, like other slave-owners, Greeks tended to associate manual labor with slaves. Since no free man would want to be mistaken for a slave, the ancient Greeks generally avoided doing what slaves do."
+      },
+      {
+        "learnRef": 0,
+        "text": "The Greeks contrasted techne with sophia. Though often translated as 'intellectual knowledge' or even 'science', 'sophia' is probably better translated as 'wisdom'. From 'sophia' comes our word 'philosophy' (the pursuit of wisdom). For the Greeks, philosophy included mathematics, physics, economics, and similar sciences. Because philosophy was primarily a matter of thought, not manual art, philosophy was appropriate to free men."
+      },
+      {
+        "learnRef": 0,
+        "text": "Why does 'technology' always come second in 'science and technology'? The explanation cannot be historical. If 'technology' refers to inventions making manual labor easier, technology is older than science by tens of thousands of years. Nor can the explanation be alphabetical order or practical importance. The answer, I think, is that the order indicates relative status. Science has higher status than technology; hence, it gets first mention. Technology is not merely applied science: many inventions and much systematic knowledge of practical matters preceded the scientific discoveries that explained them."
+      },
+      {
+        "learnRef": 1,
+        "text": "Since 'technology' refers only to our practical inventions, or to the study of how to make more, we lack a term comparable to this new sense of 'science'. What do we call communities that invent useful things or, at least, add to our knowledge of how to do it? 'Technician' is wrong; a technician is an assistant who carries out routine work under direction. 'Technologist', though a natural choice, has not caught on; 'applied scientist' is now fading. The reason is that the great majority of people who would have to be called 'technologist' already have a satisfactory name: 'engineer'."
+      },
+      {
+        "learnRef": 1,
+        "text": "The United States today has well over 2,000,000 engineers. That is more than all other 'technologists' together (architects, chemists, physicists, biologists, computer scientists, and physicians). Engineers outnumber all other technologists combined by at least two to one. But calling all those who make technology 'engineers' would be a terrible mistake. Chemists, architects, physicians, and biologists are not engineers. Understanding why they are not will help us to understand both the values inherent in technology and the place of ethics in engineering."
+      },
+      {
+        "learnRef": 2,
+        "text": "Professions like to trace their origins back to ancient times. False pedigrees abound. Some histories of engineering begin with the Stone Age, confusing engineering with technology. Other histories begin with Stonehenge or the Pyramids, confusing engineering with architecture or building. Engineering turns out to be a relatively recent enterprise, barely three hundred years old. When I tell the story of engineering, I start four hundred years ago in France with 'engines of war'."
+      },
+      {
+        "learnRef": 2,
+        "text": "Until 1676, French engineers were part of the infantry. In that year, the engineers were organized into special units, the corps du génie. A permanent corps can keep records, accumulate knowledge, skills, and routines, and pass them on. In 1716, the French established the corps des ponts et chaussées to build and maintain bridges, roads, and canals, setting up the first surviving engineering school. Engineers differed from architects: they were trained in new mathematics and physics, paid systematic attention to reliability and materials testing, and possessed military discipline for large-scale operations."
+      },
+      {
+        "learnRef": 2,
+        "text": "Early experiments culminated in the École Polytechnique (begun 1794), establishing a 3-year common core (geometry, trigonometry, physics, chemistry, drawing, recitations) followed by specialized application schools (artillery, mines, bridges and roads). This curriculum served as the direct model for West Point (1817) and modern engineering education."
+      },
+      {
+        "learnRef": 3,
+        "text": "At an industrial research lab with half chemists and half chemical engineers, I asked: 'If you had a choice between inventing something useful and discovering new knowledge, which would you prefer?' Half the chemists voted for 'useful' and half for 'new knowledge'. The engineers all voted for usefulness. For them, new knowledge was just a means to improving human life. Unlike scientists, engineers are participants in a voyage of invention rather than discovery. The primary commitment of engineers is not to knowledge as such, but to human welfare."
+      },
+      {
+        "learnRef": 3,
+        "text": "A distinction between scientists and engineers is not always easily or clearly made. Perhaps the most widely quoted distinction is that attributed to Theodore von Kármán: 'Scientists seek to understand what is; engineers seek to create what has not yet been.' Other aphorisms include: 'Science makes things known; engineering makes things work'; 'Scientists seek to know; engineers to do.' An engineer is a person who will learn an obscure physical law to build an apparatus; a scientist builds an apparatus to learn an obscure physical law."
+      },
+      {
+        "learnRef": 4,
+        "text": "It is a common lament among engineers that all too often in the news media successful technological endeavors are attributed to science and scientists, whereas technological problems and failures are blamed on engineering and engineers. Landing astronauts on the Moon was hailed as a scientific achievement, but an explosion on the launch pad was described as an engineering failure. When Mars Pathfinder landed in 1997, commentators celebrated 'space scientists', even though the control room was staffed by engineers; when communications glitches arose, viewers were told 'engineers are working on them.'"
+      },
+      {
+        "learnRef": 4,
+        "text": "In the wake of the Deepwater Horizon oil spill in 2010, the roles of engineers and scientists were heavily confused. A Nobel Prize-winning physicist was sent to direct what was fundamentally an engineering task. In the end, it was not scientific theory but engineering experience and technological savvy that capped the leaking well. In news reports, consulting engineers recommended by the National Academy of Engineering were repeatedly mislabeled as 'scientists'."
+      }
+    ]
+  },
+
   "anki": [
-    { "key": true,  "q": "What is Michael Davis's main argument in 'An Historical Preface to Engineering Ethics'?", "a": "Engineering became a profession in the 19th century through the development of shared ethical standards and codes of conduct — not just technical expertise." },
-    { "key": true,  "q": "What distinguishes a 'profession' from other kinds of work, according to Davis?", "a": "A profession has a shared code of conduct (ethical standards) that members are expected to follow, beyond mere technical competence." },
-    { "q": "When was the ASCE founded and why is it significant?", "a": "1852 — one of the first professional engineering societies, helping formalize engineering as a recognized profession." },
-    { "key": true,  "q": "What is the key difference between science and engineering?", "a": "Science seeks to understand nature (why?); engineering seeks to change the world by applying knowledge to make things work (how?)." },
-    { "q": "How does Petroski characterize the scientist/engineer difference?", "a": "Scientists prize publication and peer recognition; engineers value things that work. They are trained differently and often misunderstand each other." },
-    { "q": "Which is the broader term: engineering or technology?", "a": "Technology — it encompasses all human-made tools and techniques. Engineering is a formalized subset that applies scientific principles with mathematical analysis under economic constraints." },
-    { "q": "Give an example of technology that is NOT engineering.", "a": "Traditional crafts, vernacular (folk) architecture, or folk medicine — technology developed without formal engineering methods." },
-    { "q": "What multiple obligations does the professional engineer face?", "a": "Obligations to employers, clients, the public, and the engineering profession itself — these can create ethical conflicts." },
-    { "q": "Why does Davis think studying the history of engineering ethics is important?", "a": "It shows how ethical obligations arose and how engineers have navigated (or failed to navigate) conflicts between competing duties." },
-    { "q": "Who is Henry Petroski and what is he known for?", "a": "A civil engineer and prolific author (To Engineer Is Human) who writes about engineering for general audiences; famous for analyzing design and failure." },
-    { "q": "What does 'engineering as professional practice' mean?", "a": "Engineering is a social practice embedded in institutions and ethical norms — not just a technical skill set. Ethics is intrinsic, not added on." },
-    { "q": "Why are engineering's boundaries difficult to define?", "a": "Because engineering overlaps with science (uses scientific knowledge), technology (a subset of it), and crafts (shares hands-on making)." },
-    { "q": "What is a 'conflict of interest' for an engineer?", "a": "When the engineer's obligations to employer, client, and public tension — e.g., employer wants a cheaper design that raises public safety risks." },
-    { "q": "What does Petroski's 'Scientists vs. Engineers' essay argue?", "a": "That scientists and engineers have fundamentally different values and goals, often misunderstood by both groups and the public." },
-    { "q": "By Week 2, what conceptual framework does the course want students to understand?", "a": "That engineering is a distinct profession (not just technology or science), with its own history, ethics, social context, and boundaries — a framework applied throughout the course." }
+    {
+      "key": true,
+      "q": "Why, according to Davis, does 'science' usually come first in 'science and technology' and 'science and engineering'?",
+      "a": "It indicates relative social status, not chronological origin or practical importance. Western culture inherits an ancient Greek prejudice that values mental contemplation (sophia) over manual craft/making (techne)."
+    },
+    {
+      "key": true,
+      "q": "People who do science are called 'scientists.' Is there a comparable term for people who do technology, and is it adequate?",
+      "a": "No satisfactory general term exists: 'technician' implies a routine assistant, 'technologist' never caught on, and 'applied scientist' is fading. Most practitioners are called 'engineers,' but calling all technologists engineers is inadequate because architects, chemists, and physicians have distinct professional identities and commitments."
+    },
+    {
+      "key": true,
+      "q": "How old is the profession of engineering, according to Davis?",
+      "a": "Barely 300 years old (originating in late 17th- and 18th-century France with the Corps du Génie in 1676 and École Polytechnique in 1794), rather than dating to ancient tool-makers or pyramid builders."
+    },
+    {
+      "key": true,
+      "q": "What is the difference between science and engineering according to Davis and Petroski, and do they agree?",
+      "a": "They agree: Science seeks to understand what is in nature (pursuit of knowledge/discovery, 'why?'), whereas engineering seeks to create what has not yet been (practical utility, design, making things work for human welfare, 'how?')."
+    },
+    {
+      "key": true,
+      "q": "What is Theodore von Kármán's famous quote contrasting scientists and engineers?",
+      "a": "'Scientists seek to understand what is; engineers seek to create what has not yet been.'"
+    },
+    {
+      "key": true,
+      "q": "What is the 'credit vs. blame' double standard identified by Henry Petroski?",
+      "a": "Media and society credit technological successes (Moon landing, Mars Pathfinder) to 'science and scientists,' but blame technological failures and glitches (explosions, leaks) on 'engineering and engineers.'"
+    },
+    {
+      "q": "What were the ancient Greek concepts of 'techne' and 'sophia'?",
+      "a": "'Techne' was manual art/craft (associated with slaves and manual labor); 'sophia' was wisdom and intellectual philosophy (reserved for free men)."
+    },
+    {
+      "q": "Why is technology NOT merely 'applied science'?",
+      "a": "Historically, practical inventions and technological crafts preceded scientific explanations by thousands of years, and engineers frequently design solutions where scientific theory is incomplete or unavailable."
+    },
+    {
+      "q": "How do engineers outnumber other technologists in the United States according to Davis?",
+      "a": "With over 2 million engineers, they outnumber all other technologists (architects, chemists, computer scientists, physicians) combined by at least two to one."
+    },
+    {
+      "q": "Why is it an error to date engineering back to Stonehenge or the Egyptian Pyramids?",
+      "a": "It confuses engineering with general technology or architecture/building. Ancient builders lacked formal scientific/mathematical training, testing methods, and institutional professional standards."
+    },
+    {
+      "q": "What was the significance of the French Corps du Génie (1676)?",
+      "a": "It established a permanent, organized corps of military engineers that accumulated institutional knowledge, recorded procedures, and created the first structured training for engineers."
+    },
+    {
+      "q": "What was the significance of the Corps des Ponts et Chaussées (1716)?",
+      "a": "It was established in France to build and maintain civil infrastructure (bridges, roads, canals) and created the first enduring engineering school."
+    },
+    {
+      "q": "What educational model did the École Polytechnique (1794) introduce?",
+      "a": "A multi-year curriculum beginning with foundational mathematics and sciences (geometry, physics, chemistry) progressing to applied engineering design, later adopted by West Point (1817)."
+    },
+    {
+      "q": "In what three ways did early French engineers differ from architects?",
+      "a": "1) Advanced training in mathematics and physics; 2) Systematic pre-construction materials testing and concern for reliability; 3) Officer training and organizational discipline for managing large-scale projects."
+    },
+    {
+      "q": "What result did Davis observe when asking chemists vs. chemical engineers to choose between 'new knowledge' and 'something useful'?",
+      "a": "Chemists split evenly between new knowledge and utility, whereas engineers unanimously chose creating something useful for human welfare."
+    },
+    {
+      "q": "What aphorism illustrates the motivational difference between a scientist and an engineer?",
+      "a": "A scientist builds an apparatus in order to discover a physical law; an engineer learns a physical law in order to build an apparatus."
+    },
+    {
+      "q": "How did the 1997 Mars Pathfinder mission demonstrate media bias regarding engineers?",
+      "a": "When the landing succeeded, the control room (staffed by engineers) was hailed as 'space scientists'; when communications glitched, TV reported that 'engineers' were fixing the problem."
+    },
+    {
+      "q": "What happened during the 2010 Deepwater Horizon response according to Petroski?",
+      "a": "Media confused scientists with engineers, and a physicist Secretary of Energy was sent to direct capping the well, though success ultimately required engineering experience and technological savvy."
+    },
+    {
+      "q": "What ancient story from Frontinus illustrates that blaming the engineer is not new?",
+      "a": "In 1st-century Roman Saldae, when two mountain tunnel teams failed to meet due to contractor errors, the public and officials immediately blamed the absent engineer."
+    },
+    {
+      "q": "What is the primary format of the Week 2 Thursday quiz in HTS 1081?",
+      "a": "A closed-book, short-answer quiz requiring one- or two-sentence answers based directly on the reading overview questions."
+    },
+    {
+      "q": "What was Thomas Tredgold's classic 1828 definition of civil engineering?",
+      "a": "'The art of directing the great sources of power in Nature for the use and convenience of man' — defining engineering as an instrument of human progress."
+    },
+    {
+      "q": "What is the fundamental moral commitment that defines engineering according to Davis?",
+      "a": "Using specialized technical knowledge and invention for the enhancement of human welfare and progress."
+    },
+    {
+      "q": "Why does Davis advise skimming the 'Ethics' and 'Values' sections for Week 2?",
+      "a": "Because Week 2 focuses on conceptual boundaries and history (science, technology, engineering), while formal codes of ethics and values are examined in depth later in the course (Section 3)."
+    },
+    {
+      "q": "How does the white-collar vs. blue-collar clothing distinction reflect historical status prejudice?",
+      "a": "White collars protect against dirt, symbolizing distance from manual 'slavish' labor and conferring higher social status regardless of actual income or utility."
+    }
   ],
 
   "quiz": [
-    { "q": "According to Davis, what is the defining feature that makes engineering a 'profession'?", "options": ["Advanced technical skills", "Government licensing", "A shared ethical code of conduct", "A university degree requirement"], "correct": 2, "explanation": "Davis argues that a code of shared ethical standards — not just technical expertise — is what distinguishes a profession." },
-    { "q": "When scientists and engineers interact, what key value difference does Petroski highlight?", "options": ["Engineers value theory; scientists value practice", "Scientists value publication; engineers value things that work", "Engineers value money; scientists value truth", "Scientists prefer teamwork; engineers prefer solo work"], "correct": 1, "explanation": "Petroski notes scientists prize peer recognition and publication while engineers prize functional outcomes." },
-    { "q": "Which of the following is the BROADEST term?", "options": ["Engineering", "Professional engineering", "Technology", "Applied science"], "correct": 2, "explanation": "Technology is the broadest category — it encompasses all human-made tools and techniques; engineering is a formal subset of it." },
-    { "q": "What year was the ASCE founded?", "options": ["1776", "1820", "1852", "1901"], "correct": 2, "explanation": "The ASCE was founded in 1852, making it one of the earliest formal professional engineering organizations in the U.S." },
-    { "q": "Which scenario represents a classic professional conflict of interest for an engineer?", "options": ["Choosing which programming language to use", "Employer wants a cheaper design that raises public safety risks", "Deciding between two equally safe materials", "Writing documentation for a project"], "correct": 1, "explanation": "Conflicts arise when employer interests (cost, speed) clash with the engineer's obligation to protect public safety." }
+    {
+      "q": "According to Michael Davis, why does 'science' always come first in the phrase 'science and technology'?",
+      "options": [
+        "Because science historically preceded technology by thousands of years",
+        "Because it indicates relative social status rooted in ancient Greek prejudice favoring mental theory (sophia) over manual craft (techne)",
+        "Because terms are arranged alphabetically",
+        "Because technology is merely applied science and cannot exist without prior scientific theory"
+      ],
+      "correct": 1,
+      "explanation": "Davis explains that technology is far older than science, but ancient Greek culture privileged mental labor (sophia) over manual labor (techne), creating an enduring status hierarchy where science gets first mention."
+    },
+    {
+      "q": "Why does Davis argue that calling all people who make technology 'engineers' is a mistake?",
+      "options": [
+        "Because engineers are not legally certified in most states",
+        "Because architects, chemists, biologists, and physicians have distinct professional identities, traditions, and commitments",
+        "Because scientists refuse to work alongside engineers",
+        "Because engineering only applies to military construction"
+      ],
+      "correct": 1,
+      "explanation": "While engineers make up the majority of technologists (outnumbering all others 2:1), groups like architects and chemists possess distinct traditions, values, and ethical codes that should not be erased."
+    },
+    {
+      "q": "How old is the profession of engineering according to Michael Davis?",
+      "options": [
+        "Tens of thousands of years old, starting with the first Stone Age stone axes",
+        "Roughly 5,000 years old, starting with the Egyptian Pyramids and Stonehenge",
+        "Barely 300 years old, emerging in 17th- and 18th-century France",
+        "Exactly 75 years old, beginning after World War II"
+      ],
+      "correct": 2,
+      "explanation": "Davis dates engineering as a distinct profession to roughly 300 years ago in France (e.g., Corps du Génie in 1676, Corps des Ponts et Chaussées in 1716, and École Polytechnique in 1794), distinguishing it from ancient tool-making and architecture."
+    },
+    {
+      "q": "How do Davis and Petroski compare in their definitions of science vs. engineering?",
+      "options": [
+        "They disagree: Davis thinks engineering is applied science, while Petroski thinks science is applied engineering",
+        "They agree: Science seeks knowledge and understanding of what is ('why?'), while engineering creates new solutions and makes things work for human welfare ('how?')",
+        "They disagree: Petroski claims engineers only value theory, while Davis claims engineers only value money",
+        "They agree that science and engineering are identical disciplines with no meaningful distinctions"
+      ],
+      "correct": 1,
+      "explanation": "Both authors agree that science aims at understanding nature and discovering knowledge, while engineering aims at invention, utility, design, and practical execution for human benefit."
+    },
+    {
+      "q": "Which quote is famously attributed to Theodore von Kármán in Petroski's 'Scientists vs. Engineers'?",
+      "options": [
+        "'To engineer is human; to compute is divine'",
+        "'Scientists seek to understand what is; engineers seek to create what has not yet been'",
+        "'Engineering is the art of directing the great sources of power in Nature'",
+        "'Failure is the engineer's greatest teacher'"
+      ],
+      "correct": 1,
+      "explanation": "Von Kármán's famous aphorism succinctly distinguishes the scientist's mission of discovery from the engineer's mission of creation."
+    },
+    {
+      "q": "What media double standard does Henry Petroski document regarding public perception?",
+      "options": [
+        "Engineers receive all the funding while scientists receive all the publicity",
+        "Technological successes (like Apollo or Mars Pathfinder) are credited to 'scientists,' while failures and accidents are blamed on 'engineers'",
+        "Scientists are portrayed as blue-collar workers while engineers are portrayed as white-collar elites",
+        "Newspapers refuse to publish articles written by civil engineers"
+      ],
+      "correct": 1,
+      "explanation": "Petroski highlights how successful space landings are hailed as 'scientific triumphs,' but launch pad explosions or mechanical breakdowns are labeled 'engineering failures.'"
+    },
+    {
+      "q": "What institution established in 1794 served as the direct curricular model for West Point (1817) and modern engineering education?",
+      "options": [
+        "The Royal Society of London",
+        "École Polytechnique",
+        "Massachusetts Institute of Technology",
+        "American Society of Civil Engineers"
+      ],
+      "correct": 1,
+      "explanation": "The École Polytechnique established the foundational curriculum (math and science progressing to applied engineering design) that West Point and civilian colleges adopted."
+    },
+    {
+      "q": "What is the format of the Week 2 assignment described in the course overview?",
+      "options": [
+        "A 10-page research term paper due on Sunday",
+        "A closed-book, short-answer quiz in class on Thursday answering the reading reflection questions",
+        "An open-book group presentation about Roman aqueducts",
+        "A take-home coding assignment in Python"
+      ],
+      "correct": 1,
+      "explanation": "The assignment is a closed-book, short-answer quiz on Thursday with 1-2 sentence answers addressing the specific reading questions."
+    }
   ]
 }
