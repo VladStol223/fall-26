@@ -80,60 +80,250 @@
   ],
 
   "reading": {
-    "title": "Science and Engineering Ethics & An Engineer's Alphabet",
-    "source": "Davis, M. (1995). 'An Historical Preface to Engineering Ethics,' Science and Engineering Ethics 1(1): 33–48; Petroski, H. (2011). 'Scientists vs. Engineers,' in An Engineer's Alphabet (Cambridge University Press), pp. 280–283.",
-    "paragraphs": [
+    "title": "Week 2 Required Readings",
+    "source": "Davis (1995) & Petroski (2011)",
+    "items": [
       {
-        "learnRef": 0,
-        "text": "The words 'science', 'technology', and 'values', like 'engineering' and 'ethics', have been used in enough different ways to be dangerous. In this article, I will distinguish the most important uses of these five words, set them in context, and explain how they are (or are not) related. This conceptual house-cleaning is, I believe, a necessary prolegomena to productive work in engineering ethics."
+        "id": "davis-1995",
+        "shortTitle": "1 — Davis (1995)",
+        "title": "An Historical Preface to Engineering Ethics",
+        "source": "Michael Davis, Science and Engineering Ethics 1, no. 1 (1995): 33–48.",
+        "paragraphs": [
+          {
+            "heading": "Abstract & Introduction",
+            "learnRef": 0,
+            "text": "Abstract: This article attempts to distinguish between science and technology, on the one hand, and engineering, on the other, offering a brief introduction to engineering values and engineering ethics. The method is (roughly) a philosophical examination of history. Engineering turns out to be a relatively recent enterprise, barely three hundred years old, to have distinctive commitments both technical and moral, and to have changed a good deal both technically and morally during that period. What motivates the paper is the belief that a too-easy equation of engineering with technology tends to obscure the special contribution of engineers to technology and to their own professional standards and so, to obscure as well both the origin and content of engineering ethics."
+          },
+          {
+            "learnRef": 0,
+            "text": "The words 'science', 'technology', and 'values', like 'engineering' and 'ethics', have been used in enough different ways to be dangerous. In this article, I will distinguish the most important uses of these five words, set them in context, and explain how they are (or are not) related. This conceptual house-cleaning is, I believe, a necessary prolegomena to productive work in engineering ethics (whether by philosophers, engineers, sociologists, or others). And, necessary or not, it has a rewarding byproduct, a foray into the history of engineering."
+          },
+          {
+            "learnRef": 0,
+            "text": "Foraging in another's field is always risky. One can easily get lost, fall into traps the owners long ago learned to skirt, or find oneself suddenly outnumbered and outgunned. I am taking the risk for four reasons. First, I believe that reading history can lead to philosophical insights. The past gives the present context (as I shall try to illustrate here). Second, I believe that some historians, those I have been reading, sometimes miss the obvious--or, at least, get the emphasis wrong--and therefore tend to mislead those trying to understand engineering. I believe I can do better. Third, though I will be trespassing, I have precedent on my side. Philosophers have long made themselves useful by pointing out the obvious in fields not their own--which is all I intend to do. Fourth, and most important, I believe that my trespass will pay-off. Understanding engineering better, we shall be better prepared to understand what distinguishes its ethical problems both from those of other professions generally and from the sciences in particular."
+          },
+          {
+            "heading": "I. Techne and Sophia: Twins Ancient but Unequal",
+            "learnRef": 0,
+            "text": "I begin with etymology. 'Technology' is a compound of two words from ancient Greek, 'techne' and 'logos'. 'Techne' means manual art. So, for example, a 'tekton' was a carpenter or builder; an 'architect', a master builder. The suffix form of 'logos', '-ology', means a putting into words, an explanation or study. So, when our word 'technology' still meant what Greek tells us it means, technology was the explanation or study of manual art, just as biology is the explanation or study of bios, life. It was a field in which gentlemen entered the workshop to record the artisan's secrets for later publication."
+          },
+          {
+            "learnRef": 0,
+            "text": "That, of course, is not what 'technology' means now. Despite its Greek root, 'technology' is really a new word, re-coined in the middle of the last century for a new idea. What idea? Ancient Greece was a slave-owning society and, like other slave-owners, Greeks tended to associate manual labor with slaves. Since no free man would want to be mistaken for a slave, the ancient Greeks generally avoided doing what slaves do. For example, because slaves tended to rush about on their master's business, free men were supposed to walk slowly. Greeks had such a low opinion of manual labor that they even rated sculpture less noble than painting because the sculptor, unlike the painter, had to sweat over his work like a slave."
+          },
+          {
+            "learnRef": 0,
+            "text": "There were a few exceptions to this low opinion of manual labor. One was athletics. Athletics, however sweaty, was not something slaves did. War was another exception. Hacking one another with swords, though hard and dirty work, was a job for free men."
+          },
+          {
+            "learnRef": 0,
+            "text": "The Greeks contrasted techne with sophia. Though often translated as 'intellectual knowledge' or even 'science', 'sophia' is probably better translated as 'wisdom'. From 'sophia' comes our word 'philosophy' (the love, that is, the pursuit of wisdom). For the Greeks, philosophy included mathematics, physics, economics, and similar sciences. Because philosophy was primarily a matter of thought, not manual art, philosophy was appropriate to free men."
+          },
+          {
+            "learnRef": 0,
+            "text": "The Greeks of Greece's Golden Age loved sophia; and she rewarded them accordingly. The Greeks of that period can claim credit for beginning the tradition of philosophy now dominant over most of the world, the one to which I belong. They can also claim credit for beginning a number of the sciences, including geometry, biology, and political science. Their achievements in poetry, architecture, and history are no less impressive. Not so their contributions to techne. Of course, there were some contributions, for example, improved design of war galleys. But you must hunt for them. Europe's Dark Ages seem to have given us many more useful devices than did Greece's Golden Age."
+          },
+          {
+            "learnRef": 0,
+            "text": "By now, perhaps, you can see two reasons to distrust that ugly word, 'technology': First, there is the implicit opposition between sophia and techne. Today we think of science and technology as related, not opposed. So, for example, one reason politicians give for funding scientific research is that it will pay off in new technologies. Second, there is the word's meaning in Greek. For us, technology is not--as its Greek parts suggest--a study of manual art but, primarily, our way of referring to all those inventions that make manual labor easier, more productive, or unnecessary. In this sense, technology began with the first tool someone made; the new technologies we hear about are new technologies in this sense, new tools someone has made. The academic discipline called 'history of technology' studies the history of tools (together with ambient social arrangements)."
+          },
+          {
+            "learnRef": 0,
+            "text": "Of course, there is yet another sense of 'technology', one derived from this second but referring to a study--as in, for example, the title 'institute of technology' (or 'technological university'). An institute of technology is not, as the Greek suggests, a place to study manual arts (carpentry, machining, and so on), a mere technical school. An institute of technology is, instead, a place to study practical inventions, how to make them and how to organize them (and those who use them) to make other useful things. The Greeks, who had a word for almost everything, seem to have had no word for that, technology as 'the science of invention'."
+          },
+          {
+            "learnRef": 0,
+            "text": "So what? What does this history have to do with us? Consider, for example, how we dress for work: Some of us dress in 'white collars', that is, fine shirts, ties, good slacks, dresses, sport coats, or the like. Others wear 'blue collars', that is, coarse shirts, denim pants, coveralls. Generally, those in white collars have higher status than those in blue. Salary is secondary (as is social usefulness). A carpenter has less status than an accountant earning half as much. Why? Though carpentry requires a trained mind, it requires as well, like other blue-collar work, much sweaty labor surrounded by dust and debris. Because such labor would quickly ruin good clothing, the white collar guarantees some distance between its wearer and such 'slavish labor'. And, because it does that, the white collar confers status."
+          },
+          {
+            "learnRef": 0,
+            "text": "No matter the origin of our parents, we are, in this respect at least, all more or less descendants of the ancient Greeks. Even if we ourselves like manual labor, we do not respect it as much as mental labor. I doubt that this is good, especially for engineers. But it does seem to be a stubborn fact about us. We are prejudiced against blue collars, not only those who work in them but even those who associate with those who work in them."
+          },
+          {
+            "learnRef": 0,
+            "text": "That prejudice shows up even in a phrase seemingly having nothing to do with it--'science and technology'. Why does 'technology' always come second? The explanation cannot be historical. If 'technology' refers to inventions making manual labor easier, technology is older than science by tens of thousands of years. And, even if the 'technology' in 'science and technology' refers instead to the systematic study of practical invention, technology would be no younger than science in the corresponding sense, the systematic study of nature. For, until quite recently, 'science' included all systematic knowledge, whether of nature or invention, including even jurisprudence and theology."
+          },
+          {
+            "learnRef": 0,
+            "text": "Nor can the explanation of the inevitable priority of 'science' be alphabetical order. Substitute 'engineering' for 'technology' and the order remains the same: 'science and engineering', not 'engineering and science'. Nor can the explanation be practical importance. Technology bakes our bread; science only helps us to understand how. Nor can the explanation be mere accident. Accident would produce more variation. The order seems fixed: science and technology. Why? The answer, I think, is that the order indicates relative status. Science has higher status than technology; hence, it gets first mention."
+          },
+          {
+            "learnRef": 0,
+            "text": "Well, shouldn't science have higher status? After all, isn't technology just applied science? Doesn't science come first in the order of development? Doesn't science lay down the law, like a master, while technology merely applies it, like a slave? Even engineers may be tempted to answer yes to these questions. But the answer is: No, technology is not merely applied science. Many inventions (and much systematic knowledge of practical matters) preceded the scientific discoveries that explained them."
+          },
+          {
+            "heading": "II. Science, Technology and Engineering",
+            "learnRef": 1,
+            "text": "One can understand the words 'science' and 'technology' so that they refer to comparable concepts. Science is explicit, systematic knowledge of how 'nature' works; technology, explicit, systematic knowledge of how to make useful things. Unfortunately, usage today is not so neat. Though the term 'science' did once refer (primarily) to explicit, systematic knowledge of nature, its meaning has now shifted somewhat so that, today, it refers as much, or instead, to a social undertaking, 'a voyage of discovery' (as scientists like to say), rather than merely to what they discover. In this sense, science consists of certain communities engaged in trying to understand how nature works."
+          },
+          {
+            "learnRef": 1,
+            "text": "Since 'technology' refers only to our practical inventions, or to the study of how to make more, we lack a term comparable to this new sense of 'science'. What do we call communities that invent useful things or, at least, add to our knowledge of how to do it? 'Technician' is wrong; a technician is an assistant, one who carries out routine work under direction of a scientist, engineer, architect, physician, or the like. 'Technologist', though a natural choice, has not caught on; 'applied scientist', though once popular with sociologists, natural scientists, and even some engineers, is now fading. Why? I think the reason is that the great majority of people who would have to be called 'technologist' or 'applied scientist' already have a satisfactory name, 'engineer'."
+          },
+          {
+            "learnRef": 1,
+            "text": "I said 'great majority'. I meant it. The United States today has well over 2,000,000 engineers. That is more than all other 'technologists' together. Most other 'technologists' are either architects, chemists, physicists, biologists, physicians, computer scientists, or 'mere inventors' (that is, inventors not belonging to any of the preceding occupations). The US has only about 135,000 architects, 388,000 natural scientists (including chemists, physicists, and biologists), 450,000 computer scientists, and 600,000 physicians. I have no figure for 'mere inventors'; but, since most inventors seem to be engineers, there can't be many 'mere inventors'. The number of physicians contributing to technology also cannot be large. Most physicians are not in research or development, but simply provide health care. So, even assuming that most scientists are in technology, not pure research, engineers must outnumber all other technologists combined by at least two to one."
+          },
+          {
+            "learnRef": 1,
+            "text": "These numbers suggest an obvious solution to the problem of what to call all those who make technology: call them 'engineers'. But that would, I think, be a terrible mistake. Chemists, architects, physicians, biologists, and the like are not engineers. Understanding why they are not will help us to understand both the values inherent in most technology, the technology engineers develop, and the place of ethics in any technology. It will also help us understand the difficulties inherent in talk of 'social engineering', 'genetic engineering', or 'software engineering' where there is 'engineering' without engineers. Understanding why not all technologists are engineers will bring us to the heart of our subject. But it will require more history, though (mostly) history less ancient than before."
+          },
+          {
+            "heading": "III. The Beginnings of Engineering",
+            "learnRef": 2,
+            "text": "Professions, aping aristocracy, like to trace their origins back to ancient times. So, for example, the American Medical Association's Principles of Medical Ethics cites certain provisions of Hammurabi's Code (about 2000 BC) as the earliest known code of medical ethics. There is, of course, some truth in such going-back. The healers of ancient Babylonia resemble today's physicians in many ways. There are, however, many differences as well; and, for our purposes, the differences are more important. We will understand professions better if we start their history with the rise of modern markets about two centuries ago, the accompanying dissolution of the old distinction between 'trades' and 'liberal professions', and the slow emergence of something new. Even an old occupation can be a new profession. By 1850, especially in England, we begin to see the modern pattern. The professions are connected both with a formal curriculum, ending with an examination and certification of some sort, and explicit standards of practice, a code of ethics. Admittedly, those creating this new pattern seem unaware of doing something new. But there can be little doubt that they misunderstood their own actions. Even some of the terms they used were new. For example, the term 'medical ethics' seems to have been coined in 1803 by a physician, Thomas Percival, for a book he thought was on an old topic."
+          },
+          {
+            "learnRef": 2,
+            "text": "What is true of most professions is true of engineering. False pedigrees abound. Some histories of engineering begin with the Stone Age, with the first tools. They confuse engineering with technology. Other histories begin more sensibly, recognizing that engineers generally do not do manual labor but prepare instructions for others to carry out. Since the first tool almost certainly pre-dates such a division of tasks, these histories begin much later, with the first projects large enough to have some people laying out a plan and others implementing it. They begin with the building of Stonehenge, the Pyramids, or some other wonder of ancient civilization."
+          },
+          {
+            "learnRef": 2,
+            "text": "Though better than the first, this second way of beginning the history of engineering still has at least two embarrassing consequences. One embarrassment is that it makes architects (or 'master builders') the first engineers. This is embarrassing because engineers generally agree that architects today are definitely not engineers. Another embarrassment is that this way of telling the story makes a mystery of why our word for engineer comes from French, rather than Greek, like 'architect', and why the French have had the word for barely four hundred years. Generally, we have a word for anything important to us almost as soon as we have the thing. There are no significant whatchemacallits."
+          },
+          {
+            "learnRef": 2,
+            "text": "So, when I tell the story of engineering, I start four hundred years ago in France. Back then there were things called 'engines'--but 'engine' then simply meant a complex device for some useful purpose, a contraption showing intelligence in design, in short, a machine. The first people to be called 'engineers' were soldiers associated with catapults, siege towers, artillery, and other 'engines of war'. They were not yet engineers in the sense that concerns us. They were, rather, engineers in the sense that, even today, the driver of a locomotive is an engineer. They were engineers only in the sense that they operated (or otherwise worked with) engines. Some soldiers are still engineers in something like this sense: they belong to an engineering corps. Though they do not know what engineers know, they are directly involved in works of engineering, though not precisely with engines of war, a term no longer in common use."
+          },
+          {
+            "learnRef": 2,
+            "text": "Four hundred years ago the armies of France were led by nobles, men on horse-back, who learned war from their fathers or on the battlefield, or died in the attempt. The foot soldiers came with the nobles. Most were peasants or artisans who knew little of war until trained in camp. When the war ended, the army dissolved, each noble leading his own people home. In such an army, an 'engineer' was usually a carpenter, stone mason, or other artisan bringing civilian skills to war. When Louis XIV ended the regency in 1661, France still made war in this way. But, within two decades, France had a standing army of 300,000, the largest, best trained, and best equipped European fighting force since the Roman legions. This achievement was widely copied. To this day, most of our military words--from 'army' itself to 'reveille', from 'bayonet' to 'maneuver', from 'private' to 'general'--are French. 'Engineer' is just one of these military terms."
+          },
+          {
+            "learnRef": 2,
+            "text": "Until 1676, French engineers were part of the infantry. But, in that year, the 'engineers' were organized into special units, the corps du génie. This reorganization had important consequences. A permanent corps can keep much better records than isolated individuals, can accumulate knowledge, skills, and routines more efficiently, and can pass these on more effectively. A corps can become a distinct institution with its own style and reputation. More than a group of proto-engineers, the corps du génie were, potentially, both a center of research in engineering and a training ground for engineers (in something like our sense), officiers du génie. The corps du génie did not take long to realize this potential. Within two decades, it was known all over Europe for unusual achievements in military construction. When another country borrowed the French word 'engineering' for use in its own army, it was for the activity the corps du génie engaged in. That was something for which other European languages lacked a word."
+          },
+          {
+            "learnRef": 2,
+            "text": "The corps du génie was not, as of 1700, a school of engineering in our sense; it was more like an organization of masters and apprentices. Indeed, strange as this may seem now, at that time neither France nor any other European state had a permanent military academy (in anything like our sense), much less a school of engineering. There was no settled curriculum for training officers generally or engineers in particular, or even a very clear idea that that was necessary. Only during the 1700s did the French slowly come to understand what they wanted from an engineering education and how to get it. But, by the end of the 1700s, they had a curriculum from which today's engineering curriculum differs only in detail; they had also invented engineering."
+          },
+          {
+            "learnRef": 2,
+            "text": "An army needs fortifications for protection, mines under enemy fortifications, roads to march on, and bridges to cross. Civilians need either the same things or other things requiring similar skills to build. So, in 1716, the French established another corps of engineers, the corps des ponts et chaussées, to build and maintain the nation's bridges, roads, and canals (as important to the army as to commerce). This corps set up a school for training its officers, the first engineering school to survive long enough to matter. Like the military engineers, these civil engineers were admired all over Europe. Those who copied their method copied as well the name they gave it."
+          },
+          {
+            "learnRef": 2,
+            "text": "What was their method? Engineers, military as well as civil, resembled architects in being able to make drawings for construction projects, develop detailed instructions from those drawings, and oversee the execution of those instructions. They nonetheless seem to have differed from architects in at least three ways: First, engineers were much better trained in (what was then) the new mathematics and physics than the architects. They had the ability to consider systematically questions most architects could only deal with intuitively or ignore. Second, because the strategies of engineering had their roots in the necessities of war, engineers paid more attention to reliability, speed, and other practicalities. The systematic testing of materials and procedures in advance of construction was early recognized as a characteristic of engineers. At least in comparison, the architect seemed an artist, one for whom beauty claimed much of the attention an engineer would devote to making things work. Third, to be an engineer was to have been trained as an army officer, to have been disciplined to bear significant responsibility within one of world's largest organizations. Engineers were therefore likely to be better at directing large civilian projects than architects, most of whom would have had experience only of much smaller undertakings."
+          },
+          {
+            "learnRef": 2,
+            "text": "These three advantages tend to reinforce one another. For example, large projects not only require more planning in advance and more discipline in execution, they are also more likely to require better mathematical analysis and to justify extensive testing of materials and procedures. For this, and perhaps other reasons, civil engineers slowly took over much of the work that once would have been the domain of architects. They were a new power in the world."
+          },
+          {
+            "learnRef": 2,
+            "text": "Early experiments in engineering education culminated in the École Polytechnique. Begun in 1794 as the École des Travaux Publics (the school of public works), it changed its name the following year, for the first time connecting engineering and 'techne'. I don't know why the French did this. The school never trained architects, much less artisans or mechanics. It was a school of engineering, deserving the 'poly' only for offering preparation for many fields of engineering, military and naval engineering as well as civil."
+          },
+          {
+            "learnRef": 2,
+            "text": "The École Polytechnique's curriculum had a common core of three years. The first year's courses were geometry, trigonometry, physics, and the fundamentals of chemistry with practical applications in structural and mechanical engineering. There was a good deal of drawing, some laboratory and workshop, and recitations after each lecture. The second and third year continued the same subjects, with increasingly more application to the building of roads, canals, and fortifications and the making of munitions. For their last year, students were sent to one of the special schools: the school of artillery, the school of military engineering, the school of mines, the school of bridges and roads, the school of geographical engineers (cartographers), or the school of ships. Engineers will immediately recognize this curriculum, especially, the four years, the progression from theory (or analysis) to application (or design), and the heavy emphasis on mathematics, physics, and chemistry. The École Polytechnique was the model for engineering education for much of the nineteenth century. The United States began using it very early. Our first engineering school was the military academy at West Point. By 1817, it had adopted much of the École's curriculum, its methods of instruction, and even some textbooks."
+          },
+          {
+            "heading": "IV. Values in Engineering (Skim Section)",
+            "learnRef": 3,
+            "text": "What values does engineering incorporate? A decade ago, Eugene Ferguson, an engineer turned historian, drew up a list of what he called 'imperatives of engineering'. The list is neither complete nor fundamental--nor, indeed, even entirely fair. It will nevertheless help us understand engineering. Engineers, Ferguson claimed, (1) strive for efficiency, (2) design labor-saving systems, (3) design control into the system, (4) favor the very large, the very powerful, or (in electronics) the very small, and (5) tend to treat engineering as an end in itself rather than as a means to satisfying human need. These 'imperatives' are, according to Ferguson, instincts engineers bring to their work. While an engineer can resist them, just as I can resist drinking water even if I am thirsty, they are, in effect, the engineer's default setting, what engineers will do unless they consciously try to do something else."
+          },
+          {
+            "learnRef": 3,
+            "text": "'Efficiency' is the first imperative Ferguson identifies. Ferguson points out, rightly, that 'efficiency' is a slippery term, meaning 'most powerful' here, 'lowest cost' there, and something else elsewhere. What he overlooks is the concept's utility. Engineers generally define 'efficiency' so that they can measure it (or its components), assign numbers, and thereafter seek to control it. That is not surprising. Like other professions, engineering tends to analyze a situation so that its distinctive skills can be applied. One distinctive skill of engineers is giving mathematical structure to practical problems. The concept of efficiency allows them to exercise that skill. Engineers have, no doubt, sometimes paid too much attention to efficiency, especially forms of efficiency that turned out not to matter... Because engineering is a practical undertaking, it must learn from practice. It cannot learn from practice without making mistakes. Some of engineering's mistakes have concerned efficiency."
+          },
+          {
+            "learnRef": 3,
+            "text": "The second imperative on Ferguson's list is a preference for labor-saving devices. Engineers will, Ferguson thinks, design to save labor even when labor is cheap and the end result will be higher production costs and more unemployment. The engineer's preference for labor-saving is understandable as a product of engineering's military origin. Since engineering began, the primary labor pool of most armies has been their own soldiers. Since no general wants his soldiers doing construction when they could be fighting, military engineers have always had an incentive to look for means of saving labor even though the labor saved was, in one sense, cheap (indeed, free)... Where such information exists, developing ways to incorporate it into engineering work is certainly something engineers can, and should, do."
+          },
+          {
+            "learnRef": 3,
+            "text": "Ferguson's third imperative is designing controls into the system. Engineers generally try to separate planning and execution. Intelligence is designed into the system, requiring as little intelligence as possible of the system's operators. The assembly line is the typical example of this imperative... McDonald's restaurants now have cash-register buttons with pictures of the various items on the menu. The cashier need not know the price of anything, or even be able to read, only be able to recognize the pictures and push buttons accordingly. In a business where employee turnover is high and education low, where prices change frequently and training is expensive, this dumbing-down of the cashier's job both saves money for McDonald's and opens employment to many who might not otherwise be qualified."
+          },
+          {
+            "learnRef": 3,
+            "text": "The fourth imperative of engineering Ferguson lists is a tendency to disregard human scale, preferring the very large or the very small. The reason for this imperative is that engineering was, and remains, a creature of large organizations. Louis XIV's army, one of the largest organizations of its day, created engineering to do what civilian artisans could not do (or could not do well enough). Even today, most engineers work in large organizations. You do not need an engineer to construct a single family house. A carpenter or architect will do, as they always have. If, however, you want to construct a thirty-story building, you will need engineers."
+          },
+          {
+            "learnRef": 3,
+            "text": "Ferguson's last imperative, putting technical brilliance ahead of human need, is unlike the others. It is a failing common to all professions... but this last 'imperative' is worse than a failing common to all professions; it is a failing inconsistent with one of engineering's fundamental values. Most of the period we have been talking about, roughly the 1700s, is known as the Age of Enlightenment. This was the time when many Europeans first came to believe that enlightenment, that is, scientific learning, would bring peace, prosperity, and continuous improvement... When, in 1828, the British Institution of Civil Engineers, then nine years old, asked one of its members, Thomas Tredgold, to define the term 'civil engineering', he gave an answer engineers still quote: 'Civil Engineering is the art of directing the great sources of power in Nature for the use and convenience of man....The most important object of Civil Engineering is to improve the means of production and of traffic in states, both for external and internal trade.' Engineering remains an undertaking committed to human progress. So, for example, the most widely adopted of America's codes of engineering ethics, begins: 'Engineers uphold and advance the integrity, honor, and dignity of the engineering profession by...using their knowledge and skill for the enhancement of human welfare.'"
+          },
+          {
+            "heading": "V. Why Engineers Are Not Scientists",
+            "learnRef": 3,
+            "text": "That is enough about engineering. We are ready to see how engineers differ from other technologists. I have already pointed out some of the ways engineers differ from architects. I shall now explain how they differ from applied scientists. I once did a workshop at the research lab of a large petroleum company. The audience was about half chemists and half chemical engineers. I first asked the chemists, 'If you had a choice between inventing something useful and discovering new knowledge, which would you prefer?' The chemists thought this a hard question: 'After all,' they reasoned, 'it's hard to imagine an interesting discovery in chemistry that would not have a practical pay-off.' Eventually, I asked for a show of hands. About half the chemists voted for 'something useful' and about half for 'new knowledge'. The engineers, on the other hand, all voted for usefulness. For them, new knowledge was just a means to improving human life."
+          },
+          {
+            "learnRef": 3,
+            "text": "Unlike the chemists, the engineers had no commitment to science as such. They used science, much as they used other sources of insight. They also contributed to science much as they contributed to lawyering and other social practices, for example, by helping to reduce the cost of chemicals used in the manufacture of computers. But they did this as non-scientists, as participants in a voyage of invention rather than discovery. This difference between engineers and chemists came as a surprise to these researchers. Many had worked side by side for decades. They thought that they shared the same values. But we do not wear our values on our clothing like an identity badge--except, of course, by declaring ourselves to be of this profession rather than of that. These researchers had not taken the difference in profession seriously. That is why they were surprised."
+          },
+          {
+            "learnRef": 3,
+            "text": "This difference between scientists and engineers is not a mere idiosyncrasy of one industrial laboratory. I have asked the same question at other industrial laboratories since, with much the same result. Nor is this difference between scientists and engineers restricted to industrial laboratories. I have asked my question at university workshops attended by both engineering and science faculty. The results were even sharper. The only thing rarer than a university scientist who voted for 'something useful' was an engineer who voted for 'new knowledge'. In this respect at least, engineers are not scientists, not even applied scientists. The primary commitment of engineers is not to knowledge, theoretical or applied, as one would expect of scientists, but to human welfare."
+          },
+          {
+            "heading": "VI. Ethics and Engineering (Skim Section)",
+            "learnRef": 4,
+            "text": "Earlier, I described engineering as a 'new power in the world'. Power, though neither good nor bad in itself, is always dangerous. Because of the scale on which engineers generally work, engineering is particularly dangerous. Engineers long ago realized this and set about to assure, as much as possible, that engineering would be used for good rather than evil. They organized as a profession, adopted standards of practice, including 'codes of ethics', and tried to put them into practice."
+          },
+          {
+            "learnRef": 4,
+            "text": "'Ethics' has at least three common uses. It can refer: 1) to ordinary morality; 2) to the systematic study of ordinary morality (for example, the attempt to understand morality as a rational undertaking); or 3) to those special morally-permissible standards of conduct every member of a group wants every other member to follow even if that would mean having to follow the standards too. It is in this third sense, I think, that members of a profession talk of their 'profession's ethics'. A profession's ethics are standards of conduct applying to them in virtue of their profession. Legal ethics applies to lawyers; medical ethics, to physicians; and so on. In this sense, engineers did not have a code of ethics until they adopted one. The engineers' code of ethics is what they make it--so long as the standards they lay down are consistent with ordinary morality. That means that engineering ethics can change over time and even differ from country to country or field to field."
+          },
+          {
+            "learnRef": 4,
+            "text": "Consider a particular provision of a particular code of engineering ethics, for example, the most cited of all: 'Engineers shall hold paramount the safety, health and welfare of the public in the performance of their professional duties.' This provision may now seem like the natural, perhaps even the necessary, expression of the engineering's commitment to improve human life. But its history reveals it to be a controversial--and quite recent--achievement. The first American codes of engineering ethics were adopted in the second decade of this century. None contained the paramountcy provision. In its place, we find provisions requiring, for example, that the engineer 'be guided by the highest principles of honor', that he 'satisfy himself to the best of his ability that the enterprises with which he becomes identified are of legitimate character', and '[if] any...professional obligations...interfere with his meeting the legitimate expectations of a client or employer, the engineer should inform [the employer].'"
+          },
+          {
+            "learnRef": 4,
+            "text": "The absence of the paramountcy provision was no mere oversight. As early as 1922, Morris Cooke, a mechanical engineer, himself active in drafting one of the early codes, was pointing out in print 'the failure [of engineering codes] to mention the public interest as a test--if not the supreme test of action'. Yet, more than three decades later (1947), the predecessor of the paramountcy provision merely required the engineer to 'have due regard for the safety, life and health of the public and employees who may be affected by the work for which he is responsible.' By 1963, the corresponding provision required the engineer merely to 'have proper regard for the safety, health, and welfare of the public in the performance of his professional duties.' Only in the 1970's was the paramountcy provision adopted."
+          },
+          {
+            "learnRef": 4,
+            "text": "If we compare these various provisions, we will not find a simple progress toward ever higher standards. The paramountcy provision, like its immediate predecessor, drops the reference to 'employees' in the 1947 provision. It, in fact, seems to lower standards with regard to employees even as it seems to raise them with regard to the public. We do not know why these provisions changed as they did or when they did. Here is work for historians. What we can see is that each of these provisions seems to be a morally permissible standard of conduct expressing (something like) the same commitment to improving human life, though each in a different way and with a different emphasis."
+          },
+          {
+            "learnRef": 4,
+            "text": "There is, then, an important difference between (moral) values such as the engineers' commitment to improving human life and ethics (special standards of conduct). While engineers generally seem to have valued human welfare since early in the history of engineering, failing to treat the public welfare as paramount in their professional work could not be unethical for engineers until engineers adopted a standard of conduct requiring them to treat the public welfare as paramount. And, except perhaps for utilitarians, failing to treat the public welfare as paramount could also not be immoral. Morality imposes no such duty (though it does require us to avoid doing certain kinds of harm and perhaps to render certain kinds of aid). The history of engineering ethics reminds us that ethical standards, like other engineering standards, are not discoveries but useful conventions. Values are reasons for acting, and so reasons for adopting standards of practice, but values as such do not tell us how to act. A value as such can only tell us that this is something to consider. Standards of practice, including a code of ethics, do tell us how we should act. They deserve special attention in any discussion of engineering ethics."
+          }
+        ]
       },
       {
-        "learnRef": 0,
-        "text": "I begin with etymology. 'Technology' is a compound of two words from ancient Greek, 'techne' and 'logos'. 'Techne' means manual art. So, for example, a 'tekton' was a carpenter or builder; an 'architect', a master builder. The suffix form of 'logos', '-ology', means a putting into words, an explanation or study. When our word 'technology' still meant what Greek tells us it means, technology was the explanation or study of manual art... Ancient Greece was a slave-owning society and, like other slave-owners, Greeks tended to associate manual labor with slaves. Since no free man would want to be mistaken for a slave, the ancient Greeks generally avoided doing what slaves do."
-      },
-      {
-        "learnRef": 0,
-        "text": "The Greeks contrasted techne with sophia. Though often translated as 'intellectual knowledge' or even 'science', 'sophia' is probably better translated as 'wisdom'. From 'sophia' comes our word 'philosophy' (the pursuit of wisdom). For the Greeks, philosophy included mathematics, physics, economics, and similar sciences. Because philosophy was primarily a matter of thought, not manual art, philosophy was appropriate to free men."
-      },
-      {
-        "learnRef": 0,
-        "text": "Why does 'technology' always come second in 'science and technology'? The explanation cannot be historical. If 'technology' refers to inventions making manual labor easier, technology is older than science by tens of thousands of years. Nor can the explanation be alphabetical order or practical importance. The answer, I think, is that the order indicates relative status. Science has higher status than technology; hence, it gets first mention. Technology is not merely applied science: many inventions and much systematic knowledge of practical matters preceded the scientific discoveries that explained them."
-      },
-      {
-        "learnRef": 1,
-        "text": "Since 'technology' refers only to our practical inventions, or to the study of how to make more, we lack a term comparable to this new sense of 'science'. What do we call communities that invent useful things or, at least, add to our knowledge of how to do it? 'Technician' is wrong; a technician is an assistant who carries out routine work under direction. 'Technologist', though a natural choice, has not caught on; 'applied scientist' is now fading. The reason is that the great majority of people who would have to be called 'technologist' already have a satisfactory name: 'engineer'."
-      },
-      {
-        "learnRef": 1,
-        "text": "The United States today has well over 2,000,000 engineers. That is more than all other 'technologists' together (architects, chemists, physicists, biologists, computer scientists, and physicians). Engineers outnumber all other technologists combined by at least two to one. But calling all those who make technology 'engineers' would be a terrible mistake. Chemists, architects, physicians, and biologists are not engineers. Understanding why they are not will help us to understand both the values inherent in technology and the place of ethics in engineering."
-      },
-      {
-        "learnRef": 2,
-        "text": "Professions like to trace their origins back to ancient times. False pedigrees abound. Some histories of engineering begin with the Stone Age, confusing engineering with technology. Other histories begin with Stonehenge or the Pyramids, confusing engineering with architecture or building. Engineering turns out to be a relatively recent enterprise, barely three hundred years old. When I tell the story of engineering, I start four hundred years ago in France with 'engines of war'."
-      },
-      {
-        "learnRef": 2,
-        "text": "Until 1676, French engineers were part of the infantry. In that year, the engineers were organized into special units, the corps du génie. A permanent corps can keep records, accumulate knowledge, skills, and routines, and pass them on. In 1716, the French established the corps des ponts et chaussées to build and maintain bridges, roads, and canals, setting up the first surviving engineering school. Engineers differed from architects: they were trained in new mathematics and physics, paid systematic attention to reliability and materials testing, and possessed military discipline for large-scale operations."
-      },
-      {
-        "learnRef": 2,
-        "text": "Early experiments culminated in the École Polytechnique (begun 1794), establishing a 3-year common core (geometry, trigonometry, physics, chemistry, drawing, recitations) followed by specialized application schools (artillery, mines, bridges and roads). This curriculum served as the direct model for West Point (1817) and modern engineering education."
-      },
-      {
-        "learnRef": 3,
-        "text": "At an industrial research lab with half chemists and half chemical engineers, I asked: 'If you had a choice between inventing something useful and discovering new knowledge, which would you prefer?' Half the chemists voted for 'useful' and half for 'new knowledge'. The engineers all voted for usefulness. For them, new knowledge was just a means to improving human life. Unlike scientists, engineers are participants in a voyage of invention rather than discovery. The primary commitment of engineers is not to knowledge as such, but to human welfare."
-      },
-      {
-        "learnRef": 3,
-        "text": "A distinction between scientists and engineers is not always easily or clearly made. Perhaps the most widely quoted distinction is that attributed to Theodore von Kármán: 'Scientists seek to understand what is; engineers seek to create what has not yet been.' Other aphorisms include: 'Science makes things known; engineering makes things work'; 'Scientists seek to know; engineers to do.' An engineer is a person who will learn an obscure physical law to build an apparatus; a scientist builds an apparatus to learn an obscure physical law."
-      },
-      {
-        "learnRef": 4,
-        "text": "It is a common lament among engineers that all too often in the news media successful technological endeavors are attributed to science and scientists, whereas technological problems and failures are blamed on engineering and engineers. Landing astronauts on the Moon was hailed as a scientific achievement, but an explosion on the launch pad was described as an engineering failure. When Mars Pathfinder landed in 1997, commentators celebrated 'space scientists', even though the control room was staffed by engineers; when communications glitches arose, viewers were told 'engineers are working on them.'"
-      },
-      {
-        "learnRef": 4,
-        "text": "In the wake of the Deepwater Horizon oil spill in 2010, the roles of engineers and scientists were heavily confused. A Nobel Prize-winning physicist was sent to direct what was fundamentally an engineering task. In the end, it was not scientific theory but engineering experience and technological savvy that capped the leaking well. In news reports, consulting engineers recommended by the National Academy of Engineering were repeatedly mislabeled as 'scientists'."
+        "id": "petroski-2011",
+        "shortTitle": "2 — Petroski (2011)",
+        "title": "Scientists vs. Engineers",
+        "source": "Henry Petroski, in An Engineer’s Alphabet: Gleanings from the Softer Side of a Profession (Cambridge University Press, 2011), pp. 280–283.",
+        "paragraphs": [
+          {
+            "heading": "Scientists vs. Engineers",
+            "learnRef": 3,
+            "text": "A distinction between scientists and engineers is not always easily or clearly made. Distinctions that are drawn are sometimes clouded by the fact that scientists can do engineering, as so many physicists did during the Manhattan Project, and engineers can do science, as they do when they conduct experiments to collect data that is essential to proceeding with their designs or seek to understand principles behind inventions that obviously work but for reasons that are not fully transparent."
+          },
+          {
+            "learnRef": 3,
+            "text": "There have been many attempts to clarify distinctions between scientists and engineers, and perhaps the most widely (and variously) quoted is that attributed to the aerospace engineer and scientist Theodore von Kármán (1881–1963): 'Scientists seek to understand what is; engineers seek to create what has not yet been.' Similar sentiments have been expressed in aphorisms galore, among them: 'Scientists understand the world, but engineers make it work'; 'Scientists investigate what is; engineers create what never has been'; 'Scientists seek to know; engineers to do'; 'Scientists make it known; engineers make it useful.' Another variation on the same theme, adopted by the Engineers Joint Council, reads: 'Engineers plan, design, produce, maintain, and operate. Scientists make it known. Engineers make it useful.'"
+          },
+          {
+            "learnRef": 3,
+            "text": "Couched in science/engineering terms, the von Kármán aphorism can be expressed as: 'Science makes things known; engineering makes things work.' Gordon S. Brown (1907–1996), who served as dean of engineering at MIT, said of engineers primarily engaged in research that, 'they may work as scientists, but their knack of seeing the useful rather than searching for the unknown characterizes them as engineers.'"
+          },
+          {
+            "learnRef": 3,
+            "text": "Another approach to making the distinction between scientists and engineers (and between science and engineering) is to emphasize not what they do but why they do it. According to one observer, 'An engineer is a person who will learn an obscure physical law in order to build a complicated piece of technological apparatus. A scientist is a person who will learn how to build a complicated piece of technological apparatus in order to learn an obscure physical law.'"
+          },
+          {
+            "heading": "Public Perception: The Credit vs. Blame Dilemma",
+            "learnRef": 4,
+            "text": "It is a common lament among engineers that all too often in the news media successful technological endeavors and achievements are attributed to science and scientists, whereas technological problems and failures are blamed on engineering and engineers. Thus, landing astronauts on the Moon was hailed as a scientific achievement, but when a test rocket exploded on the launch pad it was described as an engineering failure. This false dichotomy was evident, for example, in the Mars Pathfinder Mission of 1997. When the Pathfinder landed and celebration erupted in the control room, the participants were identified by commentators as space scientists, whereas in fact they were virtually all engineers. When some communications problems later erupted, television viewers were told that the engineers were working on them."
+          },
+          {
+            "learnRef": 4,
+            "text": "In the wake of the explosion on the Deepwater Horizon oil rig and the subsequent months-long oil well leak in the Gulf of Mexico in 2010, there were many instances of action and reporting in which the roles of engineers and scientists were confused, thus giving the lay public misleading caricatures of both. At one point, the Secretary of Energy, a Nobel-prize winning physicist, was sent to the oil-spill command center in Houston with orders from the White House to direct what clearly should have been an engineering effort under the direction of an engineer to cap the leaking well. In the end, it was not scientific knowledge and achievement that ended the gushing but engineering experience and technological savvy. In one newspaper report describing the political decision in the wake of the accident to impose a moratorium on all deep-water drilling, consulting engineers were repeatedly referred to as scientists throughout the entire first two-thirds of the rather long story on their report as submitted, which did not support a ban. It was only after the consultants were identified as having been recommended by the National Academy of Engineering that they were correctly described as engineers -- but only for a few paragraphs before the reporter lapsed back into calling them scientists."
+          },
+          {
+            "heading": "Blaming the Engineer: Frontinus and the Saldae Aqueduct",
+            "learnRef": 4,
+            "text": "Blaming the engineer is not a modern phenomenon. In his first-century A.D. treatise on the water supply system of Rome, the water commissioner Frontinus described an incident that he experienced at the site of the excavation for a tunnel to carry water to the Algerian seaport of Saldae: 'There I found everybody sad and despondent; they had given up all hopes that the two opposite sections of the tunnel would meet, because each section had already been excavated beyond the middle of the mountain, and the junction had not yet been effected. As always happens in these cases, the fault was attributed to the engineer, as though he had not taken all precautions to insure the success of the work.'"
+          },
+          {
+            "learnRef": 4,
+            "text": "According to Frontinus, in the absence of the engineer 'the contractor and his assistant had made blunder after blunder, in each section of the tunnel they had diverged from the straight line, each towards his right and had I waited a little longer before coming, Saldae would have possessed two tunnels instead of one.' The situation was corrected by doing a further survey and digging a transverse tunnel that connected the two diverging ones."
+          }
+        ]
       }
     ]
   },

@@ -84,12 +84,36 @@
       font-size: 11px; color: #57606a; margin-top: 3px;
     }
 
+    /* reading items and tabs */
+    .reading-tabs {
+      display: flex; gap: 6px; margin: 10px 0 14px; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px; flex-wrap: wrap;
+    }
+    .reading-tab-btn {
+      padding: 5px 10px; font-size: 12px; font-weight: 600; border-radius: 4px;
+      background: #f7f8fa; border: 1px solid #e5e7eb; color: #57606a; cursor: pointer;
+      transition: all .15s;
+    }
+    .reading-tab-btn:hover { background: #eff6ff; color: #0a3c78; border-color: #93c5fd; }
+    .reading-tab-btn.active { background: #0a3c78; color: white; border-color: #0a3c78; }
+
+    .reading-doc-header {
+      padding: 10px 12px; background: #f0f4ff; border-radius: 6px; border-left: 4px solid #0a3c78;
+      margin-bottom: 14px;
+    }
+    .reading-doc-title { font-size: 13px; font-weight: 700; color: #0a3c78; }
+    .reading-doc-source { font-size: 11px; color: #57606a; margin-top: 3px; }
+
     /* reading paragraphs */
     .reading-para {
       font-size: 13.5px; line-height: 1.75; color: #1f2328;
       margin-bottom: 14px; padding: 8px 10px; border-radius: 5px;
       border-left: 3px solid transparent;
       transition: background .2s, border-color .2s, opacity .2s;
+    }
+    .reading-para-heading {
+      font-size: 13px; font-weight: 700; color: #0a3c78;
+      margin: 18px 0 8px; padding-bottom: 4px; border-bottom: 1px dashed #d1d5db;
+      text-transform: uppercase; letter-spacing: .4px;
     }
     /* when any section is active, dim non-matching paragraphs */
     .reading-panel.has-active .reading-para { opacity: .3; }
@@ -748,15 +772,76 @@
 
     var panelHdr = h('div','reading-panel-header');
     panelHdr.innerHTML =
-      '<div class="reading-panel-title">' + reading.title + '</div>' +
+      '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">' +
+        '<div class="reading-panel-title">' + (reading.title || 'Required Reading') + '</div>' +
+        '<button class="tts-btn reading-tts-btn" title="Listen to the reading text" style="flex-shrink:0;">🔊 Read Aloud</button>' +
+      '</div>' +
       (reading.source ? '<div class="reading-panel-source">' + reading.source + '</div>' : '');
     inner.appendChild(panelHdr);
 
-    reading.paragraphs.forEach(function(p) {
-      var para = h('div','reading-para');
-      para.dataset.learnRef = p.learnRef;
-      para.textContent = p.text;
-      inner.appendChild(para);
+    panelHdr.querySelector('.reading-tts-btn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      toggleReadingSpeech(this);
+    });
+
+    // Support multiple readings (items array) or single reading
+    var items = reading.items && reading.items.length ? reading.items : [reading];
+
+    if (items.length > 1) {
+      var tabRow = h('div','reading-tabs');
+      var allBtn = h('button','reading-tab-btn active','All Readings');
+      allBtn.dataset.docIdx = 'all';
+      tabRow.appendChild(allBtn);
+
+      items.forEach(function(item, dIdx) {
+        var btn = h('button','reading-tab-btn', item.shortTitle || ('Reading ' + (dIdx+1)));
+        btn.dataset.docIdx = dIdx;
+        tabRow.appendChild(btn);
+      });
+
+      tabRow.addEventListener('click', function(e) {
+        var target = e.target.closest('.reading-tab-btn');
+        if (!target) return;
+        tabRow.querySelectorAll('.reading-tab-btn').forEach(function(b){ b.classList.remove('active'); });
+        target.classList.add('active');
+        var filter = target.dataset.docIdx;
+        inner.querySelectorAll('.reading-doc-block').forEach(function(blk) {
+          if (filter === 'all' || blk.dataset.docIdx === filter) {
+            blk.style.display = 'block';
+          } else {
+            blk.style.display = 'none';
+          }
+        });
+      });
+      inner.appendChild(tabRow);
+    }
+
+    items.forEach(function(item, dIdx) {
+      var docBlock = h('div','reading-doc-block');
+      docBlock.dataset.docIdx = dIdx;
+
+      if (items.length > 1) {
+        var docHdr = h('div','reading-doc-header');
+        docHdr.innerHTML =
+          '<div class="reading-doc-title">' + (item.title || ('Reading ' + (dIdx+1))) + '</div>' +
+          (item.source ? '<div class="reading-doc-source">' + item.source + '</div>' : '');
+        docBlock.appendChild(docHdr);
+      }
+
+      if (item.paragraphs && item.paragraphs.length) {
+        item.paragraphs.forEach(function(p) {
+          if (p.heading) {
+            var hd = h('div','reading-para-heading', p.heading);
+            docBlock.appendChild(hd);
+          }
+          var para = h('div','reading-para');
+          para.dataset.learnRef = p.learnRef !== undefined ? p.learnRef : '';
+          para.textContent = p.text;
+          docBlock.appendChild(para);
+        });
+      }
+
+      inner.appendChild(docBlock);
     });
 
     panel.appendChild(inner);
@@ -1405,13 +1490,85 @@
     utt.onend = function() {
       ttsRemoveCursor();
       resetTtsBtn(btn);
-      var nextSection = btn.closest('.learn-section').nextElementSibling;
+      var nextSection = btn.closest('.learn-section') ? btn.closest('.learn-section').nextElementSibling : null;
       if (nextSection && nextSection.classList.contains('learn-section')) {
         var nextBtn = nextSection.querySelector('.tts-btn');
         if (nextBtn) toggleSectionSpeech(nextBtn);
       }
     };
     utt.onerror = function() { ttsRemoveCursor(); resetTtsBtn(btn); };
+    window.speechSynthesis.speak(utt);
+  }
+
+  function toggleReadingSpeech(btn) {
+    if (ttsActiveBtn === btn) {
+      if (ttsPaused) {
+        window.speechSynthesis.resume();
+        ttsPaused = false;
+        btn.textContent = '⏸ Pause';
+        btn.classList.remove('tts-paused');
+        btn.classList.add('tts-active');
+        var pb = document.getElementById('tts-pause-btn');
+        if (pb) pb.textContent = '⏸ Pause';
+      } else {
+        window.speechSynthesis.pause();
+        ttsPaused = true;
+        btn.textContent = '▶ Resume';
+        btn.classList.remove('tts-active');
+        btn.classList.add('tts-paused');
+        var pb = document.getElementById('tts-pause-btn');
+        if (pb) pb.textContent = '▶ Resume';
+      }
+      return;
+    }
+    stopSpeech();
+    var inner = document.querySelector('.reading-panel-inner');
+    if (!inner || !window.speechSynthesis) return;
+
+    // Collect visible reading paragraphs
+    var visibleParas = Array.from(inner.querySelectorAll('.reading-doc-block'))
+      .filter(function(blk){ return blk.style.display !== 'none'; })
+      .flatMap(function(blk){ return Array.from(blk.querySelectorAll('.reading-para, .reading-para-heading')); });
+
+    if (!visibleParas.length) visibleParas = Array.from(inner.querySelectorAll('.reading-para, .reading-para-heading'));
+    if (!visibleParas.length) return;
+
+    var textParts = visibleParas.map(function(el){ return el.textContent.trim(); });
+    var fullText = textParts.join('\n\n');
+
+    var utt = new SpeechSynthesisUtterance(fullText);
+    utt.rate = getSelectedRate(); utt.pitch = 1;
+    var voice = getSelectedVoice();
+    if (voice) utt.voice = voice;
+    ttsCurrentUtt = utt;
+    ttsPaused = false;
+
+    utt.onstart = function() {
+      ttsActiveBtn = btn;
+      btn.textContent = '⏸ Pause';
+      btn.classList.add('tts-active');
+      ttsShowControls(true);
+    };
+    utt.onboundary = function(e) {
+      if (e.name !== 'word') return;
+      ttsPlaceCursor(inner, e.charIndex);
+    };
+    utt.onend = function() {
+      ttsRemoveCursor();
+      btn.textContent = '🔊 Read Aloud';
+      btn.classList.remove('tts-active', 'tts-paused');
+      ttsActiveBtn = null;
+      ttsPaused = false;
+      ttsShowControls(false);
+    };
+    utt.onerror = function() {
+      ttsRemoveCursor();
+      btn.textContent = '🔊 Read Aloud';
+      btn.classList.remove('tts-active', 'tts-paused');
+      ttsActiveBtn = null;
+      ttsPaused = false;
+      ttsShowControls(false);
+    };
     window.speechSynthesis.speak(utt);
   }
   function stopSpeech() {
