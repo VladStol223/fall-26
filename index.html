@@ -748,9 +748,9 @@
           </div>
         </div>
         <div class="course-card-footer">
-          <span class="footer-progress-label">No modules yet</span>
-          <div class="footer-progress-bar-wrap"><div class="footer-progress-fill" style="background:linear-gradient(90deg,#0f766e,#34d399);width:0%"></div></div>
-          <span class="footer-count">—</span>
+          <span class="footer-progress-label" id="capstone-design-footer-label">1 module</span>
+          <div class="footer-progress-bar-wrap"><div class="footer-progress-fill" id="capstone-design-footer-bar" style="background:linear-gradient(90deg,#0f766e,#34d399);width:0%"></div></div>
+          <span class="footer-count" id="capstone-design-footer-count">0/1 done</span>
         </div>
       </div>
 
@@ -1182,7 +1182,9 @@
       { id: 'us-history-m1', num: 1, label: 'Foundations of America' },
       { id: 'us-history-m2', num: 2, label: 'Expansion, Democracy & Reform' }
     ]},
-    { id: 'capstone-design',        label: 'Capstone Design',                   modules: [] },
+    { id: 'capstone-design',        label: 'Capstone Design',                   modules: [
+      { id: 'capstone-sawh-research', num: 1, label: 'SAWH Initial Research' }
+    ]},
     { id: 'engineering-economy',    label: 'Engineering Economy',                modules: [] },
     { id: 'engineering-in-history', label: 'Engineering in History', modules: [
       { id: 'eng-history-w1',  num: 1,  label: 'What is Engineering?' },
