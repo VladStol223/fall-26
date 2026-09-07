@@ -1414,6 +1414,51 @@
     var sel = document.getElementById('tts-rate-select');
     return sel ? parseFloat(sel.value) : 0.95;
   }
+  function cleanMathForSpeech(text) {
+    if (!text) return '';
+    return text
+      // Remove raw LaTeX display/inline delimiters
+      .replace(/\\\[/g, ' ')
+      .replace(/\\\]/g, ' ')
+      .replace(/\\\(/g, ' ')
+      .replace(/\\\)/g, ' ')
+      // Clean \frac{num}{den} -> "num over den" (handle nested braces)
+      .replace(/\\frac\{([^{}]+)\}\{([^{}]+)\}/g, '$1 over $2')
+      .replace(/\\frac\{([^{}]+)\}\{([^{}]+)\}/g, '$1 over $2')
+      // Partial derivatives \partial C / \partial t -> "partial C with respect to t" or "derivative"
+      .replace(/\\partial\s*([A-Za-z_\\]+)\s*\/\s*\\partial\s*([A-Za-z]+)/g, 'partial $1 with respect to $2')
+      .replace(/\\partial/g, 'partial ')
+      // Common operators and symbols
+      .replace(/\\nabla\s*\cdot/g, 'divergence of')
+      .replace(/\\nabla/g, 'gradient')
+      .replace(/\\cdot/g, ' times ')
+      .replace(/\\times/g, ' times ')
+      .replace(/\\approx/g, ' approximately equals ')
+      .replace(/\\qquad|\\quad/g, ', ')
+      .replace(/\\text\{([^}]+)\}/g, '$1')
+      .replace(/\\mathrm\{([^}]+)\}/g, '$1')
+      .replace(/\\left[\[\(\{\|.]/g, '')
+      .replace(/\\right[\]\)\}\|.]/g, '')
+      // Greek letter names in LaTeX
+      .replace(/\\varepsilon/g, 'epsilon')
+      .replace(/\\eta/g, 'eta')
+      .replace(/\\rho/g, 'rho')
+      .replace(/\\tau/g, 'tau')
+      .replace(/\\mu/g, 'mu')
+      .replace(/\\theta/g, 'theta')
+      .replace(/\\alpha/g, 'alpha')
+      .replace(/\\Delta/g, 'delta')
+      // Subscripts and superscripts cleanup
+      .replace(/_\{([^}]+)\}/g, ' $1')
+      .replace(/\^\{([^}]+)\}/g, ' to the power of $1')
+      .replace(/\^2/g, ' squared')
+      .replace(/\^3/g, ' cubed')
+      // Remove any remaining stray backslashes, braces, or unhandled LaTeX commands
+      .replace(/\\[a-zA-Z]+/g, ' ')
+      .replace(/[{}]/g, '')
+      .replace(/\s+/g, ' ');
+  }
+
   function getSectionText(btn) {
     var section = btn.closest('.learn-section');
     var header  = section.querySelector('.learn-section-header');
@@ -1423,7 +1468,7 @@
     var match = rawTitle.match(/^(\d+)\s*[—\-]\s*(.+)$/);
     var sectionNum  = match ? match[1] : '';
     var sectionName = match ? match[2].replace(/&amp;/g,'and').replace(/&/g,'and') : rawTitle;
-    var bodyText = body ? body.innerText.trim() : '';
+    var bodyText = body ? cleanMathForSpeech(body.innerText.trim()) : '';
     var intro = sectionNum ? 'Section '+sectionNum+'. '+sectionName+'.' : (sectionName ? sectionName+'.' : '');
     return [intro, bodyText, 'Moving on.'].filter(Boolean).join('  ');
   }
