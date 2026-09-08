@@ -267,6 +267,10 @@
       quizFile: null,
       modules: [
         { id: 'capstone-sawh-research', num: 1, prefix: 'sawh-res', total: 32, label: 'SAWH Initial Research', subtitle: 'Wilson et al. (2023) · Zhong & Zhang et al. (2024)' }
+      ],
+      tools: [
+        { label: 'Interactive System Loops', subtitle: 'Click components to view specifications and example parts', url: 'courses/capstone-design/system_loops.html' },
+        { label: 'Animated Process Workflow', subtitle: 'Step-by-step visualizer for AWG phase transitions', url: 'courses/capstone-design/awg_animated.html' }
       ]
     },
     'engineering-economy': {
@@ -592,6 +596,49 @@
           '</table>' +
           '<p style="font-size:12px;color:#9ca3af;margin-top:20px;">Study materials and modules will be added here as the semester progresses.</p>' +
         '</div>';
+    }
+
+    if (COURSE.tools && COURSE.tools.length > 0) {
+      var toolsH2 = document.createElement('h2');
+      toolsH2.textContent = 'Interactive Tools & Visualizers';
+      toolsH2.style.marginTop = '28px';
+      toolsH2.style.marginBottom = '14px';
+      toolsH2.style.fontSize = '15px';
+      toolsH2.style.fontWeight = '700';
+      toolsH2.style.color = '#0a3c78';
+
+      var toolsList = document.createElement('div');
+      toolsList.className = 'module-list';
+
+      COURSE.tools.forEach(function(tool) {
+        var tRow = document.createElement('a');
+        tRow.className = 'module-row';
+        tRow.href = tool.url;
+        tRow.target = '_blank';
+        tRow.style.borderColor = '#bfdbfe';
+        tRow.style.background = '#fcfdff';
+
+        var tIcon = document.createElement('div');
+        tIcon.className = 'module-num';
+        tIcon.style.background = 'linear-gradient(135deg, #1e64b4, #3b82d4)';
+        tIcon.innerHTML = '⚡';
+
+        var tInfo = document.createElement('div');
+        tInfo.className = 'module-info';
+        tInfo.innerHTML = '<div class="module-title" style="color:#0a3c78; font-weight:700;">' + tool.label + '</div><div class="module-subtitle">' + tool.subtitle + '</div>';
+
+        var tArrow = document.createElement('span');
+        tArrow.className = 'module-arrow';
+        tArrow.textContent = '→';
+
+        tRow.appendChild(tIcon);
+        tRow.appendChild(tInfo);
+        tRow.appendChild(tArrow);
+        toolsList.appendChild(tRow);
+      });
+
+      modSection.appendChild(toolsH2);
+      modSection.appendChild(toolsList);
     }
 
     modPane.appendChild(modSection);

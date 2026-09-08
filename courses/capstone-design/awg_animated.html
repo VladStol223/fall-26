@@ -287,9 +287,344 @@ h1 {
   .heat-wave.active   { animation: none; opacity: 0.5; }
   .particle           { visibility: hidden !important; }
 }
+
+/* ── Refrigeration cycle ─────────────────────────────── */
+.refrig-pipe {
+  fill: none;
+  stroke: #1a2b1a;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  transition: stroke 350ms;
+}
+.refrig-pipe.lit-cold { stroke: #38bdf8; }
+.refrig-pipe.lit-hot  { stroke: #f87171; }
+
+.refrig-box {
+  fill: #101a10;
+  stroke: #1e3a1e;
+  stroke-width: 1.5;
+  transition: fill 350ms, stroke 350ms;
+}
+.refrig-box.lit     { fill: #0d2010; stroke: #4ade80; }
+.refrig-box.lit-hot { fill: #1a0808; stroke: #f87171; }
+
+.refrig-title {
+  font-size: 10px; font-weight: 700;
+  fill: #1e3a1e;
+  dominant-baseline: middle; text-anchor: middle;
+  transition: fill 350ms;
+}
+.refrig-title.lit { fill: #4ade80; }
+
+.refrig-detail {
+  font-size: 8px;
+  fill: #1a2b1a;
+  dominant-baseline: middle; text-anchor: middle;
+  transition: fill 350ms;
+}
+.refrig-detail.lit { fill: #86efac80; }
+
+.refrig-label {
+  font-size: 8px; font-weight: 700;
+  fill: #1e2538;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  transition: fill 350ms;
+}
+.refrig-label.lit { fill: #4ade8040; }
+
+.refrig-mod-bg {
+  fill: none;
+  stroke: #141e14;
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+  transition: stroke 350ms;
+}
+.refrig-mod-bg.lit { stroke: #4ade8030; }
+
+/* compressor symbol */
+.comp-circle {
+  fill: #101a10;
+  stroke: #1e3a1e;
+  stroke-width: 1.5;
+  transition: fill 350ms, stroke 350ms;
+}
+.comp-circle.lit { fill: #0d2010; stroke: #a3a3a3; }
+
+/* expansion valve — triangle */
+.expv-tri {
+  fill: #101a10;
+  stroke: #1e3a1e;
+  stroke-width: 1.5;
+  transition: fill 350ms, stroke 350ms;
+}
+.expv-tri.lit { fill: #0d2010; stroke: #4ade80; }
+
+/* refrig particle */
+.particle-refrig {
+  fill: #4ade80;
+  filter: url(#glow-green);
+  visibility: hidden;
+}
+
+@keyframes comp-pulse {
+  0%, 100% { r: 14; opacity: 0.8; }
+  50%       { r: 17; opacity: 1;   }
+}
+.comp-circle.lit { animation: comp-pulse 1.4s ease-in-out infinite; }
+
+/* ── Inlet Seal (overview canvas) ────────────────────── */
+.seal-hinge {
+  fill: #38bdf8;
+  stroke: none;
+  opacity: 0.5;
+  transition: fill 350ms, opacity 350ms;
+}
+.seal-flap {
+  fill: none;
+  stroke: #2d3a50;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  transform-box: fill-box;
+  transform-origin: left center;
+  transition: stroke 350ms, transform 420ms cubic-bezier(0.4,0,0.2,1);
+}
+/* open = horizontal (passive, air flows through), closed = rotated 90° (motor-pulled, seals shut) */
+.inlet-seal-group.open   .seal-flap  { stroke: #38bdf8; transform: rotate(0deg); }
+.inlet-seal-group.open   .seal-hinge { fill: #38bdf8; opacity: 1; }
+.inlet-seal-group.closed .seal-flap  { stroke: #f97316; transform: rotate(-90deg); }
+.inlet-seal-group.closed .seal-hinge { fill: #f97316; opacity: 1; }
+.inlet-seal-group.lit    .seal-flap  { stroke: #38bdf8; }
+.inlet-seal-group.lit    .seal-hinge { fill: #38bdf8; opacity: 1; }
+
+/* ── Seal Modal ───────────────────────────────────────── */
+#seal-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(6,12,24,0.88);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+#seal-modal.open { display: flex; }
+#seal-modal-inner {
+  background: #0d1420;
+  border: 1px solid #1e2d44;
+  border-radius: 12px;
+  padding: 24px 28px 20px;
+  max-width: 640px;
+  width: 94vw;
+  position: relative;
+}
+#seal-modal h2 { font-size: 16px; color: #7dd3fc; margin-bottom: 4px; }
+#seal-modal p.seal-sub { font-size: 12px; color: #475569; margin-bottom: 14px; }
+#seal-modal-close {
+  position: absolute;
+  top: 12px; right: 16px;
+  background: none; border: none;
+  color: #475569; font-size: 20px;
+  cursor: pointer; line-height: 1;
+}
+#seal-modal-close:hover { color: #e2e8f0; }
+#seal-detail-svg {
+  display: block; width: 100%;
+  border-radius: 8px;
+  background: #060c18;
+  border: 1px solid #1e2d44;
+}
+#seal-state-btn {
+  margin-top: 12px; width: 100%;
+  padding: 8px 0;
+  background: #0a1e35; color: #38bdf8;
+  border: 1px solid #38bdf840;
+  border-radius: 6px; font-size: 13px;
+  font-family: inherit; cursor: pointer;
+  transition: background 200ms;
+}
+#seal-state-btn:hover { background: #102840; }
+
+/* ── Detail animation keyframes ──────────────────────── */
+@keyframes motor-cw  { from { transform: rotate(0deg);    } to { transform: rotate(360deg);  } }
+@keyframes motor-ccw { from { transform: rotate(0deg);    } to { transform: rotate(-360deg); } }
+/* open = motor pulls wire → flaps rotate to -90° (sealed/closed position) */
+/* close = motor releases → spring snaps flaps back to 0° (open/air-through position) */
+@keyframes flap-open  {
+  0%   { transform: rotate(0deg);   }
+  100% { transform: rotate(-90deg); }
+}
+@keyframes flap-close {
+  0%   { transform: rotate(-90deg); }
+  100% { transform: rotate(0deg);   }
+}
+@keyframes mag-snap {
+  0%   { transform: translateX(0);    }
+  45%  { transform: translateX(5px);  }
+  75%  { transform: translateX(-2px); }
+  100% { transform: translateX(0);    }
+}
+.detail-motor { transform-box: fill-box; transform-origin: center center; }
+.detail-motor.cw  { animation: motor-cw  0.8s linear infinite; }
+.detail-motor.ccw { animation: motor-ccw 0.8s linear infinite; }
+.sd-flap {
+  /* transform-origin is set inline on the element (116px 0px) to match the hinge pixel position */
+  transition: stroke 300ms;
+}
+.sd-flap.is-open  { animation: flap-open  0.55s cubic-bezier(0.4,0,0.2,1) forwards; }
+.sd-flap.is-close { animation: flap-close 0.45s cubic-bezier(0.4,0,0.2,1) forwards; }
+.sd-flap.open-done  { transform: rotate(-90deg); }  /* "open" button → sealed position */
+.sd-flap.close-done { transform: rotate(0deg);   }  /* "close" button → air-through position */
+.sd-magnet.snap { animation: mag-snap 0.4s ease-out 1 forwards; }
 </style>
 </head>
 <body>
+
+<!-- ══ Inlet Seal Detail Modal ══════════════════════════════════════════ -->
+<div id="seal-modal">
+  <div id="seal-modal-inner">
+    <button id="seal-modal-close" onclick="closeSealModal()">&#x2715;</button>
+    <h2>Inlet Seal &#8212; Mechanism Detail</h2>
+    <p class="seal-sub">200 mm Noctua fans &middot; Polycarbonate plate &middot; Rubber gasket &middot; Spring + Neodymium magnets &middot; Wire-pull motor</p>
+
+    <!--
+      Layout (all absolute SVG coords, viewBox 0 0 580 320):
+        PC sheet:         x=110, y=30–290, width=12
+        Hinge axis:       x=122 (right edge of sheet)
+        Flap length:      80px  → tip at x=202 when flat (open/air-through state)
+        Active flap row:  y=160 (row 3 of 4; absolute)
+        Wire attach dot:  (202, 160) when flat; rotates with flap to (122, 80) when sealed
+        Wire route OPEN:  (202,160) → right 20 → (222,160) → up → (222, 53) → motor center (222,35)
+        Wire route SEALED:(122, 80) → right 20 → (142, 80) → up → (222, 53) → motor center (222,35)
+        Motor center:     (222, 35) — above the wire corner, perpendicular to fan axis
+        Fan center:       (55, 160)
+    -->
+    <svg id="seal-detail-svg" viewBox="0 0 580 320" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="sd-glow" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="2.5" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="sd-glow-o" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="2" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <!-- direction labels -->
+      <text x="12" y="18" fill="#334155" font-size="9" font-family="inherit">&#8592; Air intake (fan side)</text>
+      <text x="350" y="18" fill="#334155" font-size="9" font-family="inherit">&#8594; Into AWG</text>
+
+      <!-- ── Polycarbonate sheet ── -->
+      <rect x="110" y="30" width="12" height="260" rx="3" fill="#0a2236" stroke="#38bdf855" stroke-width="1.5"/>
+      <text x="116" y="305" fill="#38bdf870" font-size="8" text-anchor="middle" font-family="inherit">PC Sheet</text>
+
+      <!-- ── 4 flap rows — only row 3 (y=160) animates; others are static reference ── -->
+
+      <!-- static row 1  y=95 -->
+      <g transform="translate(0,95)" opacity="0.35">
+        <circle cx="116" cy="0" r="11" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+        <circle cx="116" cy="0" r="2.5" fill="#38bdf8" opacity="0.7"/>
+        <line x1="116" y1="0" x2="196" y2="0" stroke="#7dd3fc" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 116,-6 Q 111,-10 106,-6 Q 101,-2 96,-6 Q 91,-10 86,-6" fill="none" stroke="#64748b" stroke-width="1.2" opacity="0.7"/>
+        <circle cx="128" cy="0" r="3.5" fill="#f97316" opacity="0.5"/>
+        <circle cx="104" cy="0" r="3.5" fill="#f97316" opacity="0.5"/>
+      </g>
+
+      <!-- static row 2  y=128 -->
+      <g transform="translate(0,128)" opacity="0.35">
+        <circle cx="116" cy="0" r="11" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+        <circle cx="116" cy="0" r="2.5" fill="#38bdf8" opacity="0.7"/>
+        <line x1="116" y1="0" x2="196" y2="0" stroke="#7dd3fc" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 116,-6 Q 111,-10 106,-6 Q 101,-2 96,-6 Q 91,-10 86,-6" fill="none" stroke="#64748b" stroke-width="1.2" opacity="0.7"/>
+        <circle cx="128" cy="0" r="3.5" fill="#f97316" opacity="0.5"/>
+        <circle cx="104" cy="0" r="3.5" fill="#f97316" opacity="0.5"/>
+      </g>
+
+      <!-- ── ACTIVE row 3  y=160 — this flap animates ── -->
+      <g transform="translate(0,160)">
+        <!-- gasket ring -->
+        <circle cx="116" cy="0" r="12" fill="none" stroke="#94a3b8" stroke-width="2" opacity="0.7"/>
+        <!-- hinge pivot -->
+        <circle cx="116" cy="0" r="3" fill="#38bdf8" opacity="0.9" filter="url(#sd-glow)"/>
+        <!-- spring on left side of hinge -->
+        <path d="M 116,-7 Q 111,-11 106,-7 Q 101,-3 96,-7 Q 91,-11 86,-7" fill="none" stroke="#64748b" stroke-width="1.3" opacity="0.8"/>
+        <text x="86" y="-14" fill="#64748b" font-size="7.5" font-family="inherit">spring</text>
+        <!-- magnets at gasket -->
+        <circle id="sd-mg1a" class="sd-magnet" cx="128" cy="0" r="4" fill="#f97316" opacity="0.75" filter="url(#sd-glow-o)"/>
+        <circle id="sd-mg1b" class="sd-magnet" cx="104" cy="0" r="4" fill="#f97316" opacity="0.75" filter="url(#sd-glow-o)"/>
+        <text x="116" y="22" fill="#f9731670" font-size="7.5" text-anchor="middle" font-family="inherit">magnets</text>
+        <!-- animated group: flap line + wire-attach dot both pivot around hinge (116,0) -->
+        <g id="sd-f1" class="sd-flap close-done"
+           style="transform-box:fill-box;transform-origin:116px 0px">
+          <line x1="116" y1="0" x2="196" y2="0"
+                stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+          <!-- wire attach dot at tip -->
+          <circle id="sd-wp" cx="196" cy="0" r="4" fill="#fbbf24" opacity="0.9" filter="url(#sd-glow)"/>
+        </g>
+      </g>
+
+      <!-- static row 4  y=192 -->
+      <g transform="translate(0,192)" opacity="0.35">
+        <circle cx="116" cy="0" r="11" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+        <circle cx="116" cy="0" r="2.5" fill="#38bdf8" opacity="0.7"/>
+        <line x1="116" y1="0" x2="196" y2="0" stroke="#7dd3fc" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 116,-6 Q 111,-10 106,-6 Q 101,-2 96,-6 Q 91,-10 86,-6" fill="none" stroke="#64748b" stroke-width="1.2" opacity="0.7"/>
+        <circle cx="128" cy="0" r="3.5" fill="#f97316" opacity="0.5"/>
+        <circle cx="104" cy="0" r="3.5" fill="#f97316" opacity="0.5"/>
+      </g>
+
+      <!-- ── Wire — path from flap tip → right 20 → up → motor ── -->
+      <!--
+        OPEN  (flap flat): tip=(196,160) → (216,160) → (216,53) → motor(222,35)
+        SEALED(flap up):   tip=(116, 80) → (136, 80) → (216,53) → motor(222,35)
+        Updated via JS in setSealDetailState()
+      -->
+      <path id="sd-wire" d="M 196,160 L 216,160 L 216,53"
+            fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            opacity="0.85"/>
+      <text id="sd-wire-lbl" x="228" y="115" fill="#fbbf2470" font-size="7.5" font-family="inherit">pull wire</text>
+
+      <!-- ── Motor — sits above, perpendicular to fan axis ── -->
+      <!-- motor at (222,35): wire comes up from below, spool wraps/unwinds wire -->
+      <g id="sd-motor" class="detail-motor" transform="translate(222,35)">
+        <circle r="18" fill="#0a1e35" stroke="#38bdf8" stroke-width="1.8"/>
+        <line x1="-10" y1="0" x2="10" y2="0" stroke="#38bdf8" stroke-width="1.4"/>
+        <line x1="0" y1="-10" x2="0" y2="10" stroke="#38bdf8" stroke-width="1.4"/>
+        <circle r="3.5" fill="#38bdf8" opacity="0.8"/>
+        <!-- spool fin -->
+        <rect x="6" y="-4" width="9" height="8" rx="2" fill="#38bdf840" stroke="#38bdf8" stroke-width="1"/>
+        <text x="0" y="-24" fill="#38bdf8" font-size="8" text-anchor="middle" font-family="inherit">Motor</text>
+        <text x="26" y="4" fill="#64748b" font-size="7" font-family="inherit">&#8593; parallel to fan axis</text>
+      </g>
+
+      <!-- ── 200mm Noctua fan ── -->
+      <g transform="translate(55,160)">
+        <circle r="48" fill="#060c18" stroke="#1e2538" stroke-width="1.5"/>
+        <circle r="6" fill="#38bdf815" stroke="#38bdf860" stroke-width="1"/>
+        <ellipse rx="7" ry="38" fill="none" stroke="#38bdf8" stroke-width="1.2" opacity="0.55"/>
+        <ellipse rx="7" ry="38" fill="none" stroke="#38bdf8" stroke-width="1.2" opacity="0.55" transform="rotate(120)"/>
+        <ellipse rx="7" ry="38" fill="none" stroke="#38bdf8" stroke-width="1.2" opacity="0.55" transform="rotate(240)"/>
+        <text x="0" y="64" fill="#38bdf870" font-size="8" text-anchor="middle" font-family="inherit">200 mm Noctua</text>
+      </g>
+
+      <!-- state label -->
+      <text id="sd-state-lbl" x="290" y="295" fill="#475569" font-size="9.5" text-anchor="middle" font-family="inherit">State: OPEN &#8212; spring + magnets hold flap flat (air flows through)</text>
+
+      <!-- legend -->
+      <g transform="translate(290,260)">
+        <circle cx="0"  cy="0" r="4" fill="#f97316" opacity="0.7"/>
+        <text x="10" y="4"  fill="#64748b" font-size="7.5" font-family="inherit">Neodymium magnet</text>
+        <circle cx="0"  cy="16" r="4" fill="#fbbf24" opacity="0.9"/>
+        <text x="10" y="20" fill="#64748b" font-size="7.5" font-family="inherit">Wire attach (active flap)</text>
+        <circle cx="120" cy="0"  r="3" fill="#38bdf8" opacity="0.9"/>
+        <text x="130" y="4"  fill="#64748b" font-size="7.5" font-family="inherit">Hinge pivot</text>
+        <line x1="120" y1="16" x2="128" y2="16" stroke="#64748b" stroke-width="1.5"/>
+        <text x="132" y="20" fill="#64748b" font-size="7.5" font-family="inherit">Spring</text>
+      </g>
+    </svg>
+
+    <button id="seal-state-btn" onclick="toggleSealDetail()">&#9654; Seal Shut (motor spins &#8594; pulls wire)</button>
+  </div>
+</div>
 
 <h1>Atmospheric Water Generator</h1>
 <p class="sub">Animated 2D Process Workflow — Step Through Each Stage</p>
@@ -326,7 +661,7 @@ h1 {
 </div>
 
 <!-- ── SVG ─────────────────────────────────────── -->
-<svg id="canvas" viewBox="0 0 960 520" xmlns="http://www.w3.org/2000/svg">
+<svg id="canvas" viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <filter id="glow-blue" x="-60%" y="-60%" width="220%" height="220%">
       <feGaussianBlur stdDeviation="3" result="blur"/>
@@ -336,11 +671,37 @@ h1 {
       <feGaussianBlur stdDeviation="3" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
+    <filter id="glow-green" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
     <!-- hidden guide paths for particles -->
-    <path id="path-capture-s0" d="M 30,200 L 91,200 L 134,200 L 182,200 L 228,200 L 270,200" fill="none"/>
-    <path id="path-capture-s1" d="M 30,200 L 270,200 L 316,200 L 392,200 L 512,200 L 576,200 L 586,200 L 610,200 L 610,82" fill="none"/>
+    <path id="path-capture-s0" d="M 30,200 L 91,200 L 134,200 L 182,200 L 228,200 L 300,200" fill="none"/>
+    <path id="path-capture-s1" d="M 30,200 L 300,200 L 392,200 L 512,200 L 576,200 L 586,200 L 610,200 L 610,82" fill="none"/>
     <path id="path-condensate" d="M 512,335 L 670,335 L 750,335 L 750,330 L 780,330 L 820,330 L 820,220 L 780,220 L 730,220 L 709,220 L 709,245" fill="none"/>
     <path id="path-vapor-pipe" d="M 452,252 L 452,305" fill="none"/>
+    <!-- Cold side: exp valve top (594,390) → (594,348) → coil right entry (512,348) →
+         serpentine right-to-left: each column goes UP then U-turn then next column goes DOWN etc.
+         Columns (x): 512 up→ 501 down→ 488 up→ 475 down→ 462 up→ 449 down→ 436 up→ 423 down→ 410 stub→ exit left (392,348)
+         Top y=320 (arc y=317), Bottom y=345 (arc y=348) -->
+    <path id="path-refrig-cold"
+      d="M 594,390 L 594,348 L 512,348
+         L 512,320 Q 512,317 509,317 L 504,317 Q 501,317 501,320
+         L 501,345 Q 501,348 498,348 L 491,348 Q 488,348 488,345
+         L 488,320 Q 488,317 485,317 L 479,317 Q 475,317 475,320
+         L 475,345 Q 475,348 472,348 L 465,348 Q 462,348 462,345
+         L 462,320 Q 462,317 459,317 L 452,317 Q 449,317 449,320
+         L 449,345 Q 449,348 446,348 L 439,348 Q 436,348 436,345
+         L 436,320 Q 436,317 433,317 L 426,317 Q 423,317 423,320
+         L 423,345 Q 423,348 420,348 L 413,348 Q 410,348 410,345
+         L 410,320 Q 410,317 407,317 L 407,348
+         L 392,348 L 310,348 L 310,412"
+      fill="none"/>
+    <!-- Hot side: comp bottom (310,450) → down → (310,500) → right → rcond left (392,500) →
+         rcond right (512,500) → right → (594,500) → up → exp valve bottom (594,414) -->
+    <path id="path-refrig-hot"
+      d="M 310,450 L 310,500 L 392,500 L 512,500 L 594,500 L 594,414"
+      fill="none"/>
     <marker id="arr-blue" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
       <path d="M0,0 L0,6 L6,3 z" fill="#38bdf8"/>
     </marker>
@@ -383,44 +744,42 @@ h1 {
   </g>
   <text style="font-size:9px;font-weight:700;fill:#64748b;text-anchor:middle" x="182" y="234" id="fan-label">Intake Fan</text>
 
-  <!-- pipe fan → fine filter -->
-  <path class="pipe" id="pipe-f2ff" d="M 202,200 L 228,200"/>
+  <!-- pipe fan → inlet seal (extends to meet seal plate) -->
+  <path class="pipe" id="pipe-f2ff" d="M 202,200 L 264,200"/>
 
-  <!-- Fine Filter node -->
-  <rect class="node-box" id="n-finef" x="228" y="168" width="42" height="64"/>
-  <line x1="234" y1="175" x2="234" y2="226" stroke="#1e2538" stroke-width="1"   id="ff1"/>
-  <line x1="240" y1="172" x2="240" y2="228" stroke="#1e2538" stroke-width="1.5" id="ff2"/>
-  <line x1="246" y1="175" x2="246" y2="226" stroke="#1e2538" stroke-width="1"   id="ff3"/>
-  <line x1="252" y1="172" x2="252" y2="228" stroke="#1e2538" stroke-width="1.5" id="ff4"/>
-  <line x1="258" y1="175" x2="258" y2="226" stroke="#1e2538" stroke-width="1"   id="ff5"/>
-  <line x1="264" y1="172" x2="264" y2="228" stroke="#1e2538" stroke-width="1.5" id="ff6"/>
-  <text class="node-title" id="nt-finef"  x="249" y="243" style="font-size:9px">Fine</text>
-  <text class="node-title" id="nt-finef2" x="249" y="254" style="font-size:9px">Filter</text>
+  <!-- ══ Inlet Seal — polycarbonate sheet with 4 spring/magnet flap seals ══ -->
+  <!-- Shifted right so plate left edge meets pipe-f2ff end (x=264); hinges at x=278 -->
+  <!-- Clickable group; overview: vertical plate with 4 rows of flaps -->
+  <g id="g-inlet-seal" class="inlet-seal-group" style="cursor:pointer" onclick="openSealModal()">
+    <!-- polycarbonate sheet body: x=264 width=14 → right edge x=278 -->
+    <rect class="node-box" id="n-seal" x="264" y="163" width="14" height="74" rx="2"/>
+    <!-- 4 flap rows; hinges at x=278 (right edge of plate); flaps extend to x=300 -->
+    <!-- rows shifted down 10px from original: cy = 186, 199, 212, 225 -->
+    <!-- Row 1 -->
+    <circle class="seal-hinge" id="sh1" cx="278" cy="186" r="2.2"/>
+    <line   class="seal-flap"  id="sf1" x1="278" y1="186" x2="300" y2="186"/>
+    <!-- Row 2 -->
+    <circle class="seal-hinge" id="sh2" cx="278" cy="199" r="2.2"/>
+    <line   class="seal-flap"  id="sf2" x1="278" y1="199" x2="300" y2="199"/>
+    <!-- Row 3 -->
+    <circle class="seal-hinge" id="sh3" cx="278" cy="212" r="2.2"/>
+    <line   class="seal-flap"  id="sf3" x1="278" y1="212" x2="300" y2="212"/>
+    <!-- Row 4 -->
+    <circle class="seal-hinge" id="sh4" cx="278" cy="225" r="2.2"/>
+    <line   class="seal-flap"  id="sf4" x1="278" y1="225" x2="300" y2="225"/>
+    <!-- invisible hit area so label text is also clickable -->
+    <rect x="264" y="163" width="50" height="100" fill="transparent"/>
+  </g>
+  <text class="node-title" id="nt-seal"  x="289" y="247" style="font-size:9px">Inlet</text>
+  <text class="node-title" id="nt-seal2" x="289" y="258" style="font-size:9px">Seal ▸</text>
 
   <!-- ══ MODULE 2 — Sorbent HX ══ -->
   <rect class="mod-bg"   id="mod2-bg"  x="306" y="118" width="334" height="258"/>
   <text class="mod-label" id="mod2-lbl" x="310" y="112">Module 2 — Sorbent Heat Exchanger</text>
 
-  <!-- Inlet Damper — mechanical symbol: U-body open to right, sliding plate inside -->
-  <!-- pipe into damper -->
-  <path class="pipe" id="pipe-in2d" d="M 270,200 L 316,200"/>
-  <text style="font-size:8px;fill:#1e2538;text-anchor:middle" id="lbl-filtered" x="293" y="193">Filtered Air</text>
-  <g id="damper-inlet" class="damper-group">
-    <!-- U-shape: left wall + top + bottom, open on right -->
-    <path class="damper-body" d="M 316,182 L 316,218 M 316,182 L 344,182 M 316,218 L 344,218"/>
-    <!-- sliding plate -->
-    <line class="damper-plate" x1="328" y1="185" x2="328" y2="215"/>
-    <!-- no stub — pipe-d2hx extends through open face to the wall -->
-  </g>
-  <text style="font-size:7.5px;fill:#475569;text-anchor:middle" x="335" y="232">Inlet</text>
-  <text style="font-size:7.5px;fill:#475569;text-anchor:middle" x="335" y="241">Damper</text>
-
-  <!-- pipe damper → HX: drawn right-to-left; default reaches plate (x=328), closed retracts to open face (x=344) -->
-  <!-- full length 64 (x=392→328); closed offset=16 leaves 48px visible (x=392→344) -->
-  <path class="pipe" id="pipe-d2hx"
-        d="M 392,200 L 328,200"
-        stroke-dasharray="64 64"
-        stroke-dashoffset="0"/>
+  <!-- pipe from seal exit → HX; starts after flap tips (x=300) -->
+  <path class="pipe" id="pipe-in2d" d="M 300,200 L 392,200"/>
+  <text style="font-size:8px;fill:#1e2538;text-anchor:middle" id="lbl-filtered" x="346" y="193">Filtered Air</text>
 
   <!-- HX block -->
   <rect class="node-box" id="n-hx" x="392" y="148" width="120" height="104"/>
@@ -474,11 +833,54 @@ h1 {
   </g>
   <text style="font-size:9px;font-weight:700;fill:#64748b;text-anchor:middle" x="610" y="228" id="exh-fan-label">Exhaust Fan</text>
 
-  <!-- Condenser coils -->
-  <rect class="node-box" id="n-cond" x="392" y="305" width="120" height="60"/>
-  <text class="node-title"  id="nt-cond" x="452" y="326">Condenser Coils</text>
-  <text class="node-detail" id="nd-cond" x="452" y="340">Vapor → Liquid</text>
-  <path d="M 404,350 Q 420,340 436,350 Q 452,360 468,350 Q 484,340 500,350" fill="none" stroke="#1e2538" stroke-width="1.5" id="coil1"/>
+  <!-- Condenser coils node box — semi-transparent fill so evap coils show through -->
+  <rect class="node-box" id="n-cond" x="392" y="305" width="120" height="60" fill-opacity="0.7"/>
+  <text class="node-title"  id="nt-cond" x="452" y="357">Condenser Coils</text>
+  <text class="node-detail" id="nd-cond" x="452" y="312">Vapor → Liquid</text>
+  <!-- Evaporator serpentine coil — vertical runs, horizontal U-turns.
+       Box interior: x=392–512, y=305–365. Text ends ~y=314.
+       Coil runs: top y=320, bottom y=345. U-turns ±3px → y=317 top arc, y=348 bottom arc.
+       9 columns at x=397,410,423,436,449,462,475,488,501→512. -->
+  <path id="refrig-evap-coil-a"
+    d="M 392,348
+       L 407,348
+       Q 410,348 410,345
+       L 410,320
+       Q 410,317 413,317
+       L 420,317
+       Q 423,317 423,320
+       L 423,345
+       Q 423,348 426,348
+       L 433,348
+       Q 436,348 436,345
+       L 436,320
+       Q 436,317 439,317
+       L 446,317
+       Q 449,317 449,320
+       L 449,345
+       Q 449,348 452,348
+       L 459,348
+       Q 462,348 462,345
+       L 462,320
+       Q 462,317 465,317
+       L 472,317
+       Q 475,317 475,320
+       L 475,345
+       Q 475,348 478,348
+       L 485,348
+       Q 488,348 488,345
+       L 488,320
+       Q 488,317 491,317
+       L 498,317
+       Q 501,317 501,320
+       L 501,345
+       Q 501,348 504,348
+       L 509,348
+       Q 512,348 512,345
+       L 512,335"
+    fill="none" stroke="#1a2b1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Orange vapor coil at bottom of coil area -->
+  <path d="M 398,344 Q 411,339 424,344 Q 437,349 450,344 Q 463,339 476,344 Q 489,349 502,344" fill="none" stroke="#1e2538" stroke-width="1.5" id="coil1"/>
 
   <!-- vapor drop pipe HX → condenser -->
   <path class="pipe" id="pipe-vapor" d="M 452,252 L 452,305"/>
@@ -557,6 +959,60 @@ h1 {
   <circle class="particle orange vapor-scatter" id="vs12" cx="-50" cy="-50"/>
   <!-- Vapor pipe particle (larger, travels down pipe-vapor) -->
   <circle class="particle orange" id="vp1" cx="-50" cy="-50" r="4"/>
+
+  <!-- ══ REFRIGERATION CYCLE ══════════════════════════════════════════
+       Evaporator = the green coils already drawn inside the condenser block.
+       Loop: condenser-box left-side exit → compressor → refrig condenser → exp valve → condenser-box right-side entry
+       Condenser box: x=392–512, y=305–365.  Left exit at (392,335). Right entry at (512,335).
+  ══ -->
+  <rect class="refrig-mod-bg" id="refrig-mod-bg" x="282" y="378" width="350" height="192" rx="14" ry="14"/>
+  <text class="refrig-label" id="refrig-mod-lbl" x="286" y="372">Refrigeration Cycle — Evaporator coils inside Condenser block</text>
+
+  <!-- Evaporator label (floats left of condenser box) -->
+  <text class="refrig-title" id="refrig-evap-t"  x="374" y="338" style="text-anchor:end">Evaporator</text>
+  <text class="refrig-detail" id="refrig-evap-d" x="374" y="350" style="text-anchor:end">coils (inside)</text>
+
+  <!-- Low-P cold refrigerant IN — right side of condenser box (512,348) → right → exp valve -->
+  <!-- Pipe: exp valve (594,390) → up → (594,348) → left → evap right entry (512,348) -->
+  <path class="refrig-pipe" id="refrig-pipe-x2e"
+        d="M 594,390 L 594,348 L 512,348"/>
+  <text style="font-size:7px;fill:#1a2b1a;text-anchor:middle" id="refrig-lbl-cold" x="562" y="340">Low-P cold mix</text>
+
+  <!-- Expansion valve — ▽ at (594,408) -->
+  <polygon class="expv-tri" id="refrig-expv" points="594,390 610,414 578,414"/>
+  <text class="refrig-title"  id="refrig-expv-t"  x="594" y="424">Exp.</text>
+  <text class="refrig-title"  id="refrig-expv-t2" x="594" y="435">Valve</text>
+
+  <!-- High-P liquid pipe: refrig condenser → exp valve -->
+  <path class="refrig-pipe" id="refrig-pipe-rc2x"
+        d="M 512,500 L 594,500 L 594,414"/>
+  <text style="font-size:7px;fill:#1a2b1a;text-anchor:middle" id="refrig-lbl-liq" x="562" y="494">High-P liquid</text>
+
+  <!-- Refrig condenser box — heat rejection to ambient -->
+  <rect class="refrig-box" id="refrig-rcond" x="392" y="480" width="120" height="44" rx="8" ry="8"/>
+  <text class="refrig-title"  id="refrig-rcond-t"  x="452" y="497">Refrig. Condenser</text>
+  <text class="refrig-detail" id="refrig-rcond-d"  x="452" y="509">Rejects heat →</text>
+  <text class="refrig-detail" id="refrig-rcond-d2" x="452" y="519">ambient air</text>
+
+  <!-- High-P hot vapor pipe: compressor → refrig condenser -->
+  <path class="refrig-pipe" id="refrig-pipe-c2rc"
+        d="M 310,450 L 310,500 L 392,500"/>
+  <text style="font-size:7px;fill:#1a2b1a;text-anchor:middle" id="refrig-lbl-hp" x="348" y="516">High-P hot vapor</text>
+
+  <!-- Compressor circle at (310,430) -->
+  <circle class="comp-circle" id="refrig-comp" cx="310" cy="430" r="18"/>
+  <text class="refrig-title" id="refrig-comp-t"  x="310" y="427">Comp-</text>
+  <text class="refrig-title" id="refrig-comp-t2" x="310" y="438">ressor</text>
+
+  <!-- Low-P vapor pipe: evaporator left exit (392,348) → left → compressor -->
+  <path class="refrig-pipe" id="refrig-pipe-e2c"
+        d="M 392,348 L 310,348 L 310,412"/>
+  <text style="font-size:7px;fill:#1a2b1a;text-anchor:middle" id="refrig-lbl-lp" x="344" y="339">Low-P vapor</text>
+
+  <!-- Refrig particles — blue on cold side, red on hot side -->
+  <circle class="particle-refrig" id="rp1" cx="-50" cy="-50" r="4" style="fill:#38bdf8"/>
+  <circle class="particle-refrig" id="rp2" cx="-50" cy="-50" r="4" style="fill:#f87171"/>
+  <circle class="particle-refrig" id="rp3" cx="-50" cy="-50" r="4" style="fill:#38bdf8"/>
 </svg>
 
 <script>
@@ -591,36 +1047,60 @@ function setClass(id, cls_str) {
   if (cls_str) cls_str.split(' ').forEach(c => c && el.classList.add(c));
 }
 
-// ─── Animate damper pipe reach ────────────────────────────────────────
-// pipe-d2hx: total=64 (x=392→328); open offset=0 (tip at plate x=328), closed offset=16 (tip at open face x=344)
+// ─── Animate outlet damper pipe reach ────────────────────────────────
 // pipe-hx2od: total=52 (x=512→564); open offset=0 (tip at plate x=564), closed offset=16 (tip at open face x=548)
 function setPipeReach(state) {
-  const d2hx  = document.getElementById('pipe-d2hx');
   const hx2od = document.getElementById('pipe-hx2od');
+  if (!hx2od) return;
   if (state === 'open') {
-    d2hx.style.strokeDashoffset  = '0';
     hx2od.style.strokeDashoffset = '0';
   } else if (state === 'closed') {
-    d2hx.style.strokeDashoffset  = '12';
     hx2od.style.strokeDashoffset = '12';
   } else {
-    // reset — same as open (pipes always visible)
-    d2hx.style.strokeDashoffset  = '0';
+    // reset — same as open (pipe always visible)
     hx2od.style.strokeDashoffset = '0';
   }
 }
 
 // ─── Reset everything to dim state ────────────────────────────────────
 function dimAll() {
-  const allNodes = ['n-prefilter','n-finef','n-hx','n-cond','n-sed','n-carbon','n-uvc','n-tank'];
-  const allPipes = ['pipe-ambient','pipe-p2f','pipe-f2ff','pipe-in2d','pipe-d2hx','pipe-hx2od',
+  const allNodes = ['n-prefilter','n-seal','n-hx','n-cond','n-sed','n-carbon','n-uvc','n-tank'];
+  const allPipes = ['pipe-ambient','pipe-p2f','pipe-f2ff','pipe-in2d','pipe-hx2od',
                     'pipe-od2exhf','pipe-exhaust','pipe-vapor','pipe-drain','pipe-s2c','pipe-c2uv','pipe-uv2tank'];
   const allMods  = ['mod1-bg','mod2-bg','mod3-bg'];
   const allModL  = ['mod1-lbl','mod2-lbl','mod3-lbl'];
-  const allTitles = ['nt-prefilter','nd-prefilter','nd-prefilter2','nt-finef','nt-finef2',
+  const allTitles = ['nt-prefilter','nd-prefilter','nd-prefilter2','nt-seal','nt-seal2',
                      'nt-hx','nt-cond','nd-cond',
                      'nt-sed','nt-sed2','nt-carbon','nt-carbon2',
                      'nt-uvc','nt-uvc2','nd-uvc','nt-tank','nt-tank2','nd-tank'];
+  // refrig elements dim
+  const refrigNodes  = ['refrig-mod-bg'];
+  const el_rcond = document.getElementById('refrig-rcond');
+  if (el_rcond) el_rcond.classList.remove('lit','lit-hot');
+  const refrigPipes  = ['refrig-pipe-e2c','refrig-pipe-c2rc','refrig-pipe-rc2x','refrig-pipe-x2e'];
+  refrigPipes.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('lit-cold','lit-hot');
+  });
+  const refrigTitles = ['refrig-evap-t','refrig-evap-d',
+                        'refrig-rcond-t','refrig-rcond-d','refrig-rcond-d2',
+                        'refrig-comp-t','refrig-comp-t2',
+                        'refrig-expv-t','refrig-expv-t2','refrig-mod-lbl'];
+  refrigNodes.forEach(id  => { const el=document.getElementById(id); if(el){ el.classList.remove('lit'); } });
+  refrigPipes.forEach(id  => { const el=document.getElementById(id); if(el){ el.classList.remove('lit'); } });
+  refrigTitles.forEach(id => { const el=document.getElementById(id); if(el){ el.classList.remove('lit'); } });
+  const comp = document.getElementById('refrig-comp');
+  if (comp) comp.classList.remove('lit');
+  const expv = document.getElementById('refrig-expv');
+  if (expv) expv.classList.remove('lit');
+  // refrig pipe labels
+  ['refrig-lbl-lp','refrig-lbl-hp','refrig-lbl-liq','refrig-lbl-cold'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.fill = '#1a2b1a';
+  });
+  // evaporator coil dim
+  const evapCoil = document.getElementById('refrig-evap-coil-a');
+  if (evapCoil) evapCoil.style.stroke = '#1a2b1a';
 
   allNodes.forEach(id  => setClass(id, ''));
   allPipes.forEach(id  => setClass(id, ''));
@@ -637,8 +1117,11 @@ function dimAll() {
   document.getElementById('exh-fan-spin').classList.remove('spinning');
   ['fb1','fb2','fb3','efb1','efb2','efb3'].forEach(id => document.getElementById(id).classList.remove('lit'));
 
-  // both dampers — no colour
-  setDamper('damper-inlet',  false);
+  // inlet seal — reset to neutral (no open/closed class)
+  const sealGrp = document.getElementById('g-inlet-seal');
+  if (sealGrp) { sealGrp.classList.remove('open','closed','lit'); }
+
+  // outlet damper — no colour
   setDamper('damper-outlet', false);
 
   // labels dim — null-safe
@@ -659,6 +1142,7 @@ function dimAll() {
 
   // particles off
   stopAllParticles();
+  stopRefrigParticles();
 }
 
 // ─── Damper helper — set mechanical damper open/closed + colour ───────
@@ -685,8 +1169,11 @@ function applyUpTo(step) {
     setClass('mod1-bg',  'lit-blue');
     setClass('mod1-lbl', 'lit-blue');
     setClass('n-prefilter', 'lit-blue');
-    setClass('n-finef',     'lit-blue');
-    ['nt-prefilter','nd-prefilter','nd-prefilter2','nt-finef','nt-finef2'].forEach(id => setClass(id,'lit-blue'));
+    setClass('n-seal',      'lit-blue');
+    ['nt-prefilter','nd-prefilter','nd-prefilter2','nt-seal','nt-seal2'].forEach(id => setClass(id,'lit-blue'));
+    // open the seal flaps (fan is drawing air through)
+    const sg0 = document.getElementById('g-inlet-seal');
+    if (sg0) { sg0.classList.remove('closed'); sg0.classList.add('open','lit'); }
     setClass('pipe-ambient', 'lit-blue');
     setClass('pipe-p2f',    'lit-blue');
     setClass('pipe-f2ff',   'lit-blue');
@@ -704,8 +1191,11 @@ function applyUpTo(step) {
     setClass('mod1-bg',  'lit-blue');
     setClass('mod1-lbl', 'lit-blue');
     setClass('n-prefilter', 'lit-blue');
-    setClass('n-finef',     'lit-blue');
-    ['nt-prefilter','nd-prefilter','nd-prefilter2','nt-finef','nt-finef2'].forEach(id => setClass(id,'lit-blue'));
+    setClass('n-seal',      'lit-blue');
+    ['nt-prefilter','nd-prefilter','nd-prefilter2','nt-seal','nt-seal2'].forEach(id => setClass(id,'lit-blue'));
+    // open seal flaps during adsorption
+    const sg1 = document.getElementById('g-inlet-seal');
+    if (sg1) { sg1.classList.remove('closed'); sg1.classList.add('open','lit'); }
     setClass('pipe-ambient', 'lit-blue');
     setClass('pipe-p2f',    'lit-blue');
     setClass('pipe-f2ff',   'lit-blue');
@@ -719,7 +1209,6 @@ function applyUpTo(step) {
     setClass('n-hx',     'lit-blue');
     setClass('nt-hx',    'lit-blue');
     setClass('pipe-in2d',      'lit-blue');
-    setClass('pipe-d2hx',      'lit-blue');
     setClass('pipe-hx2od',     'lit-blue');
     setClass('pipe-od2exhf',   'lit-blue');
     setClass('pipe-exhaust',   'lit-blue');
@@ -727,19 +1216,20 @@ function applyUpTo(step) {
     document.getElementById('lbl-filtered').style.fill = '#38bdf8';
     document.getElementById('exh-fan-spin').classList.add('spinning');
     ['efb1','efb2','efb3'].forEach(id => document.getElementById(id).classList.add('lit'));
-    // dampers open + blue during adsorption; pipes extend to walls
-    setDamper('damper-inlet',  false, true);
+    // outlet damper open + blue; pipe extends
     setDamper('damper-outlet', false, true);
     setPipeReach('open');
     document.getElementById('od-stub').style.stroke = '#38bdf8';
   }
 
-  // Step 2 — M2 desorption: closed dampers, heat, vapor, condensation (stays lit on step 3)
+  // Step 2 — M2 desorption: seals close, heat, vapor, condensation (stays lit on step 3)
   if (step >= 2) {
     setClass('mod2-bg',  'lit-orange');
     setClass('mod2-lbl', 'lit-orange');
-    // dampers close + orange; pipes retract to plates; stub off
-    setDamper('damper-inlet',  true);
+    // inlet seal closes (orange — magnets snap shut)
+    const sg2 = document.getElementById('g-inlet-seal');
+    if (sg2) { sg2.classList.remove('open','lit'); sg2.classList.add('closed'); }
+    // outlet damper closes + orange; pipe retracts; stub off
     setDamper('damper-outlet', true);
     setPipeReach('closed');
     document.getElementById('od-stub').style.stroke = '#1e2538';
@@ -749,12 +1239,38 @@ function applyUpTo(step) {
     setClass('n-hx',   'lit-orange');
     setClass('nt-hx','lit-orange');
     // pipes to/from HX lit orange
-    setClass('pipe-d2hx',  'lit-orange');
     setClass('pipe-hx2od', 'lit-orange');
     setClass('pipe-vapor', 'lit-orange');
     setClass('n-cond',  'lit-orange');
     ['nt-cond','nd-cond'].forEach(id => setClass(id,'lit-orange'));
-    document.getElementById('coil1').style.stroke       = '#f9731660';
+    document.getElementById('coil1').style.stroke = '#f9731660';
+
+    // ── Light up refrigeration cycle ──
+    document.getElementById('refrig-mod-bg').classList.add('lit');
+    document.getElementById('refrig-rcond').classList.add('lit-hot');
+    // cold side: evaporator → compressor, exp valve → evaporator
+    ['refrig-pipe-e2c','refrig-pipe-x2e'].forEach(id => {
+      const el = document.getElementById(id); if(el) el.classList.add('lit-cold');
+    });
+    // hot side: compressor → refrig condenser, refrig condenser → exp valve
+    ['refrig-pipe-c2rc','refrig-pipe-rc2x'].forEach(id => {
+      const el = document.getElementById(id); if(el) el.classList.add('lit-hot');
+    });
+    ['refrig-evap-t','refrig-evap-d',
+     'refrig-rcond-t','refrig-rcond-d','refrig-rcond-d2',
+     'refrig-comp-t','refrig-comp-t2',
+     'refrig-expv-t','refrig-expv-t2','refrig-mod-lbl'].forEach(id => {
+      const el = document.getElementById(id); if(el) el.classList.add('lit');
+    });
+    document.getElementById('refrig-comp').classList.add('lit');
+    document.getElementById('refrig-expv').classList.add('lit');
+    // evaporator coil glows blue (cold refrigerant)
+    const evapCoil = document.getElementById('refrig-evap-coil-a');
+    if (evapCoil) evapCoil.style.stroke = '#38bdf8';
+    ['refrig-lbl-lp','refrig-lbl-hp','refrig-lbl-liq','refrig-lbl-cold'].forEach(id => {
+      const el = document.getElementById(id); if(el) el.style.fill = '#4ade8060';
+    });
+    startRefrigParticles();
   }
 
   // Step 3 — M3 purification & storage (M2 desorption stays lit above)
@@ -999,8 +1515,184 @@ function animateTankFill() {
   requestAnimationFrame(step);
 }
 
+// ── Refrigeration cycle particles ────────────────────────────────────
+let refrigActive = false;
+let refrigRAF    = null;
+// rp1,rp3 follow cold path (blue); rp2 follows hot path (red)
+let refrigTcold = [0.05, 0.6];   // two blue particles staggered on cold path
+let refrigThot  = [0.3];          // one red particle on hot path
+
+function startRefrigParticles() {
+  if (refrigActive) return;
+  refrigActive = true;
+  ['rp1','rp2','rp3'].forEach(id => {
+    document.getElementById(id).style.visibility = 'visible';
+  });
+  animateRefrig();
+}
+function stopRefrigParticles() {
+  refrigActive = false;
+  if (refrigRAF) { cancelAnimationFrame(refrigRAF); refrigRAF = null; }
+  ['rp1','rp2','rp3'].forEach(id => {
+    const el = document.getElementById(id);
+    el.style.visibility = 'hidden';
+    el.setAttribute('cx', '-50');
+    el.setAttribute('cy', '-50');
+  });
+}
+function animateRefrig() {
+  if (!refrigActive) return;
+  refrigTcold = refrigTcold.map(t => (t + 0.003) % 1);
+  refrigThot  = refrigThot.map(t  => (t + 0.003) % 1);
+  // blue particles on cold path
+  ['rp1','rp3'].forEach((id, i) => {
+    const pt = getPathPoint('path-refrig-cold', refrigTcold[i]);
+    const el = document.getElementById(id);
+    el.setAttribute('cx', pt.x);
+    el.setAttribute('cy', pt.y);
+  });
+  // red particle on hot path
+  const ptH = getPathPoint('path-refrig-hot', refrigThot[0]);
+  const elH = document.getElementById('rp2');
+  elH.setAttribute('cx', ptH.x);
+  elH.setAttribute('cy', ptH.y);
+  refrigRAF = requestAnimationFrame(animateRefrig);
+}
+
 // ─── Boot ──────────────────────────────────────────────────────────────
 reset();
+
+// ─── Inlet Seal Modal ──────────────────────────────────────────────────
+let sealDetailOpen = false;  // false = air-through (open), true = sealed (motor pulled)
+
+function openSealModal() {
+  document.getElementById('seal-modal').classList.add('open');
+  sealDetailOpen = false;
+  // ensure detail starts in air-through (open) state on each modal open
+  setSealDetailState(false, false);
+}
+
+function closeSealModal() {
+  document.getElementById('seal-modal').classList.remove('open');
+  // stop motor animation
+  const motor = document.getElementById('sd-motor');
+  if (motor) { motor.classList.remove('cw','ccw'); }
+}
+
+function toggleSealDetail() {
+  sealDetailOpen = !sealDetailOpen;
+  setSealDetailState(sealDetailOpen, true);
+}
+
+function setSealDetailState(opening, animate) {
+  const motor   = document.getElementById('sd-motor');
+  const btn     = document.getElementById('seal-state-btn');
+  const lbl     = document.getElementById('sd-state-lbl');
+  const wire    = document.getElementById('sd-wire');
+  const wireLbl = document.getElementById('sd-wire-lbl');
+  // only the active flap animates
+  const flap    = document.getElementById('sd-f1');
+  // wire attach dot (child of same group as flap — rotates with CSS transform)
+  const magnets = ['sd-mg1a','sd-mg1b'];
+
+  // Wire path constants (absolute SVG coords):
+  //   Hinge at (116,160). Flap length 80.
+  //   OPEN  (flat, rotate 0°):  tip=(196,160) → right20→(216,160) → up→(216,53)
+  //   SEALED(up,  rotate -90°): tip=(116, 80) → right20→(136, 80) → up→(216,53)
+  const wireOpen   = 'M 196,160 L 216,160 L 216,53';
+  const wireSealed = 'M 116,80  L 136,80  L 216,53';
+
+  if (opening) {
+    // motor spins CW → wire shortens → flap pulls up to -90°
+    if (motor) { motor.classList.remove('ccw'); motor.classList.add('cw'); }
+    if (flap) {
+      flap.classList.remove('close-done','is-close');
+      if (animate) {
+        flap.classList.add('is-open');
+        flap.addEventListener('animationend', function h() {
+          flap.removeEventListener('animationend', h);
+          flap.classList.remove('is-open');
+          flap.classList.add('open-done');
+          // update wire to sealed position once flap finishes
+          if (wire) wire.setAttribute('d', wireSealed);
+          if (motor) motor.classList.remove('cw');
+        });
+        // also animate wire path during the flap animation via rAF
+        animateWirePath(wireOpen, wireSealed, 550);
+      } else {
+        flap.classList.add('open-done');
+        if (wire) wire.setAttribute('d', wireSealed);
+      }
+    }
+    if (btn) btn.textContent = '\u25A0 Release (motor reverses \u2192 spring snaps flap open)';
+    if (lbl) lbl.textContent = 'State: SEALED \u2014 motor pulled wire, flap rotated up against gasket';
+    if (wireLbl) wireLbl.setAttribute('y', '100');
+  } else {
+    // motor spins CCW briefly → releases wire → spring + magnets snap flap back to flat
+    if (motor && animate) {
+      motor.classList.remove('cw'); motor.classList.add('ccw');
+      setTimeout(() => { if (motor) motor.classList.remove('ccw'); }, 550);
+    } else if (motor) {
+      motor.classList.remove('cw','ccw');
+    }
+    if (flap) {
+      flap.classList.remove('open-done','is-open');
+      if (animate) {
+        // wire starts moving back immediately
+        animateWirePath(wireSealed, wireOpen, 450);
+        flap.classList.add('is-close');
+        flap.addEventListener('animationend', function h() {
+          flap.removeEventListener('animationend', h);
+          flap.classList.remove('is-close');
+          flap.classList.add('close-done');
+          if (wire) wire.setAttribute('d', wireOpen);
+          // magnet snap when flap arrives
+          magnets.forEach(mid => {
+            const mel = document.getElementById(mid);
+            if (!mel) return;
+            mel.classList.remove('snap');
+            void mel.offsetWidth;
+            mel.classList.add('snap');
+          });
+        });
+      } else {
+        flap.classList.add('close-done');
+        if (wire) wire.setAttribute('d', wireOpen);
+      }
+    }
+    if (btn) btn.textContent = '\u25B6 Seal Shut (motor spins \u2192 pulls wire)';
+    if (lbl) lbl.textContent = 'State: OPEN \u2014 spring + magnets hold flap flat (air flows through)';
+    if (wireLbl) wireLbl.setAttribute('y', '115');
+  }
+}
+
+// Linearly interpolate wire path d-attribute over ~durationMs using rAF
+// Both paths have the form "M x1,y1 L x2,y2 L x3,y3"
+function animateWirePath(fromD, toD, durationMs) {
+  const wire = document.getElementById('sd-wire');
+  if (!wire) return;
+  // parse two paths into coordinate arrays [x1,y1, x2,y2, x3,y3]
+  function parseCoords(d) {
+    return d.match(/-?\d+(?:\.\d+)?/g).map(Number);
+  }
+  const from = parseCoords(fromD);
+  const to   = parseCoords(toD);
+  const start = performance.now();
+  function step(now) {
+    const t = Math.min((now - start) / durationMs, 1);
+    const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t; // ease-in-out
+    const c = from.map((v, i) => v + (to[i] - v) * ease);
+    wire.setAttribute('d',
+      `M ${c[0]},${c[1]} L ${c[2]},${c[3]} L ${c[4]},${c[5]}`);
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// close modal on backdrop click
+document.getElementById('seal-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeSealModal();
+});
 </script>
 </body>
 </html>
