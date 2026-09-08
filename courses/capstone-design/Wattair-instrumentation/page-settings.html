@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0f1a;--surface:#0d1420;--surface2:#111827;--border:#1e2d3d;
+  --blue:#38bdf8;--blue-dim:#0a1e35;--blue-text:#7dd3fc;
+  --orange:#f97316;--orange-dim:#271200;
+  --green:#4ade80;--green-dim:#0d2010;
+  --red:#f87171;--red-dim:#1a0808;
+  --text:#e2e8f0;--text-muted:#64748b;--text-dim:#475569;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI",system-ui,sans-serif;font-size:14px}
+body{overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:18px}
+
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:2px}
+.section-header h2{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--text-muted)}
+.section-header .line{flex:1;height:1px;background:var(--border)}
+
+/* ── SETTINGS CARD ── */
+.settings-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;
+  display:flex;flex-direction:column;gap:14px;
+}
+.settings-card h3{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
+
+.setting-row{
+  display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);
+}
+.setting-row:last-child{border-bottom:none}
+.setting-row .sr-label{font-size:13px;font-weight:600;color:var(--text);flex:1}
+.setting-row .sr-desc{font-size:11px;color:var(--text-dim);margin-top:2px}
+.setting-row .sr-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+
+/* number inputs */
+.num-input{
+  width:80px;padding:7px 10px;background:var(--surface2);border:1px solid var(--border);
+  color:var(--text);border-radius:7px;font-size:14px;font-weight:700;text-align:center;
+}
+.num-input:focus{outline:none;border-color:var(--blue)}
+.input-unit{font-size:12px;color:var(--text-muted);white-space:nowrap}
+
+/* toggle switch */
+.toggle-sw{position:relative;width:48px;height:26px;flex-shrink:0}
+.toggle-sw input{opacity:0;width:0;height:0}
+.toggle-track{
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  background:var(--surface2);border:1px solid var(--border);border-radius:13px;
+  cursor:pointer;transition:all .2s;
+}
+.toggle-track::after{
+  content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;
+  border-radius:50%;background:var(--text-dim);transition:all .2s;
+}
+.toggle-sw input:checked+.toggle-track{background:var(--green-dim);border-color:var(--green)}
+.toggle-sw input:checked+.toggle-track::after{transform:translateX(22px);background:var(--green)}
+
+/* save btn */
+.save-btn{
+  padding:9px 24px;border-radius:8px;border:1px solid var(--blue);
+  background:var(--blue-dim);color:var(--blue);font-size:13px;font-weight:700;
+  cursor:pointer;transition:all .15s;
+}
+.save-btn:hover{background:var(--blue);color:#0b0f1a}
+.save-btn.green{border-color:var(--green);background:var(--green-dim);color:var(--green)}
+.save-btn.green:hover{background:var(--green);color:#0b0f1a}
+
+/* ── CALIBRATION ── */
+.cal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.cal-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:14px 16px;
+}
+.cal-card .cc-label{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px}
+.cal-card .cc-current{font-size:22px;font-weight:700;color:var(--blue-text);font-variant-numeric:tabular-nums}
+.cal-card .cc-unit{font-size:12px;color:var(--text-muted)}
+.cal-card .cc-offset{display:flex;align-items:center;gap:8px;margin-top:10px}
+.cal-card .cc-offset label{font-size:11px;color:var(--text-dim)}
+.cal-card .cc-offset input{
+  width:70px;padding:5px 8px;background:var(--surface2);border:1px solid var(--border);
+  color:var(--text);border-radius:6px;font-size:13px;font-weight:700;text-align:center;
+}
+.tare-btn{
+  margin-top:10px;width:100%;padding:7px;border-radius:7px;border:1px solid var(--border);
+  background:var(--surface2);color:var(--text-muted);font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;
+}
+.tare-btn:hover{border-color:var(--blue);color:var(--blue)}
+
+/* ── FAULT LOG ── */
+.fault-table{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.fault-table table{width:100%;border-collapse:collapse}
+.fault-table th{padding:9px 14px;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text-dim);border-bottom:1px solid var(--border);text-align:left}
+.fault-table td{padding:8px 14px;font-size:12px;color:var(--text-muted);border-bottom:1px solid var(--border)}
+.fault-table tr:last-child td{border-bottom:none}
+.fault-table td.fault{color:var(--red)}
+.fault-table td.warn{color:var(--orange)}
+.fault-table td.info{color:var(--blue-text)}
+.fault-clear-btn{
+  padding:7px 18px;border-radius:7px;border:1px solid var(--red);
+  background:var(--red-dim);color:var(--red);font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;
+}
+.fault-clear-btn:hover{background:var(--red);color:#0b0f1a}
+
+/* ── SD / EXPORT ── */
+.export-row{display:flex;gap:12px;flex-wrap:wrap}
+.export-btn{
+  padding:9px 20px;border-radius:8px;border:1px solid var(--border);
+  background:var(--surface2);color:var(--text-muted);font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;
+}
+.export-btn:hover{border-color:var(--blue);color:var(--blue)}
+</style>
+</head>
+<body>
+
+<!-- CYCLE TIMING SETTINGS -->
+<div>
+  <div class="section-header"><h2>Cycle Timing</h2><div class="line"></div></div>
+  <div class="settings-card">
+    <h3>Stage Durations</h3>
+    <div class="setting-row">
+      <div><div class="sr-label">Adsorption Duration</div><div class="sr-desc">Time fans run drawing humid air through sorbent bed</div></div>
+      <div class="sr-right">
+        <input type="number" class="num-input" id="cfg-adsorb-dur" value="60" min="10" max="480">
+        <span class="input-unit">min</span>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div><div class="sr-label">Desorption Duration</div><div class="sr-desc">Time glycol loop heats sorbent to release vapor</div></div>
+      <div class="sr-right">
+        <input type="number" class="num-input" id="cfg-desorb-dur" value="45" min="10" max="480">
+        <span class="input-unit">min</span>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div><div class="sr-label">Condensation Duration</div><div class="sr-desc">Time condenser fan runs after heat stops</div></div>
+      <div class="sr-right">
+        <input type="number" class="num-input" id="cfg-cond-dur" value="30" min="5" max="240">
+        <span class="input-unit">min</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:flex-end">
+      <button class="save-btn" onclick="saveCfg()">Save Timing</button>
+    </div>
+  </div>
+</div>
+
+<!-- THERMAL THRESHOLDS -->
+<div>
+  <div class="section-header"><h2>Thermal Thresholds</h2><div class="line"></div></div>
+  <div class="settings-card">
+    <h3>Safety Limits &amp; Setpoints</h3>
+    <div class="setting-row">
+      <div><div class="sr-label">Glycol Max Temp</div><div class="sr-desc">Fault triggered if glycol supply exceeds this — shuts down heater</div></div>
+      <div class="sr-right">
+        <input type="number" class="num-input" id="cfg-gly-max" value="95" min="60" max="100">
+        <span class="input-unit">°C</span>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div><div class="sr-label">Glycol Setpoint</div><div class="sr-desc">Target temperature for glycol heating during desorption</div></div>
+      <div class="sr-right">
+        <input type="number" class="num-input" id="cfg-gly-sp" value="90" min="50" max="95">
+        <span class="input-unit">°C</span>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div><div class="sr-label">HX Overheat Limit</div><div class="sr-desc">Fault if sorbent bed exceeds this temperature</div></div>
+      <div class="sr-right">
+        <input type="number" class="num-input" id="cfg-hx-max" value="100" min="70" max="120">
+        <span class="input-unit">°C</span>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div><div class="sr-label">Condenser Target</div><div class="sr-desc">Target coil temperature (should be ≤ ambient for best yield)</div></div>
+      <div class="sr-right">
+        <input type="number" class="num-input" id="cfg-cond-sp" value="20" min="5" max="35">
+        <span class="input-unit">°C</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:flex-end">
+      <button class="save-btn" onclick="saveCfg()">Save Thresholds</button>
+    </div>
+  </div>
+</div>
+
+<!-- HUMIDITY THRESHOLDS -->
+<div>
+  <div class="section-header"><h2>Humidity Thresholds</h2><div class="line"></div></div>
+  <div class="settings-card">
+    <h3>Adsorption Start/Stop Conditions</h3>
+    <div class="setting-row">
+      <div><div class="sr-label">Min Inlet RH to Start</div><div class="sr-desc">Only begin adsorption if ambient humidity is above this</div></div>
+      <div class="sr-right">
+        <input type="number" class="num-input" id="cfg-rh-min" value="40" min="10" max="90">
+        <span class="input-unit">%</span>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div><div class="sr-label">Sorbent Saturation RH</div><div class="sr-desc">Begin desorption when outlet RH rises above this (bed saturated)</div></div>
+      <div class="sr-right">
+        <input type="number" class="num-input" id="cfg-rh-sat" value="60" min="30" max="95">
+        <span class="input-unit">%</span>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:flex-end">
+      <button class="save-btn" onclick="saveCfg()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- SENSOR CALIBRATION -->
+<div>
+  <div class="section-header"><h2>Sensor Calibration</h2><div class="line"></div></div>
+  <div class="cal-grid">
+    <div class="cal-card">
+      <div class="cc-label">Inlet RH Sensor</div>
+      <div class="cc-current" id="cal-rh-in-val">62.4<span class="cc-unit">%</span></div>
+      <div class="cc-offset">
+        <label>Offset</label>
+        <input type="number" id="cal-rh-in-off" value="0.0" step="0.1">
+        <span style="font-size:11px;color:var(--text-dim)">%</span>
+      </div>
+      <button class="tare-btn" onclick="tare('rh-in')">Zero / Tare</button>
+    </div>
+    <div class="cal-card">
+      <div class="cc-label">Outlet RH Sensor</div>
+      <div class="cc-current" id="cal-rh-out-val">28.1<span class="cc-unit">%</span></div>
+      <div class="cc-offset">
+        <label>Offset</label>
+        <input type="number" id="cal-rh-out-off" value="0.0" step="0.1">
+        <span style="font-size:11px;color:var(--text-dim)">%</span>
+      </div>
+      <button class="tare-btn" onclick="tare('rh-out')">Zero / Tare</button>
+    </div>
+    <div class="cal-card">
+      <div class="cc-label">HX Temp Sensor</div>
+      <div class="cc-current" id="cal-hx-val">78.4<span class="cc-unit">°C</span></div>
+      <div class="cc-offset">
+        <label>Offset</label>
+        <input type="number" id="cal-hx-off" value="0.0" step="0.1">
+        <span style="font-size:11px;color:var(--text-dim)">°C</span>
+      </div>
+      <button class="tare-btn" onclick="tare('hx')">Zero / Tare</button>
+    </div>
+    <div class="cal-card">
+      <div class="cc-label">Glycol Temp Sensors</div>
+      <div class="cc-current" id="cal-gly-val">88.1<span class="cc-unit">°C</span></div>
+      <div class="cc-offset">
+        <label>Offset</label>
+        <input type="number" id="cal-gly-off" value="0.0" step="0.1">
+        <span style="font-size:11px;color:var(--text-dim)">°C</span>
+      </div>
+      <button class="tare-btn" onclick="tare('gly')">Zero / Tare</button>
+    </div>
+    <div class="cal-card">
+      <div class="cc-label">Condenser Temp</div>
+      <div class="cc-current" id="cal-cond-val">18.4<span class="cc-unit">°C</span></div>
+      <div class="cc-offset">
+        <label>Offset</label>
+        <input type="number" id="cal-cond-off" value="0.0" step="0.1">
+        <span style="font-size:11px;color:var(--text-dim)">°C</span>
+      </div>
+      <button class="tare-btn" onclick="tare('cond')">Zero / Tare</button>
+    </div>
+    <div class="cal-card">
+      <div class="cc-label">Load Cell (Water Weight)</div>
+      <div class="cc-current" id="cal-lc-val">0.00<span class="cc-unit">kg</span></div>
+      <div class="cc-offset">
+        <label>Scale factor</label>
+        <input type="number" id="cal-lc-off" value="123000" step="100">
+      </div>
+      <button class="tare-btn" onclick="tare('lc')">Tare Scale</button>
+    </div>
+  </div>
+</div>
+
+<!-- SYSTEM OPTIONS -->
+<div>
+  <div class="section-header"><h2>System Options</h2><div class="line"></div></div>
+  <div class="settings-card">
+    <div class="setting-row">
+      <div><div class="sr-label">Auto-cycle Mode</div><div class="sr-desc">Automatically advance through stages on timer completion</div></div>
+      <div class="sr-right">
+        <label class="toggle-sw"><input type="checkbox" id="opt-autocycle" checked><div class="toggle-track"></div></label>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div><div class="sr-label">Fault Buzzer</div><div class="sr-desc">Audible alarm on interlock fault</div></div>
+      <div class="sr-right">
+        <label class="toggle-sw"><input type="checkbox" id="opt-buzzer" checked><div class="toggle-track"></div></label>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div><div class="sr-label">Drip Irrigation Enable</div><div class="sr-desc">Allow level-triggered pump to run automatically</div></div>
+      <div class="sr-right">
+        <label class="toggle-sw"><input type="checkbox" id="opt-drip"><div class="toggle-track"></div></label>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div><div class="sr-label">SD Card Logging</div><div class="sr-desc">Log all sensor readings to SD card at 5-second intervals</div></div>
+      <div class="sr-right">
+        <label class="toggle-sw"><input type="checkbox" id="opt-sd" checked><div class="toggle-track"></div></label>
+      </div>
+    </div>
+    <div class="setting-row">
+      <div><div class="sr-label">Dark Mode</div><div class="sr-desc">Always on — Wattair dashboard is dark by default</div></div>
+      <div class="sr-right" style="font-size:11px;color:var(--text-dim)">Always dark ✓</div>
+    </div>
+    <div style="display:flex;justify-content:flex-end">
+      <button class="save-btn green" onclick="saveCfg()">✓ Save All Settings</button>
+    </div>
+  </div>
+</div>
+
+<!-- DATA EXPORT -->
+<div>
+  <div class="section-header"><h2>Data Export</h2><div class="line"></div></div>
+  <div class="settings-card">
+    <h3>SD Card Files</h3>
+    <div class="export-row">
+      <button class="export-btn" onclick="showExportMsg('sensor_log.csv')">⬇ sensor_log.csv</button>
+      <button class="export-btn" onclick="showExportMsg('cycle_log.csv')">⬇ cycle_log.csv</button>
+      <button class="export-btn" onclick="showExportMsg('fault_log.txt')">⬇ fault_log.txt</button>
+      <button class="export-btn" onclick="showExportMsg('collection.csv')">⬇ collection.csv</button>
+    </div>
+    <div id="export-msg" style="font-size:12px;color:var(--blue-text);margin-top:8px;display:none"></div>
+  </div>
+</div>
+
+<!-- FAULT LOG -->
+<div>
+  <div class="section-header"><h2>Fault Log</h2><div class="line"><button class="fault-clear-btn" onclick="clearFaultLog()">Clear Log</button></div></div>
+  <div class="fault-table">
+    <table>
+      <thead>
+        <tr><th>Time</th><th>Type</th><th>Sensor</th><th>Value</th><th>Threshold</th><th>Action Taken</th></tr>
+      </thead>
+      <tbody id="fault-log-body">
+        <tr><td colspan="6" style="text-align:center;color:var(--text-dim);padding:16px">No faults recorded</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+function saveCfg() {
+  const btn = event.target;
+  const orig = btn.textContent;
+  btn.textContent = '✓ Saved';
+  btn.style.background = 'var(--green)';
+  btn.style.color = '#0b0f1a';
+  setTimeout(() => { btn.textContent = orig; btn.style.background = ''; btn.style.color = ''; }, 1500);
+}
+
+function tare(sensor) {
+  const btn = event.target;
+  btn.textContent = '✓ Tared';
+  btn.style.color = 'var(--green)';
+  setTimeout(() => { btn.textContent = 'Zero / Tare'; btn.style.color = ''; }, 1500);
+}
+
+function clearFaultLog() {
+  document.getElementById('fault-log-body').innerHTML =
+    '<tr><td colspan="6" style="text-align:center;color:var(--text-dim);padding:16px">No faults recorded</td></tr>';
+}
+
+function showExportMsg(file) {
+  const el = document.getElementById('export-msg');
+  el.style.display = 'block';
+  el.textContent = `Exporting ${file} via serial... (connect Teensy via USB and run GET ${file})`;
+  setTimeout(() => { el.style.display = 'none'; }, 4000);
+}
+
+// Simulate a demo fault entry
+setTimeout(() => {
+  const tbody = document.getElementById('fault-log-body');
+  const now = new Date();
+  const t = now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  tbody.innerHTML = `
+    <tr><td>${t}</td><td class="warn">WARN</td><td>HX Temp</td><td class="warn">91.2°C</td><td>90°C</td><td>Heater throttled</td></tr>
+    <tr><td>${t}</td><td class="info">INFO</td><td>System</td><td class="info">—</td><td>—</td><td>Dashboard loaded</td></tr>
+  `;
+}, 1000);
+</script>
+</body>
+</html>

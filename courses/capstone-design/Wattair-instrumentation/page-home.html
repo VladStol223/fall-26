@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0f1a;--surface:#0d1420;--surface2:#111827;--border:#1e2d3d;
+  --blue:#38bdf8;--blue-dim:#0a1e35;--blue-text:#7dd3fc;
+  --orange:#f97316;--orange-dim:#271200;--orange-text:#fdba74;
+  --green:#4ade80;--green-dim:#0d2010;--green-text:#86efac;
+  --red:#f87171;--red-dim:#1a0808;
+  --purple:#a855f7;--purple-dim:#1a0a2e;
+  --cyan:#22d3ee;--cyan-dim:#021c22;
+  --amber:#fbbf24;
+  --text:#e2e8f0;--text-muted:#64748b;--text-dim:#475569;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI",system-ui,sans-serif;font-size:14px}
+body{overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:18px}
+
+/* ── SECTION HEADER ── */
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:2px}
+.section-header h2{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--text-muted)}
+.section-header .line{flex:1;height:1px;background:var(--border)}
+
+/* ── CARDS ROW ── */
+.cards-row{display:grid;gap:14px}
+.cards-row.col-6{grid-template-columns:repeat(6,1fr)}
+.cards-row.col-4{grid-template-columns:repeat(4,1fr)}
+.cards-row.col-3{grid-template-columns:repeat(3,1fr)}
+.cards-row.col-2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:900px){.cards-row.col-6,.cards-row.col-4{grid-template-columns:repeat(3,1fr)}}
+
+/* ── SENSOR CARD ── */
+.scard{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:14px 16px;display:flex;flex-direction:column;gap:4px;
+}
+.scard .label{font-size:11px;color:var(--text-muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.scard .value{font-size:26px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1;color:var(--blue)}
+.scard .unit{font-size:12px;color:var(--text-muted);margin-left:2px}
+.scard .sub{font-size:11px;color:var(--text-dim);margin-top:2px}
+.scard.orange .value{color:var(--orange)}
+.scard.green  .value{color:var(--green)}
+.scard.red    .value{color:var(--red)}
+.scard.cyan   .value{color:var(--cyan)}
+.scard.amber  .value{color:var(--amber)}
+
+/* ── STATE MACHINE STRIP ── */
+#state-strip{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:0;
+}
+.state-node{
+  display:flex;flex-direction:column;align-items:center;gap:6px;flex:1;
+  cursor:pointer;transition:opacity .2s;
+}
+.state-node:hover{opacity:.85}
+.state-dot{
+  width:36px;height:36px;border-radius:50%;border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  background:var(--surface2);transition:all .3s;
+}
+.state-node .state-lbl{font-size:10px;font-weight:600;letter-spacing:.4px;color:var(--text-dim);text-align:center}
+.state-connector{flex:1;height:2px;background:var(--border);margin-top:-18px;position:relative;top:-3px;z-index:0}
+
+.state-node.active-blue  .state-dot{background:var(--blue-dim);border-color:var(--blue);box-shadow:0 0 10px #38bdf840}
+.state-node.active-blue  .state-lbl{color:var(--blue)}
+.state-node.active-orange .state-dot{background:var(--orange-dim);border-color:var(--orange);box-shadow:0 0 10px #f9731640}
+.state-node.active-orange .state-lbl{color:var(--orange)}
+.state-node.active-green  .state-dot{background:var(--green-dim);border-color:var(--green);box-shadow:0 0 10px #4ade8040}
+.state-node.active-green  .state-lbl{color:var(--green)}
+.state-node.active-cyan   .state-dot{background:var(--cyan-dim);border-color:var(--cyan);box-shadow:0 0 10px #22d3ee40}
+.state-node.active-cyan   .state-lbl{color:var(--cyan)}
+.state-node.active-purple .state-dot{background:var(--purple-dim);border-color:var(--purple);box-shadow:0 0 10px #a855f740}
+.state-node.active-purple .state-lbl{color:var(--purple)}
+.state-node.active-red    .state-dot{background:var(--red-dim);border-color:var(--red);box-shadow:0 0 10px #f8717140}
+.state-node.active-red    .state-lbl{color:var(--red)}
+.state-connector.done{background:#38bdf830}
+
+/* ── ACTUATOR PANEL ── */
+.actuator-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.act-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:12px 14px;display:flex;flex-direction:column;gap:8px;
+}
+.act-card .act-label{font-size:11px;color:var(--text-muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.act-card .act-state{font-size:13px;font-weight:600}
+.act-card .act-state.on{color:var(--green)}
+.act-card .act-state.off{color:var(--text-dim)}
+.toggle-btn{
+  width:100%;padding:7px 0;border-radius:7px;border:1px solid var(--border);
+  background:var(--surface2);color:var(--text-muted);font-size:12px;font-weight:600;
+  cursor:pointer;transition:all .15s;letter-spacing:.3px;
+}
+.toggle-btn:hover{border-color:var(--blue);color:var(--blue)}
+.toggle-btn.active{background:var(--green-dim);border-color:var(--green);color:var(--green)}
+.toggle-btn.active-orange{background:var(--orange-dim);border-color:var(--orange);color:var(--orange)}
+
+/* ── CYCLE CONTROL ── */
+.cycle-control{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:16px 20px;display:flex;align-items:center;gap:14px;
+}
+.cycle-control .big-btn{
+  padding:10px 28px;border-radius:8px;border:none;font-size:14px;font-weight:700;
+  cursor:pointer;transition:all .15s;letter-spacing:.4px;
+}
+.btn-start{background:var(--green-dim);color:var(--green);border:1px solid var(--green)}
+.btn-start:hover{background:var(--green);color:#0b0f1a}
+.btn-stop{background:var(--red-dim);color:var(--red);border:1px solid var(--red)}
+.btn-stop:hover{background:var(--red);color:#0b0f1a}
+.btn-next{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue)}
+.btn-next:hover{background:var(--blue);color:#0b0f1a}
+.cycle-info{flex:1;font-size:13px;color:var(--text-muted)}
+.cycle-info strong{color:var(--text);display:block;margin-bottom:2px}
+.cycle-timer{margin-left:auto;font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--blue-text)}
+</style>
+</head>
+<body>
+
+<!-- STATE MACHINE -->
+<div>
+  <div class="section-header"><h2>System State</h2><div class="line"></div></div>
+  <div id="state-strip">
+    <div class="state-node" id="sn-idle" onclick="setState('idle')">
+      <div class="state-dot">⬡</div>
+      <div class="state-lbl">Idle</div>
+    </div>
+    <div class="state-connector" id="conn-0"></div>
+    <div class="state-node" id="sn-adsorb" onclick="setState('adsorb')">
+      <div class="state-dot">💧</div>
+      <div class="state-lbl">Adsorption</div>
+    </div>
+    <div class="state-connector" id="conn-1"></div>
+    <div class="state-node" id="sn-isolate" onclick="setState('isolate')">
+      <div class="state-dot">🔒</div>
+      <div class="state-lbl">Isolation</div>
+    </div>
+    <div class="state-connector" id="conn-2"></div>
+    <div class="state-node" id="sn-desorb" onclick="setState('desorb')">
+      <div class="state-dot">🔥</div>
+      <div class="state-lbl">Desorption</div>
+    </div>
+    <div class="state-connector" id="conn-3"></div>
+    <div class="state-node" id="sn-condense" onclick="setState('condense')">
+      <div class="state-dot">❄</div>
+      <div class="state-lbl">Condensation</div>
+    </div>
+    <div class="state-connector" id="conn-4"></div>
+    <div class="state-node" id="sn-ready" onclick="setState('ready')">
+      <div class="state-dot">✓</div>
+      <div class="state-lbl">Cycle Ready</div>
+    </div>
+    <div class="state-connector" id="conn-5"></div>
+    <div class="state-node" id="sn-fault" onclick="setState('fault')">
+      <div class="state-dot">⚠</div>
+      <div class="state-lbl">Fault</div>
+    </div>
+  </div>
+</div>
+
+<!-- CYCLE CONTROL -->
+<div class="cycle-control">
+  <button class="big-btn btn-start" onclick="setState('adsorb')">▶ Start Cycle</button>
+  <button class="big-btn btn-next"  onclick="advanceState()">→ Next Stage</button>
+  <button class="big-btn btn-stop"  onclick="setState('idle')">■ Stop</button>
+  <div class="cycle-info">
+    <strong id="stage-name">System Idle</strong>
+    <span id="stage-desc">Ready to begin adsorption cycle.</span>
+  </div>
+  <div class="cycle-timer" id="cycle-timer">00:00</div>
+</div>
+
+<!-- SENSOR READINGS — HUMIDITY / TEMP -->
+<div>
+  <div class="section-header"><h2>Humidity &amp; Temperature</h2><div class="line"></div></div>
+  <div class="cards-row col-6">
+    <div class="scard">
+      <div class="label">Inlet RH</div>
+      <div class="value" id="v-rh-in">--<span class="unit">%</span></div>
+      <div class="sub">Before sorbent HX</div>
+    </div>
+    <div class="scard">
+      <div class="label">Outlet RH</div>
+      <div class="value" id="v-rh-out">--<span class="unit">%</span></div>
+      <div class="sub">After sorbent HX</div>
+    </div>
+    <div class="scard orange">
+      <div class="label">Inlet Temp</div>
+      <div class="value" id="v-t-in">--<span class="unit">°C</span></div>
+      <div class="sub">Ambient air</div>
+    </div>
+    <div class="scard orange">
+      <div class="label">HX Bed Temp</div>
+      <div class="value" id="v-t-hx">--<span class="unit">°C</span></div>
+      <div class="sub">Sorbent exchanger</div>
+    </div>
+    <div class="scard orange">
+      <div class="label">Glycol In</div>
+      <div class="value" id="v-t-gly-in">--<span class="unit">°C</span></div>
+      <div class="sub">Heating loop supply</div>
+    </div>
+    <div class="scard orange">
+      <div class="label">Glycol Out</div>
+      <div class="value" id="v-t-gly-out">--<span class="unit">°C</span></div>
+      <div class="sub">Heating loop return</div>
+    </div>
+  </div>
+</div>
+
+<!-- SENSOR READINGS — CONDENSATION / FLOW -->
+<div>
+  <div class="section-header"><h2>Condensation &amp; Collection</h2><div class="line"></div></div>
+  <div class="cards-row col-4">
+    <div class="scard cyan">
+      <div class="label">Condenser Coil Temp</div>
+      <div class="value" id="v-t-cond">--<span class="unit">°C</span></div>
+      <div class="sub">Target: ≤ ambient</div>
+    </div>
+    <div class="scard green">
+      <div class="label">Collected Water</div>
+      <div class="value" id="v-water">0.00<span class="unit">L</span></div>
+      <div class="sub">Today's total</div>
+    </div>
+    <div class="scard green">
+      <div class="label">Collection Rate</div>
+      <div class="value" id="v-rate">--<span class="unit">mL/h</span></div>
+      <div class="sub">Rolling 5-min avg</div>
+    </div>
+    <div class="scard">
+      <div class="label">ΔRH (removal)</div>
+      <div class="value" id="v-delta-rh">--<span class="unit">%</span></div>
+      <div class="sub">Inlet − Outlet</div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTUATORS -->
+<div>
+  <div class="section-header"><h2>Actuators</h2><div class="line"></div></div>
+  <div class="actuator-grid">
+    <div class="act-card">
+      <div class="act-label">Inlet Damper</div>
+      <div class="act-state off" id="as-inlet">CLOSED</div>
+      <button class="toggle-btn" id="tb-inlet" onclick="toggleAct('inlet')">Open</button>
+    </div>
+    <div class="act-card">
+      <div class="act-label">Outlet Damper</div>
+      <div class="act-state off" id="as-outlet">CLOSED</div>
+      <button class="toggle-btn" id="tb-outlet" onclick="toggleAct('outlet')">Open</button>
+    </div>
+    <div class="act-card">
+      <div class="act-label">Intake Fan</div>
+      <div class="act-state off" id="as-fan-in">OFF</div>
+      <button class="toggle-btn" id="tb-fan-in" onclick="toggleAct('fan-in')">Turn On</button>
+    </div>
+    <div class="act-card">
+      <div class="act-label">Exhaust Fan</div>
+      <div class="act-state off" id="as-fan-ex">OFF</div>
+      <button class="toggle-btn" id="tb-fan-ex" onclick="toggleAct('fan-ex')">Turn On</button>
+    </div>
+    <div class="act-card">
+      <div class="act-label">Vapor Seal Valve</div>
+      <div class="act-state off" id="as-valve">OPEN</div>
+      <button class="toggle-btn" id="tb-valve" onclick="toggleAct('valve')">Seal</button>
+    </div>
+    <div class="act-card">
+      <div class="act-label">Glycol Pump</div>
+      <div class="act-state off" id="as-pump">OFF</div>
+      <button class="toggle-btn" id="tb-pump" onclick="toggleAct('pump')">Turn On</button>
+    </div>
+    <div class="act-card">
+      <div class="act-label">Heating Element</div>
+      <div class="act-state off" id="as-heat">OFF</div>
+      <button class="toggle-btn active-orange" id="tb-heat" onclick="toggleAct('heat')">Turn On</button>
+    </div>
+    <div class="act-card">
+      <div class="act-label">Condenser Fan</div>
+      <div class="act-state off" id="as-fan-cond">OFF</div>
+      <button class="toggle-btn" id="tb-fan-cond" onclick="toggleAct('fan-cond')">Turn On</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── STATE MACHINE ──
+const STATES = ['idle','adsorb','isolate','desorb','condense','ready','fault'];
+const STATE_COLOR = {
+  idle:'',adsorb:'active-blue',isolate:'active-purple',
+  desorb:'active-orange',condense:'active-cyan',ready:'active-green',fault:'active-red'
+};
+const STATE_INFO = {
+  idle:    {name:'System Idle',         desc:'Ready to begin adsorption cycle.'},
+  adsorb:  {name:'Adsorption',          desc:'Doors open — fans drawing ambient air across sorbent HX.'},
+  isolate: {name:'Isolation / Sealing', desc:'Dampers closing — heating inhibited until seal confirmed.'},
+  desorb:  {name:'Desorption',          desc:'Sealed — glycol loop heating active, vapor being released.'},
+  condense:{name:'Condensation',        desc:'Condenser active — water vapor condensing, collection in progress.'},
+  ready:   {name:'Cycle Complete',      desc:'Cycle complete. Data saved. Ready for next cycle.'},
+  fault:   {name:'FAULT',              desc:'Interlock tripped — inspect system before resuming.'},
+};
+const NODE_ID = {idle:'sn-idle',adsorb:'sn-adsorb',isolate:'sn-isolate',desorb:'sn-desorb',condense:'sn-condense',ready:'sn-ready',fault:'sn-fault'};
+let currentState = 'idle';
+let timerSec = 0;
+let timerInterval = null;
+
+function setState(s) {
+  // clear all nodes
+  STATES.forEach(st => {
+    const el = document.getElementById(NODE_ID[st]);
+    if (el) el.className = 'state-node';
+  });
+  // clear connectors
+  for (let i=0;i<6;i++) {
+    const c = document.getElementById('conn-'+i);
+    if(c) c.className = 'state-connector';
+  }
+  const col = STATE_COLOR[s];
+  if (col) document.getElementById(NODE_ID[s]).classList.add(col);
+
+  // light up connectors up to current stage
+  const idx = STATES.indexOf(s);
+  for (let i=0;i<idx&&i<6;i++) {
+    const c = document.getElementById('conn-'+i);
+    if(c) c.classList.add('done');
+  }
+
+  const info = STATE_INFO[s] || STATE_INFO.idle;
+  document.getElementById('stage-name').textContent = info.name;
+  document.getElementById('stage-desc').textContent = info.desc;
+
+  currentState = s;
+
+  // Notify parent
+  if (window.parent && window.parent.setSystemState) {
+    window.parent.setSystemState(s);
+  }
+
+  // auto-actuate on state change (simulate)
+  autoActuate(s);
+
+  // Reset timer on new stage
+  clearInterval(timerInterval);
+  timerSec = 0;
+  if (s !== 'idle' && s !== 'fault') {
+    timerInterval = setInterval(() => {
+      timerSec++;
+      const m = String(Math.floor(timerSec/60)).padStart(2,'0');
+      const sc = String(timerSec%60).padStart(2,'0');
+      document.getElementById('cycle-timer').textContent = m+':'+sc;
+    }, 1000);
+  }
+}
+
+function advanceState() {
+  const normal = ['idle','adsorb','isolate','desorb','condense','ready'];
+  const idx = normal.indexOf(currentState);
+  if (idx !== -1 && idx < normal.length-1) setState(normal[idx+1]);
+}
+
+// ── SIMULATED SENSOR TICK ──
+function randomRange(lo, hi) { return (lo + Math.random()*(hi-lo)).toFixed(1); }
+
+function tickSensors() {
+  if (currentState === 'idle') return;
+  document.getElementById('v-rh-in').innerHTML    = randomRange(50,70) + '<span class="unit">%</span>';
+  const rhOut = currentState === 'adsorb' ? randomRange(20,40) : randomRange(45,65);
+  document.getElementById('v-rh-out').innerHTML   = rhOut + '<span class="unit">%</span>';
+  document.getElementById('v-t-in').innerHTML     = randomRange(22,28) + '<span class="unit">°C</span>';
+  const hxT = currentState === 'desorb' ? randomRange(70,90) : randomRange(25,40);
+  document.getElementById('v-t-hx').innerHTML     = hxT + '<span class="unit">°C</span>';
+  const glyIn = currentState === 'desorb' ? randomRange(80,95) : randomRange(25,30);
+  document.getElementById('v-t-gly-in').innerHTML  = glyIn + '<span class="unit">°C</span>';
+  document.getElementById('v-t-gly-out').innerHTML = (parseFloat(glyIn)-randomRange(5,12)).toFixed(1) + '<span class="unit">°C</span>';
+  const condT = currentState === 'condense' ? randomRange(18,24) : randomRange(25,35);
+  document.getElementById('v-t-cond').innerHTML   = condT + '<span class="unit">°C</span>';
+  const rhIn = parseFloat(document.getElementById('v-rh-in').textContent);
+  const rhO  = parseFloat(document.getElementById('v-rh-out').textContent);
+  document.getElementById('v-delta-rh').innerHTML = (rhIn - rhO).toFixed(1) + '<span class="unit">%</span>';
+  if (currentState === 'condense' || currentState === 'ready') {
+    const cur = parseFloat(document.getElementById('v-water').textContent) || 0;
+    document.getElementById('v-water').innerHTML = (cur + 0.01).toFixed(2) + '<span class="unit">L</span>';
+    document.getElementById('v-rate').innerHTML  = randomRange(120,180) + '<span class="unit">mL/h</span>';
+  }
+}
+setInterval(tickSensors, 2000);
+
+// ── ACTUATOR TOGGLES ──
+const actState = {inlet:false,outlet:false,'fan-in':false,'fan-ex':false,valve:false,pump:false,heat:false,'fan-cond':false};
+const actLabel = {
+  inlet:    {on:'OPEN',   off:'CLOSED', onBtn:'Close',  offBtn:'Open'},
+  outlet:   {on:'OPEN',   off:'CLOSED', onBtn:'Close',  offBtn:'Open'},
+  'fan-in': {on:'RUNNING',off:'OFF',    onBtn:'Turn Off',offBtn:'Turn On'},
+  'fan-ex': {on:'RUNNING',off:'OFF',    onBtn:'Turn Off',offBtn:'Turn On'},
+  valve:    {on:'SEALED', off:'OPEN',   onBtn:'Unseal', offBtn:'Seal'},
+  pump:     {on:'RUNNING',off:'OFF',    onBtn:'Turn Off',offBtn:'Turn On'},
+  heat:     {on:'ACTIVE', off:'OFF',    onBtn:'Turn Off',offBtn:'Turn On'},
+  'fan-cond':{on:'RUNNING',off:'OFF',   onBtn:'Turn Off',offBtn:'Turn On'},
+};
+
+function setAct(id, on) {
+  actState[id] = on;
+  const lbl = actLabel[id];
+  const stEl = document.getElementById('as-'+id);
+  const btnEl = document.getElementById('tb-'+id);
+  stEl.textContent  = on ? lbl.on : lbl.off;
+  stEl.className    = 'act-state ' + (on ? 'on' : 'off');
+  btnEl.textContent = on ? lbl.onBtn : lbl.offBtn;
+  if (id === 'heat') {
+    btnEl.className = on ? 'toggle-btn active-orange' : 'toggle-btn active-orange';
+  } else {
+    btnEl.className = on ? 'toggle-btn active' : 'toggle-btn';
+  }
+}
+
+function toggleAct(id) { setAct(id, !actState[id]); }
+
+function autoActuate(s) {
+  if (s === 'idle')     { setAct('inlet',false);setAct('outlet',false);setAct('fan-in',false);setAct('fan-ex',false);setAct('valve',false);setAct('pump',false);setAct('heat',false);setAct('fan-cond',false); }
+  if (s === 'adsorb')   { setAct('inlet',true); setAct('outlet',true); setAct('fan-in',true); setAct('fan-ex',true); setAct('valve',false);setAct('pump',false);setAct('heat',false);setAct('fan-cond',false); }
+  if (s === 'isolate')  { setAct('inlet',false);setAct('outlet',false);setAct('fan-in',false);setAct('fan-ex',false);setAct('valve',true); setAct('pump',false);setAct('heat',false);setAct('fan-cond',false); }
+  if (s === 'desorb')   { setAct('inlet',false);setAct('outlet',false);setAct('fan-in',false);setAct('fan-ex',false);setAct('valve',true); setAct('pump',true); setAct('heat',true); setAct('fan-cond',false); }
+  if (s === 'condense') { setAct('inlet',false);setAct('outlet',false);setAct('fan-in',false);setAct('fan-ex',false);setAct('valve',true); setAct('pump',false);setAct('heat',false);setAct('fan-cond',true);  }
+  if (s === 'ready')    { setAct('inlet',false);setAct('outlet',false);setAct('fan-in',false);setAct('fan-ex',false);setAct('valve',false);setAct('pump',false);setAct('heat',false);setAct('fan-cond',false); }
+  if (s === 'fault')    { setAct('pump',false);setAct('heat',false); }
+}
+
+// Init
+setState('idle');
+</script>
+</body>
+</html>

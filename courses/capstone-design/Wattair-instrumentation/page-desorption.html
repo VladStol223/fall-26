@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0f1a;--surface:#0d1420;--surface2:#111827;--border:#1e2d3d;
+  --blue:#38bdf8;--blue-dim:#0a1e35;--blue-text:#7dd3fc;
+  --orange:#f97316;--orange-dim:#271200;--orange-text:#fdba74;
+  --green:#4ade80;--green-dim:#0d2010;
+  --red:#f87171;--red-dim:#1a0808;
+  --purple:#a855f7;--purple-dim:#1a0a2e;
+  --text:#e2e8f0;--text-muted:#64748b;--text-dim:#475569;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI",system-ui,sans-serif;font-size:14px}
+body{overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:18px}
+
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:2px}
+.section-header h2{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--text-muted)}
+.section-header .line{flex:1;height:1px;background:var(--border)}
+
+/* ── PAGE BANNER ── */
+.page-banner{
+  background:var(--orange-dim);border:1px solid var(--orange);border-radius:10px;
+  padding:14px 20px;display:flex;align-items:center;gap:14px;
+}
+.page-banner .banner-icon{font-size:28px}
+.page-banner .banner-title{font-size:17px;font-weight:700;color:var(--orange)}
+.page-banner .banner-desc{font-size:12px;color:var(--orange-text);margin-top:2px}
+.page-banner .banner-timer{
+  margin-left:auto;font-size:32px;font-weight:700;font-variant-numeric:tabular-nums;
+  color:var(--orange);letter-spacing:1px;
+}
+
+/* ── SAFETY INTERLOCK BAR ── */
+.interlock-bar{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:12px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.interlock-bar .ib-label{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text-dim)}
+.interlock-item{
+  display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:4px 10px;
+  border-radius:6px;border:1px solid var(--border);background:var(--surface2);
+}
+.interlock-item .i-dot{width:7px;height:7px;border-radius:50%}
+.interlock-item.pass{border-color:#4ade8060;color:var(--green)}
+.interlock-item.pass .i-dot{background:var(--green)}
+.interlock-item.fail{border-color:#f8717160;color:var(--red)}
+.interlock-item.fail .i-dot{background:var(--red);animation:pulse-r .8s infinite alternate}
+@keyframes pulse-r{from{opacity:1}to{opacity:.3}}
+.interlock-item.warn{border-color:#fbbf2460;color:#fbbf24}
+.interlock-item.warn .i-dot{background:#fbbf24}
+.heat-enable{
+  margin-left:auto;padding:8px 20px;border-radius:8px;font-size:13px;font-weight:700;
+  cursor:pointer;border:1px solid;transition:all .15s;
+}
+.heat-enable.armed{background:var(--orange-dim);border-color:var(--orange);color:var(--orange)}
+.heat-enable.armed:hover{background:var(--orange);color:#0b0f1a}
+.heat-enable.disarmed{background:var(--red-dim);border-color:var(--red);color:var(--red)}
+.heat-enable.disarmed:hover{background:var(--red);color:#0b0f1a}
+
+/* ── TEMP GAUGES ── */
+.temp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tcard{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;
+}
+.tcard .t-label{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+.tcard .t-val{font-size:28px;font-weight:700;font-variant-numeric:tabular-nums}
+.tcard .t-unit{font-size:13px;color:var(--text-muted);margin-left:2px}
+.tcard .t-bar-wrap{height:6px;background:var(--border);border-radius:3px;margin-top:8px;overflow:hidden}
+.tcard .t-bar{height:100%;border-radius:3px;transition:width .6s ease,background .6s ease}
+.tcard .t-range{display:flex;justify-content:space-between;font-size:10px;color:var(--text-dim);margin-top:4px}
+.tcard .t-target{font-size:11px;color:var(--text-dim);margin-top:4px}
+
+/* ── GLYCOL LOOP VISUAL ── */
+.glycol-panel{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;
+}
+.glycol-panel h3{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px}
+.glycol-diagram{display:flex;align-items:center;gap:0;justify-content:center}
+.gly-node{
+  background:var(--surface2);border:1px solid var(--border);border-radius:8px;
+  padding:10px 16px;text-align:center;min-width:100px;
+}
+.gly-node .gn-label{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.4px}
+.gly-node .gn-val{font-size:20px;font-weight:700;color:var(--orange);margin-top:2px;font-variant-numeric:tabular-nums}
+.gly-node .gn-unit{font-size:11px;color:var(--text-muted)}
+.gly-pipe{flex:1;height:3px;position:relative;margin:0 4px}
+.gly-pipe.hot{background:linear-gradient(90deg,var(--orange),#f97316cc)}
+.gly-pipe.cold{background:linear-gradient(90deg,#38bdf8cc,var(--blue))}
+.gly-arrow{
+  position:absolute;top:-5px;right:-2px;
+  border:solid;border-width:0 2px 2px 0;padding:4px;
+}
+.gly-arrow.right{transform:rotate(-45deg)}
+.gly-arrow.left{transform:rotate(135deg);left:-2px;right:auto}
+.gly-arrow.hot{border-color:var(--orange)}
+.gly-arrow.cold{border-color:var(--blue)}
+.gly-label{text-align:center;font-size:10px;color:var(--text-dim);margin-top:6px;font-weight:600;letter-spacing:.3px}
+.glycol-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.gly-stat{background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:10px 12px;text-align:center}
+.gly-stat .gs-label{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.4px}
+.gly-stat .gs-val{font-size:18px;font-weight:700;margin-top:3px;font-variant-numeric:tabular-nums}
+
+/* ── HEATING CONTROL ── */
+.heat-control{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:16px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.heat-control .hc-title{font-size:13px;font-weight:700;color:var(--orange-text)}
+.heat-control .hc-desc{font-size:11px;color:var(--text-dim);margin-top:2px}
+.setpoint-group{display:flex;align-items:center;gap:8px;margin-left:auto}
+.setpoint-group label{font-size:12px;color:var(--text-muted)}
+.setpoint-group input[type=number]{
+  width:72px;padding:6px 10px;background:var(--surface2);border:1px solid var(--border);
+  color:var(--text);border-radius:7px;font-size:14px;font-weight:700;text-align:center;
+}
+.setpoint-group input:focus{outline:none;border-color:var(--orange)}
+.setpoint-group .sp-unit{font-size:12px;color:var(--text-muted)}
+.big-btn{
+  padding:10px 24px;border-radius:8px;border:1px solid;font-size:13px;font-weight:700;
+  cursor:pointer;transition:all .15s;letter-spacing:.3px;
+}
+.btn-orange{background:var(--orange-dim);color:var(--orange);border-color:var(--orange)}
+.btn-orange:hover{background:var(--orange);color:#0b0f1a}
+.btn-orange.active{background:var(--orange);color:#0b0f1a}
+
+/* ── LOG TABLE ── */
+.log-table{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.log-table table{width:100%;border-collapse:collapse}
+.log-table th{padding:9px 14px;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text-dim);border-bottom:1px solid var(--border);text-align:left}
+.log-table td{padding:8px 14px;font-size:12px;color:var(--text-muted);border-bottom:1px solid var(--border);font-variant-numeric:tabular-nums}
+.log-table tr:last-child td{border-bottom:none}
+.log-table tr:hover td{background:rgba(249,115,22,.04)}
+.log-table td.hi{color:var(--orange)}
+</style>
+</head>
+<body>
+
+<!-- BANNER -->
+<div class="page-banner">
+  <div class="banner-icon">🔥</div>
+  <div>
+    <div class="banner-title">Desorption Stage</div>
+    <div class="banner-desc">Sealed enclosure — glycol loop heating active, sorbent releasing captured moisture as vapor</div>
+  </div>
+  <div class="banner-timer" id="des-timer">00:00</div>
+</div>
+
+<!-- SAFETY INTERLOCKS -->
+<div>
+  <div class="section-header"><h2>Safety Interlocks</h2><div class="line"></div></div>
+  <div class="interlock-bar">
+    <span class="ib-label">Checks</span>
+    <div class="interlock-item pass" id="il-seal"><div class="i-dot"></div>Enclosure Sealed</div>
+    <div class="interlock-item pass" id="il-door"><div class="i-dot"></div>Dampers Closed</div>
+    <div class="interlock-item pass" id="il-valve"><div class="i-dot"></div>Vapor Valve Sealed</div>
+    <div class="interlock-item pass" id="il-flow"><div class="i-dot"></div>Glycol Flow OK</div>
+    <div class="interlock-item warn" id="il-temp"><div class="i-dot"></div>Temp Within Range</div>
+    <button class="heat-enable armed" id="heat-arm-btn" onclick="toggleHeat()">🔥 Heating ACTIVE</button>
+  </div>
+</div>
+
+<!-- TEMPERATURE GAUGES -->
+<div>
+  <div class="section-header"><h2>Temperature Monitoring</h2><div class="line"></div></div>
+  <div class="temp-grid">
+    <div class="tcard">
+      <div class="t-label">HX Bed Temp</div>
+      <div class="t-val" id="t-hx" style="color:var(--orange)">78.4<span class="t-unit">°C</span></div>
+      <div class="t-bar-wrap"><div class="t-bar" id="bar-t-hx" style="width:78%;background:var(--orange)"></div></div>
+      <div class="t-range"><span>0°C</span><span>100°C</span></div>
+      <div class="t-target">Target: 70–90°C</div>
+    </div>
+    <div class="tcard">
+      <div class="t-label">Glycol Supply</div>
+      <div class="t-val" id="t-gly-in" style="color:var(--red)">88.1<span class="t-unit">°C</span></div>
+      <div class="t-bar-wrap"><div class="t-bar" id="bar-t-gly-in" style="width:88%;background:var(--red)"></div></div>
+      <div class="t-range"><span>0°C</span><span>100°C</span></div>
+      <div class="t-target">Max: 95°C</div>
+    </div>
+    <div class="tcard">
+      <div class="t-label">Glycol Return</div>
+      <div class="t-val" id="t-gly-out" style="color:var(--orange-text)">76.3<span class="t-unit">°C</span></div>
+      <div class="t-bar-wrap"><div class="t-bar" id="bar-t-gly-out" style="width:76%;background:var(--orange)"></div></div>
+      <div class="t-range"><span>0°C</span><span>100°C</span></div>
+      <div class="t-target">ΔT target: 10–15°C</div>
+    </div>
+    <div class="tcard">
+      <div class="t-label">Ambient / Ref</div>
+      <div class="t-val" id="t-amb" style="color:var(--blue)">25.2<span class="t-unit">°C</span></div>
+      <div class="t-bar-wrap"><div class="t-bar" id="bar-t-amb" style="width:25%;background:var(--blue)"></div></div>
+      <div class="t-range"><span>0°C</span><span>50°C</span></div>
+      <div class="t-target">Reference</div>
+    </div>
+  </div>
+</div>
+
+<!-- GLYCOL LOOP VISUAL -->
+<div>
+  <div class="section-header"><h2>Glycol Heating Loop</h2><div class="line"></div></div>
+  <div class="glycol-panel">
+    <h3>Loop Schematic</h3>
+    <div class="glycol-diagram">
+      <div class="gly-node">
+        <div class="gn-label">Heater</div>
+        <div class="gn-val" id="gd-heater">88.1<span class="gn-unit">°C</span></div>
+        <div style="font-size:10px;color:var(--text-dim);margin-top:4px" id="gd-heater-state">● ACTIVE</div>
+      </div>
+      <div style="flex:1;display:flex;flex-direction:column;gap:6px;margin:0 8px">
+        <div class="gly-pipe hot" style="position:relative">
+          <div class="gly-arrow right hot"></div>
+        </div>
+        <div class="gly-label" style="color:var(--orange-text)">Hot glycol →</div>
+        <div class="gly-pipe cold" style="position:relative">
+          <div class="gly-arrow left cold"></div>
+        </div>
+        <div class="gly-label" style="color:var(--blue-text)">← Cooled glycol</div>
+      </div>
+      <div class="gly-node">
+        <div class="gn-label">Sorbent HX</div>
+        <div class="gn-val" id="gd-hx" style="color:var(--orange)">78.4<span class="gn-unit">°C</span></div>
+        <div style="font-size:10px;color:var(--text-dim);margin-top:4px">Desorbing</div>
+      </div>
+    </div>
+    <div class="glycol-stats">
+      <div class="gly-stat">
+        <div class="gs-label">ΔT Loop</div>
+        <div class="gs-val" id="gd-dt" style="color:var(--orange)">11.8<span style="font-size:12px;color:var(--text-muted)">°C</span></div>
+      </div>
+      <div class="gly-stat">
+        <div class="gs-label">Heat Transfer</div>
+        <div class="gs-val" id="gd-power" style="color:var(--orange-text)">--<span style="font-size:12px;color:var(--text-muted)"> W</span></div>
+      </div>
+      <div class="gly-stat">
+        <div class="gs-label">Pump Status</div>
+        <div class="gs-val" id="gd-pump" style="color:var(--green);font-size:14px">RUNNING</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HEATING SETPOINT CONTROL -->
+<div>
+  <div class="section-header"><h2>Heating Control</h2><div class="line"></div></div>
+  <div class="heat-control">
+    <div>
+      <div class="hc-title">Glycol Setpoint</div>
+      <div class="hc-desc">Heater maintains glycol supply at target temperature</div>
+    </div>
+    <div class="setpoint-group">
+      <label>Setpoint</label>
+      <input type="number" id="sp-input" value="90" min="50" max="95">
+      <span class="sp-unit">°C</span>
+    </div>
+    <button class="big-btn btn-orange active" id="pump-btn" onclick="togglePump()">⚙ Pump ON</button>
+    <button class="big-btn btn-orange" id="heat-btn" style="background:var(--orange);color:#0b0f1a" onclick="toggleHeating()">🔥 Heating ON</button>
+  </div>
+</div>
+
+<!-- DESORPTION LOG -->
+<div>
+  <div class="section-header"><h2>Desorption Log</h2><div class="line"></div></div>
+  <div class="log-table">
+    <table>
+      <thead>
+        <tr><th>Time</th><th>HX Temp</th><th>Glycol In</th><th>Glycol Out</th><th>ΔT</th><th>Event</th></tr>
+      </thead>
+      <tbody id="des-log-body">
+        <tr><td>--:--:--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>Waiting...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// ── TIMER ──
+let timerSec = 0;
+setInterval(()=>{
+  timerSec++;
+  const m = String(Math.floor(timerSec/60)).padStart(2,'0');
+  const s = String(timerSec%60).padStart(2,'0');
+  document.getElementById('des-timer').textContent = m+':'+s;
+},1000);
+
+// ── ACTUATOR STATE ──
+let heatOn = true;
+let pumpOn = true;
+
+function toggleHeat() {
+  heatOn = !heatOn;
+  const btn = document.getElementById('heat-arm-btn');
+  btn.textContent  = heatOn ? '🔥 Heating ACTIVE' : '⬡ Heating OFF';
+  btn.className    = heatOn ? 'heat-enable armed' : 'heat-enable disarmed';
+  document.getElementById('heat-btn').textContent = heatOn ? '🔥 Heating ON' : '⬡ Heating OFF';
+}
+function togglePump() {
+  pumpOn = !pumpOn;
+  const btn = document.getElementById('pump-btn');
+  btn.textContent = pumpOn ? '⚙ Pump ON' : '⚙ Pump OFF';
+  document.getElementById('gd-pump').textContent = pumpOn ? 'RUNNING' : 'STOPPED';
+  document.getElementById('gd-pump').style.color = pumpOn ? 'var(--green)' : 'var(--red)';
+}
+function toggleHeating() {
+  toggleHeat();
+}
+
+// ── SENSOR SIMULATION ──
+function rand(lo,hi){return(lo+Math.random()*(hi-lo)).toFixed(1)}
+
+function tickDesorption() {
+  if (!heatOn) return;
+  const sp   = parseFloat(document.getElementById('sp-input').value)||90;
+  const glyIn  = parseFloat(rand(sp-4, sp+2));
+  const glyOut = parseFloat(rand(glyIn-15, glyIn-8));
+  const hxT    = parseFloat(rand(glyOut-5, glyOut+3));
+  const amb    = parseFloat(rand(22,28));
+  const dt     = (glyIn - glyOut).toFixed(1);
+
+  // update cards
+  document.getElementById('t-hx').innerHTML      = hxT+'<span class="t-unit">°C</span>';
+  document.getElementById('t-gly-in').innerHTML   = glyIn+'<span class="t-unit">°C</span>';
+  document.getElementById('t-gly-out').innerHTML  = glyOut+'<span class="t-unit">°C</span>';
+  document.getElementById('t-amb').innerHTML      = amb+'<span class="t-unit">°C</span>';
+  document.getElementById('bar-t-hx').style.width     = hxT+'%';
+  document.getElementById('bar-t-gly-in').style.width  = glyIn+'%';
+  document.getElementById('bar-t-gly-out').style.width = glyOut+'%';
+  document.getElementById('bar-t-amb').style.width     = (amb/50*100)+'%';
+
+  // temp color based on threshold
+  const hxColor = hxT > 90 ? 'var(--red)' : hxT > 70 ? 'var(--orange)' : 'var(--orange-text)';
+  document.getElementById('t-hx').style.color = hxColor;
+
+  // interlock
+  document.getElementById('il-temp').className = hxT > 92 ? 'interlock-item fail' : 'interlock-item pass';
+  document.getElementById('il-temp').querySelector('.i-dot').parentElement.querySelector('.i-dot').style.background = hxT > 92 ? 'var(--red)' : 'var(--green)';
+
+  // glycol diagram
+  document.getElementById('gd-heater').innerHTML = glyIn+'<span class="gn-unit">°C</span>';
+  document.getElementById('gd-hx').innerHTML     = hxT+'<span class="gn-unit">°C</span>';
+  document.getElementById('gd-dt').innerHTML     = dt+'<span style="font-size:12px;color:var(--text-muted)">°C</span>';
+
+  // log
+  const now = new Date();
+  const t = now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const tbody = document.getElementById('des-log-body');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${t}</td><td class="hi">${hxT}°C</td><td class="hi">${glyIn}°C</td><td>${glyOut}°C</td><td>${dt}°C</td><td>—</td>`;
+  if (tbody.children.length===1 && tbody.children[0].cells[5].textContent==='Waiting...') tbody.innerHTML='';
+  tbody.insertBefore(tr, tbody.firstChild);
+  if (tbody.children.length > 8) tbody.removeChild(tbody.lastChild);
+}
+
+setInterval(tickDesorption, 3000);
+tickDesorption();
+</script>
+</body>
+</html>

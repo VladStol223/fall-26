@@ -78,6 +78,71 @@
     .module-arrow { font-size: 14px; color: #9ca3af; position: relative; z-index: 1; transition: transform .2s, color .2s; }
     .module-row:hover .module-arrow { transform: translateX(3px); color: #3b82d4; }
 
+    /* ── Tools Grid (Squares) ── */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .tool-square {
+      display: flex;
+      flex-direction: column;
+      padding: 24px 20px;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ffffff 0%, #fcfdff 100%);
+      text-decoration: none;
+      color: #1f2328;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(30,100,180,0.04);
+    }
+    .tool-square::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: linear-gradient(180deg, #1e64b4, #3b82d4);
+      opacity: 0.85;
+      transition: width 0.2s ease;
+    }
+    .tool-square:hover {
+      border-color: #3b82d4;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(30,100,180,0.12);
+    }
+    .tool-square:hover::before {
+      width: 6px;
+    }
+    .tool-square-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      margin-bottom: 16px;
+      transition: transform 0.25s ease;
+    }
+    .tool-square:hover .tool-square-icon {
+      transform: scale(1.1) rotate(6deg);
+    }
+    .tool-square-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0a3c78;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .tool-square-subtitle {
+      font-size: 11px;
+      color: #5a6a7e;
+      line-height: 1.4;
+    }
+
+
     /* ── Quiz ── */
     .quiz-locked {
       text-align: center; padding: 40px 24px;
@@ -269,8 +334,8 @@
         { id: 'capstone-sawh-research', num: 1, prefix: 'sawh-res', total: 32, label: 'SAWH Initial Research', subtitle: 'Wilson et al. (2023) · Zhong & Zhang et al. (2024)' }
       ],
       tools: [
-        { label: 'Interactive System Loops', subtitle: 'Click components to view specifications and example parts', url: 'courses/capstone-design/system_loops.html' },
-        { label: 'Animated Process Workflow', subtitle: 'Step-by-step visualizer for AWG phase transitions', url: 'courses/capstone-design/awg_animated.html' }
+        { label: 'Interactive System Loops', subtitle: 'Click components to view specifications and example parts', url: 'courses/capstone-design/system_loops.html', icon: '⚙️' },
+        { label: 'Animated Process Workflow', subtitle: 'Step-by-step visualizer for AWG phase transitions', url: 'courses/capstone-design/awg_animated.html', icon: '🔄' }
       ]
     },
     'engineering-economy': {
@@ -607,38 +672,35 @@
       toolsH2.style.fontWeight = '700';
       toolsH2.style.color = '#0a3c78';
 
-      var toolsList = document.createElement('div');
-      toolsList.className = 'module-list';
+      var toolsGrid = document.createElement('div');
+      toolsGrid.className = 'tools-grid';
 
       COURSE.tools.forEach(function(tool) {
-        var tRow = document.createElement('a');
-        tRow.className = 'module-row';
-        tRow.href = tool.url;
-        tRow.target = '_blank';
-        tRow.style.borderColor = '#bfdbfe';
-        tRow.style.background = '#fcfdff';
+        var tSquare = document.createElement('a');
+        tSquare.className = 'tool-square';
+        tSquare.href = tool.url;
+        tSquare.target = '_blank';
 
         var tIcon = document.createElement('div');
-        tIcon.className = 'module-num';
-        tIcon.style.background = 'linear-gradient(135deg, #1e64b4, #3b82d4)';
-        tIcon.innerHTML = '⚡';
+        tIcon.className = 'tool-square-icon';
+        tIcon.textContent = tool.icon || '⚡';
 
-        var tInfo = document.createElement('div');
-        tInfo.className = 'module-info';
-        tInfo.innerHTML = '<div class="module-title" style="color:#0a3c78; font-weight:700;">' + tool.label + '</div><div class="module-subtitle">' + tool.subtitle + '</div>';
+        var tTitle = document.createElement('div');
+        tTitle.className = 'tool-square-title';
+        tTitle.textContent = tool.label;
 
-        var tArrow = document.createElement('span');
-        tArrow.className = 'module-arrow';
-        tArrow.textContent = '→';
+        var tSub = document.createElement('div');
+        tSub.className = 'tool-square-subtitle';
+        tSub.textContent = tool.subtitle;
 
-        tRow.appendChild(tIcon);
-        tRow.appendChild(tInfo);
-        tRow.appendChild(tArrow);
-        toolsList.appendChild(tRow);
+        tSquare.appendChild(tIcon);
+        tSquare.appendChild(tTitle);
+        tSquare.appendChild(tSub);
+        toolsGrid.appendChild(tSquare);
       });
 
       modSection.appendChild(toolsH2);
-      modSection.appendChild(toolsList);
+      modSection.appendChild(toolsGrid);
     }
 
     modPane.appendChild(modSection);

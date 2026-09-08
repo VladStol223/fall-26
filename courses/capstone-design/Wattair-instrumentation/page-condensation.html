@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0f1a;--surface:#0d1420;--surface2:#111827;--border:#1e2d3d;
+  --blue:#38bdf8;--blue-dim:#0a1e35;--blue-text:#7dd3fc;
+  --orange:#f97316;--orange-dim:#271200;
+  --green:#4ade80;--green-dim:#0d2010;--green-text:#86efac;
+  --red:#f87171;--red-dim:#1a0808;
+  --cyan:#22d3ee;--cyan-dim:#021c22;--cyan-text:#a5f3fc;
+  --text:#e2e8f0;--text-muted:#64748b;--text-dim:#475569;
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,"Segoe UI",system-ui,sans-serif;font-size:14px}
+body{overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:18px}
+
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:2px}
+.section-header h2{font-size:13px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--text-muted)}
+.section-header .line{flex:1;height:1px;background:var(--border)}
+
+/* ── PAGE BANNER ── */
+.page-banner{
+  background:var(--cyan-dim);border:1px solid var(--cyan);border-radius:10px;
+  padding:14px 20px;display:flex;align-items:center;gap:14px;
+}
+.page-banner .banner-icon{font-size:28px}
+.page-banner .banner-title{font-size:17px;font-weight:700;color:var(--cyan)}
+.page-banner .banner-desc{font-size:12px;color:var(--cyan-text);margin-top:2px}
+.page-banner .banner-timer{
+  margin-left:auto;font-size:32px;font-weight:700;font-variant-numeric:tabular-nums;
+  color:var(--cyan);letter-spacing:1px;
+}
+
+/* ── COLLECTION HERO ── */
+.collection-hero{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:20px 24px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;align-items:center;
+}
+.hero-stat{text-align:center}
+.hero-stat .hs-label{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text-dim)}
+.hero-stat .hs-val{font-size:42px;font-weight:700;font-variant-numeric:tabular-nums;margin-top:4px;line-height:1}
+.hero-stat .hs-unit{font-size:16px;font-weight:400;color:var(--text-muted);margin-left:3px}
+.hero-stat .hs-sub{font-size:11px;color:var(--text-dim);margin-top:6px}
+
+/* tank fill visual */
+.tank-visual{
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.tank-wrap{
+  width:80px;height:120px;border:2px solid var(--border);border-radius:8px;
+  position:relative;overflow:hidden;background:var(--surface2);
+}
+.tank-fill{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(180deg,var(--cyan) 0%,var(--blue) 100%);
+  border-radius:0 0 6px 6px;
+  transition:height .8s ease;
+}
+.tank-label{font-size:11px;color:var(--text-muted)}
+
+/* progress ring */
+.ring-wrap{display:flex;flex-direction:column;align-items:center;gap:6px}
+.ring-svg{transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:var(--border);stroke-width:8}
+.ring-fill{fill:none;stroke:var(--green);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset .8s ease}
+.ring-pct{font-size:20px;font-weight:700;color:var(--green);font-variant-numeric:tabular-nums}
+.ring-sub{font-size:10px;color:var(--text-dim)}
+
+/* ── TEMP CARDS ── */
+.temp-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tcard{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.tcard .t-label{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px}
+.tcard .t-val{font-size:28px;font-weight:700;font-variant-numeric:tabular-nums}
+.tcard .t-unit{font-size:13px;color:var(--text-muted);margin-left:2px}
+.tcard .t-bar-wrap{height:6px;background:var(--border);border-radius:3px;margin-top:8px;overflow:hidden}
+.tcard .t-bar{height:100%;border-radius:3px;transition:width .6s ease}
+.tcard .t-range{display:flex;justify-content:space-between;font-size:10px;color:var(--text-dim);margin-top:4px}
+.tcard .t-target{font-size:11px;color:var(--text-dim);margin-top:4px}
+
+/* ── CONDENSER FAN ── */
+.cond-ctrl{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:16px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.cond-ctrl .cc-label{font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--text-muted)}
+.cond-ctrl .cc-speed{font-size:26px;font-weight:700;color:var(--cyan)}
+.speed-slider{width:200px;accent-color:var(--cyan)}
+.big-btn{padding:10px 22px;border-radius:8px;border:1px solid;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s}
+.btn-cyan{background:var(--cyan-dim);color:var(--cyan);border-color:var(--cyan)}
+.btn-cyan:hover,.btn-cyan.active{background:var(--cyan);color:#0b0f1a}
+
+/* ── DRIP IRRIGATION ── */
+.drip-panel{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:18px 20px;
+}
+.drip-panel h3{font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px}
+.drip-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.drip-stat{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+.drip-stat .ds-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.4px;font-weight:600}
+.drip-stat .ds-val{font-size:20px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums;color:var(--green)}
+.drip-stat .ds-unit{font-size:12px;color:var(--text-muted)}
+.drip-controls{display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap}
+.drip-controls label{font-size:12px;color:var(--text-muted)}
+.drip-controls input[type=number]{
+  width:72px;padding:6px 10px;background:var(--surface2);border:1px solid var(--border);
+  color:var(--text);border-radius:7px;font-size:14px;font-weight:700;text-align:center;
+}
+.drip-controls input:focus{outline:none;border-color:var(--green)}
+.drip-status{
+  display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;
+  padding:8px 14px;border-radius:8px;border:1px solid;
+}
+.drip-status.active{background:var(--green-dim);border-color:var(--green);color:var(--green)}
+.drip-status.idle{background:var(--surface2);border-color:var(--border);color:var(--text-dim)}
+.drip-dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+
+/* ── LOG ── */
+.log-table{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.log-table table{width:100%;border-collapse:collapse}
+.log-table th{padding:9px 14px;font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text-dim);border-bottom:1px solid var(--border);text-align:left}
+.log-table td{padding:8px 14px;font-size:12px;color:var(--text-muted);border-bottom:1px solid var(--border);font-variant-numeric:tabular-nums}
+.log-table tr:last-child td{border-bottom:none}
+.log-table td.hi{color:var(--cyan)}
+.log-table td.green{color:var(--green)}
+</style>
+</head>
+<body>
+
+<!-- BANNER -->
+<div class="page-banner">
+  <div class="banner-icon">❄</div>
+  <div>
+    <div class="banner-title">Condensation &amp; Collection</div>
+    <div class="banner-desc">Condenser fan active — water vapor condensing on cold coils, condensate draining to collection vessel</div>
+  </div>
+  <div class="banner-timer" id="cond-timer">00:00</div>
+</div>
+
+<!-- COLLECTION HERO -->
+<div>
+  <div class="section-header"><h2>Water Collection</h2><div class="line"></div></div>
+  <div class="collection-hero">
+    <div class="hero-stat">
+      <div class="hs-label">Collected Today</div>
+      <div class="hs-val" id="h-total" style="color:var(--cyan)">0.00<span class="hs-unit">L</span></div>
+      <div class="hs-sub">Cumulative since reset</div>
+    </div>
+
+    <div class="tank-visual">
+      <div class="tank-wrap">
+        <div class="tank-fill" id="tank-fill" style="height:0%"></div>
+      </div>
+      <div class="tank-label">Tank Level</div>
+    </div>
+
+    <div class="ring-wrap">
+      <svg class="ring-svg" width="90" height="90" viewBox="0 0 90 90">
+        <circle class="ring-bg" cx="45" cy="45" r="36"/>
+        <circle class="ring-fill" id="ring-fill" cx="45" cy="45" r="36"
+          stroke-dasharray="226.2" stroke-dashoffset="226.2"/>
+      </svg>
+      <div class="ring-pct" id="ring-pct">0%</div>
+      <div class="ring-sub">of daily target</div>
+      <div style="font-size:11px;color:var(--text-dim)">Target: 30 L/day</div>
+    </div>
+  </div>
+</div>
+
+<!-- COLLECTION STATS STRIP -->
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px">
+    <div style="font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted)">Collection Rate</div>
+    <div style="font-size:26px;font-weight:700;color:var(--green);margin-top:4px" id="s-rate">--<span style="font-size:12px;color:var(--text-muted)"> mL/h</span></div>
+    <div style="font-size:11px;color:var(--text-dim);margin-top:2px">5-min rolling avg</div>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px">
+    <div style="font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted)">This Cycle</div>
+    <div style="font-size:26px;font-weight:700;color:var(--cyan);margin-top:4px" id="s-cycle">0.00<span style="font-size:12px;color:var(--text-muted)"> L</span></div>
+    <div style="font-size:11px;color:var(--text-dim);margin-top:2px">Current cycle yield</div>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px">
+    <div style="font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted)">Projected Daily</div>
+    <div style="font-size:26px;font-weight:700;color:var(--blue-text);margin-top:4px" id="s-proj">--<span style="font-size:12px;color:var(--text-muted)"> L</span></div>
+    <div style="font-size:11px;color:var(--text-dim);margin-top:2px">Based on current rate</div>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px">
+    <div style="font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted)">Condensate Temp</div>
+    <div style="font-size:26px;font-weight:700;color:var(--cyan);margin-top:4px" id="s-temp">--<span style="font-size:12px;color:var(--text-muted)"> °C</span></div>
+    <div style="font-size:11px;color:var(--text-dim);margin-top:2px">Liquid at drain</div>
+  </div>
+</div>
+
+<!-- TEMPERATURE MONITORING -->
+<div>
+  <div class="section-header"><h2>Condenser Temperatures</h2><div class="line"></div></div>
+  <div class="temp-row">
+    <div class="tcard">
+      <div class="t-label">Condenser Coil Temp</div>
+      <div class="t-val" id="t-coil" style="color:var(--cyan)">18.4<span class="t-unit">°C</span></div>
+      <div class="t-bar-wrap"><div class="t-bar" id="bar-coil" style="width:37%;background:var(--cyan)"></div></div>
+      <div class="t-range"><span>0°C</span><span>50°C</span></div>
+      <div class="t-target">Target: ≤ ambient</div>
+    </div>
+    <div class="tcard">
+      <div class="t-label">Ambient Reference</div>
+      <div class="t-val" id="t-amb2" style="color:var(--blue)">25.2<span class="t-unit">°C</span></div>
+      <div class="t-bar-wrap"><div class="t-bar" id="bar-amb2" style="width:50%;background:var(--blue)"></div></div>
+      <div class="t-range"><span>0°C</span><span>50°C</span></div>
+      <div class="t-target">ΔT: coil vs ambient</div>
+    </div>
+    <div class="tcard">
+      <div class="t-label">ΔT (Approach)</div>
+      <div class="t-val" id="t-dt" style="color:var(--green)">6.8<span class="t-unit">°C</span></div>
+      <div class="t-bar-wrap"><div class="t-bar" id="bar-dt" style="width:34%;background:var(--green)"></div></div>
+      <div class="t-range"><span>0°C</span><span>20°C</span></div>
+      <div class="t-target">Lower = more condensation</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONDENSER FAN CONTROL -->
+<div>
+  <div class="section-header"><h2>Condenser Fan</h2><div class="line"></div></div>
+  <div class="cond-ctrl">
+    <div>
+      <div class="cc-label">Fan Speed</div>
+      <div><span class="cc-speed" id="cf-speed">80</span><span style="font-size:14px;color:var(--text-muted)"> %</span></div>
+    </div>
+    <input type="range" class="speed-slider" id="cf-slider" min="0" max="100" value="80" oninput="setCFanSpeed(this.value)">
+    <div style="font-size:11px;color:var(--text-dim);width:120px">
+      Higher speed → better heat rejection but more power
+    </div>
+    <button class="big-btn btn-cyan active" id="cf-btn" onclick="toggleCondFan()">❄ Fan ON</button>
+  </div>
+</div>
+
+<!-- DRIP IRRIGATION -->
+<div>
+  <div class="section-header"><h2>Drip Irrigation (Optional)</h2><div class="line"></div></div>
+  <div class="drip-panel">
+    <h3>Level-Triggered Pump Control</h3>
+    <div class="drip-grid">
+      <div class="drip-stat">
+        <div class="ds-label">Tank Level</div>
+        <div class="ds-val" id="drip-level">0.0<span class="ds-unit"> L</span></div>
+        <div style="height:6px;background:var(--border);border-radius:3px;margin-top:8px;overflow:hidden"><div id="drip-bar" style="height:100%;background:var(--green);border-radius:3px;width:0%;transition:width .6s"></div></div>
+      </div>
+      <div class="drip-stat">
+        <div class="ds-label">Trigger Level</div>
+        <div class="ds-val" style="color:var(--text-muted)"><input type="number" id="drip-trigger" value="2.0" min="0.5" max="10" step="0.5" style="width:70px;background:var(--surface);border:1px solid var(--border);color:var(--green);border-radius:6px;padding:4px 8px;font-size:18px;font-weight:700;text-align:center"><span class="ds-unit"> L</span></div>
+      </div>
+      <div class="drip-stat">
+        <div class="ds-label">Reset Level</div>
+        <div class="ds-val" style="color:var(--text-muted)"><input type="number" id="drip-reset" value="0.5" min="0.1" max="5" step="0.1" style="width:70px;background:var(--surface);border:1px solid var(--border);color:var(--text-muted);border-radius:6px;padding:4px 8px;font-size:18px;font-weight:700;text-align:center"><span class="ds-unit"> L</span></div>
+      </div>
+    </div>
+    <div class="drip-controls">
+      <div class="drip-status idle" id="drip-status">
+        <div class="drip-dot"></div>
+        Pump Idle
+      </div>
+      <button class="big-btn btn-cyan" id="drip-en-btn" onclick="toggleDripEnable()">Enable Irrigation</button>
+      <div style="font-size:11px;color:var(--text-dim);margin-left:8px">Pump activates automatically when tank level exceeds trigger threshold</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONDENSATION LOG -->
+<div>
+  <div class="section-header"><h2>Collection Log</h2><div class="line"></div></div>
+  <div class="log-table">
+    <table>
+      <thead>
+        <tr><th>Time</th><th>Coil Temp</th><th>Ambient</th><th>ΔT</th><th>Rate (mL/h)</th><th>Total (L)</th></tr>
+      </thead>
+      <tbody id="cond-log-body">
+        <tr><td>--:--:--</td><td>--</td><td>--</td><td>--</td><td>--</td><td>--</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// ── TIMER ──
+let timerSec = 0;
+setInterval(()=>{
+  timerSec++;
+  const m=String(Math.floor(timerSec/60)).padStart(2,'0');
+  const s=String(timerSec%60).padStart(2,'0');
+  document.getElementById('cond-timer').textContent=m+':'+s;
+},1000);
+
+// ── STATE ──
+let condFanOn = true;
+let dripEnabled = false;
+let dripActive  = false;
+let totalL = 0;
+let cycleL = 0;
+const DAILY_TARGET = 30;
+
+function rand(lo,hi){return(lo+Math.random()*(hi-lo)).toFixed(2)}
+function rnd(lo,hi){return(lo+Math.random()*(hi-lo)).toFixed(1)}
+
+// ── FAN ──
+function setCFanSpeed(v){document.getElementById('cf-speed').textContent=v}
+function toggleCondFan(){
+  condFanOn=!condFanOn;
+  const btn=document.getElementById('cf-btn');
+  btn.textContent=condFanOn?'❄ Fan ON':'❄ Fan OFF';
+  btn.className=condFanOn?'big-btn btn-cyan active':'big-btn btn-cyan';
+}
+
+// ── DRIP ──
+function toggleDripEnable(){
+  dripEnabled=!dripEnabled;
+  const btn=document.getElementById('drip-en-btn');
+  btn.textContent=dripEnabled?'Disable Irrigation':'Enable Irrigation';
+  btn.className=dripEnabled?'big-btn btn-cyan active':'big-btn btn-cyan';
+}
+
+// ── SENSOR TICK ──
+function tickCondensation(){
+  const coilT = parseFloat(rnd(16,22));
+  const ambT  = parseFloat(rnd(22,28));
+  const dt    = (ambT - coilT).toFixed(1);
+  const rate  = condFanOn ? parseFloat(rand(120,200)) : parseFloat(rand(20,60));
+
+  // temps
+  document.getElementById('t-coil').innerHTML=coilT+'<span class="t-unit">°C</span>';
+  document.getElementById('t-amb2').innerHTML=ambT+'<span class="t-unit">°C</span>';
+  document.getElementById('t-dt').innerHTML=dt+'<span class="t-unit">°C</span>';
+  document.getElementById('bar-coil').style.width=(coilT/50*100)+'%';
+  document.getElementById('bar-amb2').style.width=(ambT/50*100)+'%';
+  document.getElementById('bar-dt').style.width=(dt/20*100)+'%';
+  document.getElementById('s-temp').innerHTML=coilT+'<span style="font-size:12px;color:var(--text-muted)"> °C</span>';
+
+  // collection
+  const addL = (rate/1000) * (3/3600); // tick every 3s → hours
+  totalL += addL;
+  cycleL += addL;
+
+  const tankPct = Math.min(totalL/DAILY_TARGET*100, 100).toFixed(0);
+  document.getElementById('tank-fill').style.height = tankPct+'%';
+
+  const circumference = 226.2;
+  const offset = circumference * (1 - totalL/DAILY_TARGET);
+  document.getElementById('ring-fill').style.strokeDashoffset = Math.max(0, offset);
+  document.getElementById('ring-pct').textContent = Math.min(100,Math.round(totalL/DAILY_TARGET*100))+'%';
+
+  document.getElementById('h-total').innerHTML = totalL.toFixed(2)+'<span class="hs-unit">L</span>';
+  document.getElementById('s-rate').innerHTML  = rate.toFixed(0)+'<span style="font-size:12px;color:var(--text-muted)"> mL/h</span>';
+  document.getElementById('s-cycle').innerHTML = cycleL.toFixed(2)+'<span style="font-size:12px;color:var(--text-muted)"> L</span>';
+
+  const hoursLeft = (24 - timerSec/3600);
+  const projL = totalL + rate/1000*hoursLeft;
+  document.getElementById('s-proj').innerHTML = projL.toFixed(1)+'<span style="font-size:12px;color:var(--text-muted)"> L</span>';
+
+  // drip logic
+  document.getElementById('drip-level').innerHTML = totalL.toFixed(2)+'<span class="ds-unit"> L</span>';
+  document.getElementById('drip-bar').style.width = Math.min(100, totalL/DAILY_TARGET*100)+'%';
+  if (dripEnabled) {
+    const trigger = parseFloat(document.getElementById('drip-trigger').value);
+    const reset   = parseFloat(document.getElementById('drip-reset').value);
+    if (!dripActive && totalL >= trigger) dripActive = true;
+    if (dripActive && totalL <= reset) dripActive = false;
+    const ds = document.getElementById('drip-status');
+    ds.className = dripActive ? 'drip-status active' : 'drip-status idle';
+    ds.innerHTML = `<div class="drip-dot"></div>${dripActive ? 'Pump ACTIVE' : 'Pump Idle'}`;
+  }
+
+  // log
+  const now = new Date();
+  const t=now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const tbody=document.getElementById('cond-log-body');
+  const tr=document.createElement('tr');
+  tr.innerHTML=`<td>${t}</td><td class="hi">${coilT}°C</td><td>${ambT}°C</td><td class="green">${dt}°C</td><td>${rate.toFixed(0)}</td><td class="green">${totalL.toFixed(2)}</td>`;
+  if(tbody.children.length===1&&tbody.children[0].cells[0].textContent==='--:--:--') tbody.innerHTML='';
+  tbody.insertBefore(tr,tbody.firstChild);
+  if(tbody.children.length>8) tbody.removeChild(tbody.lastChild);
+}
+
+setInterval(tickCondensation,3000);
+tickCondensation();
+</script>
+</body>
+</html>
