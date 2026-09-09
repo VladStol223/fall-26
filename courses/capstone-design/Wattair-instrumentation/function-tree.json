@@ -1,0 +1,284 @@
+{
+  "label": "Automated Water Harvesting",
+  "pal": "root",
+  "children": [
+    {
+      "label": "Maintain Reliable System",
+      "pal": "maint",
+      "children": [
+        {
+          "label": "Seal / Close System",
+          "pal": "maint",
+          "children": [
+            { "label": "Close Inlet Dampers",             "pal": "leaf" },
+            { "label": "Close Outlet Dampers",            "pal": "leaf" },
+            { "label": "Verify Seal Integrity",           "pal": "leaf" },
+            { "label": "Fully Seal for Desorption Phase", "pal": "leaf" }
+          ]
+        },
+        {
+          "label": "Monitor Performance",
+          "pal": "maint",
+          "children": [
+            { "label": "Track Daily Water Yield", "pal": "leaf" },
+            { "label": "Log Energy Consumption",  "pal": "leaf" },
+            { "label": "Compute η_AWH & SEC",     "pal": "leaf" }
+          ]
+        },
+        {
+          "label": "House Components",
+          "pal": "maint",
+          "children": [
+            { "label": "80/20 Frame & Panels",           "pal": "leaf" },
+            { "label": "Insulate Enclosure",             "pal": "leaf" },
+            { "label": "Manage Drainage",                "pal": "leaf" },
+            { "label": "Enable Mobility (Wheeled Base)", "pal": "leaf" },
+            { "label": "Ensure Structural Integrity",    "pal": "leaf" }
+          ]
+        },
+        {
+          "label": "Ensure Operational Safety",
+          "pal": "maint",
+          "children": [
+            { "label": "Relieve Excess Pressure",            "pal": "leaf" },
+            { "label": "Control Pressure Buildup",           "pal": "leaf" },
+            { "label": "Control Temperature Buildup",        "pal": "leaf" },
+            { "label": "Secure / Interlock Access Doors",    "pal": "leaf" },
+            { "label": "Restrict Hand Access to Coated HX", "pal": "leaf" },
+            {
+              "label": "Detect Fault Condition",
+              "pal": "maint",
+              "children": [
+                { "label": "Trigger Safety Shutdown", "pal": "leaf" },
+                { "label": "Alert Operator",          "pal": "leaf" }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Maintain Sorbent Coating",
+          "pal": "maint",
+          "children": [
+            { "label": "Replace / Recharge Sorbent Coating", "pal": "leaf" }
+          ]
+        },
+        {
+          "label": "Monitor System Health",
+          "pal": "maint",
+          "children": [
+            { "label": "Store Telemetry Data from Sensors",  "pal": "leaf" },
+            { "label": "Identify Patterns & Irregularities", "pal": "leaf" },
+            { "label": "Calibrate Sensors",                  "pal": "leaf" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Make Water",
+      "pal": "water",
+      "children": [
+        {
+          "label": "Absorb Water",
+          "pal": "absorb",
+          "children": [
+            {
+              "label": "Intake Ambient Air",
+              "pal": "absorb",
+              "children": [
+                { "label": "Filter Particulates",        "pal": "leaf" },
+                { "label": "Deliver Air to Sorbent HX", "pal": "leaf" }
+              ]
+            },
+            {
+              "label": "Remove Water from Air",
+              "pal": "absorb",
+              "children": [
+                { "label": "Bind Vapor to Sorbent Surface", "pal": "leaf" },
+                { "label": "Maximize Vapor Recovery (α)",   "pal": "leaf" },
+                { "label": "Saturate Sorbent Bed",          "pal": "leaf" }
+              ]
+            },
+            {
+              "label": "Move Air",
+              "pal": "absorb",
+              "children": [
+                { "label": "Drive Inlet Fan(s)",          "pal": "leaf" },
+                { "label": "Control Flow Velocity u_avg", "pal": "leaf" },
+                { "label": "Manage Pressure Drop ΔP",    "pal": "leaf" }
+              ]
+            },
+            {
+              "label": "Expel Air",
+              "pal": "absorb",
+              "children": [
+                { "label": "Drive Exhaust Fan(s)",      "pal": "leaf" },
+                { "label": "Route Dried Air to Outlet", "pal": "leaf" }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Desorb Water",
+          "pal": "desorb",
+          "children": [
+            {
+              "label": "Drop Humidity",
+              "pal": "desorb",
+              "children": [
+                { "label": "Release Vapor from Sorbent",   "pal": "leaf" },
+                { "label": "Concentrate Vapor in Chamber", "pal": "leaf" }
+              ]
+            },
+            {
+              "label": "Supply Heat",
+              "pal": "desorb",
+              "children": [
+                { "label": "Circulate Glycol Loop",    "pal": "leaf" },
+                { "label": "Activate Heating Element", "pal": "leaf" },
+                { "label": "Ramp to T_des (65 °C)",    "pal": "leaf" },
+                { "label": "Maintain ΔT Across HX",   "pal": "leaf" }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Condense Water",
+          "pal": "cond",
+          "children": [
+            {
+              "label": "Remove Thermal Energy",
+              "pal": "cond",
+              "children": [
+                { "label": "Drive Condenser Fan",                  "pal": "leaf" },
+                { "label": "Cool Vapor Below Dew Point",           "pal": "leaf" },
+                { "label": "Reject Heat to Ambient",               "pal": "leaf" },
+                { "label": "Circulate Condenser Coolant Loop",     "pal": "leaf" },
+                { "label": "Operate Chiller / Refrigeration Unit", "pal": "leaf" }
+              ]
+            },
+            {
+              "label": "Collect Liquid Water",
+              "pal": "cond",
+              "children": [
+                { "label": "Nucleate Droplets",                    "pal": "leaf" },
+                { "label": "Drain to Collection Tank",             "pal": "leaf" },
+                { "label": "Measure Collected Volume",             "pal": "leaf" },
+                { "label": "Prevent Sorbent Carryover into Water", "pal": "leaf" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Collect & Store Water",
+      "pal": "store",
+      "children": [
+        {
+          "label": "Ensure Water Quality",
+          "pal": "store",
+          "children": [
+            { "label": "Verify Water Purity",         "pal": "leaf" },
+            { "label": "Remove Harmful Contaminants", "pal": "leaf" }
+          ]
+        },
+        {
+          "label": "Manage Storage",
+          "pal": "store",
+          "children": [
+            { "label": "Ensure Sufficient Tank Capacity", "pal": "leaf" },
+            { "label": "Meet Daily Water Yield Target",   "pal": "leaf" },
+            { "label": "Monitor Tank Fill Level",         "pal": "leaf" },
+            { "label": "Dispense Water for Use",          "pal": "leaf" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Automate Water-Making Process",
+      "pal": "auto",
+      "children": [
+        {
+          "label": "Supply Electrical Power",
+          "pal": "auto",
+          "children": [
+            { "label": "Convert / Regulate Voltage",     "pal": "leaf" },
+            { "label": "Distribute Power to Subsystems", "pal": "leaf" },
+            { "label": "Protect Against Faults / OCP",  "pal": "leaf" }
+          ]
+        },
+        {
+          "label": "Sequence Absorb / Desorb Cycle",
+          "pal": "auto",
+          "children": [
+            {
+              "label": "Initialize System",
+              "pal": "auto",
+              "children": [
+                { "label": "Run Pre-Cycle Purge & Check", "pal": "leaf" },
+                { "label": "Verify Actuator Readiness",   "pal": "leaf" }
+              ]
+            },
+            { "label": "Determine Phase Transition Criteria",         "pal": "leaf" },
+            { "label": "Coordinate Actuator Response to Sensor State","pal": "leaf" },
+            { "label": "Schedule / Time Cycle Duration",              "pal": "leaf" }
+          ]
+        },
+        {
+          "label": "Actuate Moving Components",
+          "pal": "auto",
+          "children": [
+            { "label": "Open / Close Dampers",         "pal": "leaf" },
+            { "label": "Start / Stop Fans",            "pal": "leaf" },
+            { "label": "Enable / Disable Glycol Pump", "pal": "leaf" },
+            { "label": "Trigger Heating Element",      "pal": "leaf" }
+          ]
+        },
+        {
+          "label": "Read Live Data",
+          "pal": "sense",
+          "children": [
+            { "label": "Read Cycle Phase (from FSM)", "pal": "sense" },
+            { "label": "Read Water Collected",        "pal": "sense" },
+            { "label": "Read Pressure (ΔP)",          "pal": "sense" },
+            {
+              "label": "Read Temperature",
+              "pal": "sense",
+              "children": [
+                { "label": "Inlet Air Temp",              "pal": "leaf" },
+                { "label": "Sorbent / HX Bed Temp",       "pal": "leaf" },
+                { "label": "Glycol Supply & Return Temp", "pal": "leaf" },
+                { "label": "Condenser Coil Temp",         "pal": "leaf" }
+              ]
+            },
+            {
+              "label": "Read Flow Rate",
+              "pal": "sense",
+              "children": [
+                { "label": "Glycol Loop Flow Rate",  "pal": "leaf" },
+                { "label": "Airflow Velocity u_avg", "pal": "leaf" }
+              ]
+            },
+            {
+              "label": "Read Humidity",
+              "pal": "sense",
+              "children": [
+                { "label": "Inlet RH (Before HX)",           "pal": "leaf" },
+                { "label": "Outlet RH (After HX)",           "pal": "leaf" },
+                { "label": "Compute Vapor Recovery Ratio α", "pal": "leaf" }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Interface with Operator",
+          "pal": "auto",
+          "children": [
+            { "label": "Accept Start / Stop Command", "pal": "leaf" },
+            { "label": "Log & Export Cycle Data",     "pal": "leaf" }
+          ]
+        }
+      ]
+    }
+  ]
+}

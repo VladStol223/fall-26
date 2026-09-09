@@ -243,6 +243,7 @@ const P = {
   absorb: { fill:'#081a10', stroke:'#22c55e', text:'#6ee7b7'  },
   desorb: { fill:'#271200', stroke:'#f97316', text:'#fdba74'  },
   cond:   { fill:'#021c22', stroke:'#22d3ee', text:'#67e8f9'  },
+  store:  { fill:'#1c1400', stroke:'#eab308', text:'#fde68a'  },
   auto:   { fill:'#1a0a2e', stroke:'#a855f7', text:'#d8b4fe'  },
   sense:  { fill:'#0f1130', stroke:'#818cf8', text:'#a5b4fc'  },
   leaf:   { fill:'#0b0f1a', stroke:'#1e2d3d', text:'#475569'  },
@@ -251,7 +252,7 @@ const P = {
 // nav dot colors for each pal (hover highlight color)
 const NAV_HOVER = {
   root:'#38bdf8',maint:'#3b82f6',water:'#4ade80',absorb:'#22c55e',
-  desorb:'#f97316',cond:'#22d3ee',auto:'#a855f7',sense:'#818cf8',leaf:'#475569'
+  desorb:'#f97316',cond:'#22d3ee',store:'#eab308',auto:'#a855f7',sense:'#818cf8',leaf:'#475569'
 };
 
 // ═══════════════════════════════════════════════════════════════
@@ -293,9 +294,10 @@ const DATA = {
   children:[
     { label:"Maintain Reliable System", pal:"maint", children:[
       { label:"Seal / Close System", pal:"maint", children:[
-        { label:"Close Inlet Dampers",    pal:"leaf" },
-        { label:"Close Outlet Dampers",   pal:"leaf" },
-        { label:"Verify Seal Integrity",  pal:"leaf" },
+        { label:"Close Inlet Dampers",              pal:"leaf" },
+        { label:"Close Outlet Dampers",             pal:"leaf" },
+        { label:"Verify Seal Integrity",            pal:"leaf" },
+        { label:"Fully Seal for Desorption Phase",  pal:"leaf" },
       ]},
       { label:"Monitor Performance", pal:"maint", children:[
         { label:"Track Daily Water Yield",pal:"leaf" },
@@ -307,14 +309,26 @@ const DATA = {
         { label:"Insulate Enclosure",            pal:"leaf" },
         { label:"Manage Drainage",               pal:"leaf" },
         { label:"Enable Mobility (Wheeled Base)",pal:"leaf" },
+        { label:"Ensure Structural Integrity",   pal:"leaf" },
       ]},
       { label:"Ensure Operational Safety", pal:"maint", children:[
         { label:"Relieve Excess Pressure",           pal:"leaf" },
+        { label:"Control Pressure Buildup",          pal:"leaf" },
+        { label:"Control Temperature Buildup",       pal:"leaf" },
         { label:"Secure / Interlock Access Doors",   pal:"leaf" },
         { label:"Restrict Hand Access to Coated HX", pal:"leaf" },
+        { label:"Detect Fault Condition", pal:"maint", children:[
+          { label:"Trigger Safety Shutdown", pal:"leaf" },
+          { label:"Alert Operator",          pal:"leaf" },
+        ]},
       ]},
       { label:"Maintain Sorbent Coating", pal:"maint", children:[
         { label:"Replace / Recharge Sorbent Coating",pal:"leaf" },
+      ]},
+      { label:"Monitor System Health", pal:"maint", children:[
+        { label:"Store Telemetry Data from Sensors", pal:"leaf" },
+        { label:"Identify Patterns & Irregularities",pal:"leaf" },
+        { label:"Calibrate Sensors",                 pal:"leaf" },
       ]},
     ]},
     { label:"Make Water", pal:"water", children:[
@@ -363,8 +377,19 @@ const DATA = {
           { label:"Drain to Collection Tank",            pal:"leaf" },
           { label:"Measure Collected Volume",            pal:"leaf" },
           { label:"Prevent Sorbent Carryover into Water",pal:"leaf" },
-          { label:"Verify Water Purity",                 pal:"leaf" },
         ]},
+      ]},
+    ]},
+    { label:"Collect & Store Water", pal:"store", children:[
+      { label:"Ensure Water Quality", pal:"store", children:[
+        { label:"Verify Water Purity",         pal:"leaf" },
+        { label:"Remove Harmful Contaminants", pal:"leaf" },
+      ]},
+      { label:"Manage Storage", pal:"store", children:[
+        { label:"Ensure Sufficient Tank Capacity", pal:"leaf" },
+        { label:"Meet Daily Water Yield Target",   pal:"leaf" },
+        { label:"Monitor Tank Fill Level",         pal:"leaf" },
+        { label:"Dispense Water for Use",          pal:"leaf" },
       ]},
     ]},
     { label:"Automate Water-Making Process", pal:"auto", children:[
@@ -374,6 +399,10 @@ const DATA = {
         { label:"Protect Against Faults / OCP",  pal:"leaf" },
       ]},
       { label:"Sequence Absorb / Desorb Cycle", pal:"auto", children:[
+        { label:"Initialize System", pal:"auto", children:[
+          { label:"Run Pre-Cycle Purge & Check",  pal:"leaf" },
+          { label:"Verify Actuator Readiness",    pal:"leaf" },
+        ]},
         { label:"Determine Phase Transition Criteria",          pal:"leaf" },
         { label:"Coordinate Actuator Response to Sensor State", pal:"leaf" },
         { label:"Schedule / Time Cycle Duration",               pal:"leaf" },
