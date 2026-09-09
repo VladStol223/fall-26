@@ -619,9 +619,34 @@ function edgePath(d) {
 
 function hasKids(d){ return d.children || d._children; }
 
-// ── get the stroke/fill color from ancestor context ──
+// ── color helpers ──────────────────────────────────────────────────────────────
+
+// Parse "#rrggbb" → [r,g,b]
+function hexRgb(h){ const n=parseInt(h.slice(1),16); return [(n>>16)&255,(n>>8)&255,n&255]; }
+// [r,g,b] → "#rrggbb"
+function rgbHex([r,g,b]){ return '#'+[r,g,b].map(v=>Math.round(v).toString(16).padStart(2,'0')).join(''); }
+// Linear interpolate two hex colours by t (0=a, 1=b)
+function lerpHex(a, b, t){ const A=hexRgb(a),B=hexRgb(b); return rgbHex(A.map((v,i)=>v+(B[i]-v)*t)); }
+
+// For a leaf node: find the nearest ancestor whose pal is not "leaf",
+// then blend that pal's colors toward P.leaf by LEAF_BLEND (0=full parent, 1=full leaf).
+const LEAF_BLEND = 0.42;
+function palLeaf(d) {
+  if (d.data.pal !== 'leaf') return P[d.data.pal] || P.leaf;
+  let anc = d.parent;
+  while (anc && anc.data.pal === 'leaf') anc = anc.parent;
+  const src = anc ? (P[anc.data.pal] || P.leaf) : P.leaf;
+  return {
+    fill:   lerpHex(src.fill,   P.leaf.fill,   LEAF_BLEND),
+    stroke: lerpHex(src.stroke, P.leaf.stroke, LEAF_BLEND),
+    text:   lerpHex(src.text,   P.leaf.text,   LEAF_BLEND),
+  };
+}
+
+function palFor(d){ return d.data.pal === 'leaf' ? palLeaf(d) : (P[d.data.pal] || P.leaf); }
+
 // edges take the color of the TARGET node's pal
-function palStroke(pal){ return (P[pal] || P.leaf).stroke; }
+function palStroke(d){ return palFor(d.target).stroke; }
 
 // ═══════════════════════════════════════════════════════════════
 // UPDATE
@@ -643,7 +668,7 @@ function update(source, instant=false){
   const link = gLinks.selectAll("path.link").data(links, d => d.target.id);
 
   const linkEnter = link.enter().append("path").attr("class","link")
-    .attr("stroke", d => palStroke(d.target.data.pal))
+    .attr("stroke", d => palStroke(d))
     .attr("d", d => {
       // enter collapsed at source position
       const o = {y: source.y0 + NW/2, x: source.x0};
@@ -651,7 +676,7 @@ function update(source, instant=false){
     });
 
   link.merge(linkEnter)
-    .attr("stroke", d => palStroke(d.target.data.pal))
+    .attr("stroke", d => palStroke(d))
     .transition().duration(DUR).ease(d3.easeCubicInOut)
     .attr("d", d => edgePath(d));
 
@@ -679,8 +704,8 @@ function update(source, instant=false){
     .attr("x", -NW/2).attr("y", d => -nh(d)/2)
     .attr("width", NW).attr("height", d => nh(d))
     .attr("rx", R).attr("ry", R)
-    .attr("fill",         d => (P[d.data.pal] || P.leaf).fill)
-    .attr("stroke",       d => (P[d.data.pal] || P.leaf).stroke)
+    .attr("fill",         d => palFor(d).fill)
+    .attr("stroke",       d => palFor(d).stroke)
     .attr("stroke-width", 1.5)
     .attr("stroke-dasharray", d => isCollapsed(d) ? "4 3" : "none")
     .style("opacity", 1e-6);
@@ -688,7 +713,7 @@ function update(source, instant=false){
   // text group — holds tspan lines
   nodeEnter.append("text").attr("class","nlabel")
     .attr("text-anchor","middle")
-    .attr("fill", d => (P[d.data.pal] || P.leaf).text)
+    .attr("fill", d => palFor(d).text)
     .style("fill-opacity", 1e-6);
 
   const nodeUpdate = node.merge(nodeEnter);
@@ -698,8 +723,8 @@ function update(source, instant=false){
 
   // rect: animate height + dashes on collapse/expand
   nodeUpdate.select("rect.nrect")
-    .attr("fill",   d => (P[d.data.pal] || P.leaf).fill)
-    .attr("stroke", d => (P[d.data.pal] || P.leaf).stroke)
+    .attr("fill",   d => palFor(d).fill)
+    .attr("stroke", d => palFor(d).stroke)
     .attr("stroke-dasharray", d => isCollapsed(d) ? "4 3" : "none")
     .transition().duration(DUR).ease(d3.easeCubicInOut)
     .attr("y",      d => -nh(d)/2)
@@ -708,7 +733,7 @@ function update(source, instant=false){
 
   // text: re-render tspans for wrapped lines
   nodeUpdate.select("text.nlabel")
-    .attr("fill",      d => (P[d.data.pal] || P.leaf).text)
+    .attr("fill",      d => palFor(d).text)
     .attr("font-size", d => fsz(d))
     .each(function(d) {
       const sel = d3.select(this);
