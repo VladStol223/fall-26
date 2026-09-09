@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WattAir — Function Tree</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0f1a;--surface:#0d1420;--surface2:#111827;--border:#1e2d3d;
+  --blue:#38bdf8;--blue-dim:#0a1e35;
+  --orange:#f97316;--orange-dim:#271200;
+  --green:#4ade80;--green-dim:#0d2010;
+  --red:#f87171;
+  --purple:#a855f7;--purple-dim:#1a0a2e;
+  --cyan:#22d3ee;--cyan-dim:#021c22;
+  --indigo:#818cf8;--indigo-dim:#0f1130;
+  --text:#e2e8f0;--text-muted:#64748b;--text-dim:#475569;
+}
+
+html,body{
+  height:100%;background:var(--bg);color:var(--text);
+  font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+  font-size:14px;overflow:hidden;
+}
+body{display:flex;flex-direction:column}
+
+/* ── HEADER ── */
+header{
+  display:flex;align-items:center;gap:10px;flex-shrink:0;flex-wrap:wrap;
+  padding:10px 16px;
+  background:var(--surface);border-bottom:1px solid var(--border);
+  z-index:5;
+}
+.title-block{margin-right:auto}
+.title-block h1{font-size:13px;font-weight:700;letter-spacing:.5px;color:var(--text-muted);text-transform:uppercase;margin:0}
+.title-block p{font-size:11px;color:var(--text-dim);margin:2px 0 0}
+
+#search-wrap{position:relative}
+#search{
+  background:var(--surface2);border:1px solid var(--border);
+  color:var(--text);padding:5px 10px 5px 26px;
+  border-radius:6px;font-size:12px;width:190px;outline:none;
+  transition:border-color .15s;
+}
+#search:focus{border-color:var(--blue)}
+#search::placeholder{color:var(--text-dim)}
+#search-wrap::before{
+  content:'⌕';position:absolute;left:7px;top:50%;transform:translateY(-50%);
+  font-size:13px;color:var(--text-dim);pointer-events:none;
+}
+#search-clear{
+  position:absolute;right:7px;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:var(--text-dim);font-size:14px;
+  cursor:pointer;display:none;line-height:1;padding:0;
+}
+#match-info{font-size:11px;color:var(--text-dim);min-width:60px}
+
+#zoom-controls{
+  display:flex;align-items:center;gap:0;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:6px;overflow:hidden;
+}
+#zoom-badge{
+  color:var(--text-dim);padding:4px 8px;
+  font-size:11px;font-weight:600;white-space:nowrap;
+  font-variant-numeric:tabular-nums;letter-spacing:.3px;
+  min-width:42px;text-align:center;
+  border-left:1px solid var(--border);
+  border-right:1px solid var(--border);
+  pointer-events:none;
+}
+.zoom-step{
+  background:none;border:none;color:var(--text-dim);
+  padding:4px 9px;font-size:14px;line-height:1;font-weight:400;
+  cursor:pointer;transition:color .12s,background .12s;
+}
+.zoom-step:hover{color:var(--blue);background:var(--blue-dim)}
+.zoom-step:active{transform:scale(0.9)}
+
+.hd-btn{
+  background:var(--surface2);border:1px solid var(--border);
+  color:var(--text-muted);padding:5px 12px;border-radius:6px;
+  font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;
+  transition:border-color .15s,color .15s,transform .1s;
+}
+.hd-btn:hover{border-color:var(--blue);color:var(--blue)}
+.hd-btn:active{transform:scale(0.96)}
+
+/* ── CANVAS ── */
+#canvas-wrap{flex:1;position:relative;overflow:hidden}
+svg#tree{width:100%;height:100%;display:block;cursor:ns-resize}
+svg#tree:active{cursor:ns-resize}
+
+/* ── HINT ── */
+#hint{
+  position:absolute;top:10px;right:14px;
+  font-size:10.5px;color:var(--text-dim);text-align:right;
+  line-height:1.6;pointer-events:none;
+}
+
+/* ── D3 LINKS ── */
+.link{fill:none;stroke-width:1.5px}
+.link.dimmed{opacity:.1}
+
+/* ── D3 NODES ── */
+.node{cursor:pointer}
+.node.leaf-node{cursor:default}
+/* rect inside node */
+.node .nrect{rx:6;ry:6;transition:filter .12s}
+.node:hover:not(.leaf-node) .nrect{filter:brightness(1.3)}
+/* text inside node */
+.node .nlabel{
+  font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+  font-size:10.5px;pointer-events:none;
+  dominant-baseline:central;text-anchor:middle;
+}
+.node.dimmed .nrect{opacity:.15}
+.node.dimmed .nlabel{opacity:.15}
+.node.match .nrect{stroke-width:2.5px!important}
+
+/* ── FLOATING NAV BAR ── */
+#nav-bar{
+  position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:0;
+  pointer-events:none;z-index:10;
+  max-width:calc(100vw - 32px);
+  width:max-content;
+}
+#nav-card{
+  background:rgba(13,20,32,.82);
+  border:1px solid var(--border);
+  border-radius:10px;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  box-shadow:0 4px 24px rgba(0,0,0,.6);
+  padding:8px 10px 8px;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  pointer-events:all;
+}
+#nav-breadcrumb{
+  font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--text-dim);white-space:nowrap;
+  opacity:0;transition:opacity 140ms ease;pointer-events:none;
+}
+#nav-breadcrumb.visible{opacity:1}
+#nav-row{
+  display:flex;align-items:center;justify-content:center;
+  flex-wrap:wrap;gap:6px;pointer-events:none;
+  max-width:100%;
+}
+
+.nav-btn{
+  display:flex;align-items:center;gap:5px;
+  padding:5px 12px;border-radius:6px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.04);
+  color:var(--text-muted);
+  font-size:11.5px;font-weight:600;
+  cursor:pointer;white-space:nowrap;pointer-events:all;
+  transition:border-color .15s,color .15s,background .15s,transform .1s;
+}
+.nav-btn:active{transform:scale(0.95)}
+.nav-btn .nav-dot{
+  width:6px;height:6px;border-radius:50%;flex-shrink:0;
+  transition:transform .15s;
+}
+.nav-btn:hover .nav-dot{transform:scale(1.4)}
+
+#nav-back{
+  padding:5px 10px;border-radius:6px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.04);
+  color:var(--text-dim);
+  font-size:12px;font-weight:600;cursor:pointer;
+  transition:border-color .15s,color .15s,transform .1s;
+  pointer-events:all;flex-shrink:0;
+}
+#nav-back:active{transform:scale(0.95)}
+
+@keyframes nav-in {
+  from{opacity:0;transform:translateY(8px) scale(.97)}
+  to  {opacity:1;transform:translateY(0)   scale(1)}
+}
+@keyframes nav-out{
+  from{opacity:1;transform:translateY(0)    scale(1)}
+  to  {opacity:0;transform:translateY(-6px) scale(.97)}
+}
+.nav-btn.entering{animation:nav-in  160ms cubic-bezier(.22,.68,0,1.2) both}
+.nav-btn.exiting {animation:nav-out 110ms ease both;pointer-events:none}
+
+@media(prefers-reduced-motion:reduce){
+  .nav-btn,.hd-btn,#nav-back{transition:none!important;animation:none!important}
+  .nav-btn.entering,.nav-btn.exiting{animation:none!important;opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<div style="display:flex;flex-direction:column;height:100%">
+  <header>
+    <div class="title-block">
+      <h1>WattAir — Function Tree</h1>
+      <p>click node to expand · scroll to pan · ctrl+scroll to zoom</p>
+    </div>
+    <div id="search-wrap">
+      <input id="search" type="text" placeholder="search functions…" autocomplete="off">
+      <button id="search-clear">×</button>
+    </div>
+    <span id="match-info"></span>
+    <button class="hd-btn" id="btn-expand">Expand all</button>
+    <button class="hd-btn" id="btn-fit">Fit view</button>
+    <div id="zoom-controls">
+      <button class="zoom-step" id="btn-zoom-out">−</button>
+      <span id="zoom-badge">100%</span>
+      <button class="zoom-step" id="btn-zoom-in">+</button>
+    </div>
+  </header>
+
+  <div id="canvas-wrap">
+    <svg id="tree"></svg>
+    <div id="hint">scroll to pan vertically</div>
+
+    <div id="nav-bar">
+      <div id="nav-card">
+        <div id="nav-breadcrumb"></div>
+        <div id="nav-row">
+          <button id="nav-back">←</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// PALETTE  — original dashboard colors
+// ═══════════════════════════════════════════════════════════════
+const P = {
+  root:   { fill:'#0a1e35', stroke:'#38bdf8', text:'#38bdf8'  },
+  maint:  { fill:'#0d1a2e', stroke:'#3b82f6', text:'#93c5fd'  },
+  water:  { fill:'#0d2010', stroke:'#4ade80', text:'#86efac'  },
+  absorb: { fill:'#081a10', stroke:'#22c55e', text:'#6ee7b7'  },
+  desorb: { fill:'#271200', stroke:'#f97316', text:'#fdba74'  },
+  cond:   { fill:'#021c22', stroke:'#22d3ee', text:'#67e8f9'  },
+  auto:   { fill:'#1a0a2e', stroke:'#a855f7', text:'#d8b4fe'  },
+  sense:  { fill:'#0f1130', stroke:'#818cf8', text:'#a5b4fc'  },
+  leaf:   { fill:'#0b0f1a', stroke:'#1e2d3d', text:'#475569'  },
+};
+
+// nav dot colors for each pal (hover highlight color)
+const NAV_HOVER = {
+  root:'#38bdf8',maint:'#3b82f6',water:'#4ade80',absorb:'#22c55e',
+  desorb:'#f97316',cond:'#22d3ee',auto:'#a855f7',sense:'#818cf8',leaf:'#475569'
+};
+
+// ═══════════════════════════════════════════════════════════════
+// TUNING  — edit everything here
+// ═══════════════════════════════════════════════════════════════
+const CFG = {
+  // ── node geometry ──────────────────────────────────────────
+  NW:            140,   // node rect width (px)
+  NH_BASE:        18,   // minimum node height / single-line height (px)
+  NH_PAD:          3,   // top+bottom inner padding (px)
+  NH_COLLAPSED:   14,   // height when node is collapsed (px)
+  FONT_SZ:        9.5,  // label font size (px)
+  FONT_COLLAPSED:  8,   // font size when collapsed (px)
+  LINE_H:         10,   // line-height for wrapped labels (px)
+  CORNER_R:        4,   // rect corner radius (px)
+  AVG_CHAR_W:    5.7,   // approx px per character at FONT_SZ (used for wrapping)
+
+  // ── tree layout ─────────────────────────────────────────────
+  DY:            190,   // horizontal gap between depth levels (px)
+  DX:              1,   // extra vertical gap between sibling nodes (px)
+                        //   (added on top of the tallest node height)
+
+  // ── edge fan-out ─────────────────────────────────────────────
+  FAN_FRAC:      0.65,  // fraction of node height used for fan spread (0–1)
+  FAN_MIN_GAP:     7,   // minimum px between exit points on the right edge
+
+  // ── zoom / padding ───────────────────────────────────────────
+  // Scale is computed from the actual SVG span of the tree/subtree so that
+  // PAD_H pixels of equal padding appear on both left and right sides.
+  PAD_H:          32,   // padding on each side of the tree (px) — equal left & right
+  PAD_V:          56,   // vertical padding for centering (px)
+};
+
+// ═══════════════════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════════════════
+const DATA = {
+  label:"Automated Water Harvesting", pal:"root",
+  children:[
+    { label:"Maintain Reliable System", pal:"maint", children:[
+      { label:"Seal / Close System", pal:"maint", children:[
+        { label:"Close Inlet Dampers",    pal:"leaf" },
+        { label:"Close Outlet Dampers",   pal:"leaf" },
+        { label:"Verify Seal Integrity",  pal:"leaf" },
+      ]},
+      { label:"Monitor Performance", pal:"maint", children:[
+        { label:"Track Daily Water Yield",pal:"leaf" },
+        { label:"Log Energy Consumption", pal:"leaf" },
+        { label:"Compute η_AWH & SEC",    pal:"leaf" },
+      ]},
+      { label:"House Components", pal:"maint", children:[
+        { label:"80/20 Frame & Panels",          pal:"leaf" },
+        { label:"Insulate Enclosure",            pal:"leaf" },
+        { label:"Manage Drainage",               pal:"leaf" },
+        { label:"Enable Mobility (Wheeled Base)",pal:"leaf" },
+      ]},
+      { label:"Ensure Operational Safety", pal:"maint", children:[
+        { label:"Relieve Excess Pressure",           pal:"leaf" },
+        { label:"Secure / Interlock Access Doors",   pal:"leaf" },
+        { label:"Restrict Hand Access to Coated HX", pal:"leaf" },
+      ]},
+      { label:"Maintain Sorbent Coating", pal:"maint", children:[
+        { label:"Replace / Recharge Sorbent Coating",pal:"leaf" },
+      ]},
+    ]},
+    { label:"Make Water", pal:"water", children:[
+      { label:"Absorb Water", pal:"absorb", children:[
+        { label:"Intake Ambient Air", pal:"absorb", children:[
+          { label:"Filter Particulates",      pal:"leaf" },
+          { label:"Deliver Air to Sorbent HX",pal:"leaf" },
+        ]},
+        { label:"Remove Water from Air", pal:"absorb", children:[
+          { label:"Bind Vapor to Sorbent Surface",pal:"leaf" },
+          { label:"Maximize Vapor Recovery (α)",  pal:"leaf" },
+          { label:"Saturate Sorbent Bed",         pal:"leaf" },
+        ]},
+        { label:"Move Air", pal:"absorb", children:[
+          { label:"Drive Inlet Fan(s)",         pal:"leaf" },
+          { label:"Control Flow Velocity u_avg",pal:"leaf" },
+          { label:"Manage Pressure Drop ΔP",    pal:"leaf" },
+        ]},
+        { label:"Expel Air", pal:"absorb", children:[
+          { label:"Drive Exhaust Fan(s)",      pal:"leaf" },
+          { label:"Route Dried Air to Outlet", pal:"leaf" },
+        ]},
+      ]},
+      { label:"Desorb Water", pal:"desorb", children:[
+        { label:"Drop Humidity", pal:"desorb", children:[
+          { label:"Release Vapor from Sorbent",  pal:"leaf" },
+          { label:"Concentrate Vapor in Chamber",pal:"leaf" },
+        ]},
+        { label:"Supply Heat", pal:"desorb", children:[
+          { label:"Circulate Glycol Loop",   pal:"leaf" },
+          { label:"Activate Heating Element",pal:"leaf" },
+          { label:"Ramp to T_des (65 °C)",   pal:"leaf" },
+          { label:"Maintain ΔT Across HX",   pal:"leaf" },
+        ]},
+      ]},
+      { label:"Condense Water", pal:"cond", children:[
+        { label:"Remove Thermal Energy", pal:"cond", children:[
+          { label:"Drive Condenser Fan",               pal:"leaf" },
+          { label:"Cool Vapor Below Dew Point",        pal:"leaf" },
+          { label:"Reject Heat to Ambient",            pal:"leaf" },
+          { label:"Circulate Condenser Coolant Loop",  pal:"leaf" },
+          { label:"Operate Chiller / Refrigeration Unit",pal:"leaf" },
+        ]},
+        { label:"Collect Liquid Water", pal:"cond", children:[
+          { label:"Nucleate Droplets",                   pal:"leaf" },
+          { label:"Drain to Collection Tank",            pal:"leaf" },
+          { label:"Measure Collected Volume",            pal:"leaf" },
+          { label:"Prevent Sorbent Carryover into Water",pal:"leaf" },
+          { label:"Verify Water Purity",                 pal:"leaf" },
+        ]},
+      ]},
+    ]},
+    { label:"Automate Water-Making Process", pal:"auto", children:[
+      { label:"Supply Electrical Power", pal:"auto", children:[
+        { label:"Convert / Regulate Voltage",    pal:"leaf" },
+        { label:"Distribute Power to Subsystems",pal:"leaf" },
+        { label:"Protect Against Faults / OCP",  pal:"leaf" },
+      ]},
+      { label:"Sequence Absorb / Desorb Cycle", pal:"auto", children:[
+        { label:"Determine Phase Transition Criteria",          pal:"leaf" },
+        { label:"Coordinate Actuator Response to Sensor State", pal:"leaf" },
+        { label:"Schedule / Time Cycle Duration",               pal:"leaf" },
+      ]},
+      { label:"Actuate Moving Components", pal:"auto", children:[
+        { label:"Open / Close Dampers",         pal:"leaf" },
+        { label:"Start / Stop Fans",            pal:"leaf" },
+        { label:"Enable / Disable Glycol Pump", pal:"leaf" },
+        { label:"Trigger Heating Element",      pal:"leaf" },
+      ]},
+      { label:"Read Live Data", pal:"sense", children:[
+        { label:"Read Cycle Phase (from FSM)",pal:"sense" },
+        { label:"Read Water Collected",       pal:"sense" },
+        { label:"Read Pressure (ΔP)",         pal:"sense" },
+        { label:"Read Temperature", pal:"sense", children:[
+          { label:"Inlet Air Temp",              pal:"leaf" },
+          { label:"Sorbent / HX Bed Temp",       pal:"leaf" },
+          { label:"Glycol Supply & Return Temp", pal:"leaf" },
+          { label:"Condenser Coil Temp",         pal:"leaf" },
+        ]},
+        { label:"Read Flow Rate", pal:"sense", children:[
+          { label:"Glycol Loop Flow Rate", pal:"leaf" },
+          { label:"Airflow Velocity u_avg",pal:"leaf" },
+        ]},
+        { label:"Read Humidity", pal:"sense", children:[
+          { label:"Inlet RH (Before HX)",          pal:"leaf" },
+          { label:"Outlet RH (After HX)",          pal:"leaf" },
+          { label:"Compute Vapor Recovery Ratio α",pal:"leaf" },
+        ]},
+      ]},
+      { label:"Interface with Operator", pal:"auto", children:[
+        { label:"Accept Start / Stop Command",pal:"leaf" },
+        { label:"Log & Export Cycle Data",    pal:"leaf" },
+      ]},
+    ]},
+  ]
+};
+
+// ── unpack CFG into locals so the rest of the code is unchanged ──
+const NW             = CFG.NW;
+const NH_BASE        = CFG.NH_BASE;
+const NH_PAD         = CFG.NH_PAD;
+const NH_COLLAPSED   = CFG.NH_COLLAPSED;
+const FONT_SZ        = CFG.FONT_SZ;
+const FONT_COLLAPSED = CFG.FONT_COLLAPSED;
+const LINE_H         = CFG.LINE_H;
+const R              = CFG.CORNER_R;
+const DY             = CFG.DY;
+const DX             = CFG.DX;
+
+const MAX_LABEL_W = NW - 16;
+
+function wrapLabel(label) {
+  const maxChars = Math.floor(MAX_LABEL_W / CFG.AVG_CHAR_W);
+  const words = label.split(' ');
+  const lines = [];
+  let cur = '';
+  for (const w of words) {
+    const test = cur ? cur + ' ' + w : w;
+    if (test.length > maxChars && cur) { lines.push(cur); cur = w; }
+    else cur = test;
+  }
+  if (cur) lines.push(cur);
+  return lines.length ? lines : [label];
+}
+
+// Node height for a given label (expanded)
+function nodeH(label) {
+  const n = wrapLabel(label).length;
+  return Math.max(NH_BASE, n * LINE_H + NH_PAD * 2);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// D3 SETUP
+// ═══════════════════════════════════════════════════════════════
+const svgEl  = d3.select("#tree");
+const gZoom  = svgEl.append("g");
+const gLinks = gZoom.append("g").attr("class","links");
+const gNodes = gZoom.append("g").attr("class","nodes");
+
+// ── vertical-only pan ─────────────────────────────────────────────────────────
+// _lockedTx: X translation is fixed when a fit/focus is applied; drag can only
+// move Y. Scroll wheel also pans Y only.
+let _lockedTx  = 0;
+let _lastDepth = -1;  // tracks max visible depth to detect horizontal span changes
+
+const zoomBehavior = d3.zoom()
+  .scaleExtent([0.05, 4])
+  .filter(ev => {
+    // block wheel (handled separately) and double-click zoom
+    if (ev.type === 'wheel' || ev.type === 'dblclick') return false;
+    return true;
+  })
+  .on("zoom", ev => {
+    const t = ev.transform;
+    // always clamp X to _lockedTx so horizontal drag has no effect
+    const locked = d3.zoomIdentity.translate(_lockedTx, t.y).scale(t.k);
+    svgEl.property("__zoom", locked);   // keep internal state consistent
+    gZoom.attr("transform", locked);
+  });
+svgEl.call(zoomBehavior);
+
+// Wheel → pan (vertical) or zoom (ctrl+scroll)
+let _fitScale    = 1;   // scale at which the tree exactly fills the canvas (= 100%)
+let _rootSvgLeft = 0;   // SVG x-coord of the root node's left edge (from fitView)
+let _bbWidth     = 0;   // full SVG width of the tree bounding box (from fitView)
+
+function updateZoomBadge(k) {
+  if (!_fitScale) return;
+  const pct = Math.round((k / _fitScale) * 100);
+  document.getElementById("zoom-badge").textContent = pct + "%";
+}
+
+// Centre the tree horizontally at scale k and keep vertical position scaled.
+function applyZoom(fracOfFit, dur = 0) {
+  const k   = _fitScale * fracOfFit;
+  const W   = canvasWrap.clientWidth;
+  const H   = canvasWrap.clientHeight;
+  // centre: equal left/right padding
+  _lockedTx = (W - k * _bbWidth) / 2 - k * _rootSvgLeft;
+  const cur = d3.zoomTransform(svgEl.node());
+  // keep the same vertical centre ratio
+  const ty  = H / 2 + (cur.y - H / 2) * (k / cur.k);
+  const t   = d3.zoomIdentity.translate(_lockedTx, ty).scale(k);
+  if (dur > 0) {
+    svgEl.transition().duration(dur).ease(d3.easeCubicInOut)
+      .call(zoomBehavior.transform, t);
+  } else {
+    svgEl.property("__zoom", t);
+    gZoom.attr("transform", t);
+  }
+  updateZoomBadge(k);
+}
+
+svgEl.on("wheel.zoom", ev => {
+  ev.preventDefault();
+  const cur = d3.zoomTransform(svgEl.node());
+
+  if (ev.ctrlKey || ev.metaKey) {
+    // ── zoom: scale centred horizontally ──
+    const factor = ev.deltaY > 0 ? 0.92 : 1 / 0.92;
+    const newK   = Math.min(_fitScale, Math.max(0.05, cur.k * factor));
+    const W = canvasWrap.clientWidth, H = canvasWrap.clientHeight;
+    // recompute centred _lockedTx for the new scale
+    _lockedTx = (W - newK * _bbWidth) / 2 - newK * _rootSvgLeft;
+    // rescale vertical position around canvas vertical centre
+    const ty = H / 2 + (cur.y - H / 2) * (newK / cur.k);
+    const t  = d3.zoomIdentity.translate(_lockedTx, ty).scale(newK);
+    svgEl.property("__zoom", t);
+    gZoom.attr("transform", t);
+    updateZoomBadge(newK);
+  } else {
+    // ── pan: vertical only ──
+    const ty = cur.y - ev.deltaY * (ev.shiftKey ? 0.3 : 1);
+    const t  = d3.zoomIdentity.translate(_lockedTx, ty).scale(cur.k);
+    svgEl.property("__zoom", t);
+    gZoom.attr("transform", t);
+  }
+}, {passive:false});
+
+let nodeCounter = 0;
+const root = d3.hierarchy(DATA, d => d.children);
+root.x0 = 0; root.y0 = 0;
+root.each(d => { d.id = nodeCounter++; d._children = d.children; });
+
+// ── start: fully expanded ──
+root.each(d => {
+  // open every node — nothing collapsed
+  if(d._children && !d.children){ d.children = d._children; d._children = null; }
+});
+
+// Maximum possible node height across the whole tree — computed after root is built.
+// nodeSize vertical separation must be >= tallest node so siblings never overlap.
+const MAX_NODE_H = (function(){
+  let m = NH_BASE;
+  root.each(d => { m = Math.max(m, nodeH(d.data.label)); });
+  return m;
+})();
+
+const treeLayout = d3.tree()
+  .nodeSize([MAX_NODE_H + DX, DY])
+  .separation((a, b) => {
+    // nodes under the same parent: 1 slot apart (normal)
+    // nodes under different parents: still 1 slot — no bonus gap
+    return 1;
+  });
+
+// Custom cubic bezier: source = right edge of parent, target = left edge of child.
+// Fan-out: siblings are spread evenly across the parent's right edge.
+function edgePath(d) {
+  const srcNode = d.source;
+  const tgtNode = d.target;
+
+  // parent right-edge x
+  const sx = srcNode.y + NW / 2;
+
+  // fan-out y on the parent's right edge
+  const siblings = srcNode.children || [];
+  const count    = siblings.length;
+  const idx      = siblings.indexOf(tgtNode);
+  const srcH     = nodeH(srcNode.data.label);
+  let sy;
+  if (count <= 1 || idx < 0) {
+    sy = srcNode.x;
+  } else {
+    const span = Math.min(srcH * CFG.FAN_FRAC, (count - 1) * CFG.FAN_MIN_GAP);
+    sy = srcNode.x + (idx / (count - 1) - 0.5) * span;
+  }
+
+  // target left-edge center
+  const tx = tgtNode.y - NW / 2;
+  const ty = tgtNode.x;
+
+  // cubic bezier — horizontal tangents at both ends
+  const mx = (sx + tx) / 2;
+  return `M${sx},${sy} C${mx},${sy} ${mx},${ty} ${tx},${ty}`;
+}
+
+function hasKids(d){ return d.children || d._children; }
+
+// ── get the stroke/fill color from ancestor context ──
+// edges take the color of the TARGET node's pal
+function palStroke(pal){ return (P[pal] || P.leaf).stroke; }
+
+// ═══════════════════════════════════════════════════════════════
+// UPDATE
+// ═══════════════════════════════════════════════════════════════
+function update(source, instant=false){
+  const DUR = instant ? 0 : 280;
+  const DUR_EXIT = instant ? 0 : 200;
+  treeLayout(root);
+
+  const nodes = root.descendants();
+  const links  = root.links();
+
+  // helpers
+  const isCollapsed = d => hasKids(d) && !d.children;  // has hidden kids
+  const nh  = d => nodeH(d.data.label);                 // same height collapsed or not
+  const fsz = d => FONT_SZ;
+
+  // ── LINKS ── colored by target pal
+  const link = gLinks.selectAll("path.link").data(links, d => d.target.id);
+
+  const linkEnter = link.enter().append("path").attr("class","link")
+    .attr("stroke", d => palStroke(d.target.data.pal))
+    .attr("d", d => {
+      // enter collapsed at source position
+      const o = {y: source.y0 + NW/2, x: source.x0};
+      return `M${o.y},${o.x} C${o.y},${o.x} ${o.y},${o.x} ${o.y},${o.x}`;
+    });
+
+  link.merge(linkEnter)
+    .attr("stroke", d => palStroke(d.target.data.pal))
+    .transition().duration(DUR).ease(d3.easeCubicInOut)
+    .attr("d", d => edgePath(d));
+
+  link.exit().transition().duration(DUR_EXIT)
+    .attr("d", d => {
+      const o = {y: source.y + NW/2, x: source.x};
+      return `M${o.y},${o.x} C${o.y},${o.x} ${o.y},${o.x} ${o.y},${o.x}`;
+    }).remove();
+
+  // ── NODES ──
+  const node = gNodes.selectAll("g.node").data(nodes, d => d.id);
+
+  const nodeEnter = node.enter().append("g")
+    .attr("class", d => "node" + (!hasKids(d) ? " leaf-node" : ""))
+    .attr("transform", () => `translate(${source.y0},${source.x0})`)
+    .on("click", (ev, d) => {
+      if(!hasKids(d)) return;
+      if(d.children){ d._children = d.children; d.children = null; }
+      else { d.children = d._children; d._children = null; }
+      update(d);
+    });
+
+  // rectangle — enter at zero height for animation
+  nodeEnter.append("rect").attr("class","nrect")
+    .attr("x", -NW/2).attr("y", d => -nh(d)/2)
+    .attr("width", NW).attr("height", d => nh(d))
+    .attr("rx", R).attr("ry", R)
+    .attr("fill",         d => (P[d.data.pal] || P.leaf).fill)
+    .attr("stroke",       d => (P[d.data.pal] || P.leaf).stroke)
+    .attr("stroke-width", 1.5)
+    .attr("stroke-dasharray", d => isCollapsed(d) ? "4 3" : "none")
+    .style("opacity", 1e-6);
+
+  // text group — holds tspan lines
+  nodeEnter.append("text").attr("class","nlabel")
+    .attr("text-anchor","middle")
+    .attr("fill", d => (P[d.data.pal] || P.leaf).text)
+    .style("fill-opacity", 1e-6);
+
+  const nodeUpdate = node.merge(nodeEnter);
+
+  nodeUpdate.transition().duration(DUR).ease(d3.easeCubicInOut)
+    .attr("transform", d => `translate(${d.y},${d.x})`);
+
+  // rect: animate height + dashes on collapse/expand
+  nodeUpdate.select("rect.nrect")
+    .attr("fill",   d => (P[d.data.pal] || P.leaf).fill)
+    .attr("stroke", d => (P[d.data.pal] || P.leaf).stroke)
+    .attr("stroke-dasharray", d => isCollapsed(d) ? "4 3" : "none")
+    .transition().duration(DUR).ease(d3.easeCubicInOut)
+    .attr("y",      d => -nh(d)/2)
+    .attr("height", d => nh(d))
+    .style("opacity", 1);
+
+  // text: re-render tspans for wrapped lines
+  nodeUpdate.select("text.nlabel")
+    .attr("fill",      d => (P[d.data.pal] || P.leaf).text)
+    .attr("font-size", d => fsz(d))
+    .each(function(d) {
+      const sel = d3.select(this);
+      sel.selectAll("tspan").remove();
+
+      const collapsed = isCollapsed(d);
+      const label     = d.data.label;
+      const h         = nh(d);
+
+      if (collapsed) {
+        // single truncated line — no wrap needed at this size
+        const maxC = Math.floor(MAX_LABEL_W / (CFG.AVG_CHAR_W * FONT_COLLAPSED / FONT_SZ));
+        const text  = label.length > maxC ? label.slice(0, maxC - 1) + '…' : label;
+        sel.append("tspan")
+          .attr("x", 0).attr("dy", "0")
+          .attr("dominant-baseline","central")
+          .text(text);
+        sel.attr("y", 0);
+      } else {
+        const lines = wrapLabel(label);
+        const totalH = lines.length * LINE_H;
+        const startY = -totalH / 2 + LINE_H / 2;
+        lines.forEach((line, i) => {
+          sel.append("tspan")
+            .attr("x", 0)
+            .attr("y", startY + i * LINE_H)
+            .attr("dominant-baseline","central")
+            .text(line);
+        });
+        sel.attr("y", 0);
+      }
+    })
+    .transition().duration(DUR)
+    .style("fill-opacity", 1);
+
+  const nodeExit = node.exit().transition().duration(DUR_EXIT)
+    .attr("transform", d => {
+      // collapse toward the exiting node's own parent, not the update source
+      const p = d.parent || source;
+      return `translate(${p.y},${p.x})`;
+    }).remove();
+  nodeExit.select("rect.nrect").style("opacity", 1e-6);
+  nodeExit.select("text.nlabel").style("fill-opacity", 1e-6);
+
+  nodes.forEach(d => { d.x0 = d.x; d.y0 = d.y; });
+
+  applySearch();
+
+  // Only rescale when the maximum visible depth changes — that's when the
+  // horizontal span actually changes. Pure expand/collapse within the same
+  // depth band doesn't move the right edge, so we leave the view alone.
+  if (!instant && !_suppressAutoFit) {
+    const newDepth = Math.max(...nodes.map(d => d.depth));
+    if (newDepth !== _lastDepth) {
+      _lastDepth = newDepth;
+      setTimeout(fitView, DUR + 30);
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// FIT VIEW
+// ═══════════════════════════════════════════════════════════════
+const canvasWrap = document.getElementById("canvas-wrap");
+
+function getBBox(){ const b = gNodes.node().getBBox(); return b.width===0?null:b; }
+
+// Compute scale so that `cols` visible depth-columns fit between the two PAD_H margins.
+// The actual SVG horizontal span of a subtree rooted at `d3n` (or the whole tree
+// if d3n is omitted) runs from the left edge of the shallowest node to the right
+// edge of the deepest: span = maxDepth * DY + NW.
+// We scale so that span fills (W - 2*PAD_H) screen pixels.
+function scaleForCols(cols, svgSpan) {
+  const W = canvasWrap.clientWidth;
+  // cols is used as the fallback depth count when no svgSpan is given
+  const span = svgSpan !== undefined ? svgSpan : cols * DY + NW;
+  return (W - CFG.PAD_H * 2) / span;
+}
+
+// Re-centre at the CURRENT zoom scale — never changes k.
+function applyTransform(rootLeftEdge, svgWidth, centerY, dur) {
+  const k = d3.zoomTransform(svgEl.node()).k;
+  const W = canvasWrap.clientWidth, H = canvasWrap.clientHeight;
+  const NAV_H = 72;
+  _lockedTx = (W - k * svgWidth) / 2 - k * rootLeftEdge;
+  const ty = (H - NAV_H) / 2 - k * centerY;
+  const t = d3.zoomIdentity.translate(_lockedTx, ty).scale(k);
+  svgEl.transition().duration(dur).ease(d3.easeCubicInOut)
+    .call(zoomBehavior.transform, t);
+}
+
+function fitView(dur=400){
+  const bb = getBBox(); if(!bb) return;
+  // record geometry & 100%-scale for badge math — but do NOT apply that scale
+  _fitScale    = scaleForCols(CFG.COLS_FULL, bb.width);
+  _rootSvgLeft = bb.x;
+  _bbWidth     = bb.width;
+  const centerY = bb.y + bb.height / 2;
+  applyTransform(bb.x, bb.width, centerY, dur);
+}
+
+// focus on a d3 hierarchy node's subtree — preserves current zoom level
+function focusNode(d3n, dur=280){
+  const sub = d3n.descendants();
+  if(!sub.length) return;
+
+  let maxDepth = 0;
+  sub.forEach(n => { maxDepth = Math.max(maxDepth, n.depth - d3n.depth); });
+
+  const svgLeft = d3n.y - NW / 2;
+  const svgSpan = d3n.y + maxDepth * DY + NW / 2 - svgLeft;
+
+  // update globals so ctrl+scroll stays centred on this subtree
+  _rootSvgLeft = svgLeft;
+  _bbWidth     = svgSpan;
+
+  let minX = Infinity, maxX = -Infinity;
+  sub.forEach(n => {
+    const h = nodeH(n.data.label);
+    minX = Math.min(minX, n.x - h/2);
+    maxX = Math.max(maxX, n.x + h/2);
+  });
+  const centerY = (minX + maxX) / 2;
+
+  applyTransform(svgLeft, svgSpan, centerY, dur);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// SEARCH
+// ═══════════════════════════════════════════════════════════════
+const searchEl  = document.getElementById("search");
+const searchClr = document.getElementById("search-clear");
+const matchInfo = document.getElementById("match-info");
+
+function applySearch(){
+  const q = searchEl.value.trim().toLowerCase();
+  gNodes.selectAll("g.node").each(function(d){
+    const hit = !q || d.data.label.toLowerCase().includes(q);
+    d3.select(this).classed("match", !!q && hit).classed("dimmed", !!q && !hit);
+    if(!!q && hit) d3.select(this).select("rect.nrect").attr("stroke", "#ffffff80");
+    else d3.select(this).select("rect.nrect").attr("stroke", (P[d.data.pal]||P.leaf).stroke);
+  });
+  gLinks.selectAll("path.link").classed("dimmed", !!q);
+  if(!q){ matchInfo.textContent=""; return; }
+  const n = gNodes.selectAll("g.node.match").size();
+  matchInfo.textContent = n ? n+" match"+(n>1?"es":"") : "no matches";
+}
+
+searchEl.addEventListener("input", () => {
+  const q = searchEl.value.trim().toLowerCase();
+  searchClr.style.display = q ? "block" : "none";
+  if(q){
+    let changed=false;
+    function exp(d){
+      const kids=d.children||d._children;
+      if(!kids) return d.data.label.toLowerCase().includes(q);
+      let hit=d.data.label.toLowerCase().includes(q);
+      kids.forEach(c=>{ if(exp(c)) hit=true; });
+      if(hit&&d._children){ d.children=d._children; d._children=null; changed=true; }
+      return hit;
+    }
+    exp(root);
+    if(changed){ update(root); return; }
+  }
+  applySearch();
+});
+searchClr.addEventListener("click", () => {
+  searchEl.value=""; searchClr.style.display="none";
+  matchInfo.textContent=""; applySearch();
+});
+
+// ═══════════════════════════════════════════════════════════════
+// TOOLBAR
+// ═══════════════════════════════════════════════════════════════
+document.getElementById("btn-expand").addEventListener("click", () => {
+  root.each(d => { if(d._children){ d.children=d._children; d._children=null; } });
+  update(root);
+});
+document.getElementById("btn-fit").addEventListener("click", () => fitView());
+
+document.getElementById("btn-zoom-out").addEventListener("click", () => {
+  const cur = d3.zoomTransform(svgEl.node());
+  const newK = Math.max(0.05, cur.k * 0.8);
+  const W = canvasWrap.clientWidth, H = canvasWrap.clientHeight;
+  _lockedTx = (W - newK * _bbWidth) / 2 - newK * _rootSvgLeft;
+  const ty = H / 2 + (cur.y - H / 2) * (newK / cur.k);
+  const t = d3.zoomIdentity.translate(_lockedTx, ty).scale(newK);
+  svgEl.transition().duration(180).ease(d3.easeCubicOut)
+    .call(zoomBehavior.transform, t);
+  updateZoomBadge(newK);
+});
+document.getElementById("btn-zoom-in").addEventListener("click", () => {
+  const cur = d3.zoomTransform(svgEl.node());
+  const newK = Math.min(_fitScale, cur.k * (1 / 0.8));
+  const W = canvasWrap.clientWidth, H = canvasWrap.clientHeight;
+  _lockedTx = (W - newK * _bbWidth) / 2 - newK * _rootSvgLeft;
+  const ty = H / 2 + (cur.y - H / 2) * (newK / cur.k);
+  const t = d3.zoomIdentity.translate(_lockedTx, ty).scale(newK);
+  svgEl.transition().duration(180).ease(d3.easeCubicOut)
+    .call(zoomBehavior.transform, t);
+  updateZoomBadge(newK);
+});
+
+// ═══════════════════════════════════════════════════════════════
+// NAV BAR
+// ═══════════════════════════════════════════════════════════════
+const navRow   = document.getElementById("nav-row");
+const navBack  = document.getElementById("nav-back");
+const navBread = document.getElementById("nav-breadcrumb");
+
+let navStack   = [];
+let navCurrent = DATA;
+
+function findD3(dataObj){
+  let found=null;
+  root.each(d=>{ if(d.data===dataObj) found=d; });
+  return found;
+}
+
+function buildBreadcrumb(){
+  if(!navStack.length){ navBread.textContent=""; navBread.classList.remove("visible"); return; }
+  navBread.textContent = navStack.map(n=>n.parentData.label).join(" › ");
+  navBread.classList.add("visible");
+}
+
+// ── tree state snapshot / restore ────────────────────────────────────────────
+// Collapse a node and all descendants.
+function collapseAll(d){
+  if(d.children){ d._children=d.children; d.children=null; }
+  if(d._children) d._children.forEach(collapseAll);
+}
+
+// Fully expand a node and all descendants.
+function expandAll(d){
+  if(d._children){ d.children=d._children; d._children=null; }
+  if(d.children) d.children.forEach(expandAll);
+}
+
+// Save which nodes are currently collapsed (by id) so we can restore later.
+function saveSnapshot(){
+  const collapsed = new Set();
+  root.each(d => { if(d._children && !d.children) collapsed.add(d.id); });
+  return collapsed;
+}
+
+// Restore a saved snapshot — collapse exactly the nodes that were collapsed then.
+function restoreSnapshot(collapsed){
+  root.each(d => {
+    if(collapsed.has(d.id)){
+      if(d.children){ d._children=d.children; d.children=null; }
+    } else {
+      if(d._children){ d.children=d._children; d._children=null; }
+    }
+  });
+}
+
+// ── nav button factory ────────────────────────────────────────────────────────
+function makeNavBtn(child, parentData) {
+  const pal = child.pal;
+  const col = NAV_HOVER[pal] || "#475569";
+
+  const btn = document.createElement("button");
+  btn.className = "nav-btn";
+
+  const dot = document.createElement("span");
+  dot.className = "nav-dot";
+  dot.style.background = col;
+  btn.appendChild(dot);
+
+  const lbl = document.createElement("span");
+  lbl.textContent = child.label;
+  btn.appendChild(lbl);
+
+  btn.addEventListener("mouseenter", () => {
+    btn.style.borderColor = col;
+    btn.style.color = col;
+    btn.style.boxShadow = `0 2px 16px ${col}26`;
+  });
+  btn.addEventListener("mouseleave", () => {
+    btn.style.borderColor = "";
+    btn.style.color = "";
+    btn.style.boxShadow = "";
+  });
+
+  btn.addEventListener("click", () => {
+    const d3n = findD3(child);
+    if (!d3n) return;
+
+    // snapshot BEFORE we change anything so back can restore it
+    const snapshot = saveSnapshot();
+
+    // get the live siblings of this node (children of the same parent)
+    const d3parent = d3n.parent;
+    const siblings = d3parent ? (d3parent.children || d3parent._children || []) : [];
+
+    // collapse every sibling's subtree, fully expand the clicked one
+    siblings.forEach(sib => { if (sib !== d3n) collapseAll(sib); });
+    expandAll(d3n);
+
+    update(root);
+
+    // drill down if this node has children
+    const hasKidsNow = d3n.children || d3n._children;
+    if (hasKidsNow) {
+      navStack.push({ parentData, snapshot });
+      navCurrent = child;
+      renderNavButtons(child);
+    }
+  });
+
+  return btn;
+}
+
+function renderNavButtons(parentData) {
+  // read children from the live D3 node — parentData may be collapsed
+  const d3parent = findD3(parentData);
+  const kids = d3parent
+    ? (d3parent.children || d3parent._children || []).map(n => n.data)
+    : (parentData.children || []);
+
+  Array.from(navRow.querySelectorAll(".nav-btn")).forEach(b => b.remove());
+  navBack.style.display = navStack.length > 0 ? "inline-flex" : "none";
+  buildBreadcrumb();
+
+  kids.forEach((child, i) => {
+    const btn = makeNavBtn(child, parentData);
+    btn.style.animationDelay = `${i * 20}ms`;
+    navRow.appendChild(btn);
+  });
+}
+
+navBack.addEventListener("click", () => {
+  if (!navStack.length) return;
+  const { parentData, snapshot } = navStack.pop();
+  navCurrent = parentData;
+  // restore the tree to exactly what it looked like before the drill
+  restoreSnapshot(snapshot);
+  update(root);
+  renderNavButtons(parentData);
+});
+
+// ═══════════════════════════════════════════════════════════════
+// RESIZE + INIT
+// ═══════════════════════════════════════════════════════════════
+function resize(){
+  svgEl.attr("width", canvasWrap.clientWidth)
+       .attr("height", canvasWrap.clientHeight);
+}
+window.addEventListener("resize", ()=>{ resize(); fitView(200); });
+resize();
+
+// Init: expand all → fit (instant, records geometry) → animate to 75%
+let _suppressAutoFit = true;   // block update()'s depth-change fitView during init
+root.each(d => { if(d._children){ d.children=d._children; d._children=null; } });
+update(root);
+renderNavButtons(DATA);
+setTimeout(() => {
+  fitView(0);            // instant: records _fitScale, _bbWidth, _rootSvgLeft
+  _suppressAutoFit = false;
+  applyZoom(0.75, 400);  // animate to 75%
+}, 300);
+</script>
+</body>
+</html>
