@@ -122,14 +122,6 @@
           "pal": "desorb",
           "children": [
             {
-              "label": "Drop Humidity",
-              "pal": "desorb",
-              "children": [
-                { "label": "Release Vapor from Sorbent",   "pal": "leaf" },
-                { "label": "Concentrate Vapor in Chamber", "pal": "leaf" }
-              ]
-            },
-            {
               "label": "Supply Heat",
               "pal": "desorb",
               "children": [
