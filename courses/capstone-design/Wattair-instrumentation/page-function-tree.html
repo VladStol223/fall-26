@@ -402,8 +402,8 @@ const DATA = {
   children:[
     { label:"Maintain Reliable System", pal:"maint", children:[
       { label:"Seal / Close System", pal:"maint", children:[
-        { label:"Close Inlet Dampers",              pal:"leaf" },
-        { label:"Close Outlet Dampers",             pal:"leaf" },
+        { label:"Close Inlet",  pal:"leaf" },
+        { label:"Close Outlet", pal:"leaf" },
         { label:"Verify Seal Integrity",            pal:"leaf" },
         { label:"Fully Seal for Desorption Phase",  pal:"leaf" },
       ]},
@@ -512,7 +512,7 @@ const DATA = {
         { label:"Schedule / Time Cycle Duration",               pal:"leaf" },
       ]},
       { label:"Actuate Moving Components", pal:"auto", children:[
-        { label:"Open / Close Dampers",         pal:"leaf" },
+        { label:"Open / Close Inlet & Outlet",  pal:"leaf" },
         { label:"Start / Stop Fans",            pal:"leaf" },
         { label:"Enable / Disable Glycol Pump", pal:"leaf" },
         { label:"Trigger Heating Element",      pal:"leaf" },
@@ -1230,11 +1230,11 @@ const BRANCH_META = {
 // opts: [{label, notes}]
 const MORPH_DATA = [
   // ── Seal / Close ─────────────────────────────────────────────
-  { fn:'Close Inlet Dampers', branch:'Maintain Reliable System',
+  { fn:'Close Inlet', branch:'Maintain Reliable System',
     chosen:1,
     opts:[
       { label:'Manual butterfly valve',   notes:'Simple, no actuation needed' },
-      { label:'Servo-actuated damper',     notes:'Chosen — MCU-controllable, fast close for desorption phase' },
+      { label:'Servo-actuated',     notes:'Chosen — MCU-controllable, fast close for desorption phase' },
       { label:'Pneumatic actuator',        notes:'Requires compressed air source, overkill at this scale' },
     ]},
   { fn:'Verify Seal Integrity', branch:'Maintain Reliable System',
