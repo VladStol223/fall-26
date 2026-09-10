@@ -24,7 +24,11 @@ html,body{
   font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
   font-size:14px;overflow:hidden;
 }
-body{display:flex;flex-direction:column}
+body{overflow:hidden}
+#app{
+  display:flex;flex-direction:column;
+  height:100vh;overflow:hidden;
+}
 
 /* ── HEADER ── */
 header{
@@ -89,7 +93,85 @@ header{
 .hd-btn:active{transform:scale(0.96)}
 
 /* ── CANVAS ── */
-#canvas-wrap{flex:1;position:relative;overflow:hidden}
+#canvas-wrap{flex:1;min-height:0;position:relative;overflow:hidden;transition:flex .35s cubic-bezier(.4,0,.2,1)}
+#canvas-wrap.morph-open{flex:0 0 52vh}
+
+/* ── MORPH PANEL ── */
+#morph-panel{
+  flex-shrink:0;
+  height:0;overflow:hidden;
+  background:var(--surface);
+  transition:height .35s cubic-bezier(.4,0,.2,1);
+}
+#morph-panel.open{ height:calc(48vh - 1px); }
+
+#morph-divider{
+  flex-shrink:0;height:0;overflow:visible;position:relative;z-index:6;
+  cursor:ns-resize;display:none;
+}
+#morph-divider.visible{ display:block; }
+#morph-divider::before{
+  content:'';display:block;height:5px;margin-top:-2px;
+  background:var(--border);
+  transition:background .12s;
+}
+#morph-divider:hover::before,
+#morph-divider.dragging::before{ background:var(--blue); }
+#morph-divider::after{
+  content:'⋯';
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  font-size:12px;color:var(--text-dim);letter-spacing:2px;line-height:1;
+  pointer-events:none;
+}
+
+#morph-inner{
+  height:100%;overflow-y:auto;padding:16px 20px 24px;
+  display:flex;flex-direction:column;gap:12px;
+}
+#morph-inner::-webkit-scrollbar{width:6px}
+#morph-inner::-webkit-scrollbar-track{background:transparent}
+#morph-inner::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+#morph-header{
+  display:flex;align-items:baseline;gap:10px;flex-shrink:0;
+}
+#morph-header h2{
+  font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
+  color:var(--text-muted);margin:0;
+}
+#morph-header span{
+  font-size:10px;color:var(--text-dim);
+}
+
+#morph-table-wrap{overflow-x:auto;flex:1}
+#morph-table{
+  border-collapse:collapse;width:100%;min-width:600px;
+  font-size:11px;
+}
+#morph-table th{
+  text-align:left;padding:5px 10px;
+  font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  color:var(--text-dim);border-bottom:1px solid var(--border);
+  white-space:nowrap;position:sticky;top:0;background:var(--surface);
+}
+#morph-table td{
+  padding:5px 10px;border-bottom:1px solid rgba(30,45,61,.5);
+  vertical-align:top;line-height:1.45;
+}
+#morph-table tr:last-child td{border-bottom:none}
+#morph-table tr:hover td{background:rgba(255,255,255,.02)}
+.mc-fn{color:var(--text);font-weight:500}
+.mc-branch{
+  font-size:9.5px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;
+  padding:1px 5px;border-radius:3px;border:1px solid;
+  white-space:nowrap;
+}
+.mc-opt{color:var(--text-muted)}
+#morph-empty{
+  color:var(--text-dim);font-size:12px;padding:24px 0;text-align:center;
+}
+
+#btn-morph.active{border-color:var(--purple);color:var(--purple)}
 svg#tree{width:100%;height:100%;display:block;cursor:ns-resize}
 svg#tree:active{cursor:ns-resize}
 
@@ -197,12 +279,13 @@ svg#tree:active{cursor:ns-resize}
 </head>
 <body>
 
-<div style="display:flex;flex-direction:column;height:100%">
+<div id="app">
   <header>
     <div class="title-block">
       <h1>WattAir — Function Tree</h1>
       <p>click node to expand · scroll to pan · ctrl+scroll to zoom</p>
     </div>
+    <button class="hd-btn" id="btn-morph">Morph Chart</button>
     <div id="search-wrap">
       <input id="search" type="text" placeholder="search functions…" autocomplete="off">
       <button id="search-clear">×</button>
@@ -227,6 +310,31 @@ svg#tree:active{cursor:ns-resize}
         <div id="nav-row">
           <button id="nav-back">←</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="morph-divider"></div>
+  <div id="morph-panel">
+    <div id="morph-inner">
+      <div id="morph-header">
+        <h2>Morphological Chart</h2>
+        <span id="morph-filter-label">showing all visible leaf functions</span>
+      </div>
+      <div id="morph-table-wrap">
+        <table id="morph-table">
+          <thead>
+            <tr>
+              <th style="width:20%">Function</th>
+              <th style="width:10%">Branch</th>
+              <th style="width:23%">Option A</th>
+              <th style="width:23%">Option B</th>
+              <th style="width:23%">Option C</th>
+            </tr>
+          </thead>
+          <tbody id="morph-tbody"></tbody>
+        </table>
+        <div id="morph-empty" style="display:none">No leaf functions visible — expand nodes above to populate.</div>
       </div>
     </div>
   </div>
@@ -436,6 +544,13 @@ const DATA = {
     ]},
   ]
 };
+
+// ── morph panel state — declared here so update() can safely call renderMorph() ──
+let _morphOpen = false;
+const morphPanel  = document.getElementById('morph-panel');
+const morphTbody  = document.getElementById('morph-tbody');
+const morphEmpty  = document.getElementById('morph-empty');
+const morphLabel  = document.getElementById('morph-filter-label');
 
 // ── unpack CFG into locals so the rest of the code is unchanged ──
 const NW             = CFG.NW;
@@ -781,6 +896,7 @@ function update(source, instant=false){
   nodes.forEach(d => { d.x0 = d.x; d.y0 = d.y; });
 
   applySearch();
+  if (typeof renderMorph === 'function') renderMorph();
 
   // Only rescale when the maximum visible depth changes — that's when the
   // horizontal span actually changes. Pure expand/collapse within the same
@@ -1095,6 +1211,393 @@ setTimeout(() => {
   _suppressAutoFit = false;
   applyZoom(0.75, 400);  // animate to 75%
 }, 300);
+// ═══════════════════════════════════════════════════════════════
+// MORPHOLOGICAL CHART
+// ═══════════════════════════════════════════════════════════════
+
+// Branch metadata for colour-coding the branch pill
+const BRANCH_META = {
+  'Maintain Reliable System':        { label:'Maintain',  stroke:'#3b82f6', fill:'#0d1a2e' },
+  'Make Water':                      { label:'Make Water',stroke:'#4ade80', fill:'#0d2010' },
+  'Absorb Water':                    { label:'Absorb',    stroke:'#22c55e', fill:'#081a10' },
+  'Desorb Water':                    { label:'Desorb',    stroke:'#f97316', fill:'#271200' },
+  'Condense Water':                  { label:'Condense',  stroke:'#22d3ee', fill:'#021c22' },
+  'Collect & Store Water':           { label:'Store',     stroke:'#eab308', fill:'#1c1400' },
+  'Automate Water-Making Process':   { label:'Automate',  stroke:'#a855f7', fill:'#1a0a2e' },
+};
+
+// Each entry: fn (leaf label), branch (parent branch label), chosen (index into opts, or null),
+// opts: [{label, notes}]
+const MORPH_DATA = [
+  // ── Seal / Close ─────────────────────────────────────────────
+  { fn:'Close Inlet Dampers', branch:'Maintain Reliable System',
+    chosen:1,
+    opts:[
+      { label:'Manual butterfly valve',   notes:'Simple, no actuation needed' },
+      { label:'Servo-actuated damper',     notes:'Chosen — MCU-controllable, fast close for desorption phase' },
+      { label:'Pneumatic actuator',        notes:'Requires compressed air source, overkill at this scale' },
+    ]},
+  { fn:'Verify Seal Integrity', branch:'Maintain Reliable System',
+    chosen:0,
+    opts:[
+      { label:'Pressure hold test (ΔP decay)', notes:'Chosen — pressurize chamber, watch for drop over 30s' },
+      { label:'Visual / manual inspection',     notes:'Not automatable' },
+      { label:'Smoke / tracer gas test',         notes:'One-time commissioning only' },
+    ]},
+
+  // ── Monitor Performance ───────────────────────────────────────
+  { fn:'Track Daily Water Yield', branch:'Maintain Reliable System',
+    chosen:0,
+    opts:[
+      { label:'Load cell under collection tank',  notes:'Chosen — continuous gravimetric, ±1g resolution' },
+      { label:'Ultrasonic level sensor',           notes:'Less accurate for small volumes' },
+      { label:'Tipping bucket flow meter',         notes:'Suited to drip rates, adds plumbing complexity' },
+    ]},
+  { fn:'Compute η_AWH & SEC', branch:'Maintain Reliable System',
+    chosen:0,
+    opts:[
+      { label:'Teensy onboard calculation',   notes:'Chosen — real-time, logged each cycle' },
+      { label:'Post-process in Python/MATLAB', notes:'Offline only, no live dashboard' },
+    ]},
+
+  // ── House Components ──────────────────────────────────────────
+  { fn:'Insulate Enclosure', branch:'Maintain Reliable System',
+    chosen:0,
+    opts:[
+      { label:'Foam board panels (XPS)',      notes:'Chosen — lightweight, R-5/inch, easy to cut to 80/20 frame' },
+      { label:'Spray foam in-place',           notes:'Not removable for maintenance' },
+      { label:'Vacuum insulation panels',      notes:'Fragile, expensive' },
+    ]},
+  { fn:'Enable Mobility (Wheeled Base)', branch:'Maintain Reliable System',
+    chosen:0,
+    opts:[
+      { label:'Locking swivel casters on 80/20 base', notes:'Chosen — standard hardware, locks in place during operation' },
+      { label:'Fixed feet + hand truck for moves',     notes:'Not truly mobile' },
+    ]},
+
+  // ── Operational Safety ────────────────────────────────────────
+  { fn:'Relieve Excess Pressure', branch:'Maintain Reliable System',
+    chosen:0,
+    opts:[
+      { label:'Spring-loaded PRV set at 15 psi',  notes:'Chosen — passive, no power needed, ASME-rated' },
+      { label:'Rupture disc',                      notes:'Single-use, not resettable' },
+      { label:'Software vent valve',               notes:'Needs power; PRV remains as backup' },
+    ]},
+  { fn:'Detect Fault Condition', branch:'Maintain Reliable System',
+    chosen:1,
+    opts:[
+      { label:'Threshold polling in FSM loop',       notes:'Simple, already in Teensy loop cadence' },
+      { label:'Interrupt-driven on analog comparator',notes:'Chosen — faster response for pressure/temp spikes, no poll delay' },
+      { label:'Model-based anomaly detection (ML)',   notes:'Overkill at prototype stage' },
+    ]},
+  { fn:'Trigger Safety Shutdown', branch:'Maintain Reliable System',
+    chosen:0,
+    opts:[
+      { label:'FSM → FAULT state, cut all actuators via relay', notes:'Chosen — single relay kills heater + pumps + fans simultaneously' },
+      { label:'Individual software disable per actuator',        notes:'Slower, risk of partial shutdown' },
+    ]},
+  { fn:'Alert Operator', branch:'Maintain Reliable System',
+    chosen:0,
+    opts:[
+      { label:'Serial + dashboard fault banner',  notes:'Chosen — visible on laptop monitoring session' },
+      { label:'Piezo buzzer',                      notes:'Useful addition for unattended operation' },
+      { label:'SMS / email via ESP32 WiFi',         notes:'Future enhancement' },
+    ]},
+
+  // ── Monitor System Health ─────────────────────────────────────
+  { fn:'Store Telemetry Data from Sensors', branch:'Maintain Reliable System',
+    chosen:0,
+    opts:[
+      { label:'SD card on Teensy 4.1 (onboard slot)', notes:'Chosen — 1Hz logging, CSV format' },
+      { label:'EEPROM ring buffer',                    notes:'Very limited capacity (~4KB)' },
+      { label:'Push to cloud via WiFi',                notes:'Requires connectivity, future work' },
+    ]},
+  { fn:'Calibrate Sensors', branch:'Maintain Reliable System',
+    chosen:1,
+    opts:[
+      { label:'Factory NIST-traceable cert at purchase',   notes:'One-time, degrades over time' },
+      { label:'In-situ 2-point cal (ice bath + boiling)',  notes:'Chosen — temp sensors; periodic before test runs' },
+      { label:'Auto-zeroing reference circuit',             notes:'Possible for pressure; not yet implemented' },
+    ]},
+
+  // ── Absorb Water ─────────────────────────────────────────────
+  { fn:'Filter Particulates', branch:'Absorb Water',
+    chosen:0,
+    opts:[
+      { label:'MERV-8 pleated air filter at inlet', notes:'Chosen — balances airflow resistance and dust capture' },
+      { label:'HEPA filter',                         notes:'Too restrictive for fan-driven system' },
+      { label:'Coarse mesh only',                    notes:'Insufficient for sorbent protection' },
+    ]},
+  { fn:'Drive Inlet Fan(s)', branch:'Absorb Water',
+    chosen:1,
+    opts:[
+      { label:'Centrifugal blower',         notes:'Higher static pressure, bulkier' },
+      { label:'Axial DC fan (PWM-controlled)',notes:'Chosen — compact, variable speed via Teensy PWM' },
+      { label:'Cross-flow fan',              notes:'Thin profile, lower efficiency' },
+    ]},
+  { fn:'Control Flow Velocity u_avg', branch:'Absorb Water',
+    chosen:0,
+    opts:[
+      { label:'PWM fan speed → velocity lookup table', notes:'Chosen — pre-characterised curve, no extra sensor needed' },
+      { label:'Anemometer closed-loop PID',             notes:'More accurate but adds sensor + complexity' },
+    ]},
+  { fn:'Manage Pressure Drop ΔP', branch:'Absorb Water',
+    chosen:0,
+    opts:[
+      { label:'Differential pressure transducer across HX', notes:'Chosen — monitors filter loading and bed saturation' },
+      { label:'Fixed design margin (no active monitoring)',   notes:'No early warning of blockage' },
+    ]},
+
+  // ── Desorb Water ─────────────────────────────────────────────
+  { fn:'Circulate Glycol Loop', branch:'Desorb Water',
+    chosen:0,
+    opts:[
+      { label:'Gear pump (12V DC)',         notes:'Chosen — consistent flow, easily controlled' },
+      { label:'Peristaltic pump',           notes:'Easy to prime, lower max pressure' },
+      { label:'Centrifugal pump',           notes:'Flow-dependent head, less suited to small loops' },
+    ]},
+  { fn:'Activate Heating Element', branch:'Desorb Water',
+    chosen:0,
+    opts:[
+      { label:'Cartridge heater in glycol reservoir', notes:'Chosen — direct glycol heating, fast ramp' },
+      { label:'PTC self-regulating heater',            notes:'Simpler control, lower max temp ceiling' },
+      { label:'Heat pump / heat exchanger',             notes:'Higher COP but complex for prototype' },
+    ]},
+  { fn:'Ramp to T_des (65 °C)', branch:'Desorb Water',
+    chosen:0,
+    opts:[
+      { label:'PID on glycol supply temp (Teensy)',  notes:'Chosen — ±1°C steady-state, tuned experimentally' },
+      { label:'On/off bang-bang control',             notes:'Simple but causes temperature oscillation' },
+      { label:'Feedforward + PID cascade',            notes:'Better for fast ramp, future refinement' },
+    ]},
+
+  // ── Condense Water ────────────────────────────────────────────
+  { fn:'Drive Condenser Fan', branch:'Condense Water',
+    chosen:0,
+    opts:[
+      { label:'Axial DC fan on condenser coil', notes:'Chosen — forced convection rejection to ambient' },
+      { label:'Passive natural convection',      notes:'Insufficient at target heat load' },
+    ]},
+  { fn:'Operate Chiller / Refrigeration Unit', branch:'Condense Water',
+    chosen:0,
+    opts:[
+      { label:'Vapour-compression mini chiller (R134a)', notes:'Chosen — reaches dew point reliably at high ambient RH' },
+      { label:'Peltier TEC cooler',                       notes:'Low COP, limited cooling capacity' },
+      { label:'Passive radiative cooling surface',         notes:'Insufficient for controlled condensation' },
+    ]},
+  { fn:'Prevent Sorbent Carryover into Water', branch:'Condense Water',
+    chosen:0,
+    opts:[
+      { label:'Stainless mesh demister pad at condenser inlet', notes:'Chosen — captures droplets/particles before coil' },
+      { label:'Gravity separator / knockout pot',                notes:'Adds volume, works passively' },
+    ]},
+
+  // ── Collect & Store ───────────────────────────────────────────
+  { fn:'Verify Water Purity', branch:'Collect & Store Water',
+    chosen:0,
+    opts:[
+      { label:'Inline TDS/conductivity sensor',  notes:'Chosen — continuous, flags abnormal mineral content' },
+      { label:'pH probe',                         notes:'Complementary, not standalone' },
+      { label:'Lab analysis (periodic)',           notes:'Ground truth but not real-time' },
+    ]},
+  { fn:'Remove Harmful Contaminants', branch:'Collect & Store Water',
+    chosen:0,
+    opts:[
+      { label:'Activated carbon inline filter',   notes:'Chosen — removes VOCs and residual glycol traces' },
+      { label:'UV sterilisation lamp',             notes:'Kills biologicals; add if storing >24h' },
+      { label:'Reverse osmosis membrane',          notes:'Overkill for distilled-equivalent condensate' },
+    ]},
+  { fn:'Ensure Sufficient Tank Capacity', branch:'Collect & Store Water',
+    chosen:0,
+    opts:[
+      { label:'5L polypropylene food-safe tank',  notes:'Chosen — target 1L/day × 3-day buffer + margin' },
+      { label:'Expandable bladder tank',           notes:'Variable volume, harder to instrument' },
+    ]},
+  { fn:'Dispense Water for Use', branch:'Collect & Store Water',
+    chosen:0,
+    opts:[
+      { label:'Gravity drain valve (manual)',     notes:'Chosen — simple, no pump needed, lab use context' },
+      { label:'12V solenoid valve + tap',          notes:'Automatable dispensing, adds cost' },
+      { label:'Peristaltic pump',                  notes:'Metered dispensing for future dosing application' },
+    ]},
+
+  // ── Automate ─────────────────────────────────────────────────
+  { fn:'Convert / Regulate Voltage', branch:'Automate Water-Making Process',
+    chosen:0,
+    opts:[
+      { label:'24V DIN rail PSU → buck converters per rail', notes:'Chosen — 24V→12V, 12V→5V, 5V→3.3V staged' },
+      { label:'Multiple wall-wart supplies',                  notes:'Messy, no single cut-off' },
+      { label:'LiPo battery pack + BMS',                      notes:'Enables off-grid, future option' },
+    ]},
+  { fn:'Protect Against Faults / OCP', branch:'Automate Water-Making Process',
+    chosen:0,
+    opts:[
+      { label:'Blade fuse per subsystem rail',  notes:'Chosen — cheap, replaceable, appropriate for prototype' },
+      { label:'Electronic PTC resettable fuse', notes:'Auto-reset, less obvious fault indication' },
+      { label:'MCU current sensing + software cutoff', notes:'Software layer on top of hardware fuse' },
+    ]},
+  { fn:'Run Pre-Cycle Purge & Check', branch:'Automate Water-Making Process',
+    chosen:0,
+    opts:[
+      { label:'FSM INIT state: check all sensors read, actuators respond', notes:'Chosen — 10s self-check before ARM' },
+      { label:'Manual checklist',                                           notes:'Not automatable' },
+    ]},
+  { fn:'Verify Actuator Readiness', branch:'Automate Water-Making Process',
+    chosen:0,
+    opts:[
+      { label:'Command + encoder/position feedback loop', notes:'Chosen — damper servo position confirm before proceeding' },
+      { label:'Time-based assume-complete',                notes:'Simple but no confirmation of actual movement' },
+    ]},
+  { fn:'Coordinate Actuator Response to Sensor State', branch:'Automate Water-Making Process',
+    chosen:0,
+    opts:[
+      { label:'Finite State Machine (FSM) on Teensy',     notes:'Chosen — deterministic, easy to trace/debug' },
+      { label:'Rule-based expert system',                  notes:'More flexible but harder to verify' },
+      { label:'PLC ladder logic',                          notes:'Industrial standard, not needed at this scale' },
+    ]},
+  { fn:'Accept Start / Stop Command', branch:'Automate Water-Making Process',
+    chosen:0,
+    opts:[
+      { label:'Physical push button + serial command',   notes:'Chosen — both physical and software start/stop' },
+      { label:'Web UI via ESP32',                         notes:'Remote control, future enhancement' },
+    ]},
+  { fn:'Log & Export Cycle Data', branch:'Automate Water-Making Process',
+    chosen:0,
+    opts:[
+      { label:'SD card CSV + USB serial stream', notes:'Chosen — SD for persistence, serial for live monitoring' },
+      { label:'InfluxDB + Grafana dashboard',     notes:'Rich visualisation, requires network infra' },
+    ]},
+];
+
+// ── build a flat Set of currently-visible leaf labels ─────────────────────────
+function visibleLeafLabels() {
+  const s = new Set();
+  root.each(d => {
+    if (d.data.pal === 'leaf' && d.parent && d.parent.children) {
+      s.add(d.data.label);
+    }
+  });
+  return s;
+}
+
+// ── resolve branch color from BRANCH_META or walk ancestor ───────────────────
+function branchMeta(fn, branchLabel) {
+  if (BRANCH_META[branchLabel]) return BRANCH_META[branchLabel];
+  // fallback: walk root to find fn, take first non-leaf non-root ancestor
+  let found = null;
+  root.each(d => { if (d.data.label === fn) found = d; });
+  if (found) {
+    let a = found.parent;
+    while (a && (a.data.pal === 'leaf' || a.data.pal === 'root')) a = a.parent;
+    if (a && BRANCH_META[a.data.label]) return BRANCH_META[a.data.label];
+  }
+  return { label: branchLabel, stroke:'#475569', fill:'#0b0f1a' };
+}
+
+// ── render / re-render the morph table ───────────────────────────────────────
+function renderMorph() {
+  if (!_morphOpen) return;
+  const visible = visibleLeafLabels();
+  const rows = MORPH_DATA.filter(r => visible.has(r.fn));
+
+  morphEmpty.style.display = rows.length === 0 ? 'block' : 'none';
+  morphTbody.innerHTML = '';
+
+  const total = MORPH_DATA.length;
+  morphLabel.textContent = rows.length === total
+    ? `showing all ${total} leaf functions`
+    : `filtered to ${rows.length} of ${total} visible leaf functions`;
+
+  rows.forEach(row => {
+    const meta = branchMeta(row.fn, row.branch);
+    const tr   = document.createElement('tr');
+
+    // Function name
+    const tdFn = document.createElement('td');
+    tdFn.innerHTML = `<span class="mc-fn">${row.fn}</span>`;
+    tr.appendChild(tdFn);
+
+    // Branch pill
+    const tdBr = document.createElement('td');
+    const pill = document.createElement('span');
+    pill.className = 'mc-branch';
+    pill.style.color       = meta.stroke;
+    pill.style.borderColor = meta.stroke;
+    pill.style.background  = meta.fill;
+    pill.textContent = meta.label;
+    tdBr.appendChild(pill);
+    tr.appendChild(tdBr);
+
+    // Option A, B, C — one cell each
+    for (let i = 0; i < 3; i++) {
+      const td = document.createElement('td');
+      if (row.opts[i]) {
+        td.innerHTML = `<span class="mc-opt">${row.opts[i].label}</span>`;
+      }
+      tr.appendChild(td);
+    }
+
+    morphTbody.appendChild(tr);
+  });
+}
+
+// ── toggle ────────────────────────────────────────────────────────────────────
+const morphDivider = document.getElementById('morph-divider');
+
+document.getElementById('btn-morph').addEventListener('click', () => {
+  _morphOpen = !_morphOpen;
+  morphPanel.classList.toggle('open', _morphOpen);
+  canvasWrap.classList.toggle('morph-open', _morphOpen);
+  morphDivider.classList.toggle('visible', _morphOpen);
+  document.getElementById('btn-morph').classList.toggle('active', _morphOpen);
+  if (_morphOpen) renderMorph();
+});
+
+// ── draggable divider ─────────────────────────────────────────────────────────
+(function(){
+  let dragging = false, startY = 0, startCH = 0, startPH = 0;
+  const appEl   = document.getElementById('app');
+
+  morphDivider.addEventListener('mousedown', e => {
+    if (!_morphOpen) return;
+    e.preventDefault();
+    dragging = true;
+    startY   = e.clientY;
+    startCH  = canvasWrap.offsetHeight;
+    startPH  = morphPanel.offsetHeight;
+    morphDivider.classList.add('dragging');
+    document.body.style.userSelect = 'none';
+    document.body.style.cursor     = 'ns-resize';
+  });
+
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    const dy      = e.clientY - startY;   // drag down = positive = more canvas, less panel
+    const headerH = document.querySelector('header').offsetHeight;
+    const divH    = morphDivider.offsetHeight || 5;
+    const total   = appEl.offsetHeight - headerH - divH;
+    const minCH   = 80;
+    const minPH   = 60;
+    const newCH   = Math.min(total - minPH, Math.max(minCH, startCH + dy));
+    const newPH   = total - newCH;
+    // override both with explicit heights, bypassing flex
+    canvasWrap.style.transition = 'none';
+    canvasWrap.style.flex       = `0 0 ${newCH}px`;
+    morphPanel.style.transition = 'none';
+    morphPanel.style.height     = `${newPH}px`;
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    morphDivider.classList.remove('dragging');
+    document.body.style.userSelect = '';
+    document.body.style.cursor     = '';
+    // re-enable transitions
+    canvasWrap.style.transition    = '';
+    morphPanel.style.transition    = '';
+  });
+})();
 </script>
 </body>
 </html>
