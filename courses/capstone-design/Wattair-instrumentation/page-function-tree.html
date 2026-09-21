@@ -416,17 +416,19 @@ const DATA = {
         { label:"Supply Heat for Desorption", pal:"leaf" },
       ]},
       { label:"Condense Water", pal:"cond", children:[
-        { label:"Condense Vapor to Water", pal:"leaf" },
-        { label:"Collect & Filter Water",  pal:"leaf" },
+        { label:"Condense Vapor to Water",     pal:"leaf" },
+        { label:"Prevent Sorbent Carryover",   pal:"leaf" },
       ]},
     ]},
     { label:"Collect & Store Water", pal:"store", children:[
-      { label:"Purify & Store Water", pal:"leaf" },
+      { label:"Filter & Purify Water",        pal:"leaf" },
+      { label:"Collect Usable Water Output",  pal:"leaf" },
     ]},
     { label:"Automate Water-Making Process", pal:"auto", children:[
-      { label:"Supply & Protect Power",  pal:"leaf" },
-      { label:"Control Cycle",           pal:"leaf" },
-      { label:"Actuate Components",     pal:"leaf" },
+      { label:"Supply & Protect Power",       pal:"leaf" },
+      { label:"Control Cycle",                pal:"leaf" },
+      { label:"Actuate Components",           pal:"leaf" },
+      { label:"Reset Device to Start State",  pal:"leaf" },
       { label:"Read Live Data", pal:"sense", children:[
         { label:"Read Process Signals", pal:"leaf" },
         { label:"Read Temperatures",    pal:"leaf" },
@@ -1191,21 +1193,28 @@ const MORPH_DATA = [
       { label:'Thermoelectric (Peltier) cooler',                               notes:'No moving parts; low coefficient of performance at required heat load' },
       { label:'Passive radiative cooling surface',                              notes:'No energy input; insufficient cooling rate for target condensation' },
     ]},
-  { fn:'Collect & Filter Water', branch:'Condense Water',
+  { fn:'Prevent Sorbent Carryover', branch:'Condense Water',
     chosen:0,
     opts:[
-      { label:'Mesh demister + gravity drain to tank + gravimetric volume measurement', notes:'Chosen — passively captures particulate carryover; continuous yield measurement without inline flow restriction' },
-      { label:'Inertial separator + volumetric flow meter',                              notes:'Effective separation; adds hydraulic volume to condensate path' },
-      { label:'Inline turbine or ultrasonic flow meter only',                            notes:'Accurate at high flow rates; reduced accuracy at low condensate drip rates' },
+      { label:'Mesh demister / fiber pad at condenser inlet', notes:'Chosen — passively intercepts sorbent particles and droplets before they reach the collection vessel' },
+      { label:'Inertial knockout separator',                   notes:'Effective at higher flow velocities; adds hydraulic volume and a drain point' },
+      { label:'No separation — rely on gravity settling only', notes:'Simplest; insufficient at low condensate flow rates' },
     ]},
 
   // ── Collect & Store Water ─────────────────────────────────────
-  { fn:'Purify & Store Water', branch:'Collect & Store Water',
+  { fn:'Filter & Purify Water', branch:'Collect & Store Water',
     chosen:0,
     opts:[
-      { label:'Activated carbon filtration + conductivity monitoring + fixed-volume food-safe tank + gravity dispense', notes:'Chosen — removes trace organics, flags purity exceedances, sufficient buffer volume, simple dispensing' },
-      { label:'UV sterilisation + flexible storage vessel + automated dispense valve',                                   notes:'Superior biological inactivation; suited for longer storage durations' },
-      { label:'Reverse osmosis membrane + pressurised storage',                                                          notes:'Highest purity; unnecessary for distilled-equivalent atmospheric condensate' },
+      { label:'Activated carbon filtration + inline conductivity monitoring', notes:'Chosen — removes trace organics and residual particles; continuous purity flag without manual sampling' },
+      { label:'UV sterilisation stage',                                        notes:'Effective biological inactivation; complementary to chemical filtration for long storage' },
+      { label:'Reverse osmosis membrane',                                      notes:'Highest purity; unnecessary energy and complexity for distilled-equivalent condensate' },
+    ]},
+  { fn:'Collect Usable Water Output', branch:'Collect & Store Water',
+    chosen:0,
+    opts:[
+      { label:'Fixed-volume food-safe tank with gravity drain valve', notes:'Chosen — sufficient buffer capacity, simple dispensing, no pump required in lab context' },
+      { label:'Flexible bladder vessel with automated dispense valve', notes:'Variable volume; better for portable or space-constrained deployment' },
+      { label:'Pressurised tank with on-demand tap',                   notes:'Convenient dispensing; requires pressure regulation and safety relief' },
     ]},
 
   // ── Automate Water-Making Process ─────────────────────────────
@@ -1222,6 +1231,13 @@ const MORPH_DATA = [
       { label:'Microcontroller (e.g. ARM Cortex-M, AVR)', notes:'Chosen — real-time control, broad peripheral support, low power; runs cycle state machine and sensor polling' },
       { label:'Single-board computer (e.g. Raspberry Pi class)', notes:'Full OS, easy data logging and networking; higher boot time and power consumption' },
       { label:'Programmable logic controller (PLC)',             notes:'Industry-grade reliability and I/O; excess cost and form factor for prototype scale' },
+    ]},
+  { fn:'Reset Device to Start State', branch:'Automate Water-Making Process',
+    chosen:0,
+    opts:[
+      { label:'Active cooldown: run condenser loop until sorbent bed reaches ambient, then vent to equalize pressure', notes:'Chosen — confirmed thermal and pressure reset before next adsorption cycle; prevents carryover of desorption conditions' },
+      { label:'Timed passive cooldown — wait fixed interval before restarting',                                         notes:'Simpler; cycle time depends on ambient conditions; no confirmation of readiness' },
+      { label:'Sensor-gated restart — monitor bed temp and pressure, proceed when within threshold',                    notes:'Optimal use of cycle time; requires reliable real-time sensor feedback' },
     ]},
   { fn:'Actuate Components', branch:'Automate Water-Making Process',
     chosen:0,

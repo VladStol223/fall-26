@@ -36,8 +36,8 @@
           "label": "Condense Water",
           "pal": "cond",
           "children": [
-            { "label": "Condense Vapor to Water",  "pal": "leaf" },
-            { "label": "Collect & Filter Water",   "pal": "leaf" }
+            { "label": "Condense Vapor to Water",   "pal": "leaf" },
+            { "label": "Prevent Sorbent Carryover", "pal": "leaf" }
           ]
         }
       ]
@@ -46,16 +46,18 @@
       "label": "Collect & Store Water",
       "pal": "store",
       "children": [
-        { "label": "Purify & Store Water", "pal": "leaf" }
+        { "label": "Filter & Purify Water",       "pal": "leaf" },
+        { "label": "Collect Usable Water Output", "pal": "leaf" }
       ]
     },
     {
       "label": "Automate Water-Making Process",
       "pal": "auto",
       "children": [
-        { "label": "Supply & Protect Power",  "pal": "leaf" },
-        { "label": "Control Cycle",           "pal": "leaf" },
-        { "label": "Actuate Components",      "pal": "leaf" },
+        { "label": "Supply & Protect Power",      "pal": "leaf" },
+        { "label": "Control Cycle",               "pal": "leaf" },
+        { "label": "Actuate Components",          "pal": "leaf" },
+        { "label": "Reset Device to Start State", "pal": "leaf" },
         {
           "label": "Read Live Data",
           "pal": "sense",
