@@ -1,0 +1,262 @@
+{
+  "id": "gov-us-m1",
+  "course": "Government of the U.S.",
+  "courseColor": "blue",
+  "moduleNumber": 1,
+  "title": "Midterm 1 Study Guide",
+  "subtitle": "Civil Rights · Founding Documents · Constitution · Bill of Rights · Federalism",
+  "storagePrefix": "gov-m1",
+  "totalCards": 40,
+
+  "overview": {
+    "stats": [
+      { "value": "1787",    "label": "Year Constitution was drafted" },
+      { "value": "27",      "label": "Total constitutional amendments" },
+      { "value": "2/3 → 3/4", "label": "Amendment proposal → ratification" },
+      { "value": "1963",    "label": "Year of MLK's \"I Have a Dream\"" }
+    ],
+    "people": [
+      { "name": "Martin Luther King Jr.", "desc": "Civil rights leader who delivered the 'I Have a Dream' speech at the March on Washington (1963) and authored the 'Letter from Birmingham Jail' (1963) while imprisoned for protesting segregation." },
+      { "name": "James Madison", "desc": "Chief architect of the U.S. Constitution (Virginia Plan) and co-author of The Federalist Papers. Wrote Federalist #62 defending 9-year citizenship requirement for senators and the Senate's need for greater stability." },
+      { "name": "Alexander Hamilton", "desc": "Prominent Federalist and co-author of The Federalist Papers alongside Madison and John Jay. Championed strong central government." },
+      { "name": "George Mason", "desc": "Delegate who pushed to raise the age requirement for the House from 21 to 25, arguing people needed time to mature after gaining legal independence." },
+      { "name": "Henry, Mason & Samuel Adams", "desc": "Key Anti-Federalists who opposed the Constitution on grounds it was an illegal move and offered no protection for the states." },
+      { "name": "Thomas Jefferson", "desc": "Principal author of the Declaration of Independence. Committee of Five member alongside Adams, Franklin, Sherman, and Livingston." }
+    ],
+    "dates": [
+      { "year": "1754–1763",        "event": "French and Indian War — set conditions for colonial tensions with Britain" },
+      { "year": "1774",             "event": "First Continental Congress — responds to Intolerable/Coercive Acts; still loyal" },
+      { "year": "July 2, 1776",     "event": "Lee Resolution passed — declaring independence from British rule" },
+      { "year": "July 4, 1776",     "event": "Declaration of Independence signed (86 edits; slavery clause removed)" },
+      { "year": "Nov 1777",         "event": "Articles of Confederation approved by Continental Congress" },
+      { "year": "March 1781",       "event": "Articles of Confederation ratified (Maryland last to approve)" },
+      { "year": "May–Sep 1787",     "event": "Philadelphia Convention drafts the U.S. Constitution" },
+      { "year": "June 1788",        "event": "New Hampshire (9th state) ratifies — Constitution enters into force" },
+      { "year": "Dec 15, 1791",     "event": "Bill of Rights (Amendments 1–10) ratified" },
+      { "year": "1963",             "event": "MLK delivers 'I Have a Dream'; writes 'Letter from Birmingham Jail'" }
+    ],
+    "terms": [
+      { "term": "Coercive / Intolerable Acts",  "def": "Four punitive British laws (1774): Boston Port Act, Massachusetts Government Act, Administration of Justice Act, and Quartering Act. Drove colonies toward revolution." },
+      { "term": "Articles of Confederation",    "def": "First US governing document (1781–1789). Created a weak central government — no power to tax, no standing army, no regulation of commerce, unanimity required to amend." },
+      { "term": "Lee Resolution",               "def": "Passed July 2, 1776 by the Second Continental Congress — the formal vote to declare independence from Britain." },
+      { "term": "Great Compromise",             "def": "Connecticut delegates' deal: House seats based on population; Senate gives each state exactly 2 seats (equal representation)." },
+      { "term": "Federalists",                  "def": "Supporters of ratification: Hamilton, Madison, Jay authored The Federalist Papers to argue for the new Constitution." },
+      { "term": "Anti-Federalists",             "def": "Opponents of ratification — Henry, Mason, Samuel Adams — feared a powerful central government and wanted explicit protections for states and individuals." },
+      { "term": "Shays' Rebellion (1786–87)",   "def": "Armed uprising by indebted Massachusetts farmers. Exposed the weakness of the Articles government and accelerated the call for a new Constitution." },
+      { "term": "Supremacy Clause",             "def": "Article VI, Clause 2 — federal law, the Constitution, and treaties are the 'supreme Law of the Land,' overriding conflicting state laws." },
+      { "term": "Amendment Process",            "def": "2/3 of Congress (or 2/3 of state legislatures) must propose an amendment; 3/4 of states must ratify it." }
+    ]
+  },
+
+  "learn": [
+    {
+      "title": "1 — Civil Rights: 'I Have a Dream' & Key Phrases",
+      "body": "<p>On August 28, 1963, <mark>Martin Luther King Jr.</mark> delivered his '<mark>I Have a Dream</mark>' speech at the March on Washington. The professor specifically flagged five phrases that will be on the test. Know them word-for-word:</p><ul><li><em>\"I have a dream that my four little children will one day live in a nation where they will <mark>not be judged by the color of their skin but by the content of their character</mark>.\"</em></li><li><em>\"I have a dream that one day… the sons of former slaves and the sons of former slave owners will be able to <mark>sit down together at the table of brotherhood</mark>.\"</em></li><li><em>\"With this faith we will be able to <mark>hew out of the mountain of despair a stone of hope</mark>.\"</em></li><li><em>\"<mark>Let freedom ring</mark>\"</em> — called out from every state, with the professor specifically naming <mark>Georgia, Mississippi, and Alabama</mark>.</li><li><em>\"I have a dream that one day this nation will <mark>rise up and live out the true meaning of its creed</mark>.\"</em></li></ul><p>The speech's recurring themes are <mark>freedom, religion, children, and equality</mark>. The question format given in class: <em>\"which of the following phrases were cited as important to students of this class.\"</em></p>"
+    },
+    {
+      "title": "2 — 'Letter from Birmingham Jail' & Key Phrases",
+      "body": "<p>MLK wrote the '<mark>Letter from Birmingham Jail</mark>' in April 1963 after being arrested for protesting segregation. Birmingham ministers urged him to slow down; the letter was his response. The professor flagged these specific phrases for the test:</p><ul><li><em>\"We know through painful experience that <mark>freedom is never voluntarily given by the oppressor; it must be demanded by the oppressed</mark>.\"</em></li><li><em>\"<mark>Justice too long delayed is justice denied</mark>.\"</em></li><li><em>\"<mark>Funtown is closed to colored children</mark>\"</em> — used to illustrate the personal pain of segregation.</li><li><em>\"If I have said anything in this letter that is an understatement of the truth… <mark>may God forgive me</mark>.\"</em></li><li><em>\"This 'wait' has almost always meant <mark>never</mark>.\"</em></li><li><em>\"I guess it is easy for those who have never felt the stinging darts of segregation to say '<mark>wait</mark>.'\"</em></li></ul><p>The letter was directed at white moderates who agreed with civil rights goals but urged patience — MLK's core argument was that <mark>moderation and delay are themselves forms of injustice</mark>.</p>"
+    },
+    {
+      "title": "3 — From Colonies to Revolution: Coercive Acts & Continental Congress",
+      "body": "<p>After the <mark>French and Indian War (1754–1763)</mark>, Britain imposed increasingly harsh measures on the colonies. The <mark>Coercive (Intolerable) Acts of 1774</mark> consisted of four laws:</p><ul><li><strong>Boston Port Act</strong> — Closed Boston Harbor until the East India Company was compensated for tea destroyed in the Boston Tea Party.</li><li><strong>Massachusetts Government Act</strong> — Altered the colonial charter, banned most town meetings, placed local government under direct royal control.</li><li><strong>Administration of Justice Act</strong> — Let royal officials accused of capital crimes be tried in Britain rather than locally (colonists called it the <mark>\"Murder Act\"</mark> because it gave soldiers practical impunity).</li><li><strong>Quartering Act (1774)</strong> — Empowered royal governors to find housing for British troops, including requisitioning private and unoccupied buildings.</li></ul><p>A fifth related law, the <mark>Quebec Act</mark>, extended freedom of worship to Catholics in Canada (relevant context for colonial fears). The <mark>First Continental Congress (1774)</mark> responded to these acts — not to fight, just to address grievances; the colonies were still formally loyal. <mark>Rhode Island</mark> refused to participate. The <mark>Second Continental Congress (1775)</mark> escalated: it created the Continental Army and eventually drafted the Declaration of Independence.</p>"
+    },
+    {
+      "title": "4 — Declaration of Independence & Articles of Confederation",
+      "body": "<p>The <mark>Second Continental Congress</mark> appointed a <mark>Committee of Five</mark> on June 10, 1776 to draft a declaration: <mark>John Adams, Thomas Jefferson, Benjamin Franklin, Roger Sherman, and Robert R. Livingston</mark>. Jefferson was the principal author. The <mark>Lee Resolution</mark> was passed on <mark>July 2, 1776</mark> — the formal vote declaring independence. The Declaration was signed on <mark>July 4, 1776</mark>.</p><p>The document went through <mark>86 edits</mark>. Two major cuts were made: (1) a <mark>slavery clause</mark> — removed because South Carolina and Georgia strongly opposed it; (2) <mark>inflammatory language about the British people</mark> (referring to Scots and mercenaries) — removed to keep the tone diplomatic. The Declaration reflected <mark>Lockean philosophy</mark>: governments derive legitimacy from the consent of the governed; citizens possess rights to <mark>\"Life, Liberty, and the pursuit of Happiness.\"</mark></p><p>In <mark>November 1777</mark>, Congress approved the <mark>Articles of Confederation</mark>. All 13 states had to ratify it; Maryland held out until <mark>March 1781</mark>. The Articles gave states near-total sovereignty and left the central government almost powerless.</p>"
+    },
+    {
+      "title": "5 — Failures of the Articles & Shays' Rebellion",
+      "body": "<p>The Articles of Confederation contained crippling structural weaknesses — this is a test topic. Key flaws:</p><ul><li>National government <mark>could not tax</mark> — had to beg states for funds or borrow from foreign governments.</li><li>No power to raise a <mark>standing army or navy</mark> — British forces stayed west of the Mississippi after the Revolution; pirates threatened American shipping.</li><li>Each state had its <mark>own currency</mark>, making interstate commerce nearly impossible. This is the exact example the professor used: <em>\"we're business people trying to operate a business where every state has their own currency, every state is negotiating deals with other countries.\"</em></li><li>No central <mark>judicial branch</mark>; each state had its own courts.</li><li>Amending the Articles required <mark>unanimous consent of all 13 states</mark>.</li><li>Passing laws required <mark>9 of 13 states</mark> to agree.</li></ul><p><mark>Shays' Rebellion (1786–1787)</mark> — a professor-flagged test question — was an armed uprising of indebted farmers in Massachusetts who could not pay taxes because of the economic chaos. It exposed how helpless the federal government was and was a direct catalyst for the Philadelphia Convention.</p>"
+    },
+    {
+      "title": "6 — The Philadelphia Convention & the Constitution",
+      "body": "<p>The Convention met in Philadelphia from <mark>May to September 1787</mark> — the professor specifically said to remember this date range. <mark>55 delegates</mark> attended; only <mark>12 of 13 states</mark> sent delegates — Rhode Island boycotted again. <mark>James Madison</mark> is called the <mark>\"Architect of the Constitution.\"</mark></p><p>Key debates resolved at the Convention:</p><ul><li><strong>Representation:</strong> The <mark>Great Compromise</mark> — House seats proportional to population (Virginia Plan), Senate gives every state 2 seats (New Jersey Plan). This gave small and large states a reason to accept the document.</li><li><strong>Slavery:</strong> The slavery clause from the Declaration was already removed. Southern states demanded slaves be counted for apportionment — the <mark>Three-Fifths Clause</mark> was the compromise.</li><li><strong>Age requirements:</strong> The <mark>House minimum age is 25</mark> (George Mason pushed to raise it from 21, arguing people needed to mature after gaining legal independence). The <mark>Senate minimum age is 30</mark>, with a <mark>9-year citizenship</mark> requirement (vs. 7 for House). Madison wrote in <mark>Federalist #62</mark> that the Senate required a <em>\"greater extent of information and stability of character\"</em> because it acts as a slower, more deliberate branch.</li></ul><p>The Constitution was ratified when <mark>New Hampshire</mark> (9th state) ratified in <mark>June 1788</mark>. It came into force on <mark>March 4, 1789</mark>.</p>"
+    },
+    {
+      "title": "7 — Federalists vs. Anti-Federalists",
+      "body": "<p>Ratification split the nation into two camps. Know who stood where — this is a flagged test question.</p><p><strong>Federalists</strong> — favored the new Constitution:</p><ul><li><mark>Alexander Hamilton, James Madison, John Jay</mark> — wrote the <mark>Federalist Papers</mark> under the pseudonym <em>Publius</em> to argue for ratification.</li><li>Believed a strong central government was necessary for national security and economic order.</li></ul><p><strong>Anti-Federalists</strong> — opposed ratification:</p><ul><li><mark>Patrick Henry, George Mason, Samuel Adams</mark></li><li>Two core objections: (1) the Convention exceeded its authority — it was an <mark>illegal move</mark> (they were only supposed to revise the Articles, not scrap them); (2) no protections for states or individual rights.</li><li>Their pressure led directly to the <mark>Bill of Rights</mark> being added as the price of ratification.</li></ul><p>Virginia and New York were crucial holdouts — both eventually ratified in <mark>June–July 1788</mark>, largely on the promise of a Bill of Rights.</p>"
+    },
+    {
+      "title": "8 — Bill of Rights & Amendment Process",
+      "body": "<p>The <mark>Amendment Process</mark> — a flagged test topic. An amendment must be:</p><ul><li><strong>Proposed</strong> by <mark>2/3 of both houses of Congress</mark> OR a constitutional convention called by 2/3 of state legislatures.</li><li><strong>Ratified</strong> by <mark>3/4 of state legislatures</mark> (38 of 50 today) or state ratification conventions.</li></ul><p>The Articles required <mark>unanimous consent</mark> to amend — it was never amended once.</p><p>Know all <mark>Bill of Rights (Amendments 1–10)</mark> by category:</p><ul><li><mark>1st Amendment</mark> — Rights of Conscience: freedom of religion, speech, press, assembly, petition.</li><li><mark>2nd Amendment</mark> — Right to bear arms (military/militia).</li><li><mark>3rd Amendment</mark> — No quartering soldiers in private homes.</li><li><mark>4th Amendment</mark> — Privacy and Property: no unreasonable searches and seizures.</li><li><mark>5th–8th Amendments</mark> — Fair Process and Rights of the Accused: grand jury, double jeopardy, self-incrimination, due process, just compensation (5th); speedy trial, jury, confrontation (6th); jury trial in civil cases (7th); no excessive bail or cruel/unusual punishment (8th).</li><li><mark>9th Amendment</mark> — Rights not listed are retained by the people.</li><li><mark>10th Amendment</mark> — Powers not given to the federal government are reserved to the states.</li></ul><p>Beyond the Bill of Rights, the amendments flagged for the test are: <mark>13th</mark> (abolished slavery), <mark>14th</mark> (equal citizenship/due process), <mark>15th</mark> (Black men's right to vote), <mark>17th</mark> (direct election of senators), <mark>19th</mark> (women's suffrage), <mark>22nd</mark> (two-term presidential limit), <mark>24th</mark> (no poll taxes), <mark>26th</mark> (voting age 18), <mark>27th</mark> (congressional pay).</p>"
+    },
+    {
+      "title": "9 — Federalism: Types and Constitutional Basis",
+      "body": "<p><strong>Federalism</strong> is a system where power is divided between the national government and the states. The Constitution establishes this through three key doctrines:</p><ul><li><mark>Enumerated powers</mark> (Article I, Section 8) — listed powers of Congress: tax, borrow money, coin money, regulate interstate commerce, raise armed forces, declare war.</li><li><mark>Reserved powers</mark> (10th Amendment) — all powers not given to the federal government belong to the states.</li><li><mark>Supremacy Clause</mark> (Article VI, Clause 2) — federal law and the Constitution override conflicting state law.</li></ul><p>Types of federalism the professor covered:</p><ul><li><mark>Dual Federalism</mark> — federal and state governments operate in distinct, separate spheres (post-Reconstruction era).</li><li><mark>Cooperative Federalism</mark> — governments coordinate (emerged during the Great Depression).</li><li><mark>New Federalism</mark> — Nixon/Reagan-era effort to restore power to the states via block grants.</li><li><mark>Competitive Federalism</mark> — federal and state policies conflict (immigration, voting rights).</li><li><mark>Nationalist Federalism</mark> — federal government drives state policy through ideology (Trump-era, 2016+).</li></ul><p>George Washington's original Cabinet set the template; today's key positions: <mark>Pete Hegseth</mark> (Defense), <mark>Marco Rubio</mark> (State), <mark>Scott Bessent</mark> (Treasury), <mark>Todd Blanche</mark> (AG), <mark>RFK Jr.</mark> (HHS).</p>"
+    }
+  ],
+
+  "anki": [
+    { "key": true, "q": "Name all five 'I Have a Dream' phrases the professor flagged for the test.", "a": "(1) Judged by content of character, not color of skin. (2) Sons of slaves and sons of slave owners sit at the table of brotherhood. (3) Hew out of the mountain of despair a stone of hope. (4) Let freedom ring from every state. (5) This nation will rise up and live out the true meaning of its creed." },
+    { "key": true, "q": "Which southern states did the professor specifically name when discussing 'Let freedom ring'?", "a": "Georgia, Mississippi, and Alabama." },
+    { "key": true, "q": "Name all six 'Letter from Birmingham Jail' phrases flagged for the test.", "a": "(1) Freedom is never voluntarily given by the oppressor; it must be demanded by the oppressed. (2) Justice too long delayed is justice denied. (3) Funtown is closed to colored children. (4) If I said anything that is an understatement of the truth, may God forgive me. (5) This 'wait' has almost always meant never. (6) Easy for those who have never felt the stinging darts of segregation to say 'wait.'" },
+    { "key": true, "q": "What is the 'Letter from Birmingham Jail' and why was it written?", "a": "Written by MLK in April 1963 while jailed for protesting segregation. It responded to white moderate ministers who urged him to slow down, arguing that delay and moderation are themselves forms of injustice." },
+    { "key": true, "q": "What are the four Coercive Acts of 1774?", "a": "Boston Port Act (closed harbor), Massachusetts Government Act (banned town meetings, royal control), Administration of Justice Act ('Murder Act' — royal officials tried in Britain), Quartering Act (housing for troops)." },
+    { "key": true, "q": "Who were the five members of the Committee that drafted the Declaration of Independence?", "a": "John Adams, Thomas Jefferson, Benjamin Franklin, Roger Sherman, and Robert R. Livingston." },
+    { "key": true, "q": "When was the Lee Resolution passed, and what did it do?", "a": "July 2, 1776 — it was the Second Continental Congress's formal vote to declare independence from British rule." },
+    { "key": true, "q": "Why was the slavery clause removed from the Declaration of Independence?", "a": "South Carolina and Georgia strongly opposed it; removing it was the price of Southern support for independence." },
+    { "key": true, "q": "List five key weaknesses of the Articles of Confederation.", "a": "(1) No power to tax. (2) No standing army or navy. (3) Each state had its own currency — interstate commerce was crippled. (4) Each state negotiated its own foreign trade deals. (5) Amendments required unanimous consent of all 13 states." },
+    { "key": true, "q": "What was Shays' Rebellion and why does it matter?", "a": "A 1786–87 armed uprising of indebted Massachusetts farmers. It exposed the Articles government's total inability to maintain order, directly accelerating the call for the Philadelphia Convention." },
+    { "key": true, "q": "What date range must you remember for the Philadelphia Convention?", "a": "May to September 1787." },
+    { "key": true, "q": "Why did the founders set the minimum age for the House at 25 and the Senate at 30?", "a": "George Mason argued people needed to mature after gaining legal independence, pushing the House age from 21 to 25. Madison wrote in Federalist #62 that the Senate required 'a greater extent of information and stability of character' as the slower, more deliberate chamber — hence age 30 and 9-year citizenship (vs. 7 for House)." },
+    { "key": true, "q": "Who were the major Federalists?", "a": "Alexander Hamilton, James Madison, and John Jay — co-authors of The Federalist Papers." },
+    { "key": true, "q": "Who were the major Anti-Federalists and what were their two objections?", "a": "Patrick Henry, George Mason, Samuel Adams. Objections: (1) the Convention illegally exceeded its mandate; (2) no protections for states or individual rights." },
+    { "key": true, "q": "What is the constitutional amendment process?", "a": "Proposed by 2/3 of both houses of Congress (or 2/3 of state legislatures calling a convention); ratified by 3/4 of state legislatures." },
+    { "key": true, "q": "What do the 1st Amendment rights of conscience cover?", "a": "Freedom of religion, speech, press, assembly, and petition." },
+    { "key": true, "q": "What do the 2nd and 3rd Amendments cover?", "a": "2nd: right to bear arms (militia/military). 3rd: no quartering of soldiers in private homes." },
+    { "key": true, "q": "What does the 4th Amendment protect?", "a": "Privacy and property — protection against unreasonable searches and seizures; requires warrants with probable cause." },
+    { "key": true, "q": "What rights do the 5th–8th Amendments collectively protect?", "a": "Fair process and rights of the accused: grand jury indictment, no double jeopardy, no self-incrimination, due process, just compensation (5th); speedy/public trial, jury, right to counsel (6th); civil jury trial (7th); no excessive bail or cruel/unusual punishment (8th)." },
+    { "key": true, "q": "What do the 13th, 14th, and 15th Amendments do?", "a": "13th: abolished slavery. 14th: equal citizenship and due process for all persons. 15th: right to vote cannot be denied based on race." },
+    { "q": "What does the 17th Amendment change?", "a": "Senators are now elected by direct popular vote rather than by state legislatures." },
+    { "q": "What does the 22nd Amendment do?", "a": "Limits the President to two terms in office." },
+    { "q": "What does the 24th Amendment abolish?", "a": "Poll taxes — fees required to vote in federal elections." },
+    { "q": "What does the 26th Amendment do?", "a": "Lowers the federal voting age to 18." },
+    { "q": "What is the 27th Amendment?", "a": "Congressional pay changes cannot take effect until after the next election (originally one of Madison's 12 proposed amendments in 1789)." },
+    { "q": "What was the Quebec Act and why is it relevant?", "a": "Extended freedom of worship to Catholics in Canada — relevant to colonial grievances and the context of the Coercive Acts of 1774." },
+    { "q": "What is the Great Compromise?", "a": "Roger Sherman's deal at the Philadelphia Convention: House representation based on state population (Virginia Plan); Senate gives each state 2 seats regardless of population (New Jersey Plan)." },
+    { "q": "What did the First Continental Congress do?", "a": "Met in 1774 in response to the Intolerable Acts. Colonies were still loyal — they addressed grievances and agreed to boycott British goods. Rhode Island refused to participate." },
+    { "q": "What did the Second Continental Congress do?", "a": "Created the Continental Army, petitioned the King, drafted the Declaration of Independence, and later approved the Articles of Confederation." },
+    { "q": "How many edits were made to the Declaration of Independence?", "a": "86 edits. Two major cuts: the slavery clause (opposed by SC and Georgia) and inflammatory language about the British people." },
+    { "q": "What is the Supremacy Clause?", "a": "Article VI, Clause 2 — the Constitution, federal laws, and treaties are the 'supreme Law of the Land,' overriding conflicting state laws." },
+    { "q": "What is the 10th Amendment?", "a": "Powers not delegated to the United States by the Constitution, nor prohibited to the states, are reserved to the states respectively, or to the people." },
+    { "q": "What is dual federalism?", "a": "A system where national and state governments operate with clearly distinct, separate jurisdictions (dominant after Reconstruction, pre-New Deal)." },
+    { "q": "What is cooperative federalism?", "a": "Federal and state governments coordinate to address national problems — emerged during the Great Depression when the federal government greatly expanded its role." },
+    { "q": "What is New Federalism?", "a": "Nixon and Reagan's effort to restore power to states, primarily by shifting funds to states as block grants so they could run their own programs." },
+    { "q": "Who is the current Secretary of Defense?", "a": "Pete Hegseth." },
+    { "q": "Who is the current Secretary of State?", "a": "Marco Rubio." },
+    { "q": "Who is the current Attorney General?", "a": "Todd Blanche." },
+    { "q": "What are the enumerated powers of Congress (Article I, Section 8)?", "a": "Collect taxes, borrow money, coin money, regulate interstate and foreign commerce, raise armed forces, declare war, establish federal courts." },
+    { "q": "How many states are needed to ratify the Constitution, and which was the 9th?", "a": "9 of 13. New Hampshire ratified in June 1788, putting it into force." }
+  ],
+
+  "quiz": [
+    {
+      "q": "Which of the following phrases from 'I Have a Dream' were cited as important to students in this class?",
+      "options": [
+        "My children will not be judged by the color of their skin but by the content of their character",
+        "Free at last, free at last, thank God Almighty we are free at last",
+        "From every mountainside, let freedom ring",
+        "We shall overcome"
+      ],
+      "correct": 0,
+      "explanation": "This is a direct professor-flagged quote. The 'Free at last' line and 'We shall overcome' were not among the five specifically called out. 'Let freedom ring from every mountainside' is close but the flagged version is 'Let freedom ring from every state.'"
+    },
+    {
+      "q": "From the 'Letter from Birmingham Jail,' which phrase captures MLK's response to ministers who told him to wait?",
+      "options": [
+        "Justice too long delayed is justice denied",
+        "I guess it is easy for those who have never felt the stinging darts of segregation to say 'wait'",
+        "Freedom is never voluntarily given by the oppressor",
+        "This 'wait' has almost always meant never"
+      ],
+      "correct": 1,
+      "explanation": "This phrase most directly addresses the ministers' call to wait — all four are flagged, but this one is the most explicit rebuttal to the 'be patient' argument."
+    },
+    {
+      "q": "Which of the Coercive Acts is sometimes called the 'Murder Act' and why?",
+      "options": [
+        "Boston Port Act — it strangled the city economically",
+        "Massachusetts Government Act — it killed local democracy",
+        "Administration of Justice Act — it let soldiers avoid local prosecution for capital crimes",
+        "Quartering Act — soldiers could be housed in homes against residents' will"
+      ],
+      "correct": 2,
+      "explanation": "The Administration of Justice Act allowed royal officials and soldiers accused of capital crimes to be tried in Britain, giving them practical immunity from colonial justice."
+    },
+    {
+      "q": "Why did the founders set the minimum age for U.S. senators at 30 rather than 25?",
+      "options": [
+        "The British Parliament required 30 for Lords",
+        "Madison wrote in Federalist #62 that the Senate required greater information and stability of character as the slower, more deliberate branch",
+        "George Mason argued 25 was still too young for any government position",
+        "The Constitution tied Senate age to property ownership requirements"
+      ],
+      "correct": 1,
+      "explanation": "Madison's Federalist #62 is the direct source. The Senate was designed as a slower, more deliberate check on the House — hence higher age (30) and longer citizenship requirement (9 years vs. 7)."
+    },
+    {
+      "q": "What were the two main objections of the Anti-Federalists?",
+      "options": [
+        "The President had too little power; the courts were too weak",
+        "The Convention was an illegal move, and there were no protections for states or individual rights",
+        "The Bill of Rights was too short; the Senate should be elected by the people",
+        "Slavery was not abolished; Rhode Island was not represented"
+      ],
+      "correct": 1,
+      "explanation": "Henry, Mason, and Adams argued the Convention exceeded its mandate (illegal move) and that the Constitution offered no explicit rights for states or individuals — which led directly to the Bill of Rights."
+    },
+    {
+      "q": "What is the correct constitutional amendment process?",
+      "options": [
+        "Proposed by simple majority of Congress; ratified by 2/3 of states",
+        "Proposed by 2/3 of Congress; ratified by 3/4 of states",
+        "Proposed by 3/4 of states; ratified by 2/3 of Congress",
+        "Proposed by the President; ratified by unanimous consent of states"
+      ],
+      "correct": 1,
+      "explanation": "2/3 to propose, 3/4 to ratify. This was deliberately harder than the Articles' unanimity requirement but achievable — the Articles were never amended because unanimity was impossible."
+    },
+    {
+      "q": "Which amendments are grouped as 'Fair Process and Rights of the Accused'?",
+      "options": [
+        "1st through 4th",
+        "2nd and 3rd",
+        "5th through 8th",
+        "9th and 10th"
+      ],
+      "correct": 2,
+      "explanation": "The 5th–8th Amendments collectively protect due process, self-incrimination, grand jury rights, speedy trial, right to counsel, and prohibit cruel/unusual punishment."
+    },
+    {
+      "q": "Shays' Rebellion is a test topic. What did it directly demonstrate?",
+      "options": [
+        "That the federal government had too much military power",
+        "That the Articles of Confederation government was powerless to maintain order",
+        "That slavery was economically unsustainable",
+        "That the states needed their own currencies to protect farmers"
+      ],
+      "correct": 1,
+      "explanation": "The federal government under the Articles could not raise troops to suppress the rebellion. This exposed the document's fatal weakness and accelerated the Philadelphia Convention."
+    },
+    {
+      "q": "Who were the three major Federalists who wrote The Federalist Papers?",
+      "options": [
+        "Patrick Henry, George Mason, Samuel Adams",
+        "Thomas Jefferson, Benjamin Franklin, John Adams",
+        "Alexander Hamilton, James Madison, John Jay",
+        "George Washington, James Madison, Roger Sherman"
+      ],
+      "correct": 2,
+      "explanation": "Hamilton, Madison, and Jay wrote 85 essays under the pseudonym 'Publius' to argue for ratification of the Constitution."
+    },
+    {
+      "q": "The Lee Resolution (July 2, 1776) was:",
+      "options": [
+        "The vote approving the Articles of Confederation",
+        "The Second Continental Congress's formal declaration of independence from British rule",
+        "The proposal to form the Continental Army",
+        "The document abolishing the slave trade after 1807"
+      ],
+      "correct": 1,
+      "explanation": "The Lee Resolution was the actual independence vote, passed July 2. July 4 is when the Declaration was signed — the Lee Resolution is the formal legal act of declaring independence."
+    },
+    {
+      "q": "How many edits were made to the Declaration of Independence, and what was the most significant cut?",
+      "options": [
+        "26 edits; the section about taxation was removed",
+        "86 edits; the slavery clause was removed because SC and Georgia opposed it",
+        "50 edits; the references to King George were softened",
+        "12 edits; the religious language was removed"
+      ],
+      "correct": 1,
+      "explanation": "86 edits total. The most significant cut was the slavery clause — South Carolina and Georgia threatened not to sign if it remained."
+    },
+    {
+      "q": "Which amendment abolished slavery?",
+      "options": ["13th", "14th", "15th", "17th"],
+      "correct": 0,
+      "explanation": "The 13th Amendment (1865) abolished slavery and involuntary servitude in the United States."
+    }
+  ]
+}
