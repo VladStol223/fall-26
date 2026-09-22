@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morph Chart - Solution Workflows</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    background: #ffffff;
+    color: #1e293b;
+    padding: 48px 40px 80px;
+  }
+  .page-title {
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin-bottom: 56px;
+  }
+  .group { margin-bottom: 64px; }
+  .group-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .diagrams-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: flex-start;
+  }
+  .diagram-title {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    padding-left: 2px;
+  }
+  svg { display: block; overflow: visible; }
+  .nl {
+    font-family: -apple-system,"Segoe UI",system-ui,sans-serif;
+    font-size: 9.5px; font-weight: 700;
+    text-anchor: middle; dominant-baseline: middle;
+    fill: #fff;
+  }
+  .nl-dk { fill: #1a3a1a; }
+  .nl-db { fill: #1e3a5f; }
+  .el {
+    font-family: -apple-system,"Segoe UI",system-ui,sans-serif;
+    font-size: 8.5px; font-weight: 700;
+    fill: #64748b; text-anchor: middle; dominant-baseline: middle;
+  }
+</style>
+</head>
+<body>
+
+<p class="page-title">Morph Chart - Solution Workflows</p>
+
+<!--
+  ICON SYSTEM
+  All icons use explicit white stroke/fill so they always show on coloured nodes.
+  Dark-node icons (yellow diamond) use dark colours explicitly.
+  Icons are 44×44 in each 120×80 node.
+  x_icon = NX + (120-44)/2 = NX+38
+  y_icon = NY + 5
+  label y = NY + 70
+  arrow mid-y = NY + 40
+-->
+<svg width="0" height="0" style="position:absolute">
+<defs>
+
+<!-- ── CHIP / MCU ── white on coloured bg -->
+<symbol id="ico-chip" viewBox="0 0 24 24">
+  <rect x="6" y="6" width="12" height="12" rx="1.5" fill="none" stroke="white" stroke-width="1.6"/>
+  <line x1="2" y1="9"  x2="6"  y2="9"  stroke="white" stroke-width="1.4"/>
+  <line x1="2" y1="12" x2="6"  y2="12" stroke="white" stroke-width="1.4"/>
+  <line x1="2" y1="15" x2="6"  y2="15" stroke="white" stroke-width="1.4"/>
+  <line x1="18" y1="9"  x2="22" y2="9"  stroke="white" stroke-width="1.4"/>
+  <line x1="18" y1="12" x2="22" y2="12" stroke="white" stroke-width="1.4"/>
+  <line x1="18" y1="15" x2="22" y2="15" stroke="white" stroke-width="1.4"/>
+  <line x1="9"  y1="2" x2="9"  y2="6"  stroke="white" stroke-width="1.4"/>
+  <line x1="12" y1="2" x2="12" y2="6"  stroke="white" stroke-width="1.4"/>
+  <line x1="15" y1="2" x2="15" y2="6"  stroke="white" stroke-width="1.4"/>
+  <line x1="9"  y1="18" x2="9"  y2="22" stroke="white" stroke-width="1.4"/>
+  <line x1="12" y1="18" x2="12" y2="22" stroke="white" stroke-width="1.4"/>
+  <line x1="15" y1="18" x2="15" y2="22" stroke="white" stroke-width="1.4"/>
+  <line x1="9"  y1="9"  x2="9"  y2="15" stroke="white" stroke-width="0.9" opacity="0.6"/>
+  <line x1="12" y1="9"  x2="12" y2="15" stroke="white" stroke-width="0.9" opacity="0.6"/>
+  <line x1="7"  y1="12" x2="17" y2="12" stroke="white" stroke-width="0.9" opacity="0.6"/>
+</symbol>
+
+<!-- ── SCALE / GRAVIMETRIC ── -->
+<symbol id="ico-scale" viewBox="0 0 24 24">
+  <line x1="12" y1="21" x2="12" y2="14" stroke="white" stroke-width="1.6"/>
+  <line x1="6"  y1="21" x2="18" y2="21" stroke="white" stroke-width="1.6"/>
+  <line x1="3"  y1="9"  x2="21" y2="9"  stroke="white" stroke-width="1.6"/>
+  <line x1="12" y1="4"  x2="12" y2="9"  stroke="white" stroke-width="1.6"/>
+  <path d="M3,9 Q1,15 3,15 Q5,15 3,9Z"  fill="white" opacity="0.7"/>
+  <path d="M21,9 Q19,15 21,15 Q23,15 21,9Z" fill="white" opacity="0.7"/>
+  <circle cx="12" cy="9" r="1.8" fill="white"/>
+</symbol>
+
+<!-- ── LIGHTNING / ENERGY BOLT ── solid fill for visibility -->
+<symbol id="ico-bolt" viewBox="0 0 24 24">
+  <path d="M13,2 L5,14 L12,14 L11,22 L19,10 L12,10 Z" fill="white" stroke="white" stroke-width="0.4" stroke-linejoin="round"/>
+</symbol>
+
+<!-- ── DATABASE / STORAGE ── -->
+<symbol id="ico-db" viewBox="0 0 24 24">
+  <ellipse cx="12" cy="5"  rx="8" ry="3"   fill="none" stroke="white" stroke-width="1.6"/>
+  <path d="M4,5 L4,19 Q4,22 12,22 Q20,22 20,19 L20,5" fill="none" stroke="white" stroke-width="1.6"/>
+  <path d="M4,11 Q4,14 12,14 Q20,14 20,11" fill="none" stroke="white" stroke-width="1.3"/>
+  <path d="M4,17 Q4,20 12,20 Q20,20 20,17" fill="none" stroke="white" stroke-width="1.3"/>
+</symbol>
+
+<!-- ── CLOUD ── -->
+<symbol id="ico-cloud" viewBox="0 0 24 24">
+  <path d="M6.5,19 Q2,19 2,14.5 Q2,10 6,10 Q6.5,6 12,6 Q16,6 17,10 Q21,10 21,14.5 Q21,19 17,19 Z" fill="none" stroke="white" stroke-width="1.8"/>
+</symbol>
+
+<!-- ── WIFI ── -->
+<symbol id="ico-wifi" viewBox="0 0 24 24">
+  <path d="M2,8.5 Q12,1 22,8.5"   fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M5,12 Q12,6 19,12"     fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M8,15.5 Q12,12 16,15.5" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="12" cy="19.5" r="2.2" fill="white"/>
+</symbol>
+
+<!-- ── MONITOR / DASHBOARD ── -->
+<symbol id="ico-monitor" viewBox="0 0 24 24">
+  <rect x="2" y="3" width="20" height="14" rx="2" fill="none" stroke="white" stroke-width="1.8"/>
+  <line x1="8"  y1="21" x2="16" y2="21" stroke="white" stroke-width="1.8"/>
+  <line x1="12" y1="17" x2="12" y2="21" stroke="white" stroke-width="1.8"/>
+  <polyline points="5,14 7,10 9,12 12,7 15,11 17,9 20,13" fill="none" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+
+<!-- ── MEMORY / BUFFER ── -->
+<symbol id="ico-memory" viewBox="0 0 24 24">
+  <rect x="3" y="6" width="18" height="11" rx="2" fill="none" stroke="white" stroke-width="1.8"/>
+  <line x1="7"  y1="6" x2="7"  y2="17" stroke="white" stroke-width="1.2" opacity="0.7"/>
+  <line x1="12" y1="6" x2="12" y2="17" stroke="white" stroke-width="1.2" opacity="0.7"/>
+  <line x1="17" y1="6" x2="17" y2="17" stroke="white" stroke-width="1.2" opacity="0.7"/>
+  <line x1="3"  y1="11.5" x2="21" y2="11.5" stroke="white" stroke-width="1.2" opacity="0.7"/>
+  <line x1="7"  y1="17" x2="7"  y2="21" stroke="white" stroke-width="1.5"/>
+  <line x1="12" y1="17" x2="12" y2="21" stroke="white" stroke-width="1.5"/>
+  <line x1="17" y1="17" x2="17" y2="21" stroke="white" stroke-width="1.5"/>
+</symbol>
+
+<!-- ── USB / SD CARD (manual retrieval) ── -->
+<symbol id="ico-usb" viewBox="0 0 24 24">
+  <!-- SD card shape -->
+  <path d="M7,3 L17,3 L17,21 L7,21 Z" fill="none" stroke="white" stroke-width="1.7"/>
+  <!-- notch top-left corner -->
+  <path d="M7,3 L7,8 L10,8 L10,3" fill="none" stroke="white" stroke-width="1.4"/>
+  <!-- contact lines -->
+  <line x1="9"  y1="12" x2="9"  y2="17" stroke="white" stroke-width="1.3" opacity="0.7"/>
+  <line x1="12" y1="12" x2="12" y2="17" stroke="white" stroke-width="1.3" opacity="0.7"/>
+  <line x1="15" y1="12" x2="15" y2="17" stroke="white" stroke-width="1.3" opacity="0.7"/>
+  <line x1="8"  y1="11" x2="16" y2="11" stroke="white" stroke-width="1.3"/>
+</symbol>
+
+<!-- ── SEARCH / OFFLINE ANALYSIS ── -->
+<symbol id="ico-search" viewBox="0 0 24 24">
+  <circle cx="10" cy="10" r="7" fill="none" stroke="white" stroke-width="1.8"/>
+  <line x1="15.5" y1="15.5" x2="22" y2="22" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="7" y1="10" x2="13" y2="10" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.8"/>
+  <line x1="10" y1="7" x2="10" y2="13" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.8"/>
+</symbol>
+
+<!-- ── DOCUMENT / REPORT ── -->
+<symbol id="ico-report" viewBox="0 0 24 24">
+  <path d="M6,2 L15,2 L20,7 L20,22 L6,22 Z" fill="none" stroke="white" stroke-width="1.8"/>
+  <path d="M15,2 L15,7 L20,7" fill="none" stroke="white" stroke-width="1.8"/>
+  <line x1="9" y1="12" x2="17" y2="12" stroke="white" stroke-width="1.4"/>
+  <line x1="9" y1="15" x2="17" y2="15" stroke="white" stroke-width="1.4"/>
+  <line x1="9" y1="18" x2="13" y2="18" stroke="white" stroke-width="1.4"/>
+</symbol>
+
+<!-- ── VALVE / PRESSURE RELIEF ── -->
+<symbol id="ico-valve" viewBox="0 0 24 24">
+  <line x1="2"  y1="13" x2="22" y2="13" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+  <polygon points="12,6 18,13 12,20 6,13" fill="none" stroke="white" stroke-width="1.8"/>
+  <line x1="12" y1="6" x2="12" y2="2" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+  <polyline points="9.5,4 12,1.5 14.5,4" fill="none" stroke="white" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+</symbol>
+
+<!-- ── FAULT / WARNING ── dark for yellow diamond bg -->
+<symbol id="ico-fault" viewBox="0 0 24 24">
+  <circle cx="10" cy="10" r="7.5" fill="none" stroke="#1e3a5f" stroke-width="1.8"/>
+  <line x1="10" y1="7" x2="10" y2="11" stroke="#1e3a5f" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="10" cy="13.5" r="1.3" fill="#1e3a5f"/>
+  <line x1="15.5" y1="15.5" x2="21" y2="21" stroke="#1e3a5f" stroke-width="2.2" stroke-linecap="round"/>
+</symbol>
+
+<!-- ── DROP / TREND DOWN ── dark for green diamond bg -->
+<symbol id="ico-drop" viewBox="0 0 24 24">
+  <line x1="2" y1="21" x2="22" y2="21" stroke="#1a3a1a" stroke-width="1.5"/>
+  <polyline points="2,6 7,11 11,8 17,17 22,13" fill="none" stroke="#1a3a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="17,17 22,17 22,13" fill="none" stroke="#1a3a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+
+<!-- ── RELAY / SWITCH ── -->
+<symbol id="ico-relay" viewBox="0 0 24 24">
+  <line x1="2"  y1="10" x2="7"  y2="10" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="8"  cy="10" r="1.4" fill="none" stroke="white" stroke-width="1.4"/>
+  <line x1="9.4" y1="9.1" x2="15" y2="5" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="16" cy="10" r="1.4" fill="none" stroke="white" stroke-width="1.4"/>
+  <line x1="17.4" y1="10" x2="22" y2="10" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+  <rect x="8" y="13" width="8" height="5.5" rx="1.2" fill="none" stroke="white" stroke-width="1.5"/>
+  <line x1="10" y1="13" x2="10" y2="18.5" stroke="white" stroke-width="1" opacity="0.6"/>
+  <line x1="12" y1="13" x2="12" y2="18.5" stroke="white" stroke-width="1" opacity="0.6"/>
+  <line x1="14" y1="13" x2="14" y2="18.5" stroke="white" stroke-width="1" opacity="0.6"/>
+</symbol>
+
+<!-- ── BELL / ALERT ── -->
+<symbol id="ico-bell" viewBox="0 0 24 24">
+  <path d="M12,2 Q19,3 19,12 L19,15 L21,17 L3,17 L5,15 L5,12 Q5,3 12,2 Z" fill="none" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+  <path d="M9.5,17 Q9.5,21 12,21 Q14.5,21 14.5,17" fill="none" stroke="white" stroke-width="1.6"/>
+  <line x1="12" y1="7"  x2="12" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="12" cy="13" r="1.2" fill="white"/>
+</symbol>
+
+<!-- ── EYE / MONITOR OUTPUT ── -->
+<symbol id="ico-eye" viewBox="0 0 24 24">
+  <path d="M2,12 Q12,3 22,12 Q12,21 2,12 Z" fill="none" stroke="white" stroke-width="1.8"/>
+  <circle cx="12" cy="12" r="4"   fill="none" stroke="white" stroke-width="1.8"/>
+  <circle cx="12" cy="12" r="1.8" fill="white"/>
+</symbol>
+
+<!-- ── PAINT ROLLER / RECOATING ── -->
+<symbol id="ico-coat" viewBox="0 0 24 24">
+  <rect x="3" y="3" width="16" height="8" rx="2" fill="none" stroke="white" stroke-width="1.8"/>
+  <rect x="5" y="5" width="12" height="4" rx="1" fill="white" opacity="0.3"/>
+  <line x1="11" y1="11" x2="11" y2="15" stroke="white" stroke-width="1.8"/>
+  <rect x="8" y="15" width="6" height="3.5" rx="1.2" fill="none" stroke="white" stroke-width="1.6"/>
+  <line x1="9.5"  y1="18.5" x2="9.5"  y2="22" stroke="white" stroke-width="1.5"/>
+  <line x1="11"   y1="18.5" x2="11"   y2="22" stroke="white" stroke-width="1.5"/>
+  <line x1="12.5" y1="18.5" x2="12.5" y2="22" stroke="white" stroke-width="1.5"/>
+</symbol>
+
+<!-- ── CALIBRATION TARGET ── -->
+<symbol id="ico-cal" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="9.5" fill="none" stroke="white" stroke-width="1.6"/>
+  <circle cx="12" cy="12" r="5.5" fill="none" stroke="white" stroke-width="1.4"/>
+  <circle cx="12" cy="12" r="2"   fill="white"/>
+  <line x1="12" y1="1"    x2="12" y2="4.5"  stroke="white" stroke-width="1.5"/>
+  <line x1="12" y1="19.5" x2="12" y2="23"   stroke="white" stroke-width="1.5"/>
+  <line x1="1"  y1="12"   x2="4.5"  y2="12" stroke="white" stroke-width="1.5"/>
+  <line x1="19.5" y1="12" x2="23" y2="12"   stroke="white" stroke-width="1.5"/>
+</symbol>
+
+<!-- ── SLIDERS / OFFSET CORRECTION ── -->
+<symbol id="ico-sliders" viewBox="0 0 24 24">
+  <line x1="3"  y1="6"  x2="21" y2="6"  stroke="white" stroke-width="1.6"/>
+  <line x1="3"  y1="12" x2="21" y2="12" stroke="white" stroke-width="1.6"/>
+  <line x1="3"  y1="18" x2="21" y2="18" stroke="white" stroke-width="1.6"/>
+  <circle cx="8"  cy="6"  r="3.2" fill="white"/>
+  <circle cx="16" cy="12" r="3.2" fill="white"/>
+  <circle cx="10" cy="18" r="3.2" fill="white"/>
+</symbol>
+
+<!-- ── PLAY / RESUME ── -->
+<symbol id="ico-play" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="1.8"/>
+  <polygon points="10,7.5 10,16.5 19,12" fill="white"/>
+</symbol>
+
+<!-- ── CLOCK / SCHEDULE ── -->
+<symbol id="ico-clock" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="1.8"/>
+  <line x1="12" y1="6"  x2="12" y2="12" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="12" y1="12" x2="17" y2="15" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+</symbol>
+
+<!-- ── SENSOR / PROBE ── -->
+<symbol id="ico-sensor" viewBox="0 0 24 24">
+  <line x1="12" y1="2" x2="12" y2="12" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+  <circle cx="12" cy="16" r="4"   fill="none" stroke="white" stroke-width="1.8"/>
+  <circle cx="12" cy="16" r="1.6" fill="white"/>
+  <path d="M5,8 Q3,12 5,16"  fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M19,8 Q21,12 19,16" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+</symbol>
+
+<!-- ── GAUGE / THRESHOLD ── -->
+<symbol id="ico-gauge" viewBox="0 0 24 24">
+  <path d="M3,18 A9,9 0 1,1 21,18" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="12" y1="18" x2="17" y2="11" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="12" cy="18" r="1.9" fill="white"/>
+  <line x1="3"  y1="18" x2="5.5" y2="18" stroke="white" stroke-width="1.4"/>
+  <line x1="21" y1="18" x2="18.5" y2="18" stroke="white" stroke-width="1.4"/>
+  <line x1="12" y1="9"  x2="12" y2="11"  stroke="white" stroke-width="1.4"/>
+</symbol>
+
+<!-- ── DISABLE / BLOCKED ── -->
+<symbol id="ico-disable" viewBox="0 0 24 24">
+  <circle cx="12" cy="12" r="10" fill="none" stroke="white" stroke-width="1.8"/>
+  <line x1="4.9" y1="4.9" x2="19.1" y2="19.1" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+  <rect x="8" y="9" width="8" height="6" rx="1.5" fill="white" opacity="0.4"/>
+</symbol>
+
+<!-- ── LOG / CLIPBOARD ── -->
+<symbol id="ico-log" viewBox="0 0 24 24">
+  <rect x="4" y="2" width="16" height="20" rx="2" fill="none" stroke="white" stroke-width="1.8"/>
+  <path d="M9,2 L9,5 L15,5 L15,2" fill="none" stroke="white" stroke-width="1.5"/>
+  <line x1="8" y1="10" x2="16" y2="10" stroke="white" stroke-width="1.4"/>
+  <line x1="8" y1="14" x2="16" y2="14" stroke="white" stroke-width="1.4"/>
+  <polyline points="8,19 10.5,21.5 16,16.5" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+
+<!-- ── FACTORY / BUILDING ── -->
+<symbol id="ico-factory" viewBox="0 0 24 24">
+  <polyline points="2,21 2,10 7,10 7,14 12,10 12,14 17,10 17,21" fill="none" stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+  <line x1="2" y1="21" x2="22" y2="21" stroke="white" stroke-width="1.8"/>
+  <rect x="17" y="14" width="5" height="7" rx="1" fill="none" stroke="white" stroke-width="1.5"/>
+  <path d="M19.5,14 Q18.5,11 19.5,8 Q20.5,5 19.5,2" fill="none" stroke="white" stroke-width="1.4" stroke-linecap="round"/>
+</symbol>
+
+<!-- ── FUSE / MERGE ── -->
+<symbol id="ico-fuse" viewBox="0 0 24 24">
+  <line x1="2"  y1="7"  x2="9"  y2="12" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="2"  y1="17" x2="9"  y2="12" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="9"  y1="12" x2="22" y2="12" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+  <rect x="10" y="9.5" width="7" height="5" rx="2.5" fill="none" stroke="white" stroke-width="1.5"/>
+  <line x1="11.5" y1="12" x2="15.5" y2="12" stroke="white" stroke-width="1.2" stroke-dasharray="1.5,1"/>
+</symbol>
+
+</defs>
+</svg>
+
+<!--
+  NODE GEOMETRY - all diagrams
+  Node: 120w × 80h
+  Icon: x=NX+38, y=NY+5,  width=44, height=44
+  Label: x=NX+60, y=NY+72
+  Arrow mid: y=NY+40
+
+  RTL arrows use marker-start with orient="auto-start-reverse" so the
+  arrowhead always faces the direction of travel.
+  All arrows use marker-end on lines drawn src→dst.
+  RTL: line drawn from src-left-edge to dst-right-edge with marker-end pointing left.
+-->
+
+<!-- ════════════════════════════════════════════
+     GROUP 1 - DATA LOGGING
+═════════════════════════════════════════════ -->
+<div class="group">
+  <p class="group-label" style="color:#1d4ed8;">Data Logging Strategy</p>
+  <div class="diagrams-row">
+
+  <!-- Onboard MCU / Local Storage
+       Row 1 y=10: col1(10) col2(190) col3(370)
+       Row 2 y=150: col3(370) col2(190) col1(10)
+       Arrow mid row1=50, row2=190. Turn x=430. Canvas 510×250 -->
+  <div>
+    <p class="diagram-title" style="color:#1d4ed8;">Onboard MCU / Local Storage</p>
+    <svg width="510" height="250" viewBox="0 0 510 250">
+      <defs>
+        <marker id="m1" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse">
+          <path d="M0,0 L9,4.5 L0,9Z" fill="#3b82f6"/>
+        </marker>
+      </defs>
+      <!-- ROW 1 -->
+      <rect x="10"  y="10" width="120" height="80" rx="40" fill="#1d4ed8"/>
+      <use href="#ico-scale" x="48"  y="12" width="44" height="44"/>
+      <text class="nl" x="70"  y="74">Gravimetric</text>
+
+      <line x1="130" y1="50" x2="190" y2="50" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#m1)"/>
+
+      <rect x="190" y="10" width="120" height="80" rx="8" fill="#3b82f6"/>
+      <use href="#ico-chip"  x="228" y="12" width="44" height="44"/>
+      <text class="nl" x="250" y="74">µC Compute</text>
+
+      <line x1="310" y1="50" x2="370" y2="50" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#m1)"/>
+
+      <rect x="370" y="10" width="120" height="80" rx="8" fill="#3b82f6"/>
+      <use href="#ico-gauge" x="408" y="12" width="44" height="44"/>
+      <text class="nl" x="430" y="74">Yield Calc</text>
+
+      <!-- turn ↓ -->
+      <line x1="430" y1="90" x2="430" y2="150" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#m1)"/>
+
+      <!-- ROW 2 right→left: draw lines from src-left to dst-right, marker-end faces left -->
+      <rect x="370" y="150" width="120" height="80" rx="8" fill="#60a5fa"/>
+      <use href="#ico-bolt"  x="408" y="152" width="44" height="44"/>
+      <text class="nl" x="430" y="214">Energy Meter</text>
+
+      <!-- RTL: from x=370 (left of Energy) to x=310 (right of Fuse), marker-end at x2 faces left because orient=auto-start-reverse flips when drawn RTL -->
+      <line x1="370" y1="190" x2="310" y2="190" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#m1)"/>
+
+      <rect x="190" y="150" width="120" height="80" rx="8" fill="#60a5fa"/>
+      <use href="#ico-fuse"  x="228" y="152" width="44" height="44"/>
+      <text class="nl" x="250" y="214">Fuse Records</text>
+
+      <line x1="190" y1="190" x2="130" y2="190" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#m1)"/>
+
+      <rect x="10"  y="150" width="120" height="80" rx="40" fill="#1d4ed8"/>
+      <use href="#ico-db"    x="48"  y="152" width="44" height="44"/>
+      <text class="nl" x="70"  y="214">SD / Flash</text>
+    </svg>
+  </div>
+
+  <!-- Cloud-Connected Remote Logging -->
+  <div>
+    <p class="diagram-title" style="color:#1d4ed8;">Cloud-Connected Remote Logging</p>
+    <svg width="510" height="250" viewBox="0 0 510 250">
+      <defs>
+        <marker id="m2" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse">
+          <path d="M0,0 L9,4.5 L0,9Z" fill="#3b82f6"/>
+        </marker>
+      </defs>
+      <rect x="10"  y="10" width="120" height="80" rx="40" fill="#1d4ed8"/>
+      <use href="#ico-sensor"  x="48"  y="12" width="44" height="44"/>
+      <text class="nl" x="70"  y="74">Sensors (live)</text>
+      <line x1="130" y1="50" x2="190" y2="50" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#m2)"/>
+
+      <rect x="190" y="10" width="120" height="80" rx="8" fill="#3b82f6"/>
+      <use href="#ico-chip"    x="228" y="12" width="44" height="44"/>
+      <text class="nl" x="250" y="74">µC Edge</text>
+      <line x1="310" y1="50" x2="370" y2="50" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#m2)"/>
+
+      <rect x="370" y="10" width="120" height="80" rx="8" fill="#3b82f6"/>
+      <use href="#ico-wifi"    x="408" y="12" width="44" height="44"/>
+      <text class="nl" x="430" y="74">WiFi / LTE</text>
+      <line x1="430" y1="90" x2="430" y2="150" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#m2)"/>
+
+      <rect x="370" y="150" width="120" height="80" rx="8" fill="#60a5fa"/>
+      <use href="#ico-cloud"   x="408" y="152" width="44" height="44"/>
+      <text class="nl" x="430" y="214">Cloud Ingestion</text>
+      <line x1="370" y1="190" x2="310" y2="190" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#m2)"/>
+
+      <rect x="190" y="150" width="120" height="80" rx="40" fill="#1d4ed8"/>
+      <use href="#ico-monitor" x="228" y="152" width="44" height="44"/>
+      <text class="nl" x="250" y="214">Remote Dashboard</text>
+    </svg>
+  </div>
+
+  <!-- Post-Process from Stored Dump -->
+  <div>
+    <p class="diagram-title" style="color:#1d4ed8;">Post-Process from Stored Dump</p>
+    <svg width="510" height="250" viewBox="0 0 510 250">
+      <defs>
+        <marker id="m3" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse">
+          <path d="M0,0 L9,4.5 L0,9Z" fill="#3b82f6"/>
+        </marker>
+      </defs>
+      <rect x="10"  y="10" width="120" height="80" rx="40" fill="#1d4ed8"/>
+      <use href="#ico-sensor"  x="48"  y="12" width="44" height="44"/>
+      <text class="nl" x="70"  y="74">Sensors (raw)</text>
+      <line x1="130" y1="50" x2="190" y2="50" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#m3)"/>
+
+      <rect x="190" y="10" width="120" height="80" rx="8" fill="#3b82f6"/>
+      <use href="#ico-memory"  x="228" y="12" width="44" height="44"/>
+      <text class="nl" x="250" y="74">Onboard Buffer</text>
+      <line x1="310" y1="50" x2="370" y2="50" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#m3)"/>
+
+      <rect x="370" y="10" width="120" height="80" rx="8" fill="#3b82f6"/>
+      <use href="#ico-usb"     x="408" y="12" width="44" height="44"/>
+      <text class="nl" x="430" y="74">Manual Retrieval</text>
+      <line x1="430" y1="90" x2="430" y2="150" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#m3)"/>
+
+      <rect x="370" y="150" width="120" height="80" rx="8" fill="#60a5fa"/>
+      <use href="#ico-search"  x="408" y="152" width="44" height="44"/>
+      <text class="nl" x="430" y="214">Offline Analysis</text>
+      <line x1="370" y1="190" x2="310" y2="190" stroke="#3b82f6" stroke-width="2.5" marker-end="url(#m3)"/>
+
+      <rect x="190" y="150" width="120" height="80" rx="40" fill="#1d4ed8"/>
+      <use href="#ico-report"  x="228" y="152" width="44" height="44"/>
+      <text class="nl" x="250" y="214">Processed Report</text>
+    </svg>
+  </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     GROUP 2 - SAFETY
+═════════════════════════════════════════════ -->
+<div class="group">
+  <p class="group-label" style="color:#b45309;">Safety &amp; Fault Management</p>
+  <div class="diagrams-row">
+
+  <!-- Layered Protection
+       Row1 y=10: pill(10) rect(170) diamond(cx=430,cy=50,hw=74,hh=50)
+       Row2 y=170: rect(370) pill(170)
+       Canvas 560×320 -->
+  <div>
+    <p class="diagram-title" style="color:#b45309;">Layered Protection - Four-Stage</p>
+    <svg width="560" height="320" viewBox="0 0 560 320">
+      <defs>
+        <marker id="s1a" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse">
+          <path d="M0,0 L9,4.5 L0,9Z" fill="#d97706"/>
+        </marker>
+        <marker id="s1b" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse">
+          <path d="M0,0 L9,4.5 L0,9Z" fill="#ef4444"/>
+        </marker>
+      </defs>
+      <!-- Overpressure Event pill -->
+      <rect x="10"  y="10" width="120" height="80" rx="40" fill="#92400e"/>
+      <use href="#ico-valve"  x="48"  y="12" width="44" height="44"/>
+      <text class="nl" x="70"  y="74">Overpressure</text>
+      <line x1="130" y1="50" x2="170" y2="50" stroke="#d97706" stroke-width="2.5" marker-end="url(#s1a)"/>
+
+      <!-- Passive Relief rect -->
+      <rect x="170" y="10" width="120" height="80" rx="8" fill="#d97706"/>
+      <use href="#ico-valve"  x="208" y="12" width="44" height="44"/>
+      <text class="nl" x="230" y="74">Passive Relief</text>
+      <line x1="290" y1="50" x2="356" y2="50" stroke="#d97706" stroke-width="2.5" marker-end="url(#s1a)"/>
+
+      <!-- Fault Detected? diamond: cx=430 cy=50, hw=74, hh=50 -->
+      <polygon points="430,0 504,50 430,100 356,50" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>
+      <use href="#ico-fault"  x="408" y="10" width="44" height="44"/>
+      <text class="nl nl-db" x="430" y="68">Fault Det?</text>
+
+      <!-- Yes ↓ -->
+      <line x1="430" y1="100" x2="430" y2="170" stroke="#d97706" stroke-width="2.5" marker-end="url(#s1a)"/>
+      <text class="el" x="444" y="135">Yes</text>
+
+      <!-- No loop back to Passive Relief -->
+      <path d="M430,100 L430,130 L230,130 L230,90" fill="none" stroke="#d97706" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#s1a)"/>
+      <text class="el" x="330" y="143">No</text>
+
+      <!-- Relay Shutdown rect -->
+      <rect x="370" y="170" width="120" height="80" rx="8" fill="#ef4444"/>
+      <use href="#ico-relay"  x="408" y="172" width="44" height="44"/>
+      <text class="nl" x="430" y="234">Relay Shutdown</text>
+      <line x1="370" y1="210" x2="310" y2="210" stroke="#ef4444" stroke-width="2.5" marker-end="url(#s1b)"/>
+
+      <!-- Operator Alert pill -->
+      <rect x="190" y="170" width="120" height="80" rx="40" fill="#b91c1c"/>
+      <use href="#ico-bell"   x="228" y="172" width="44" height="44"/>
+      <text class="nl" x="250" y="234">Operator Alert</text>
+
+      <!-- layer labels -->
+      <text class="el" x="70"  y="104">TRIGGER</text>
+      <text class="el" x="230" y="104">LAYER 1 - Mech.</text>
+      <text class="el" x="430" y="268">LAYER 3 - Elec.</text>
+      <text class="el" x="250" y="264">LAYER 4 - Human</text>
+    </svg>
+  </div>
+
+  <!-- Software-Only Threshold Monitoring -->
+  <div>
+    <p class="diagram-title" style="color:#b45309;">Software-Only Threshold Monitoring</p>
+    <svg width="560" height="320" viewBox="0 0 560 320">
+      <defs>
+        <marker id="s2a" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse">
+          <path d="M0,0 L9,4.5 L0,9Z" fill="#d97706"/>
+        </marker>
+        <marker id="s2b" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse">
+          <path d="M0,0 L9,4.5 L0,9Z" fill="#ef4444"/>
+        </marker>
+      </defs>
+      <!-- Sensor Readings pill -->
+      <rect x="10"  y="10" width="120" height="80" rx="40" fill="#92400e"/>
+      <use href="#ico-sensor"  x="48"  y="12" width="44" height="44"/>
+      <text class="nl" x="70"  y="74">Sensor Readings</text>
+      <line x1="130" y1="50" x2="170" y2="50" stroke="#d97706" stroke-width="2.5" marker-end="url(#s2a)"/>
+
+      <!-- Threshold Check rect -->
+      <rect x="170" y="10" width="120" height="80" rx="8" fill="#d97706"/>
+      <use href="#ico-gauge"   x="208" y="12" width="44" height="44"/>
+      <text class="nl" x="230" y="74">Threshold Check</text>
+      <line x1="290" y1="50" x2="356" y2="50" stroke="#d97706" stroke-width="2.5" marker-end="url(#s2a)"/>
+
+      <!-- Breach? diamond -->
+      <polygon points="430,0 504,50 430,100 356,50" fill="#fbbf24" stroke="#d97706" stroke-width="1.5"/>
+      <use href="#ico-fault"   x="408" y="10" width="44" height="44"/>
+      <text class="nl nl-db" x="430" y="68">Breach?</text>
+
+      <!-- Yes ↓ -->
+      <line x1="430" y1="100" x2="430" y2="170" stroke="#ef4444" stroke-width="2.5" marker-end="url(#s2b)"/>
+      <text class="el" x="444" y="135">Yes</text>
+
+      <!-- No loop back -->
+      <path d="M430,100 L430,130 L70,130 L70,90" fill="none" stroke="#d97706" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#s2a)"/>
+      <text class="el" x="250" y="143">No - resume normal</text>
+
+      <!-- Disable Actuator rect -->
+      <rect x="370" y="170" width="120" height="80" rx="8" fill="#ef4444"/>
+      <use href="#ico-disable" x="408" y="172" width="44" height="44"/>
+      <text class="nl" x="430" y="234">Disable Actuator</text>
+      <line x1="370" y1="210" x2="310" y2="210" stroke="#ef4444" stroke-width="2.5" marker-end="url(#s2b)"/>
+
+      <!-- Log & Continue pill -->
+      <rect x="190" y="170" width="120" height="80" rx="40" fill="#b91c1c"/>
+      <use href="#ico-log"     x="228" y="172" width="44" height="44"/>
+      <text class="nl" x="250" y="234">Log &amp; Continue</text>
+    </svg>
+  </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════
+     GROUP 3 - MAINTENANCE
+═════════════════════════════════════════════ -->
+<div class="group">
+  <p class="group-label" style="color:#065f46;">Maintenance &amp; Calibration</p>
+  <div class="diagrams-row">
+
+  <!-- Reactive: Replace on Observed Drop
+       Row1: pill(10) diamond(cx=230) rect(370)
+       Factory Cal: below Replace Sorbent (370,170)
+       Canvas 510×310 -->
+  <div>
+    <p class="diagram-title" style="color:#065f46;">Reactive: Replace on Observed Drop</p>
+    <svg width="510" height="310" viewBox="0 0 510 310">
+      <defs>
+        <marker id="g1" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse">
+          <path d="M0,0 L9,4.5 L0,9Z" fill="#10b981"/>
+        </marker>
+      </defs>
+      <!-- Monitor Output pill -->
+      <rect x="10"  y="10" width="120" height="80" rx="40" fill="#065f46"/>
+      <use href="#ico-eye"     x="48"  y="12" width="44" height="44"/>
+      <text class="nl" x="70"  y="74">Monitor Output</text>
+      <line x1="130" y1="50" x2="156" y2="50" stroke="#10b981" stroke-width="2.5" marker-end="url(#g1)"/>
+
+      <!-- Drop Detected? diamond cx=230 cy=50 hw=74 hh=50 -->
+      <polygon points="230,0 304,50 230,100 156,50" fill="#6ee7b7" stroke="#10b981" stroke-width="1.5"/>
+      <use href="#ico-drop"    x="208" y="10" width="44" height="44"/>
+      <text class="nl nl-dk" x="230" y="68">Drop Det?</text>
+
+      <!-- Yes → right -->
+      <line x1="304" y1="50" x2="370" y2="50" stroke="#10b981" stroke-width="2.5" marker-end="url(#g1)"/>
+      <text class="el" x="337" y="38">Yes</text>
+
+      <!-- Replace Sorbent rect -->
+      <rect x="370" y="10" width="120" height="80" rx="8" fill="#10b981"/>
+      <use href="#ico-coat"    x="408" y="12" width="44" height="44"/>
+      <text class="nl" x="430" y="74">Replace Sorbent</text>
+
+      <!-- ↓ to Factory Cal -->
+      <line x1="430" y1="90" x2="430" y2="170" stroke="#10b981" stroke-width="2.5" marker-end="url(#g1)"/>
+
+      <!-- Factory Cal Only pill -->
+      <rect x="370" y="170" width="120" height="80" rx="40" fill="#065f46"/>
+      <use href="#ico-factory" x="408" y="172" width="44" height="44"/>
+      <text class="nl" x="430" y="234">Factory Cal Only</text>
+
+      <!-- No loop down-left -->
+      <path d="M230,100 L230,150 L70,150 L70,90" fill="none" stroke="#10b981" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#g1)"/>
+      <text class="el" x="150" y="163">No - keep monitoring</text>
+    </svg>
+  </div>
+
+  <!-- Proactive: Scheduled Recoating + In-Situ Cal -->
+  <div>
+    <p class="diagram-title" style="color:#065f46;">Proactive: Scheduled Recoating + In-Situ Cal</p>
+    <svg width="510" height="250" viewBox="0 0 510 250">
+      <defs>
+        <marker id="g2" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto-start-reverse">
+          <path d="M0,0 L9,4.5 L0,9Z" fill="#10b981"/>
+        </marker>
+      </defs>
+      <!-- Time/Cycle Trigger pill -->
+      <rect x="10"  y="10" width="120" height="80" rx="40" fill="#065f46"/>
+      <use href="#ico-clock"   x="48"  y="12" width="44" height="44"/>
+      <text class="nl" x="70"  y="74">Time / Cycle</text>
+      <line x1="130" y1="50" x2="190" y2="50" stroke="#10b981" stroke-width="2.5" marker-end="url(#g2)"/>
+
+      <!-- Sorbent Recoating rect -->
+      <rect x="190" y="10" width="120" height="80" rx="8" fill="#10b981"/>
+      <use href="#ico-coat"    x="228" y="12" width="44" height="44"/>
+      <text class="nl" x="250" y="74">Sorbent Recoating</text>
+      <line x1="310" y1="50" x2="370" y2="50" stroke="#10b981" stroke-width="2.5" marker-end="url(#g2)"/>
+
+      <!-- In-Situ Cal Ref rect -->
+      <rect x="370" y="10" width="120" height="80" rx="8" fill="#10b981"/>
+      <use href="#ico-cal"     x="408" y="12" width="44" height="44"/>
+      <text class="nl" x="430" y="74">In-Situ Cal Ref</text>
+      <!-- turn ↓ -->
+      <line x1="430" y1="90" x2="430" y2="150" stroke="#10b981" stroke-width="2.5" marker-end="url(#g2)"/>
+
+      <!-- Offset Correction rect -->
+      <rect x="370" y="150" width="120" height="80" rx="8" fill="#34d399"/>
+      <use href="#ico-sliders" x="408" y="152" width="44" height="44"/>
+      <text class="nl nl-dk" x="430" y="214">Offset Correction</text>
+      <line x1="370" y1="190" x2="310" y2="190" stroke="#10b981" stroke-width="2.5" marker-end="url(#g2)"/>
+
+      <!-- Resume Operation pill -->
+      <rect x="190" y="150" width="120" height="80" rx="40" fill="#065f46"/>
+      <use href="#ico-play"    x="228" y="152" width="44" height="44"/>
+      <text class="nl" x="250" y="214">Resume Operation</text>
+    </svg>
+  </div>
+
+  </div>
+</div>
+
+</body>
+</html>

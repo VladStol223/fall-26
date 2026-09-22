@@ -145,7 +145,7 @@ header{
 
 #morph-table-wrap{overflow-x:auto;flex:1}
 #morph-table{
-  border-collapse:collapse;width:100%;min-width:600px;
+  border-collapse:collapse;width:max-content;min-width:100%;
   font-size:11px;
 }
 #morph-table th{
@@ -325,11 +325,14 @@ svg#tree:active{cursor:ns-resize}
         <table id="morph-table">
           <thead>
             <tr>
-              <th style="width:20%">Function</th>
-              <th style="width:10%">Branch</th>
-              <th style="width:23%">Option A</th>
-              <th style="width:23%">Option B</th>
-              <th style="width:23%">Option C</th>
+              <th style="min-width:160px">Function</th>
+              <th style="min-width:90px">Branch</th>
+              <th style="min-width:200px">Option A</th>
+              <th style="min-width:200px">Option B</th>
+              <th style="min-width:200px">Option C</th>
+              <th style="min-width:200px">Option D</th>
+              <th style="min-width:200px">Option E</th>
+              <th style="min-width:200px">Option F</th>
             </tr>
           </thead>
           <tbody id="morph-tbody"></tbody>
@@ -403,7 +406,8 @@ const DATA = {
     { label:"Maintain Reliable System", pal:"maint", children:[
       { label:"Seal / Close System",        pal:"leaf" },
       { label:"Monitor & Log Performance",  pal:"leaf" },
-      { label:"House & Mobilize System",    pal:"leaf" },
+      { label:"House System",               pal:"leaf" },
+      { label:"Mobilize System",            pal:"leaf" },
       { label:"Ensure Operational Safety",  pal:"leaf" },
       { label:"Maintain Sorbent & Sensors", pal:"leaf" },
     ]},
@@ -1127,152 +1131,222 @@ const MORPH_DATA = [
   { fn:'Seal / Close System', branch:'Maintain Reliable System',
     chosen:1,
     opts:[
-      { label:'Manual butterfly valves (inlet + outlet)', notes:'Simple, no actuation needed' },
-      { label:'Servo-actuated dampers (MCU-controlled)',   notes:'Chosen — fast close for desorption phase, position-confirmed' },
-      { label:'Pneumatic actuators',                       notes:'Requires compressed air source, overkill at this scale' },
+      { label:'Manual butterfly valves (inlet + outlet)' },
+      { label:'Servo-actuated dampers (MCU-controlled)' },
+      { label:'Pneumatic actuators' },
+      { label:'Motorized ball valves' },
+      { label:'Solenoid valves (normally-closed)' },
+      { label:'Magnetic latching flaps' },
     ]},
   { fn:'Monitor & Log Performance', branch:'Maintain Reliable System',
     chosen:0,
     opts:[
-      { label:'Onboard microcontroller: gravimetric yield + energy metering → local storage', notes:'Chosen — real-time efficiency metrics, continuous logging' },
-      { label:'Post-process from stored data dump',                                            notes:'Offline only; no live feedback during operation' },
-      { label:'Cloud-connected remote logging',                                                notes:'Real-time remote access; requires network infrastructure' },
+      { label:'Onboard MCU: gravimetric yield + energy metering → local storage' },
+      { label:'Post-process from stored data dump' },
+      { label:'Cloud-connected remote logging' },
+      { label:'Dedicated data logger module (SD + RTC)' },
+      { label:'Serial stream to laptop during run' },
+      { label:'Wireless BLE beacon to mobile app' },
     ]},
-  { fn:'House & Mobilize System', branch:'Maintain Reliable System',
+  { fn:'House System', branch:'Maintain Reliable System',
     chosen:0,
     opts:[
-      { label:'Modular extrusion frame + insulated panels + locking casters', notes:'Chosen — reconfigurable, thermally isolated, drains to sump, lockable for operation' },
-      { label:'Welded steel cabinet on fixed feet',                            notes:'High structural rigidity; heavy and not portable' },
-      { label:'Polymer/composite enclosure panels',                            notes:'Lightweight; limited structural capacity at this scale' },
+      { label:'Modular extrusion frame + insulated panels' },
+      { label:'Welded steel cabinet on fixed feet' },
+      { label:'Polymer/composite enclosure panels' },
+      { label:'Plywood box with foam insulation lining' },
+      { label:'Rack-mount enclosure with blanking panels' },
+      { label:'Sheet-metal fabricated enclosure' },
+    ]},
+  { fn:'Mobilize System', branch:'Maintain Reliable System',
+    chosen:0,
+    opts:[
+      { label:'Locking swivel casters on frame base' },
+      { label:'Fixed feet (no mobility)' },
+      { label:'Forklift pockets on base plate' },
+      { label:'Folding handle + tilt-and-roll dolly' },
+      { label:'Pallet-mounted, moved by pallet jack' },
+      { label:'Integrated lift points for overhead crane' },
     ]},
   { fn:'Ensure Operational Safety', branch:'Maintain Reliable System',
     chosen:0,
     opts:[
-      { label:'Layered protection: passive pressure relief + automated fault detection + relay shutdown + operator alert', notes:'Chosen — hardware failsafe independent of software; fast response to pressure/temp exceedances' },
-      { label:'Software-only threshold monitoring with individual actuator disables',                                       notes:'Simpler; no hardware failsafe if controller faults' },
-      { label:'Dedicated safety relay module',                                                                              notes:'Industrial-grade; overengineered for prototype scale' },
+      { label:'Layered: passive relief + fault detection + relay shutdown + operator alert' },
+      { label:'Software-only threshold monitoring with individual actuator disables' },
+      { label:'Dedicated safety relay module' },
+      { label:'Pressure rupture disc + manual reset lockout' },
+      { label:'Interlock switch on enclosure panels' },
+      { label:'Redundant MCU watchdog with independent cut-off relay' },
     ]},
   { fn:'Maintain Sorbent & Sensors', branch:'Maintain Reliable System',
     chosen:0,
     opts:[
-      { label:'Scheduled sorbent recoating + periodic in-situ sensor calibration', notes:'Chosen — practical for lab cadence; logged performance data flags drift' },
-      { label:'Replace sorbent only on observed performance drop; factory cal only', notes:'Reactive; no early warning of degradation' },
-      { label:'Automated self-calibration + in-situ sorbent regeneration',          notes:'Reduces maintenance burden; significant added complexity' },
+      { label:'Scheduled recoating + periodic in-situ sensor calibration' },
+      { label:'Replace sorbent only on observed performance drop; factory cal only' },
+      { label:'Automated self-calibration + in-situ sorbent regeneration' },
+      { label:'Gravimetric performance index triggers recoating alert' },
+      { label:'Swappable pre-coated sorbent cartridges' },
+      { label:'Annual third-party sensor recertification' },
     ]},
 
   // ── Absorb Water ─────────────────────────────────────────────
   { fn:'Filter Air', branch:'Absorb Water',
     chosen:0,
     opts:[
-      { label:'Mid-efficiency pleated filter at inlet duct', notes:'Chosen — balances airflow resistance and particulate capture to protect sorbent bed' },
-      { label:'High-efficiency particulate filter (HEPA)',   notes:'Superior filtration; excessive pressure drop for fan-driven flow' },
-      { label:'Coarse mesh screen only',                     notes:'Minimal restriction; insufficient protection for sorbent coating' },
+      { label:'Mid-efficiency pleated filter at inlet duct' },
+      { label:'High-efficiency particulate filter (HEPA)' },
+      { label:'Coarse mesh screen only' },
+      { label:'Electrostatic precipitator' },
+      { label:'Activated carbon pre-filter' },
+      { label:'Dual-stage: coarse mesh + fine pleated' },
     ]},
   { fn:'Move Air Over Sorbent', branch:'Absorb Water',
     chosen:1,
     opts:[
-      { label:'Centrifugal blower',            notes:'Higher static pressure capability; larger footprint and noisier' },
-      { label:'Variable-speed axial fans',     notes:'Chosen — compact, speed-controlled for flow velocity and pressure-drop monitoring' },
-      { label:'Cross-flow fan',                notes:'Thin-profile installation; lower efficiency at required flow rates' },
+      { label:'Centrifugal blower' },
+      { label:'Variable-speed axial fans' },
+      { label:'Cross-flow fan' },
+      { label:'Tangential blower' },
+      { label:'Natural convection (no fan)' },
+      { label:'Oscillating bellows pump' },
     ]},
 
   // ── Desorb Water ─────────────────────────────────────────────
   { fn:'Supply Heat for Desorption', branch:'Desorb Water',
     chosen:0,
     opts:[
-      { label:'Resistive heater in liquid heat-transfer loop with closed-loop temperature control', notes:'Chosen — precise temperature ramp to desorption setpoint; consistent ΔT across sorbent bed' },
-      { label:'Self-regulating heater with natural convection loop',                                notes:'Simpler control; limited maximum temperature and no active ΔT management' },
-      { label:'Heat pump as heat source',                                                            notes:'Higher coefficient of performance; significantly more complex plumbing' },
+      { label:'Resistive heater in liquid loop with closed-loop temp control' },
+      { label:'Self-regulating heater with natural convection loop' },
+      { label:'Heat pump as heat source' },
+      { label:'Infrared radiant heater panel' },
+      { label:'Waste heat recovery from condenser reject' },
+      { label:'Steam injection from external boiler' },
     ]},
 
   // ── Condense Water ────────────────────────────────────────────
   { fn:'Condense Vapor to Water', branch:'Condense Water',
     chosen:0,
     opts:[
-      { label:'Vapour-compression refrigeration cycle + forced-air condenser', notes:'Chosen — reliably reaches dew point; active heat rejection to ambient' },
-      { label:'Thermoelectric (Peltier) cooler',                               notes:'No moving parts; low coefficient of performance at required heat load' },
-      { label:'Passive radiative cooling surface',                              notes:'No energy input; insufficient cooling rate for target condensation' },
+      { label:'Vapour-compression refrigeration + forced-air condenser' },
+      { label:'Thermoelectric (Peltier) cooler' },
+      { label:'Passive radiative cooling surface' },
+      { label:'Cold-water heat exchanger (building chilled water)' },
+      { label:'Absorption chiller' },
+      { label:'Vortex tube cooler' },
     ]},
   { fn:'Prevent Sorbent Carryover', branch:'Condense Water',
     chosen:0,
     opts:[
-      { label:'Mesh demister / fiber pad at condenser inlet', notes:'Chosen — passively intercepts sorbent particles and droplets before they reach the collection vessel' },
-      { label:'Inertial knockout separator',                   notes:'Effective at higher flow velocities; adds hydraulic volume and a drain point' },
-      { label:'No separation — rely on gravity settling only', notes:'Simplest; insufficient at low condensate flow rates' },
+      { label:'Mesh demister / fiber pad at condenser inlet' },
+      { label:'Inertial knockout separator' },
+      { label:'No separation — rely on gravity settling only' },
+      { label:'Centrifugal cyclone separator' },
+      { label:'Electrostatic precipitator at condenser inlet' },
+      { label:'Coalescing filter element' },
     ]},
 
   // ── Collect & Store Water ─────────────────────────────────────
   { fn:'Filter & Purify Water', branch:'Collect & Store Water',
     chosen:0,
     opts:[
-      { label:'Activated carbon filtration + inline conductivity monitoring', notes:'Chosen — removes trace organics and residual particles; continuous purity flag without manual sampling' },
-      { label:'UV sterilisation stage',                                        notes:'Effective biological inactivation; complementary to chemical filtration for long storage' },
-      { label:'Reverse osmosis membrane',                                      notes:'Highest purity; unnecessary energy and complexity for distilled-equivalent condensate' },
+      { label:'Activated carbon + inline conductivity monitoring' },
+      { label:'UV sterilisation stage' },
+      { label:'Reverse osmosis membrane' },
+      { label:'Ceramic filtration membrane' },
+      { label:'Ion exchange resin' },
+      { label:'No post-treatment (condensate assumed clean)' },
     ]},
   { fn:'Collect Usable Water Output', branch:'Collect & Store Water',
     chosen:0,
     opts:[
-      { label:'Fixed-volume food-safe tank with gravity drain valve', notes:'Chosen — sufficient buffer capacity, simple dispensing, no pump required in lab context' },
-      { label:'Flexible bladder vessel with automated dispense valve', notes:'Variable volume; better for portable or space-constrained deployment' },
-      { label:'Pressurised tank with on-demand tap',                   notes:'Convenient dispensing; requires pressure regulation and safety relief' },
+      { label:'Fixed-volume food-safe tank with gravity drain valve' },
+      { label:'Flexible bladder vessel with automated dispense valve' },
+      { label:'Pressurised tank with on-demand tap' },
+      { label:'Open collection trough draining to external vessel' },
+      { label:'Graduated cylinder for direct measurement' },
+      { label:'Automated weigh-scale vessel with drain' },
     ]},
 
   // ── Automate Water-Making Process ─────────────────────────────
   { fn:'Supply & Protect Power', branch:'Automate Water-Making Process',
     chosen:0,
     opts:[
-      { label:'Centralized regulated supply with per-rail fusing and staged voltage conversion', notes:'Chosen — single disconnect point; independent overcurrent protection at each subsystem' },
-      { label:'Distributed wall-mounted power adapters',                                         notes:'No single disconnect; inconsistent voltage regulation across subsystems' },
-      { label:'Battery pack with management system',                                              notes:'Enables off-grid operation; adds charging infrastructure and weight' },
+      { label:'Centralized regulated supply with per-rail fusing + staged voltage conversion' },
+      { label:'Distributed wall-mounted power adapters' },
+      { label:'Battery pack with management system' },
+      { label:'DIN-rail PSU with integrated circuit breakers' },
+      { label:'UPS-backed regulated supply' },
+      { label:'Solar panel + MPPT charge controller + battery' },
     ]},
   { fn:'Control Cycle', branch:'Automate Water-Making Process',
     chosen:0,
     opts:[
-      { label:'Microcontroller (e.g. ARM Cortex-M, AVR)', notes:'Chosen — real-time control, broad peripheral support, low power; runs cycle state machine and sensor polling' },
-      { label:'Single-board computer (e.g. Raspberry Pi class)', notes:'Full OS, easy data logging and networking; higher boot time and power consumption' },
-      { label:'Programmable logic controller (PLC)',             notes:'Industry-grade reliability and I/O; excess cost and form factor for prototype scale' },
+      { label:'Microcontroller (ARM Cortex-M / AVR)' },
+      { label:'Single-board computer (Raspberry Pi class)' },
+      { label:'Programmable logic controller (PLC)' },
+      { label:'FPGA with soft-core processor' },
+      { label:'Dedicated PID controllers per subsystem' },
+      { label:'Relay-ladder logic panel' },
     ]},
   { fn:'Reset Device to Start State', branch:'Automate Water-Making Process',
     chosen:0,
     opts:[
-      { label:'Active cooldown: run condenser loop until sorbent bed reaches ambient, then vent to equalize pressure', notes:'Chosen — confirmed thermal and pressure reset before next adsorption cycle; prevents carryover of desorption conditions' },
-      { label:'Timed passive cooldown — wait fixed interval before restarting',                                         notes:'Simpler; cycle time depends on ambient conditions; no confirmation of readiness' },
-      { label:'Sensor-gated restart — monitor bed temp and pressure, proceed when within threshold',                    notes:'Optimal use of cycle time; requires reliable real-time sensor feedback' },
+      { label:'Active cooldown: run condenser until bed reaches ambient, then vent' },
+      { label:'Timed passive cooldown - wait fixed interval before restarting' },
+      { label:'Sensor-gated restart - proceed when bed temp + pressure within threshold' },
+      { label:'Forced-air purge cycle to clear residual vapor' },
+      { label:'Operator-confirmed manual reset' },
+      { label:'Two-stage: sensor-gated + operator confirmation' },
     ]},
   { fn:'Actuate Components', branch:'Automate Water-Making Process',
     chosen:0,
     opts:[
-      { label:'Position-feedback damper actuators + variable-speed fans + relay-switched pump and heater', notes:'Chosen — confirmed actuation states; relay provides hardware-level kill on fault' },
-      { label:'Manual valves and switches',                                                                  notes:'No automation possible; operator-dependent' },
-      { label:'Stepper-motor driven actuators throughout',                                                   notes:'High positional accuracy; unnecessary for on/off and flow-control functions here' },
+      { label:'Position-feedback damper actuators + variable-speed fans + relay-switched pump/heater' },
+      { label:'Manual valves and switches' },
+      { label:'Stepper-motor driven actuators throughout' },
+      { label:'Pneumatic actuators with solenoid pilot valves' },
+      { label:'Servo motors with encoder feedback' },
+      { label:'Smart actuators with built-in position reporting over CAN bus' },
     ]},
   { fn:'Read Process Signals', branch:'Automate Water-Making Process',
     chosen:0,
     opts:[
-      { label:'Embedded controller analog inputs: differential pressure, gravimetric yield, cycle state', notes:'Chosen — all critical signals on one controller; low latency polling' },
-      { label:'Dedicated high-resolution ADC module',                                                      notes:'Better signal resolution; adds communication overhead' },
-      { label:'Standalone data-acquisition unit',                                                           notes:'Independent logging capability; redundant with onboard storage' },
+      { label:'Embedded controller analog inputs: diff. pressure + gravimetric yield + cycle state' },
+      { label:'Dedicated high-resolution ADC module' },
+      { label:'Standalone data-acquisition unit' },
+      { label:'Fieldbus sensor nodes (I2C/SPI) reporting to MCU' },
+      { label:'Wireless sensor nodes (Zigbee/BLE)' },
+      { label:'Edge AI inference module for anomaly detection' },
     ]},
   { fn:'Read Temperatures', branch:'Automate Water-Making Process',
     chosen:0,
     opts:[
-      { label:'Digital temperature sensors on shared bus (inlet air, sorbent bed, heat-transfer fluid, condenser)', notes:'Chosen — accurate, daisy-chainable, periodic field calibration against reference' },
-      { label:'Thermocouples with signal conditioning',                                                              notes:'Extended temperature range; unnecessary below 100 °C' },
-      { label:'Analog thermistors (NTC)',                                                                             notes:'Low component cost; higher per-point wiring complexity' },
+      { label:'Digital temp sensors on shared bus (inlet, bed, fluid, condenser)' },
+      { label:'Thermocouples with signal conditioning' },
+      { label:'Analog thermistors (NTC)' },
+      { label:'Infrared non-contact sensors' },
+      { label:'Fiber-optic distributed temperature sensing' },
+      { label:'RTDs (Pt100) with 4-wire measurement' },
     ]},
   { fn:'Read Flow & Humidity', branch:'Automate Water-Making Process',
     chosen:0,
     opts:[
-      { label:'Turbine flow meter (liquid loop) + fan-curve velocity estimate + digital RH sensors (inlet/outlet)', notes:'Chosen — adequate accuracy for efficiency calculations; vapor recovery ratio computed each cycle' },
-      { label:'Ultrasonic flow meter + hot-wire anemometer + capacitive RH sensors',                                 notes:'Higher accuracy across all channels; significantly increased cost and complexity' },
-      { label:'Temperature-only sensing with no flow or humidity measurement',                                        notes:'Minimal instrumentation; cannot compute vapor recovery or detect airflow restriction' },
+      { label:'Turbine flow meter + fan-curve velocity estimate + digital RH sensors' },
+      { label:'Ultrasonic flow meter + hot-wire anemometer + capacitive RH sensors' },
+      { label:'Temperature-only sensing (no flow or humidity)' },
+      { label:'Coriolis mass flow meter + chilled mirror hygrometer' },
+      { label:'Vortex flow meter + gravimetric humidity reference' },
+      { label:'Differential pressure orifice plate + psychrometric calculation' },
     ]},
   { fn:'Interface with Operator', branch:'Automate Water-Making Process',
     chosen:0,
     opts:[
-      { label:'Physical start/stop control + serial monitoring dashboard + local data export', notes:'Chosen — hardware start/stop independent of software; live monitoring without network dependency' },
-      { label:'Web-based remote user interface',                                                notes:'Remote access from any device; requires network infrastructure' },
-      { label:'Time-series database with graphical dashboard',                                  notes:'Rich historical visualisation; requires server infrastructure' },
+      { label:'Physical start/stop + serial dashboard + local data export' },
+      { label:'Web-based remote user interface' },
+      { label:'Time-series database with graphical dashboard' },
+      { label:'Touchscreen HMI panel on enclosure' },
+      { label:'Mobile app via Bluetooth' },
+      { label:'Audible/visual status indicators only (no display)' },
     ]},
 ];
 
@@ -1335,11 +1409,12 @@ function renderMorph() {
     tdBr.appendChild(pill);
     tr.appendChild(tdBr);
 
-    // Option A, B, C — one cell each
-    for (let i = 0; i < 3; i++) {
+    // Option A–F — one cell each
+    for (let i = 0; i < 6; i++) {
       const td = document.createElement('td');
       if (row.opts[i]) {
-        td.innerHTML = `<span class="mc-opt">${row.opts[i].label}</span>`;
+        const isChosen = row.chosen === i;
+        td.innerHTML = `<span class="mc-opt"${isChosen ? ' style="color:var(--text);font-weight:600"' : ''}>${row.opts[i].label}</span>`;
       }
       tr.appendChild(td);
     }
