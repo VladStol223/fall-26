@@ -1,0 +1,419 @@
+
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>SB Constant Comparison</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", system-ui, sans-serif; font-size: 13.5px; line-height: 1.6; background: #ffffff; color: #1f2328; margin: 0; padding: 24px; }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  h1 { font-size: 18px; font-weight: 600; margin: 0 0 4px; }
+  .sub { color: #57606a; font-size: 13px; margin-bottom: 20px; }
+  .const { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 6px; padding: 10px 16px; margin-bottom: 28px; font-size: 13px; color: #57606a; display: flex; flex-wrap: wrap; gap: 16px; }
+  .const span strong { color: #1f2328; }
+  h2 { font-size: 14px; font-weight: 600; margin: 32px 0 8px; border-bottom: 2px solid #e5e7eb; padding-bottom: 4px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin-bottom: 6px; }
+  thead tr.gh th { background: #f0f4f8; border-top: 1px solid #e5e7eb; border-bottom: 1px solid #e5e7eb; padding: 5px 8px; text-align: center; font-weight: 600; font-size: 12px; letter-spacing: 0.03em; }
+  thead tr.gh th.sc { background: #ffffff; border: none; }
+  thead tr.ch th { background: #f7f8fa; border-bottom: 2px solid #e5e7eb; padding: 6px 8px; font-weight: 600; white-space: nowrap; }
+  thead tr.ch th.num { text-align: right; }
+  .g1 { border-left: 2px solid #cbd5e1; }
+  .g2 { border-left: 2px solid #cbd5e1; }
+  .g3 { border-left: 2px solid #cbd5e1; }
+  tbody tr { border-bottom: 1px solid #e5e7eb; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr.full { background: #f7f8fa; font-style: italic; }
+  td { padding: 6px 8px; vertical-align: middle; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.seg { font-weight: 500; min-width: 110px; }
+  .tag { display: inline-block; padding: 1px 6px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+  .tag-yes { background: #dcfce7; color: #166534; }
+  .tag-no  { background: #fee2e2; color: #991b1b; }
+  .over  { color: #991b1b; }
+  .under { color: #1e40af; }
+  .ok    { color: #166534; font-weight: 600; }
+  .muted { color: #57606a; }
+  tfoot td { font-size: 11.5px; color: #57606a; padding: 7px 8px 0; border-top: 2px solid #e5e7eb; }
+  .insight { background: #f7f8fa; border-left: 3px solid #3b82d4; border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 13px; margin-top: 24px; margin-bottom: 24px; color: #1f2328; line-height: 1.9; }
+  .insight strong { color: #1f2328; }
+
+  /* Figures Gallery Styles */
+  .fig-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin: 12px 0 28px; }
+  .fig-card { background: #f7f8fa; border: 1px solid #e5e7eb; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; }
+  .fig-card img { width: 100%; height: auto; display: block; border-bottom: 1px solid #e5e7eb; background: #ffffff; }
+  .fig-caption { padding: 10px 12px; font-size: 12px; color: #57606a; }
+  .fig-caption strong { color: #1f2328; font-size: 13px; display: block; margin-bottom: 2px; }
+
+  .footer { margin-top: 36px; padding-top: 12px; border-top: 1px solid #e5e7eb; text-align: center; font-size: 12px; color: #57606a; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Stefan-Boltzmann Constant — Experimental Results</h1>
+  <p class="sub">Team 6 (125 pts) · Team 5 (150 pts) · Combined (275 pts) · T_amb = 19°C fixed · Published caliper precision · K=2 (95.4% confidence)</p>
+
+  <div class="const">
+    <span>σ_theory = <strong>5.67374 × 10⁻⁸ W/(m²·K⁴)</strong></span>
+    <span>Team 6: <strong>125 rows</strong> · 550–910°C · 20–60 cm</span>
+    <span>Team 5: <strong>150 rows</strong> · 550–910°C · 15–65 cm</span>
+    <span>T_amb: <strong>19°C fixed (both teams)</strong></span>
+  </div>
+
+  <!-- ===== APERTURE ===== -->
+  <h2>Segmented by Aperture Size</h2>
+  <table>
+    <thead>
+      <tr class="gh">
+        <th class="sc"></th>
+        <th colspan="4" class="g1">Team 6 Only</th>
+        <th colspan="4" class="g2">Team 5 Only</th>
+        <th colspan="4" class="g3">Combined</th>
+      </tr>
+      <tr class="ch">
+        <th class="sc">Aperture</th>
+        <th class="num g1">M [×10⁻⁸]</th><th class="num">Uc_M K=2</th><th class="num">% Dev.</th><th style="text-align:center">K=2?</th>
+        <th class="num g2">M [×10⁻⁸]</th><th class="num">Uc_M K=2</th><th class="num">% Dev.</th><th style="text-align:center">K=2?</th>
+        <th class="num g3">M [×10⁻⁸]</th><th class="num">Uc_M K=2</th><th class="num">% Dev.</th><th style="text-align:center">K=2?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="full">
+        <td class="seg">Full Set</td>
+        <td class="num under g1">5.4015</td><td class="num">± 0.0307</td><td class="num under">−4.8%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g2">5.4776</td><td class="num">± 0.0281</td><td class="num under">−3.5%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g3">5.4434</td><td class="num">± 0.0207</td><td class="num under">−4.1%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">26.67 mm</td>
+        <td class="num under g1">4.8851 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0514</td><td class="num under">−13.9%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g2">4.9306 <span class="muted" style="font-size:11px">(30)</span></td><td class="num">± 0.0455</td><td class="num under">−13.1%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g3">4.9142 <span class="muted" style="font-size:11px">(55)</span></td><td class="num">± 0.0341</td><td class="num under">−13.4%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">15.25 mm</td>
+        <td class="num over g1">6.9882 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0916</td><td class="num over">+23.2%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num over g2">7.0669 <span class="muted" style="font-size:11px">(30)</span></td><td class="num">± 0.0793</td><td class="num over">+24.6%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num over g3">7.0368 <span class="muted" style="font-size:11px">(55)</span></td><td class="num">± 0.0599</td><td class="num over">+24.0%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">10.22 mm</td>
+        <td class="num over g1">7.0701 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.1303</td><td class="num over">+24.6%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num over g2">7.0677 <span class="muted" style="font-size:11px">(30)</span></td><td class="num">± 0.1074</td><td class="num over">+24.6%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num over g3">7.0716 <span class="muted" style="font-size:11px">(55)</span></td><td class="num">± 0.0829</td><td class="num over">+24.6%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">5.19 mm</td>
+        <td class="num over g1">6.8435 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.3108</td><td class="num over">+20.6%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num over g2">7.3730 <span class="muted" style="font-size:11px">(30)</span></td><td class="num">± 0.2249</td><td class="num over">+29.9%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num over g3">7.1940 <span class="muted" style="font-size:11px">(55)</span></td><td class="num">± 0.1814</td><td class="num over">+26.8%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">2.57 mm</td>
+        <td class="num over g1">5.9298 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 1.0845</td><td class="num ok">+4.5%</td><td style="text-align:center"><span class="tag tag-yes">YES</span></td>
+        <td class="num over g2">6.8416 <span class="muted" style="font-size:11px">(30)</span></td><td class="num">± 0.6807</td><td class="num over">+20.6%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num over g3">6.5520 <span class="muted" style="font-size:11px">(55)</span></td><td class="num">± 0.5728</td><td class="num over">+15.5%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+    </tbody>
+    <tfoot><tr><td colspan="13">% Dev. = (M − σ_theory)/σ_theory × 100. Blue = under σ, Red = over σ. Uc_M in same ×10⁻⁸ units. 26.67 mm undershoots both teams consistently (−13–14%); 10.22–15.25 mm overshoot identically (+24.6%). T6 2.57 mm YES only due to large uncertainty (weak signal), not better physics.</td></tr></tfoot>
+  </table>
+
+  <!-- ===== TEMPERATURE ===== -->
+  <h2>Segmented by Source Temperature</h2>
+  <table>
+    <thead>
+      <tr class="gh">
+        <th class="sc"></th>
+        <th colspan="4" class="g1">Team 6 Only</th>
+        <th colspan="4" class="g2">Team 5 Only</th>
+        <th colspan="4" class="g3">Combined</th>
+      </tr>
+      <tr class="ch">
+        <th class="sc">Temperature</th>
+        <th class="num g1">M [×10⁻⁸]</th><th class="num">Uc_M K=2</th><th class="num">% Dev.</th><th style="text-align:center">K=2?</th>
+        <th class="num g2">M [×10⁻⁸]</th><th class="num">Uc_M K=2</th><th class="num">% Dev.</th><th style="text-align:center">K=2?</th>
+        <th class="num g3">M [×10⁻⁸]</th><th class="num">Uc_M K=2</th><th class="num">% Dev.</th><th style="text-align:center">K=2?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="full">
+        <td class="seg">Full Set</td>
+        <td class="num under g1">5.4015</td><td class="num">± 0.0307</td><td class="num under">−4.8%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g2">5.4776</td><td class="num">± 0.0281</td><td class="num under">−3.5%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g3">5.4434</td><td class="num">± 0.0207</td><td class="num under">−4.1%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">550°C</td>
+        <td class="num under g1">5.4360 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0980</td><td class="num under">−4.2%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g2">5.6175 <span class="muted" style="font-size:11px">(30)</span></td><td class="num">± 0.0873</td><td class="num ok">−1.0%</td><td style="text-align:center"><span class="tag tag-yes">YES</span></td>
+        <td class="num under g3">5.5382 <span class="muted" style="font-size:11px">(55)</span></td><td class="num">± 0.0651</td><td class="num under">−2.4%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">640°C</td>
+        <td class="num under g1">5.1238 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0781</td><td class="num under">−9.7%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g2">5.1500 <span class="muted" style="font-size:11px">(30)</span></td><td class="num">± 0.0704</td><td class="num under">−9.2%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g3">5.1387 <span class="muted" style="font-size:11px">(55)</span></td><td class="num">± 0.0523</td><td class="num under">−9.4%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">730°C</td>
+        <td class="num under g1">5.4303 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0697</td><td class="num under">−4.3%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g2">5.3483 <span class="muted" style="font-size:11px">(30)</span></td><td class="num">± 0.0628</td><td class="num under">−5.7%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g3">5.3866 <span class="muted" style="font-size:11px">(55)</span></td><td class="num">± 0.0466</td><td class="num under">−5.1%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">820°C</td>
+        <td class="num under g1">5.4517 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0622</td><td class="num under">−3.9%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g2">5.4268 <span class="muted" style="font-size:11px">(30)</span></td><td class="num">± 0.0565</td><td class="num under">−4.4%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g3">5.4383 <span class="muted" style="font-size:11px">(55)</span></td><td class="num">± 0.0418</td><td class="num under">−4.1%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">910°C</td>
+        <td class="num under g1">5.4768 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0571</td><td class="num under">−3.5%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num ok g2">5.7223 <span class="muted" style="font-size:11px">(30)</span></td><td class="num">± 0.0540</td><td class="num ok">+0.9%</td><td style="text-align:center"><span class="tag tag-yes">YES</span></td>
+        <td class="num under g3">5.6089 <span class="muted" style="font-size:11px">(55)</span></td><td class="num">± 0.0392</td><td class="num under">−1.1%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+    </tbody>
+    <tfoot><tr><td colspan="13">T6 misses σ at all temperatures. T5 captures σ at 550°C (−1.0%) and 910°C (+0.9%) with T_amb = 19°C — not an ambient artifact. 640°C is the worst segment for both teams (−9.2 to −9.7%), consistent across datasets. Deviation narrows monotonically from 640°C upward.</td></tr></tfoot>
+  </table>
+
+  <!-- ===== DISTANCE ===== -->
+  <h2>Segmented by Sensor Distance (uncorrected; corrected = +4.4 cm)</h2>
+  <table>
+    <thead>
+      <tr class="gh">
+        <th class="sc"></th>
+        <th colspan="4" class="g1">Team 6 Only</th>
+        <th colspan="4" class="g2">Team 5 Only</th>
+        <th colspan="4" class="g3">Combined</th>
+      </tr>
+      <tr class="ch">
+        <th class="sc">Distance</th>
+        <th class="num g1">M [×10⁻⁸]</th><th class="num">Uc_M K=2</th><th class="num">% Dev.</th><th style="text-align:center">K=2?</th>
+        <th class="num g2">M [×10⁻⁸]</th><th class="num">Uc_M K=2</th><th class="num">% Dev.</th><th style="text-align:center">K=2?</th>
+        <th class="num g3">M [×10⁻⁸]</th><th class="num">Uc_M K=2</th><th class="num">% Dev.</th><th style="text-align:center">K=2?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="full">
+        <td class="seg">Full Set</td>
+        <td class="num under g1">5.4015</td><td class="num">± 0.0307</td><td class="num under">−4.8%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g2">5.4776</td><td class="num">± 0.0281</td><td class="num under">−3.5%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g3">5.4434</td><td class="num">± 0.0207</td><td class="num under">−4.1%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">15 cm <span class="muted" style="font-size:11px">(T5)</span></td>
+        <td class="num muted g1">—</td><td class="num muted">—</td><td class="num muted">—</td><td style="text-align:center"><span class="muted">—</span></td>
+        <td class="num over g2">6.3716 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0636</td><td class="num over">+12.3%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num over g3">6.3716 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0636</td><td class="num over">+12.3%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">20 cm <span class="muted" style="font-size:11px">(T6)</span></td>
+        <td class="num over g1">5.9828 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0603</td><td class="num over">+5.4%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num muted g2">—</td><td class="num muted">—</td><td class="num muted">—</td><td style="text-align:center"><span class="muted">—</span></td>
+        <td class="num over g3">5.9828 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0603</td><td class="num over">+5.4%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">25 cm <span class="muted" style="font-size:11px">(T5)</span></td>
+        <td class="num muted g1">—</td><td class="num muted">—</td><td class="num muted">—</td><td style="text-align:center"><span class="muted">—</span></td>
+        <td class="num under g2">5.5133 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0590</td><td class="num under">−2.8%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g3">5.5133 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0590</td><td class="num under">−2.8%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">30 cm <span class="muted" style="font-size:11px">(T6)</span></td>
+        <td class="num under g1">5.3957 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0618</td><td class="num under">−4.9%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num muted g2">—</td><td class="num muted">—</td><td class="num muted">—</td><td style="text-align:center"><span class="muted">—</span></td>
+        <td class="num under g3">5.3957 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0618</td><td class="num under">−4.9%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">35 cm <span class="muted" style="font-size:11px">(T5)</span></td>
+        <td class="num muted g1">—</td><td class="num muted">—</td><td class="num muted">—</td><td style="text-align:center"><span class="muted">—</span></td>
+        <td class="num under g2">5.0334 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0637</td><td class="num under">−11.3%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g3">5.0334 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0637</td><td class="num under">−11.3%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">40 cm <span class="muted" style="font-size:11px">(T6)</span></td>
+        <td class="num under g1">4.9304 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0682</td><td class="num under">−13.1%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num muted g2">—</td><td class="num muted">—</td><td class="num muted">—</td><td style="text-align:center"><span class="muted">—</span></td>
+        <td class="num under g3">4.9304 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0682</td><td class="num under">−13.1%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">45 cm <span class="muted" style="font-size:11px">(T5)</span></td>
+        <td class="num muted g1">—</td><td class="num muted">—</td><td class="num muted">—</td><td style="text-align:center"><span class="muted">—</span></td>
+        <td class="num under g2">4.5822 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0726</td><td class="num under">−19.2%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g3">4.5822 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0726</td><td class="num under">−19.2%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">50 cm <span class="muted" style="font-size:11px">(T6)</span></td>
+        <td class="num under g1">4.8063 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0798</td><td class="num under">−15.3%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num muted g2">—</td><td class="num muted">—</td><td class="num muted">—</td><td style="text-align:center"><span class="muted">—</span></td>
+        <td class="num under g3">4.8063 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0798</td><td class="num under">−15.3%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">55 cm <span class="muted" style="font-size:11px">(T5)</span></td>
+        <td class="num muted g1">—</td><td class="num muted">—</td><td class="num muted">—</td><td style="text-align:center"><span class="muted">—</span></td>
+        <td class="num under g2">4.9774 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0881</td><td class="num under">−12.3%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g3">4.9774 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0881</td><td class="num under">−12.3%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">60 cm <span class="muted" style="font-size:11px">(T6)</span></td>
+        <td class="num under g1">4.8875 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0955</td><td class="num under">−13.9%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num muted g2">—</td><td class="num muted">—</td><td class="num muted">—</td><td style="text-align:center"><span class="muted">—</span></td>
+        <td class="num under g3">4.8875 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.0955</td><td class="num under">−13.9%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+      <tr>
+        <td class="seg">65 cm <span class="muted" style="font-size:11px">(T5)</span></td>
+        <td class="num muted g1">—</td><td class="num muted">—</td><td class="num muted">—</td><td style="text-align:center"><span class="muted">—</span></td>
+        <td class="num under g2">4.8696 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.1039</td><td class="num under">−14.2%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+        <td class="num under g3">4.8696 <span class="muted" style="font-size:11px">(25)</span></td><td class="num">± 0.1039</td><td class="num under">−14.2%</td><td style="text-align:center"><span class="tag tag-no">NO</span></td>
+      </tr>
+    </tbody>
+    <tfoot><tr><td colspan="13">T6: even distances 20–60 cm. T5: odd distances 15–65 cm. No overlap — Combined column = same as whichever team contributed that row. σ crossover from over→under between 20 cm (T6, +5.4%) and 25 cm (T5, −2.8%). Deviation grows beyond 30 cm. 45 cm anomaly (T5, −19.2%) is notably worse than neighbors 40 cm (−13.1%) and 50 cm (−15.3%) — warrants checking T5 raw data.</td></tr></tfoot>
+  </table>
+
+  <div class="insight">
+    <strong>Key findings — T_amb = 19°C fixed, both teams:</strong><br />
+    <strong>Aperture:</strong> Fully consistent between T6 and T5. 26.67 mm: −13.9% / −13.1% (both under). 10.22–15.25 mm: exactly +24.6% both teams. T6 2.57 mm is the only YES — wide uncertainty (±1.08 × 10⁻⁸) from weak signal, not a model improvement.<br />
+    <strong>Temperature:</strong> T6 misses σ at all temperatures. T5 captures σ at 550°C (−1.0%) and 910°C (+0.9%) with a uniform 19°C ambient — these are genuine differences in T5's data, not ambient artifacts. 640°C is the worst segment for both teams (−9.2 to −9.7%). All combined segments miss σ; deviation narrows monotonically from 640°C upward toward 910°C.<br />
+    <strong>Distance:</strong> Crossover from over- to under-σ between 20 cm (T6, +5.4%) and 25 cm (T5, −2.8%). Deviation increases beyond 30 cm, consistent with ambient offset dominating at low signal. 45 cm (T5, −19.2%) is anomalously low relative to neighbors — raw data should be verified.<br />
+    <strong>Root cause across all segments:</strong> Non-zero intercept B ≈ 0.3–0.7 mW throughout confirms a systematic ambient radiation background not accounted for in the model.
+  </div>
+
+  <!-- ===== REGRESSION & OVERLAY FIGURES ===== -->
+  <h2>Regression &amp; Overlay Figures (Combined Data)</h2>
+  <div class="fig-gallery">
+    <div class="fig-card">
+      <img src="figures/fig1_full_set_regression.png" alt="Figure 1: Full Set York Regression" />
+      <div class="fig-caption">
+        <strong>Figure 1: Full Combined Dataset (275 pts)</strong>
+        Linear York regression with 68% error ellipses. M = 5.4434 × 10⁻⁸ W/(m²·K⁴) (−4.1% dev).
+      </div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig2_aperture_overlay.png" alt="Figure 2: Aperture Overlay" />
+      <div class="fig-caption">
+        <strong>Figure 2: Segmented by Aperture Size</strong>
+        Overlaid regressions for each aperture (2.57 mm to 26.67 mm).
+      </div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig3_temperature_overlay.png" alt="Figure 3: Temperature Overlay" />
+      <div class="fig-caption">
+        <strong>Figure 3: Segmented by Source Temperature</strong>
+        Overlaid regressions across 550°C, 640°C, 730°C, 820°C, and 910°C.
+      </div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig4_distance_overlay.png" alt="Figure 4: Distance Overlay" />
+      <div class="fig-caption">
+        <strong>Figure 4: Segmented by Sensor Distance</strong>
+        Overlaid regressions across 15 cm to 65 cm uncorrected distances.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SB CONSTANT COMPARISON FIGURES ===== -->
+  <h2>Stefan-Boltzmann Constant Comparisons (K=2 Confidence)</h2>
+
+  <h3 style="font-size:13px; font-weight:600; color:#57606a; margin:16px 0 8px;">Aperture Segments</h3>
+  <div class="fig-gallery">
+    <div class="fig-card">
+      <img src="figures/fig_sb_full_set.png" alt="SB Full Set" />
+      <div class="fig-caption"><strong>Full Dataset (Combined)</strong> M vs. σ_theory with K=2 error bar.</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_apt_26.67mm.png" alt="SB 26.67mm Aperture" />
+      <div class="fig-caption"><strong>26.67 mm Aperture</strong> M = 4.9142 × 10⁻⁸ W/(m²·K⁴) (−13.4%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_apt_15.25mm.png" alt="SB 15.25mm Aperture" />
+      <div class="fig-caption"><strong>15.25 mm Aperture</strong> M = 7.0368 × 10⁻⁸ W/(m²·K⁴) (+24.0%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_apt_10.22mm.png" alt="SB 10.22mm Aperture" />
+      <div class="fig-caption"><strong>10.22 mm Aperture</strong> M = 7.0716 × 10⁻⁸ W/(m²·K⁴) (+24.6%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_apt_5.19mm.png" alt="SB 5.19mm Aperture" />
+      <div class="fig-caption"><strong>5.19 mm Aperture</strong> M = 7.1940 × 10⁻⁸ W/(m²·K⁴) (+26.8%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_apt_2.57mm.png" alt="SB 2.57mm Aperture" />
+      <div class="fig-caption"><strong>2.57 mm Aperture</strong> M = 6.5520 × 10⁻⁸ W/(m²·K⁴) (+15.5%).</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:13px; font-weight:600; color:#57606a; margin:16px 0 8px;">Temperature Segments</h3>
+  <div class="fig-gallery">
+    <div class="fig-card">
+      <img src="figures/fig_sb_temp_550C.png" alt="SB 550C" />
+      <div class="fig-caption"><strong>550°C Source</strong> M = 5.5382 × 10⁻⁸ W/(m²·K⁴) (−2.4%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_temp_640C.png" alt="SB 640C" />
+      <div class="fig-caption"><strong>640°C Source</strong> M = 5.1387 × 10⁻⁸ W/(m²·K⁴) (−9.4%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_temp_730C.png" alt="SB 730C" />
+      <div class="fig-caption"><strong>730°C Source</strong> M = 5.3866 × 10⁻⁸ W/(m²·K⁴) (−5.1%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_temp_820C.png" alt="SB 820C" />
+      <div class="fig-caption"><strong>820°C Source</strong> M = 5.4383 × 10⁻⁸ W/(m²·K⁴) (−4.1%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_temp_910C.png" alt="SB 910C" />
+      <div class="fig-caption"><strong>910°C Source</strong> M = 5.6089 × 10⁻⁸ W/(m²·K⁴) (−1.1%).</div>
+    </div>
+  </div>
+
+  <h3 style="font-size:13px; font-weight:600; color:#57606a; margin:16px 0 8px;">Distance Segments</h3>
+  <div class="fig-gallery">
+    <div class="fig-card">
+      <img src="figures/fig_sb_dist_15cm.png" alt="SB 15cm" />
+      <div class="fig-caption"><strong>15 cm uncorrected</strong> M = 6.3716 × 10⁻⁸ W/(m²·K⁴) (+12.3%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_dist_20cm.png" alt="SB 20cm" />
+      <div class="fig-caption"><strong>20 cm uncorrected</strong> M = 5.9828 × 10⁻⁸ W/(m²·K⁴) (+5.4%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_dist_25cm.png" alt="SB 25cm" />
+      <div class="fig-caption"><strong>25 cm uncorrected</strong> M = 5.5133 × 10⁻⁸ W/(m²·K⁴) (−2.8%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_dist_30cm.png" alt="SB 30cm" />
+      <div class="fig-caption"><strong>30 cm uncorrected</strong> M = 5.3957 × 10⁻⁸ W/(m²·K⁴) (−4.9%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_dist_35cm.png" alt="SB 35cm" />
+      <div class="fig-caption"><strong>35 cm uncorrected</strong> M = 5.0334 × 10⁻⁸ W/(m²·K⁴) (−11.3%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_dist_40cm.png" alt="SB 40cm" />
+      <div class="fig-caption"><strong>40 cm uncorrected</strong> M = 4.9304 × 10⁻⁸ W/(m²·K⁴) (−13.1%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_dist_45cm.png" alt="SB 45cm" />
+      <div class="fig-caption"><strong>45 cm uncorrected</strong> M = 4.5822 × 10⁻⁸ W/(m²·K⁴) (−19.2%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_dist_50cm.png" alt="SB 50cm" />
+      <div class="fig-caption"><strong>50 cm uncorrected</strong> M = 4.8063 × 10⁻⁸ W/(m²·K⁴) (−15.3%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_dist_55cm.png" alt="SB 55cm" />
+      <div class="fig-caption"><strong>55 cm uncorrected</strong> M = 4.9774 × 10⁻⁸ W/(m²·K⁴) (−12.3%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_dist_60cm.png" alt="SB 60cm" />
+      <div class="fig-caption"><strong>60 cm uncorrected</strong> M = 4.8875 × 10⁻⁸ W/(m²·K⁴) (−13.9%).</div>
+    </div>
+    <div class="fig-card">
+      <img src="figures/fig_sb_dist_65cm.png" alt="SB 65cm" />
+      <div class="fig-caption"><strong>65 cm uncorrected</strong> M = 4.8696 × 10⁻⁸ W/(m²·K⁴) (−14.2%).</div>
+    </div>
+  </div>
+
+  <div class="footer">Made with IBM Bob</div>
+</div>
+</body>
+</html>
